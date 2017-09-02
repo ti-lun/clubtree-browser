@@ -13,6 +13,7 @@ import ResultSortDropdown from "../components/SearchResults/ResultSortDropdown";
 import ClubResultsList from "../components/SearchResults/ClubResultsList";
 
 import { simpleSearchClub } from "../actions/searchResultsActions";
+import axios from "axios";
 
 export class SearchResults extends Component {
   /**
@@ -29,13 +30,14 @@ export class SearchResults extends Component {
    * @return {(Promise|undefined)} If this method returns a promise, the router
    * will wait for the promise to resolve before the container is loaded.
    */
-  static gsBeforeRoute(/* {dispatch}, renderProps, query, serverProps */) {}
+  static gsBeforeRoute(/* {dispatch}, renderProps, query, serverProps */) { }
 
   componentDidMount() {
     const query = this.props.location.query.term;
-    console.log("query is", query);
     if (query) {
-      simpleSearchClub(query);
+      return axios.get("/api/clubs?q=" + query).then((data) => {
+        this.props.simpleSearchClub(data.data);
+      });
     }
   }
 
@@ -44,40 +46,39 @@ export class SearchResults extends Component {
   }
 
   render() {
-    console.log("this.props", this.props);
     return (
       <div className="container">
         <Helmet title="SearchResults" />
-        <Header type="main"/>
+        <Header type="main" />
         <Row>
           <Col md="4">
-          <SearchBar searchBarStyleId="search" />
-          <div
-            id="categories"
-            style={{
-              backgroundColor: "#72bec9",
-              "boxShadow": "10px 10px 15px #aaaaaa",
-              padding: "20px 0px 20px 40px",
-              margin: "0px 0px 20px 0px",
-              color: "white"
-            }}
-          >
-            <h2>Categories</h2>
-            <CategoriesCheckbox />
-          </div>
-          <div
-            id="categories"
-            style={{
-              backgroundColor: "#e16e69",
-              "boxShadow": "10px 10px 15px #aaaaaa",
-              padding: "20px 0px 20px 40px",
-              margin: "0px 0px 20px 0px",
-              color: "white"
-            }}
-          >
-            <h2>Vibes</h2>
-            <VibeSelector />
-          </div>
+            <SearchBar searchBarStyleId="search" />
+            <div
+              id="categories"
+              style={{
+                backgroundColor: "#72bec9",
+                "boxShadow": "10px 10px 15px #aaaaaa",
+                padding: "20px 0px 20px 40px",
+                margin: "0px 0px 20px 0px",
+                color: "white"
+              }}
+            >
+              <h2>Categories</h2>
+              <CategoriesCheckbox />
+            </div>
+            <div
+              id="categories"
+              style={{
+                backgroundColor: "#e16e69",
+                "boxShadow": "10px 10px 15px #aaaaaa",
+                padding: "20px 0px 20px 40px",
+                margin: "0px 0px 20px 0px",
+                color: "white"
+              }}
+            >
+              <h2>Vibes</h2>
+              <VibeSelector />
+            </div>
           </Col>
           <Col
             md="8"
