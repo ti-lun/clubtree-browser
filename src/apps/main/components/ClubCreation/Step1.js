@@ -6,7 +6,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
-import { Button } from "reactstrap";
+import { Container, Button, Row, Col } from "reactstrap";
 import { toggleClubCategory } from "../../actions/index";
 
 const CATEGORY_TAGS = [
@@ -39,61 +39,75 @@ class Step1 extends React.Component {
         <hr />
         <div>
           <h2> Categories </h2>
-          <div>
-            <Button
-              color="primary"
-              onClick={() => this.props.toggleClubCategory(CATEGORY_TAGS[0])}
-              active={_.includes(this.props.newClub["category"], CATEGORY_TAGS[0])}
-            >
-              Academics & Honors
+          <Container>
+            <Row>
+              <Col>
+                <Button
+                  color="primary"
+                  onClick={() => this.props.toggleClubCategory(CATEGORY_TAGS[0])}
+                  active={_.includes(this.props.newClub["category"], CATEGORY_TAGS[0])}
+                >
+                  Academics & Honors
             </Button>
-            <Button
-              color="primary"
-              onClick={() => this.props.toggleClubCategory(CATEGORY_TAGS[1])}
-              active={_.includes(this.props.newClub["category"], CATEGORY_TAGS[1])}
-            >
-              Career & Professional
+                <Button
+                  color="primary"
+                  onClick={() => this.props.toggleClubCategory(CATEGORY_TAGS[4])}
+                  active={_.includes(this.props.newClub["category"], CATEGORY_TAGS[4])}>
+                  Art
             </Button>
-            <Button
-              color="primary"
-              onClick={() => this.props.toggleClubCategory(CATEGORY_TAGS[2])}
-              active={_.includes(this.props.newClub["category"], CATEGORY_TAGS[2])}
-            >
-              Sports
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <Button
+                  color="primary"
+                  onClick={() => this.props.toggleClubCategory(CATEGORY_TAGS[1])}
+                  active={_.includes(this.props.newClub["category"], CATEGORY_TAGS[1])}
+                >
+                  Career & Professional
             </Button>
-            <Button
-              color="primary"
-              onClick={() => this.props.toggleClubCategory(CATEGORY_TAGS[3])}
-              active={_.includes(this.props.newClub["category"], CATEGORY_TAGS[3])}>
-              Community Service
+                <Button
+                  color="primary"
+                  onClick={() => this.props.toggleClubCategory(CATEGORY_TAGS[5])}
+                  active={_.includes(this.props.newClub["category"], CATEGORY_TAGS[5])}>
+                  Environmental
             </Button>
-          </div>
-          <div>
-            <Button
-              color="primary"
-              onClick={() => this.props.toggleClubCategory(CATEGORY_TAGS[4])}
-              active={_.includes(this.props.newClub["category"], CATEGORY_TAGS[4])}>
-              Art
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <Button
+                  color="primary"
+                  onClick={() => this.props.toggleClubCategory(CATEGORY_TAGS[2])}
+                  active={_.includes(this.props.newClub["category"], CATEGORY_TAGS[2])}
+                >
+                  Sports
             </Button>
-            <Button
-              color="primary"
-              onClick={() => this.props.toggleClubCategory(CATEGORY_TAGS[5])}
-              active={_.includes(this.props.newClub["category"], CATEGORY_TAGS[5])}>
-              Environmental
+                <Button
+                  color="primary"
+                  onClick={() => this.props.toggleClubCategory(CATEGORY_TAGS[6])}
+                  active={_.includes(this.props.newClub["category"], CATEGORY_TAGS[6])}>
+                  Social
             </Button>
-            <Button
-              color="primary"
-              onClick={() => this.props.toggleClubCategory(CATEGORY_TAGS[6])}
-              active={_.includes(this.props.newClub["category"], CATEGORY_TAGS[6])}>
-              Social
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <Button
+                  color="primary"
+                  onClick={() => this.props.toggleClubCategory(CATEGORY_TAGS[3])}
+                  active={_.includes(this.props.newClub["category"], CATEGORY_TAGS[3])}>
+                  Community Service
             </Button>
-            <Button
-              color="primary"
-              onClick={() => this.props.toggleClubCategory(CATEGORY_TAGS[7])}
-              active={_.includes(this.props.newClub["category"], CATEGORY_TAGS[7])}>
-              Gaming
+                <Button
+                  color="primary"
+                  onClick={() => this.props.toggleClubCategory(CATEGORY_TAGS[7])}
+                  active={_.includes(this.props.newClub["category"], CATEGORY_TAGS[7])}>
+                  Gaming
             </Button>
-          </div>
+              </Col>
+            </Row>
+          </Container>
         </div>
         <hr />
         <div>
@@ -123,7 +137,7 @@ class Step1 extends React.Component {
 }
 
 export default connect(
-  (state) => ({newClub: state.clubCreationReducer.newClub}),
+  (state) => ({ newClub: state.clubCreationReducer.newClub }),
   dispatch => bindActionCreators({
     toggleClubCategory
   }, dispatch)
