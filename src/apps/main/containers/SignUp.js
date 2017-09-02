@@ -7,8 +7,6 @@ import Helmet from "react-helmet";
 
 import Header from "../components/Header";
 import ChooseSignUpOption from "../components/SignUp/ChooseSignUpOption";
-import "compiled/bootstrap/dist/css/bootstrap.css";
-import "../assets/css/signup.scss";
 
 export class SignUp extends Component {
   /**
@@ -45,7 +43,7 @@ export class SignUp extends Component {
 
   render () {
     return (
-      <div>
+      <div className="joinus">
         <Helmet title="SignUp"/>
         <Header type="signup"/>
         <div style={{

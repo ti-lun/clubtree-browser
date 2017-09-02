@@ -5,10 +5,6 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import Helmet from "react-helmet";
 import { Row, Col } from "reactstrap";
-
-import "compiled/bootstrap/dist/css/bootstrap.css";
-import "../assets/css/search.css";
-
 import Header from "../components/Header";
 import CategoriesCheckbox from "../components/SearchResults/CategoriesCheckbox";
 import VibeSelector from "../components/VibeSelector";

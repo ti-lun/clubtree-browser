@@ -2,8 +2,7 @@
 
 import React, { Component } from "react";
 import { Row, Col, Button } from "reactstrap";
-import logo from "../assets/images/site-logo/entirelogo.png";
-import "../assets/css/header.scss";
+import logo from "../assets/images/site-logo/clubtree-stroke.png";
 import PropTypes from "prop-types";
 
 export default class Header extends Component {
@@ -18,9 +17,9 @@ export default class Header extends Component {
   generateLinkStyle = (type) => {
     switch (type) {
       case "signup":
-        return "signup";
+        return "header-signup";
       default:
-        return "main";
+        return "header-main";
     }
   }
 
@@ -33,7 +32,7 @@ export default class Header extends Component {
           </Col>
           <Col>
             <span className={this.generateLinkStyle(this.props.type)}>
-              <span className="explore"><a href="/search">EXPLORE</a></span>&nbsp; | &nbsp;<span className="find"><a href="/advancedsearch">FEATURED</a></span>
+              <span className="header-explore"><a href="/search">EXPLORE</a></span>&nbsp; | &nbsp;<span className="header-find"><a href="/advancedsearch">FEATURED</a></span>
             </span>
           </Col>
           { (this.props.type !== "signup") ?

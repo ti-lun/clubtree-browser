@@ -4,7 +4,6 @@ import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import Helmet from "react-helmet";
-import "compiled/bootstrap/dist/css/bootstrap.css";
 
 import FrontPage from "../components/FrontPage";
 

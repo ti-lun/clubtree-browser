@@ -3,7 +3,7 @@
 import React, { Component, PropTypes } from "react";
 import Helmet from "react-helmet";
 import { BodyAttributes } from "compiled/gluestick";
-import "compiled/normalize.css";
+import "./assets/css/main.scss";
 
 /**
  * The index html will be generated from this file. You can customize things as
@@ -25,7 +25,6 @@ export default class Index extends Component {
     return (
       <html lang="en-US">
         <head>
-        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
           {helmet.base.toComponent()}
           {helmet.title.toComponent()}
           {helmet.meta.toComponent()}
