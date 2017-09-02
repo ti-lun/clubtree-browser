@@ -54,28 +54,12 @@ export class SearchResults extends Component {
           <Col md="4">
             <SearchBar searchBarStyleId="search" />
             <div
-              id="categories"
-              style={{
-                backgroundColor: "#72bec9",
-                "boxShadow": "10px 10px 15px #aaaaaa",
-                padding: "20px 0px 20px 40px",
-                margin: "0px 0px 20px 0px",
-                color: "white"
-              }}
-            >
+              className="searchresults-categories searchresults-box">
               <h2>Categories</h2>
               <CategoriesCheckbox />
             </div>
             <div
-              id="categories"
-              style={{
-                backgroundColor: "#e16e69",
-                "boxShadow": "10px 10px 15px #aaaaaa",
-                padding: "20px 0px 20px 40px",
-                margin: "0px 0px 20px 0px",
-                color: "white"
-              }}
-            >
+              className="searchresults-box searchresults-vibes">
               <h2>Vibes</h2>
               <VibeSelector />
             </div>

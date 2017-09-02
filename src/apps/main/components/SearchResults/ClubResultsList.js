@@ -1,23 +1,25 @@
 /* @flow */
 
 import React, { Component } from "react";
+import SingleClubResult from "./SingleClubResult";
 
 export default class ClubResultsList extends Component {
   render() {
-    const clubRows = this.props.searchResults.map((club, idx) => (
-      <tr key={idx} /*onClick={() => this.props.onFoodClick(food)}*/>
-        <td>{club.clubName}</td>
-        <td className="right aligned">{club.description}</td>
-      </tr>
-    ));
+    const clubRows = this.props.searchResults.map((club, index) => {
+      return (
+        <div>
+          <SingleClubResult club={club} />
+          <hr/>
+        </div>
+      );
+    });
+
     return (
       <div>
         <h3>
           Displaying results for: {this.props.term}
         </h3>
-        <p>
           {clubRows}
-        </p>
       </div >
     );
   }
