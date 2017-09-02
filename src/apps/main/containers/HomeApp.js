@@ -30,7 +30,7 @@ export class HomeApp extends Component {
     return (
       <div>
         <Helmet title="Home" />
-        <Header type="main"/>
+        <Header type="main" />
         <FrontPage />
       </div>
     );

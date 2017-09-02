@@ -33,7 +33,7 @@ export class ClubProfile extends Component {
     return (
       <div>
         <Helmet title="SearchResults" />
-        <Header type="main"/>
+        <Header type="main" />
         <ProfileHeader />
         <div className="col-xs-12 clubprofilesection">
           <h1 className="col-xs-12 clubprofilesection"> In a nutshell </h1>

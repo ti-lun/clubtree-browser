@@ -9,7 +9,7 @@ export default class ClubResultsList extends Component {
       return (
         <div>
           <SingleClubResult club={club} />
-          <hr/>
+          <hr />
         </div>
       );
     });
@@ -19,8 +19,8 @@ export default class ClubResultsList extends Component {
         <h3>
           Displaying results for: {this.props.term}
         </h3>
-          {clubRows}
-      </div >
+        {clubRows}
+      </div>
     );
   }
 }

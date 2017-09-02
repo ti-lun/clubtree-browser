@@ -6,9 +6,12 @@ describe("apps/main/reducers/searchResultsReducer", () => {
   it("returns the initial state", () => {
     const state = {};
     expect(
-      reducer({}, {
-        type: "_TEST_ACTION"
-      })
+      reducer(
+        {},
+        {
+          type: "_TEST_ACTION"
+        }
+      )
     ).toEqual(state);
   });
 });

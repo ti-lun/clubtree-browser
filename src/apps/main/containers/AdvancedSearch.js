@@ -31,11 +31,11 @@ export class AdvancedSearch extends Component {
     return (
       <div className="container">
         <Helmet title="AdvancedSearch" />
-        <Header type="advancedsearch"/>
+        <Header type="advancedsearch" />
         <div
           style={{
             backgroundColor: "#d6f0f3",
-            "boxShadow": "10px 10px 15px #aaaaaa",
+            boxShadow: "10px 10px 15px #aaaaaa",
             padding: "40px 20px 40px 40px",
             margin: "0px 0px 20px 0px"
           }}
@@ -47,7 +47,7 @@ export class AdvancedSearch extends Component {
         </div>
         <div
           style={{
-            "boxShadow": "10px 10px 15px #aaaaaa",
+            boxShadow: "10px 10px 15px #aaaaaa",
             padding: "40px 0px 40px 40px",
             margin: "0px 0px 20px 0px",
             backgroundColor: "white"
@@ -56,7 +56,6 @@ export class AdvancedSearch extends Component {
           <h2>Or how about picking a category to start with?</h2>
           Pick as many as you like.
           <CategorySelector />
-
           <h2>Interested in what a club's vibes are like?</h2>
           Pick as many as you like.
           <VibeSelector />

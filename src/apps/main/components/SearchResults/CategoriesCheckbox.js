@@ -12,14 +12,14 @@ export default class CategoriesCheckbox extends Component {
     for (let key in CATEGORIES_ICONS_MAP) {
       generatedCheckboxes.push(
         <div>
-          <Input type="checkbox" key={ key } /> &nbsp;{ key }
+          <Input type="checkbox" key={key} /> &nbsp;{key}
         </div>
       );
-    };
+    }
 
     return (
       <div>
-        { generatedCheckboxes }
+        {generatedCheckboxes}
       </div>
     );
   }

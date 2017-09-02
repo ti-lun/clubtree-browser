@@ -45,7 +45,7 @@ export class ClubCreation extends Component {
     return (
       <div>
         <Helmet title="ClubCreation" />
-        <Header type="main"/>
+        <Header type="main" />
         {this.displayAtStep(this.state.step)}
       </div>
     );

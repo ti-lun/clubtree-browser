@@ -2,7 +2,6 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900");
 @import url("https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css");
 
-
 // =================================== [ UNIVERSAL STYLES ]
 
 body {
@@ -18,19 +17,19 @@ a {
   font-color: "#ff5d55";
 }
 
-a:hover{
-  text-decoration:none;
+a:hover {
+  text-decoration: none;
 }
 
 hr.style1 {
-	border-top: 1px solid #8c8b8b;
+  border-top: 1px solid #8c8b8b;
 }
 
 .btn-teal {
   background-color: #00bcd4;
   border-radius: 10px;
   padding: 10px 30px 10px 30px;
-  color: #FFFFFF;
+  color: #ffffff;
   border: 0px;
 }
 
@@ -38,15 +37,15 @@ hr.style1 {
   background-color: #ff3823;
   border-radius: 10px;
   padding: 10px 30px 10px 30px;
-  color: #FFFFFF;
+  color: #ffffff;
   border: 0px;
   margin-left: 20px;
   margin-right: 20px;
 }
 
 .btn-red a {
-    color: #FFFFFF;
-    text-decoration: none;
+  color: #ffffff;
+  text-decoration: none;
 }
 
 .btn2 {
@@ -54,7 +53,7 @@ hr.style1 {
   background-color: #00bcd4;
   border-radius: 10px;
   padding: 10px;
-  color: #FFFFFF;
+  color: #ffffff;
   border: 0px;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -64,7 +63,8 @@ hr.style1 {
   background-color: #ff3823;
 }
 
-input:focus, button:focus {
+input:focus,
+button:focus {
   outline: none;
 }
 
@@ -82,13 +82,13 @@ input:focus, button:focus {
 
 .home-intro {
   height: 50%;
-  background-color: #E16E69;
+  background-color: #e16e69;
   padding: 50px 150px 50px 150px;
 }
 
 .home-perks-description-one {
   height: 35%;
-  background-color: #9CD9E1;
+  background-color: #9cd9e1;
   font-size: 45px;
   color: "#f7f6f6";
   text-align: center;
@@ -98,7 +98,7 @@ input:focus, button:focus {
 
 .home-perks-description-two {
   height: 35%;
-  background-color: #8AC8D1;
+  background-color: #8ac8d1;
   font-size: 45px;
   color: "#f7f6f6";
   text-align: center;
@@ -108,7 +108,7 @@ input:focus, button:focus {
 
 .home-perks-description-three {
   height: 35%;
-  background-color: #72BEC9;
+  background-color: #72bec9;
   font-size: 45px;
   color: "#f7f6f6";
   text-align: center;
@@ -123,12 +123,12 @@ input:focus, button:focus {
 }
 
 .home-organizer-graphs {
-  height: 100%
+  height: 100%;
 }
 
 .home-signup {
   height: 40%;
-  background-color: #E99491;
+  background-color: #e99491;
 }
 
 .home-footer {
@@ -210,7 +210,7 @@ h1.front-splash-font {
 .top-banner-each {
   padding-top: 5%;
   padding-bottom: 5%;
-  text-align:center;
+  text-align: center;
 }
 
 // is this even used for anything?
@@ -259,7 +259,6 @@ h1.front-splash-font {
 
 // =================================== [ CLUB PROFILE ]
 
-
 .clubprofile-logo {
   max-width: 256px;
 }
@@ -298,7 +297,6 @@ p.clubprofile-section {
 }
 
 // =================================== [ SEARCH RESULTS ]
-
 
 .searchresults-box {
   box-shadow: 10px 10px 15px #aaaaaa;

@@ -1,21 +1,16 @@
 import React from "react";
 
-export const COLORS = [
-  "#e61610",
-  "#ff3823",
-  "#00bcd4",
-  "#72bec9"
-];
+export const COLORS = ["#e61610", "#ff3823", "#00bcd4", "#72bec9"];
 
 export const CATEGORIES_ICONS_MAP = {
-  "Academic & Honors" : "graduation-cap",
-  "Career & Professional" : "suitcase",
-  "Sports" : "futbol-o",
-  "Community Service" : "handshake-o",
-  "Art" : "paint-brush",
-  "Environmental" : "tree",
-  "Social" : "commenting",
-  "Gaming" : "gamepad"
+  "Academic & Honors": "graduation-cap",
+  "Career & Professional": "suitcase",
+  Sports: "futbol-o",
+  "Community Service": "handshake-o",
+  Art: "paint-brush",
+  Environmental: "tree",
+  Social: "commenting",
+  Gaming: "gamepad"
 };
 
 export const VIBES = {
@@ -26,7 +21,7 @@ export const VIBES = {
     "Low commitment",
     "Casual"
   ],
-  "Energy": [
+  Energy: [
     "Wild",
     "Fun",
     "Chill",
@@ -35,7 +30,7 @@ export const VIBES = {
     "Exciting",
     "Relaxing"
   ],
-  "Personality": [
+  Personality: [
     "Professional",
     "Intellectual",
     "Adventurous",

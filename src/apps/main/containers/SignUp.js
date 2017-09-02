@@ -23,7 +23,7 @@ export class SignUp extends Component {
    * @return {(Promise|undefined)} If this method returns a promise, the router
    * will wait for the promise to resolve before the container is loaded.
    */
-  static gsBeforeRoute (/* {dispatch}, renderProps, query, serverProps */) {}
+  static gsBeforeRoute(/* {dispatch}, renderProps, query, serverProps */) {}
 
   constructor(props) {
     super(props);
@@ -33,7 +33,7 @@ export class SignUp extends Component {
   }
 
   displayFromStep() {
-    switch(this.state.display) {
+    switch (this.state.display) {
       case 1:
         return <ChooseSignUpOption />;
       default:
@@ -41,44 +41,63 @@ export class SignUp extends Component {
     }
   }
 
-  render () {
+  render() {
     return (
       <div className="joinus">
-        <Helmet title="SignUp"/>
-        <Header type="signup"/>
-        <div style={{
+        <Helmet title="SignUp" />
+        <Header type="signup" />
+        <div
+          style={{
             textAlign: "center",
             marginBottom: "50px"
-          }}>
-          <span style={{
+          }}
+        >
+          <span
+            style={{
               color: "white",
               fontSize: "60px",
               display: "block"
-            }}>Join Us</span>
-          <span style={{
+            }}
+          >
+            Join Us
+          </span>
+          <span
+            style={{
               color: "white",
               fontSize: "24px"
-          }}>Takes just a couple of clicks.</span>
+            }}
+          >
+            Takes just a couple of clicks.
+          </span>
         </div>
-          <div style={{
-              backgroundColor: "#FFFFFF",
-              width: "30%",
-              left: "50%",
-              marginLeft: "auto",
-              marginRight: "auto",
-              padding: "50px",
-              boxShadow: "10px 10px 50px #000000",
-              textAlign: "center"
-            }}>
-            { this.displayFromStep() }
-          </div>
+        <div
+          style={{
+            backgroundColor: "#FFFFFF",
+            width: "30%",
+            left: "50%",
+            marginLeft: "auto",
+            marginRight: "auto",
+            padding: "50px",
+            boxShadow: "10px 10px 50px #000000",
+            textAlign: "center"
+          }}
+        >
+          {this.displayFromStep()}
         </div>
-
+      </div>
     );
   }
 }
 
 export default connect(
-  (/* state */) => ({/** _INSERT_STATE_  **/}),
-  (dispatch) => bindActionCreators({/** _INSERT_ACTION_CREATORS_ **/}, dispatch)
+  (/* state */) => ({
+    /** _INSERT_STATE_  **/
+  }),
+  dispatch =>
+    bindActionCreators(
+      {
+        /** _INSERT_ACTION_CREATORS_ **/
+      },
+      dispatch
+    )
 )(SignUp);

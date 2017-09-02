@@ -10,12 +10,15 @@ export default class VibeSelector extends Component {
     let index = 0;
     for (const key in VIBES) {
       generatedVibes.push(
-        <h4>{ key }</h4>
+        <h4>
+          {key}
+        </h4>
       );
 
       for (const item in VIBES[key]) {
         generatedVibes.push(
-          <Button className="btn"
+          <Button
+            className="btn"
             style={{
               backgroundColor: COLORS[index],
               border: 0,
@@ -24,17 +27,18 @@ export default class VibeSelector extends Component {
               margin: "0px 5px 5px 5px",
               borderRadius: "10px",
               padding: "10px 15px 10px 15px"
-            }}>
-            { VIBES[key][item] }
+            }}
+          >
+            {VIBES[key][item]}
           </Button>
-          );
+        );
       }
       index++;
     }
 
     return (
       <div>
-        { generatedVibes }
+        {generatedVibes}
       </div>
     );
   }

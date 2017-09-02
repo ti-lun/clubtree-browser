@@ -30,12 +30,12 @@ export class SearchResults extends Component {
    * @return {(Promise|undefined)} If this method returns a promise, the router
    * will wait for the promise to resolve before the container is loaded.
    */
-  static gsBeforeRoute(/* {dispatch}, renderProps, query, serverProps */) { }
+  static gsBeforeRoute(/* {dispatch}, renderProps, query, serverProps */) {}
 
   componentDidMount() {
     const query = this.props.location.query.term;
     if (query) {
-      return axios.get("/api/clubs?q=" + query).then((data) => {
+      return axios.get("/api/clubs?q=" + query).then(data => {
         this.props.simpleSearchClub(data.data);
       });
     }
@@ -53,13 +53,11 @@ export class SearchResults extends Component {
         <Row>
           <Col md="4">
             <SearchBar searchBarStyleId="search" />
-            <div
-              className="searchresults-categories searchresults-box">
+            <div className="searchresults-categories searchresults-box">
               <h2>Categories</h2>
               <CategoriesCheckbox />
             </div>
-            <div
-              className="searchresults-box searchresults-vibes">
+            <div className="searchresults-box searchresults-vibes">
               <h2>Vibes</h2>
               <VibeSelector />
             </div>
@@ -86,7 +84,7 @@ export class SearchResults extends Component {
 }
 
 export default connect(
-  (state) => ({
+  state => ({
     searchResults: state.searchResultsReducer.searchResults
   }),
   dispatch =>

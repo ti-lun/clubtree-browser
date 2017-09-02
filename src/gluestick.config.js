@@ -1,5 +1,5 @@
 export default config => ({
   ...config,
-  host: 'localhost',
+  host: "localhost",
   publicPath: process.env.ASSET_URL || "/assets/"
 });

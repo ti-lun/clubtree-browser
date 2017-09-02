@@ -6,7 +6,7 @@ type State = {
   searchResults: Array,
   categoriesFilter: Array,
   vibesFilter: Array
-}
+};
 
 const INITIAL_STATE: State = {
   searchResults: [],
@@ -14,7 +14,10 @@ const INITIAL_STATE: State = {
   vibesFilter: []
 };
 
-export default (state: State = INITIAL_STATE, action: { type: string, payload?: any }) => {
+export default (
+  state: State = INITIAL_STATE,
+  action: { type: string, payload?: any }
+) => {
   switch (action.type) {
     case SIMPLE_SEARCH_CLUB:
       return { ...state, searchResults: action.payload };

@@ -40,10 +40,12 @@ const headContent: HeadContent = {
 const config: Config = {
   development: {
     head: headContent,
-    proxies: [{
-      path: '/api/*',
-      destination: 'http://localhost:3000/'
-    }],
+    proxies: [
+      {
+        path: "/api/*",
+        destination: "http://localhost:3000/"
+      }
+    ],
     logger: {
       pretty: true,
       level: "info"

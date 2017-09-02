@@ -1,14 +1,17 @@
 /* @flow */
 
-import reducer from "apps\main\reducers\clubCreation";
+import reducer from "appsmain\reducersclubCreation";
 
-describe("apps\main\reducers\clubCreation", () => {
+describe("appsmain\reducersclubCreation", () => {
   it("returns the initial state", () => {
     const state = {};
     expect(
-      reducer({}, {
-        type: "_TEST_ACTION"
-      })
+      reducer(
+        {},
+        {
+          type: "_TEST_ACTION"
+        }
+      )
     ).toEqual(state);
   });
 });

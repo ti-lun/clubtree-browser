@@ -8,20 +8,20 @@ import PropTypes from "prop-types";
 export default class Header extends Component {
   static PropTypes = {
     type: PropTypes.string
-  }
+  };
 
   constructor(props) {
     super(props);
   }
 
-  generateLinkStyle = (type) => {
+  generateLinkStyle = type => {
     switch (type) {
       case "signup":
         return "header-signup";
       default:
         return "header-main";
     }
-  }
+  };
 
   render() {
     return (
@@ -32,17 +32,25 @@ export default class Header extends Component {
           </Col>
           <Col>
             <span className={this.generateLinkStyle(this.props.type)}>
-              <span className="header-explore"><a href="/search">EXPLORE</a></span>&nbsp; | &nbsp;<span className="header-find"><a href="/advancedsearch">FEATURED</a></span>
+              <span className="header-explore">
+                <a href="/search">EXPLORE</a>
+              </span>&nbsp; | &nbsp;<span className="header-find">
+                <a href="/advancedsearch">FEATURED</a>
+              </span>
             </span>
           </Col>
-          { (this.props.type !== "signup") ?
+          {this.props.type !== "signup"
+            ? <Col>
+                <Button className="btn-teal">Log in</Button>{" "}
+                <Button className="btn-red">Sign up</Button>
+              </Col>
+            : null}
           <Col>
-            <Button className="btn-teal">Log in</Button>{" "}
-            <Button className="btn-red">Sign up</Button>
-          </Col> : null
-          }
-          <Col>
-            <i className="fa fa-2x fa-search" aria-hidden="true" style={{color: "#FFFFFF"}}></i>
+            <i
+              className="fa fa-2x fa-search"
+              aria-hidden="true"
+              style={{ color: "#FFFFFF" }}
+            />
           </Col>
         </Row>
       </div>
