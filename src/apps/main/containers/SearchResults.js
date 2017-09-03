@@ -58,7 +58,7 @@ export class SearchResults extends Component {
             <SearchBar searchBarStyleId="search" />
             <div className="searchresults-categories mild-shadow">
               <h2>Categories</h2>
-              <CategoriesCheckbox toggleCategoryFilter={this.props.toggleCategoryFilter}/>
+              <CategoriesCheckbox toggleCategoryFilter={this.props.toggleCategoryFilter} />
             </div>
             <div className="mild-shadow searchresults-vibes">
               <h2>Vibes</h2>
@@ -88,7 +88,9 @@ export class SearchResults extends Component {
 
 export default connect(
   state => ({
-    searchResults: state.searchResultsReducer.searchResults
+    searchResults: state.searchResultsReducer.searchResults,
+    vibesFilter: state.searchResultsReducer.vibesFilter,
+    categoriesFilter: state.searchResultsReducer.categoriesFilter
   }),
   dispatch =>
     bindActionCreators(
