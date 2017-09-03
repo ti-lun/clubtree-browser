@@ -1,5 +1,6 @@
 /* @flow */
 
+import axios from "axios";
 import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
@@ -14,7 +15,8 @@ import ResultSortDropdown from "../components/SearchResults/ResultSortDropdown";
 import ClubResultsList from "../components/SearchResults/ClubResultsList";
 
 import { simpleSearchClub } from "../actions/searchResultsActions";
-import axios from "axios";
+import { toggleVibeFilter } from "../actions/searchResultsActions";
+import { toggleCategoryFilter } from "../actions/searchResultsActions";
 
 export class SearchResults extends Component {
   /**
@@ -56,11 +58,11 @@ export class SearchResults extends Component {
             <SearchBar searchBarStyleId="search" />
             <div className="searchresults-categories mild-shadow">
               <h2>Categories</h2>
-              <CategoriesCheckbox />
+              <CategoriesCheckbox toggleCategoryFilter={this.props.toggleCategoryFilter}/>
             </div>
             <div className="mild-shadow searchresults-vibes">
               <h2>Vibes</h2>
-              <VibeSelector />
+              <VibeSelector toggleVibeFilter={this.props.toggleVibeFilter} />
             </div>
           </Col>
           <Col
@@ -91,7 +93,9 @@ export default connect(
   dispatch =>
     bindActionCreators(
       {
-        simpleSearchClub
+        simpleSearchClub,
+        toggleVibeFilter,
+        toggleCategoryFilter
       },
       dispatch
     )

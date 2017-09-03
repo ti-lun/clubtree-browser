@@ -1,18 +1,23 @@
 /* @flow */
 
+import _ from "lodash";
 import React, { Component } from "react";
-import { Input } from "reactstrap";
+import { Button } from "reactstrap";
 
 import { CATEGORIES_ICONS_MAP } from "../../lib/consts";
 
 export default class CategoriesCheckbox extends Component {
   render() {
     const generatedCheckboxes = [];
-    let index = 0;
     for (let key in CATEGORIES_ICONS_MAP) {
       generatedCheckboxes.push(
         <div>
-          <Input type="checkbox" key={key} /> &nbsp;{key}
+          <Button
+            onClick={() => this.props.toggleCategoryFilter(key)}
+            active={_.includes(this.props.categoriesFilter, key)}
+          >
+            {key}
+          </Button>
         </div>
       );
     }

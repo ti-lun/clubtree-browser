@@ -1,5 +1,6 @@
 /* @flow */
 
+import _ from "lodash";
 import React, { Component } from "react";
 import { COLORS, VIBES } from "../lib/consts";
 import { Button } from "reactstrap";
@@ -28,6 +29,8 @@ export default class VibeSelector extends Component {
               borderRadius: "10px",
               padding: "10px 15px 10px 15px"
             }}
+            onClick={() => this.props.toggleVibeFilter(VIBES[key][item])}
+            active={_.includes(this.props.vibesFilter, VIBES[key][item])}
           >
             {VIBES[key][item]}
           </Button>
