@@ -5,6 +5,11 @@ import { Row, Col, Button } from "reactstrap";
 import logo from "../assets/images/site-logo/clubtree-stroke.png";
 import PropTypes from "prop-types";
 
+// need to add the following customizations:
+// 1.  logged in
+// 2.  static (fixed)
+// 3.  font-color customization.
+
 export default class Header extends Component {
   static PropTypes = {
     type: PropTypes.string
@@ -25,7 +30,7 @@ export default class Header extends Component {
 
   render() {
     return (
-      <div className="header">
+      <div className="header-float">
         <Row>
           <Col>
             <img src={logo} width={"50%"} />

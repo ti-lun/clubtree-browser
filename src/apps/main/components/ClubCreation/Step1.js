@@ -6,8 +6,14 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Container, Button, Row, Col } from "reactstrap";
+import { Button, Row, Col, Form, FormGroup, Input } from "reactstrap";
+import Textarea from "react-textarea-autosize";
+
+
+import CategorySelector from "../CategorySelector";
+
 import { toggleClubCategory } from "../../actions/index";
+import { MONTHS, VALID_YEARS } from "../../lib/consts";
 
 const CATEGORY_TAGS = [
   "academic",
@@ -25,147 +31,129 @@ class Step1 extends React.Component {
     newClub: PropTypes.object
   };
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      clubName: "",
+      clubCategories: [],
+      establishedDate: "",
+      clubDescription: ""
+    };
+  }
+
+  updateClubName = (e) => {
+    console.log(e.target.value);
+    this.setState({
+      clubName: e.target.value
+    });
+  }
+
+  updateClubDescription = (e) => {
+    this.setState({
+      clubDescription: e.target.value
+    });
+  }
+
   render() {
+    const saveThis = (
+      <Button
+        color="primary"
+        onClick={() =>
+          this.props.toggleClubCategory(CATEGORY_TAGS[0])}
+        active={_.includes(
+          this.props.newClub["category"],
+          CATEGORY_TAGS[0]
+        )}
+      ></Button>
+    );
+
     return (
-      <form onSubmit={this.submit}>
         <div>
-          <div>
-            <h2> Club Name </h2>
+          <div className="mild-shadow clubcreation-process-section">
+            <span className="clubcreation-question margin-bottom-5px">What's your club's name?</span>
             <input
               type="text"
-              placeholder="e.g. Practical Concrete Bike Club"
+              className="clubcreation-input"
+              onChange={this.updateClubName}
             />
-            <small>Make it snazzy.</small>
+          <span
+            className="clubcreation-sub"
+            style={{
+              float: "right",
+              margin: "5px 0px 5px 0px"
+            }}>
+            {this.state.clubName.length}/30 characters
+          </span>
           </div>
+
+        <div className="mild-shadow clubcreation-process-section">
+          <span className="clubcreation-question margin-bottom-5px">Choose <i>one</i> category your club is in.</span>
+          <CategorySelector />
         </div>
-        <hr />
-        <div>
-          <h2> Categories </h2>
-          <Container>
+
+        <div className="mild-shadow clubcreation-process-section">
+          <div className="clubcreation-divided-section">
             <Row>
               <Col>
-                <Button
-                  color="primary"
-                  onClick={() =>
-                    this.props.toggleClubCategory(CATEGORY_TAGS[0])}
-                  active={_.includes(
-                    this.props.newClub["category"],
-                    CATEGORY_TAGS[0]
-                  )}
-                >
-                  Academics & Honors
-                </Button>
-                <Button
-                  color="primary"
-                  onClick={() =>
-                    this.props.toggleClubCategory(CATEGORY_TAGS[4])}
-                  active={_.includes(
-                    this.props.newClub["category"],
-                    CATEGORY_TAGS[4]
-                  )}
-                >
-                  Art
-                </Button>
+                <span className="clubcreation-question">About when was your club established?</span>
               </Col>
-            </Row>
-            <Row>
               <Col>
-                <Button
-                  color="primary"
-                  onClick={() =>
-                    this.props.toggleClubCategory(CATEGORY_TAGS[1])}
-                  active={_.includes(
-                    this.props.newClub["category"],
-                    CATEGORY_TAGS[1]
-                  )}
-                >
-                  Career & Professional
-                </Button>
-                <Button
-                  color="primary"
-                  onClick={() =>
-                    this.props.toggleClubCategory(CATEGORY_TAGS[5])}
-                  active={_.includes(
-                    this.props.newClub["category"],
-                    CATEGORY_TAGS[5]
-                  )}
-                >
-                  Environmental
-                </Button>
+                <Row>
+                  <Col>
+                    <Input
+                      className="mx-2 clubcreation-date-btn"
+                      type="select">
+                      {
+                        MONTHS.map((month, index) => {
+                          return (
+                            <option key={index}>{month}</option>
+                          );
+                        })
+                      }
+                    </Input>
+                  </Col>
+                  <Col>
+                    <Input
+                      className="clubcreation-date-btn"
+                      type="select">
+                      {
+                        VALID_YEARS.map((year, index) => {
+                          return (
+                            <option key={index}>{year}</option>
+                          );
+                        })
+                      }
+                    </Input>
+                  </Col>
+                </Row>
               </Col>
             </Row>
-            <Row>
-              <Col>
-                <Button
-                  color="primary"
-                  onClick={() =>
-                    this.props.toggleClubCategory(CATEGORY_TAGS[2])}
-                  active={_.includes(
-                    this.props.newClub["category"],
-                    CATEGORY_TAGS[2]
-                  )}
-                >
-                  Sports
-                </Button>
-                <Button
-                  color="primary"
-                  onClick={() =>
-                    this.props.toggleClubCategory(CATEGORY_TAGS[6])}
-                  active={_.includes(
-                    this.props.newClub["category"],
-                    CATEGORY_TAGS[6]
-                  )}
-                >
-                  Social
-                </Button>
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                <Button
-                  color="primary"
-                  onClick={() =>
-                    this.props.toggleClubCategory(CATEGORY_TAGS[3])}
-                  active={_.includes(
-                    this.props.newClub["category"],
-                    CATEGORY_TAGS[3]
-                  )}
-                >
-                  Community Service
-                </Button>
-                <Button
-                  color="primary"
-                  onClick={() =>
-                    this.props.toggleClubCategory(CATEGORY_TAGS[7])}
-                  active={_.includes(
-                    this.props.newClub["category"],
-                    CATEGORY_TAGS[7]
-                  )}
-                >
-                  Gaming
-                </Button>
-              </Col>
-            </Row>
-          </Container>
-        </div>
-        <hr />
-        <div>
-          <div>
-            <label>Date Established</label>
-            <input type="text" placeholder="4/20/17" />
-            <small>4/20/2000</small>
+
           </div>
-          <hr />
-          <div>
-            <label>Short Description</label>
-            <textarea rows="3" />
-            <small>First impressions last a lifetime.</small>
-          </div>
-          <button type="button" onClick={this.submit}>
-            {" "}Submit{" "}
-          </button>
+
+          <hr/>
+            <div className="clubcreation-divided-section">
+
+              <span className="clubcreation-question">Give a brief description of your club.</span>
+              <Textarea
+                className="clubcreation-input"
+                minRows={3}
+                onChange={this.updateClubDescription}
+              />
+              <span
+                className="clubcreation-sub"
+                style={{
+                  float: "right",
+                  margin: "5px 0px 5px 0px"
+                }}>
+                {(this.state.clubDescription === "") ? 0 : this.state.clubDescription.split(" ").length}/50 words
+              </span>
+            </div>
         </div>
-      </form>
+
+        <Button className="clubcreation-continue-btn">Continue</Button>
+
+      </div>
     );
   }
 

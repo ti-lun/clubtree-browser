@@ -5,6 +5,7 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import Helmet from "react-helmet";
 import { Row, Col } from "reactstrap";
+
 import Header from "../components/Header";
 import CategoriesCheckbox from "../components/SearchResults/CategoriesCheckbox";
 import VibeSelector from "../components/VibeSelector";
@@ -53,11 +54,11 @@ export class SearchResults extends Component {
         <Row>
           <Col md="4">
             <SearchBar searchBarStyleId="search" />
-            <div className="searchresults-categories searchresults-box">
+            <div className="searchresults-categories mild-shadow">
               <h2>Categories</h2>
               <CategoriesCheckbox />
             </div>
-            <div className="searchresults-box searchresults-vibes">
+            <div className="mild-shadow searchresults-vibes">
               <h2>Vibes</h2>
               <VibeSelector />
             </div>

@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import Helmet from "react-helmet";
 import Header from "../components/Header";
 
+import ClubCreationHeader from "../components/ClubCreation/ClubCreationHeader";
 import Step1 from "../components/ClubCreation/Step1";
 
 export class ClubCreation extends Component {
@@ -43,10 +44,16 @@ export class ClubCreation extends Component {
 
   render() {
     return (
-      <div>
+      <div style={{
+          position: "relative",
+          height: "100%"
+        }}>
         <Helmet title="ClubCreation" />
-        <Header type="main" />
-        {this.displayAtStep(this.state.step)}
+        <Header type="signup" />
+        <ClubCreationHeader completed={this.state.step - 1}/>
+        <div className="clubcreation-process-body">
+          {this.displayAtStep(this.state.step)}
+        </div>
       </div>
     );
   }

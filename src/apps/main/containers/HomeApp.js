@@ -6,7 +6,6 @@ import { connect } from "react-redux";
 import Helmet from "react-helmet";
 
 import FrontPage from "../components/FrontPage";
-
 import Header from "../components/Header";
 
 export class HomeApp extends Component {
