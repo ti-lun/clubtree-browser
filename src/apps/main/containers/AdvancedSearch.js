@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import Helmet from "react-helmet";
 
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 import SearchBar from "../components/SearchBar";
 import CategorySelector from "../components/CategorySelector";
 import VibeSelector from "../components/VibeSelector";
@@ -55,11 +56,12 @@ export class AdvancedSearch extends Component {
         >
           <h2>Or how about picking a category to start with?</h2>
           Pick as many as you like.
-          <CategorySelector />
+          <CategorySelector type="inline"/>
           <h2>Interested in what a club's vibes are like?</h2>
           Pick as many as you like.
           <VibeSelector />
         </div>
+        <Footer />
       </div>
     );
   }
