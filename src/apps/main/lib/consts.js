@@ -1,4 +1,5 @@
 import React from "react";
+import { range } from "lodash";
 
 export const COLORS = ["#e61610", "#ff3823", "#00bcd4", "#72bec9"];
 
@@ -42,3 +43,20 @@ export const VIBES = {
     "Compassionate"
   ]
 };
+
+export const MONTHS = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December"
+];
+
+export const VALID_YEARS = range(2017, 1950, -1);
