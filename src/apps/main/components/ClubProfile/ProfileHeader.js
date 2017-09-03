@@ -6,21 +6,6 @@ import logo from "../../assets/images/clubprofile/starcraft-logo.png";
 
 export default class ProfileHeader extends Component {
   render() {
-    const hi = (
-      <div className="col-xs-12 clubprofileheader">
-        <div className="col-xs-4">
-          <div className="clubprofilelogo">
-            <img
-              className="img-fluid"
-              style={{ "max-width": "100%", height: "auto" }}
-              src="/images/clubprofile/starcraft-logo.png"
-            />{" "}
-          </div>
-        </div>
-        <div className="col-xs-8 clubprofilename"> profilename </div>
-      </div>
-    );
-
     return (
       <div>
         <div style={{
