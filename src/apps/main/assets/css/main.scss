@@ -315,7 +315,12 @@ p.clubprofile-section {
 
 .searchresults-vibes-btn {
   margin: 0px 5px 5px 5px;
+
+  &:active {
+    border: 5px solid #ffd783;
+  }
 }
+
 
 .searchresults-clubname {
   font-size: 40px;
