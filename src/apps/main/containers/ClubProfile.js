@@ -4,6 +4,7 @@ import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import Helmet from "react-helmet";
+import {Row, Col} from "reactstrap";
 
 import Header from "../components/Header";
 import ProfileHeader from "../components/ClubProfile/ProfileHeader";
@@ -35,32 +36,45 @@ export class ClubProfile extends Component {
         <Helmet title="SearchResults" />
         <Header type="main" />
         <ProfileHeader />
-        <div className="col-xs-12 clubprofilesection">
-          <h1 className="col-xs-12 clubprofilesection"> In a nutshell </h1>
-          <hr className="col-xs-12 clubprofilesection" />
-          <p className="col-xs-12 clubprofilesection"> description </p>
-        </div>
+        <div
+          className="clubprofile-info-background"
+          style={{
+            backgroundImage: `url("http://media.blizzard.com/battle.net/logos/og-sc2-legacy-of-the-void.jpg")`
+          }}
+        >
+      </div>
 
-        <div className="col-xs-12 clubprofilesection">
-          <h1 className="col-xs-12 clubprofilesection"> Basic info </h1>
-          <hr className="col-xs-12 clubprofilesection" />
-          <p className="col-xs-12 clubprofilesection"> Year started: 2342 </p>
-          <p className="col-xs-12 clubprofilesection">
-            {" "}Approx. number of members: 533{" "}
-          </p>
-          <p className="col-xs-12 clubprofilesection">
-            {" "}Meeting location: sfasdf{" "}
-          </p>
-          <p className="col-xs-12 clubprofilesection">
-            {" "}Meeting times: sdfasd{" "}
-          </p>
-        </div>
+          <div className="clubprofile-info-body">
+            <div className="clubprofile-info-section">
+              <h1 className="col-xs-12 clubprofilesection"> In a nutshell </h1>
+              <hr className="col-xs-12 clubprofilesection" />
+              <p className="col-xs-12 clubprofilesection">
+                We play StarCraft, cheese some noobs, and do some typical bonding stuff like suck dick.
+              </p>
+            </div>
 
-        <div className="col-xs-12 clubprofilesection">
-          <h1 className="col-xs-12 clubprofilesection"> Teamwork values </h1>
-          <hr className="col-xs-12 clubprofilesection question" />
-          <p className="col-xs-12 clubprofilesection"> hi </p>
-        </div>
+            <div className="clubprofile-info-section">
+              <h1 className="col-xs-12 clubprofilesection"> Basic info </h1>
+              <hr className="col-xs-12 clubprofilesection" />
+              <p className="col-xs-12 clubprofilesection"> Year started: 2342 </p>
+              <p className="col-xs-12 clubprofilesection">
+                {" "}Approx. number of members: 533{" "}
+              </p>
+              <p className="col-xs-12 clubprofilesection">
+                {" "}Meeting location: sfasdf{" "}
+              </p>
+              <p className="col-xs-12 clubprofilesection">
+                {" "}Meeting times: sdfasd{" "}
+              </p>
+            </div>
+
+            <div className="clubprofile-info-section">
+              <h1 className="col-xs-12 clubprofilesection"> Teamwork values </h1>
+              <hr className="col-xs-12 clubprofilesection question" />
+              <p className="col-xs-12 clubprofilesection"> hi </p>
+            </div>
+          </div>
+
       </div>
     );
   }

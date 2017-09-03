@@ -33,7 +33,7 @@ export default class Header extends Component {
       <div className="header-float">
         <Row>
           <Col>
-            <img src={logo} width={"50%"} />
+            <a href="/"><img src={logo} width={"50%"} /></a>
           </Col>
           <Col>
             <span className={this.generateLinkStyle(this.props.type)}>

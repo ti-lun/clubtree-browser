@@ -29,19 +29,20 @@ hr.style1 {
 .btn-teal {
   background-color: #00bcd4;
   border-radius: 10px;
-  padding: 10px 30px 10px 30px;
+  padding: 7px 30px 7px 30px;
   color: #ffffff;
-  border: 0px;
+  border: 3px solid #ffffff;
 }
 
 .btn-red {
   background-color: #ff3823;
   border-radius: 10px;
-  padding: 10px 30px 10px 30px;
+  padding: 7px 30px 7px 30px;
   color: #ffffff;
   border: 0px;
   margin-left: 20px;
   margin-right: 20px;
+  border: 3px solid #ffffff
 }
 
 .btn-red a {
@@ -283,18 +284,74 @@ h1.front-splash-font {
 
 // =================================== [ CLUB PROFILE ]
 
-.clubprofile-logo {
-  max-width: 256px;
+.clubprofile-header {
+  left: 20%;
+  position: absolute;
+  width: 60%;
 }
 
-.clubprofile-name {
-  font-size: 30pt;
-  font-weight: bold;
+.clubprofile-header-module {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  position: absolute;
 }
 
-.clubprofile-section {
-  margin-bottom: 30pt;
+.clubprofile-header-description {
+  width: 100%;
+  padding: 20px 150px 20px 0px;
 }
+
+.clubprofile-header-logo {
+  max-width: 200px;
+  left: 0;
+}
+
+.clubprofile-header-pill {
+  background-color: #ffffff;
+  opacity: 0.6;
+  width: 60%;
+  left: 20%;
+  top: 25%;
+  height: 200px;
+  border-radius: 200px;
+  z-index: -1;
+  padding: 0px 100px 0px 100px;
+  position: absolute;
+  margin-left: auto;
+}
+
+.clubprofile-header-clubname {
+  font-size: 40pt;
+  font-weight: 700;
+}
+
+.clubprofile-info-background {
+  background-size: cover;
+  opacity: 1;
+  width: 120%;
+  height: 120%;
+  position: fixed;
+  z-index: -10000;
+  filter: blur(20px);
+  left: -25px;
+  top: -25px;
+}
+
+.clubprofile-info-body {
+  top: 50%;
+  left: 15%;
+  padding: 0px 200px 0px 200px;
+  position: absolute;
+  background-color: #ffffff;
+  width: 70%;
+}
+
+.clubprofile-info-section {
+  margin: 75px 0px 75px 0px;
+}
+
+
 
 h1.clubprofilesection {
   color: #00bcd4;
