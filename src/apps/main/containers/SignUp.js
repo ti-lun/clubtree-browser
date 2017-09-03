@@ -6,7 +6,6 @@ import { connect } from "react-redux";
 import Helmet from "react-helmet";
 
 import Header from "../components/Header";
-import Footer from "../components/Footer";
 import ChooseSignUpOption from "../components/SignUp/ChooseSignUpOption";
 
 export class SignUp extends Component {
@@ -85,7 +84,6 @@ export class SignUp extends Component {
         >
           {this.displayFromStep()}
         </div>
-        <Footer />
       </div>
     );
   }

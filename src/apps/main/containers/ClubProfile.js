@@ -6,7 +6,6 @@ import { connect } from "react-redux";
 import Helmet from "react-helmet";
 
 import Header from "../components/Header";
-import Footer from "../components/Footer";
 import ProfileHeader from "../components/ClubProfile/ProfileHeader";
 
 export class ClubProfile extends Component {
@@ -62,7 +61,6 @@ export class ClubProfile extends Component {
           <hr className="col-xs-12 clubprofilesection question" />
           <p className="col-xs-12 clubprofilesection"> hi </p>
         </div>
-        <Footer />
       </div>
     );
   }

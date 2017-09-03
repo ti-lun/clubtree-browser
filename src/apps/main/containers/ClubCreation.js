@@ -5,7 +5,6 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import Helmet from "react-helmet";
 import Header from "../components/Header";
-import Footer from "../components/Footer";
 
 import ClubCreationHeader from "../components/ClubCreation/ClubCreationHeader";
 import Step1 from "../components/ClubCreation/Step1";
@@ -45,16 +44,6 @@ export class ClubCreation extends Component {
 
   render() {
     return (
-<<<<<<< Updated upstream
-      <div>
-      <div style={{
-          position: "relative",
-          height: "100%"
-        }}>
-        <Helmet title="ClubCreation" />
-        <Header type="main" />
-        {this.displayAtStep(this.state.step)}
-=======
       <div style={{
           position: "relative",
           height: "100%"
@@ -65,8 +54,6 @@ export class ClubCreation extends Component {
         <div className="clubcreation-process-body">
           {this.displayAtStep(this.state.step)}
         </div>
-        <Footer />
->>>>>>> Stashed changes
       </div>
     );
   }
