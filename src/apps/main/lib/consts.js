@@ -1,7 +1,7 @@
 import React from "react";
 import { range } from "lodash";
 
-export const COLORS = ["#e61610", "#ff3823", "#00bcd4", "#72bec9"];
+export const COLORS = ["#e61610", "#ff3823", "#72bec9", "#00bcd4"];
 
 export const CATEGORIES_ICONS_MAP = {
   "Academic & Honors": "graduation-cap",
@@ -59,4 +59,4 @@ export const MONTHS = [
   "December"
 ];
 
-export const VALID_YEARS = range(2017, 1950, -1);
+export const VALID_YEARS = range(2017, 1970, -1);

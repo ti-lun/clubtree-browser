@@ -146,7 +146,7 @@ class Step1 extends React.Component {
                   float: "right",
                   margin: "5px 0px 5px 0px"
                 }}>
-                {(this.state.clubDescription === "") ? 0 : this.state.clubDescription.split(" ").length}/50 words
+                {(this.state.clubDescription === "") ? 0 : this.state.clubDescription.split(/\s+/).length}/50 words
               </span>
             </div>
         </div>
