@@ -46,7 +46,6 @@ export class SearchResults extends Component {
 
   componentWillReceiveProps(nextProps) {
     // if (nextProps.searchResults !== this.props.searchResults)
-    console.log("newprops are", this.props.location.query.term);
   }
 
   render() {
@@ -64,6 +63,7 @@ export class SearchResults extends Component {
               <h2>Categories</h2>
               <CategoriesCheckbox
                 toggleCategoryFilter={this.props.toggleCategoryFilter}
+                categoriesFilter={this.props.categoriesFilter}
               />
             </div>
             <div className="mild-shadow searchresults-vibes">
