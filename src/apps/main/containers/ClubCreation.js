@@ -44,13 +44,15 @@ export class ClubCreation extends Component {
 
   render() {
     return (
-      <div style={{
+      <div
+        style={{
           position: "relative",
           height: "100%"
-        }}>
+        }}
+      >
         <Helmet title="ClubCreation" />
         <Header type="signup" />
-        <ClubCreationHeader completed={this.state.step - 1}/>
+        <ClubCreationHeader completed={this.state.step - 1} />
         <div className="clubcreation-process-body">
           {this.displayAtStep(this.state.step)}
         </div>

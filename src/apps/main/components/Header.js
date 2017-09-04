@@ -4,6 +4,7 @@ import React, { Component } from "react";
 import { Row, Col, Button } from "reactstrap";
 import logo from "../assets/images/site-logo/clubtree-stroke.png";
 import PropTypes from "prop-types";
+import { Link } from "react-router";
 
 // need to add the following customizations:
 // 1.  logged in
@@ -33,21 +34,25 @@ export default class Header extends Component {
       <div className="header-float">
         <Row>
           <Col>
-            <a href="/"><img src={logo} width={"50%"} /></a>
+            <Link to="/">
+              <img src={logo} width={"50%"} />
+            </Link>
           </Col>
           <Col>
             <span className={this.generateLinkStyle(this.props.type)}>
               <span className="header-explore">
-                <a href="/search">EXPLORE</a>
+                <Link to="/search">EXPLORE</Link>
               </span>&nbsp; | &nbsp;<span className="header-find">
-                <a href="/advancedsearch">FEATURED</a>
+                <Link to="/advancedsearch">FEATURED</Link>
               </span>
             </span>
           </Col>
           {this.props.type !== "signup"
             ? <Col>
                 <Button className="btn-teal">Log in</Button>{" "}
-                <Button className="btn-red">Sign up</Button>
+                <Link to="/joinus">
+                  <Button className="btn-red">Join Us</Button>
+                </Link>
               </Col>
             : null}
           <Col>

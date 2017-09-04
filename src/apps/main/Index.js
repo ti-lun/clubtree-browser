@@ -33,7 +33,7 @@ export default class Index extends Component {
           {helmet.style.toComponent()}
           {head /* DO NOT REMOVE */}
         </head>
-        <body {...bodyAttributes} style={{ "backgroundColor": "#f7f6f6" }}>
+        <body {...bodyAttributes} style={{ backgroundColor: "#f7f6f6" }}>
           {body /* DO NOT REMOVE */}
         </body>
       </html>

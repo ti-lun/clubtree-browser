@@ -34,14 +34,12 @@ export default class CategorySelector extends Component {
             />
           </Button>
         );
-      }
-      else {
+      } else {
         generatedButtons.push(
           <Button
             className="btn"
             style={{
-              backgroundColor:
-                COLORS[Math.floor((index) / 2) % COLORS.length],
+              backgroundColor: COLORS[Math.floor(index / 2) % COLORS.length],
               border: 0,
               color: "white",
               fontSize: "14px",
@@ -63,15 +61,13 @@ export default class CategorySelector extends Component {
       index++;
     }
 
-
     if (this.props.type === "inline") {
       return (
         <div style={{ margin: "20px" }}>
           {generatedButtons}
         </div>
       );
-    }
-    else {
+    } else {
       const gridButtons = [];
       for (let i = 0; i < generatedButtons.length; i++) {
         gridButtons.push(
@@ -80,7 +76,7 @@ export default class CategorySelector extends Component {
               {generatedButtons[i]}
             </Col>
             <Col>
-              {generatedButtons[i+1]}
+              {generatedButtons[i + 1]}
             </Col>
           </Row>
         );

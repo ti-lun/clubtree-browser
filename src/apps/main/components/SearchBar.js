@@ -5,6 +5,8 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { simpleSearchClub } from "../actions/index";
 import { Input, Button, Row, Col } from "reactstrap";
+import { Link } from "react-router";
+import axios from "axios";
 
 class SearchBar extends Component {
   constructor(props) {
@@ -24,22 +26,25 @@ class SearchBar extends Component {
   onFormSubmit(event) {
     event.preventDefault();
 
-    //We want the application to fetch information from our club API and display
-    //information tailored to the user's inputted search parameters. We also
-    //make sure to clear the search bar, so that the user can more easily make
-    //another search request w/o having to delete their previous query
-    this.props.simpleSearchClub(this.state.term);
+    //quick fix for now
 
-    this.setState({ term: "" });
+    // this.setState({ term: "" });
+  }
+
+  componentWillReceiveProps(newProps) {
+    if (newProps.term !== this.props.term) {
+      axios.get("/api/clubs?q=" + newProps.term).then(data => {
+        this.props.simpleSearchClub(data.data);
+      });
+    }
   }
 
   render() {
-    const searchButton =
-      this.props.searchBarStyleId === "search"
-        ? <a href={`/search?term=${this.state.term}`}>
-            <Button className={"btn-red"}>Search</Button>
-          </a>
-        : null;
+    const searchButton = (
+      <Link to={`/search?term=${this.state.term}`}>
+        <Button className={"btn-red"}>Search</Button>
+      </Link>
+    );
 
     return (
       <div className="text-center">

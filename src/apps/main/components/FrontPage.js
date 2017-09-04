@@ -31,6 +31,7 @@ import logo from "../assets/images/site-logo/entirelogo.png";
 import desc1 from "../assets/images/homepage/milktea.jpg";
 import desc2 from "../assets/images/homepage/crowd.jpg";
 import desc3 from "../assets/images/homepage/updates.jpg";
+import Header from "../components/Header";
 
 const brandName = "SamplePage";
 const brand = (
@@ -105,6 +106,7 @@ class FrontPage extends Component {
   render() {
     return (
       <Page>
+        <Header />
         <Hero
           id="bootstrap-override-jumbotron"
           className="text-xs-center home-initial-picture background-cover-center front-splash nopad-bottom"

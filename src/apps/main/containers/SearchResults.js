@@ -36,16 +36,17 @@ export class SearchResults extends Component {
   static gsBeforeRoute(/* {dispatch}, renderProps, query, serverProps */) {}
 
   componentDidMount() {
-    const query = this.props.location.query.term;
-    if (query) {
-      return axios.get("/api/clubs?q=" + query).then(data => {
-        this.props.simpleSearchClub(data.data);
-      });
-    }
+    // const query = this.props.location.query.term;
+    // if (query) {
+    //   return axios.get("/api/clubs?q=" + query).then(data => {
+    //     this.props.simpleSearchClub(data.data);
+    //   });
+    // }
   }
 
   componentWillReceiveProps(nextProps) {
     // if (nextProps.searchResults !== this.props.searchResults)
+    console.log("newprops are", this.props.location.query.term);
   }
 
   render() {
@@ -55,10 +56,15 @@ export class SearchResults extends Component {
         <Header type="main" />
         <Row>
           <Col md="4">
-            <SearchBar searchBarStyleId="search" />
+            <SearchBar
+              searchBarStyleId="search"
+              term={this.props.location.query.term}
+            />
             <div className="searchresults-categories mild-shadow">
               <h2>Categories</h2>
-              <CategoriesCheckbox toggleCategoryFilter={this.props.toggleCategoryFilter} />
+              <CategoriesCheckbox
+                toggleCategoryFilter={this.props.toggleCategoryFilter}
+              />
             </div>
             <div className="mild-shadow searchresults-vibes">
               <h2>Vibes</h2>

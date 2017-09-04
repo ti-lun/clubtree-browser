@@ -3,7 +3,7 @@
 import React, { Component } from "react";
 import { Row, Col, Progress } from "reactstrap";
 export default class ClubCreationHeader extends Component {
-  render () {
+  render() {
     return (
       <div>
         <div className="clubcreation-header">
@@ -14,20 +14,24 @@ export default class ClubCreationHeader extends Component {
               </Col>
               <Col>
                 <Row className="clubcreation-header-right">
-                  <Col><Progress value={this.props.completed * (100 / 5)} /></Col>
+                  <Col>
+                    <Progress value={this.props.completed * (100 / 5)} />
+                  </Col>
                 </Row>
                 <Row className="clubcreation-header-right">
                   <Col sm={4}>
                     <span
                       className="clubcreation-sub"
-                      style={{float: "left"}}>
+                      style={{ float: "left" }}
+                    >
                       {this.props.completed * (100 / 5)}% completed
                     </span>
                   </Col>
                   <Col sm={8}>
                     <span
                       className="clubcreation-sub"
-                      style={{float: "right"}}>
+                      style={{ float: "right" }}
+                    >
                       Your changes are saved on every page completed.
                     </span>
                   </Col>
@@ -36,9 +40,7 @@ export default class ClubCreationHeader extends Component {
             </Row>
           </div>
         </div>
-
       </div>
-
     );
   }
 }
