@@ -1,5 +1,6 @@
 /* @flow */
 
+import _ from "lodash";
 import React, { Component } from "react";
 import { Row, Col, Button } from "reactstrap";
 
@@ -25,7 +26,7 @@ export default class SingleClubResult extends Component {
         </Row>
         <div
           style={{
-            backgroundImage: `url(${club.imageURLs.cover})`,
+            backgroundImage: `url(${_.get(club, 'imageURLs.cover')})`,
             backgroundSize: "cover",
             width: "100%",
             height: "100%",
@@ -34,7 +35,7 @@ export default class SingleClubResult extends Component {
         >
           <Row>
             <Col>
-              <img src={club.imageURLs.logo} width="150px" />
+              <img src={_.get(club, 'imageURLs.logo')} width="150px" />
             </Col>
             <Col>
               {club.vibes.map((vibe, index) => {

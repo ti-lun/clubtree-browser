@@ -19,10 +19,11 @@ export default class VibeSelector extends Component {
       for (const item in VIBES[key]) {
         generatedVibes.push(
           <button
+            key={key + ":" + item}
             className={
               (this.props.vibesFilter.includes(VIBES[key][item])) ?
-              "searchresults-vibes-btn searchresults-vibes-btn-active"
-              : "searchresults-vibes-btn searchresults-vibes-btn-inactive"
+                "searchresults-vibes-btn searchresults-vibes-btn-active" :
+                "searchresults-vibes-btn searchresults-vibes-btn-inactive"
             }
             style={{
               backgroundColor: COLORS[index],

@@ -7,7 +7,7 @@ export default class ClubResultsList extends Component {
   render() {
     const clubRows = this.props.searchResults.map((club, index) => {
       return (
-        <div>
+        <div key={index} >
           <SingleClubResult club={club} />
           <hr />
         </div>
