@@ -25,10 +25,12 @@ class SearchBar extends Component {
 
   onFormSubmit(event) {
     event.preventDefault();
+  }
 
-    //quick fix for now
-
-    // this.setState({ term: "" });
+  componentDidMount() {
+    axios.get("/api/clubs?q=" + this.props.term).then(data => {
+      this.props.simpleSearchClub(data.data);
+    });
   }
 
   componentWillReceiveProps(newProps) {
@@ -39,28 +41,37 @@ class SearchBar extends Component {
     }
   }
 
+  returnCorrectSearchButton(searchClass) {
+    switch(searchClass) {
+      case "front-page-search":
+        return <Button className="btn-red">Search</Button>;
+      case "results-page-search":
+        return <i className="fa fa-search" aria-hidden="true" style={{color: "#90caf9"}}></i>;
+    }
+  }
+
   render() {
-    const searchButton = (
+    const searchButton = (this.props.search) ? (
       <Link to={`/search?term=${this.state.term}`}>
-        <Button className={"btn-red"}>Search</Button>
+        { this.returnCorrectSearchButton(this.props.searchBarStyleClass) }
       </Link>
-    );
+    ) : null;
 
     return (
       <div className="text-center">
         <Input
           type="text"
           placeholder={
-            this.props.searchBarStyleId === "search"
+            this.props.searchBarStyleClass === "frontPageSearch"
               ? "Search for clubs@UCI:"
               : null
           }
-          id={this.props.searchBarStyleId}
+          className={this.props.searchBarStyleClass}
           value={this.state.term}
           onChange={this.onInputChange}
           autoFocus={true}
         />
-        {searchButton}
+      { searchButton }
       </div>
     );
   }

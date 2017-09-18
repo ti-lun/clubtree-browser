@@ -56,8 +56,9 @@ export class SearchResults extends Component {
         <Row>
           <Col md="4">
             <SearchBar
-              searchBarStyleId="search"
+              searchBarStyleClass="results-page-search"
               term={this.props.location.query.term}
+              search={true}
             />
             <div className="searchresults-categories mild-shadow">
               <h2>Categories</h2>
@@ -68,7 +69,10 @@ export class SearchResults extends Component {
             </div>
             <div className="mild-shadow searchresults-vibes">
               <h2>Vibes</h2>
-              <VibeSelector toggleVibeFilter={this.props.toggleVibeFilter} />
+              <VibeSelector
+                toggleVibeFilter={this.props.toggleVibeFilter}
+                vibesFilter={this.props.vibesFilter}
+               />
             </div>
           </Col>
           <Col

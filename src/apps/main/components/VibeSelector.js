@@ -18,23 +18,20 @@ export default class VibeSelector extends Component {
 
       for (const item in VIBES[key]) {
         generatedVibes.push(
-          <Button
-            key={key + ":" + item}
-            className="btn"
+          <button
+            className={
+              (this.props.vibesFilter.includes(VIBES[key][item])) ?
+              "searchresults-vibes-btn searchresults-vibes-btn-active"
+              : "searchresults-vibes-btn searchresults-vibes-btn-inactive"
+            }
             style={{
               backgroundColor: COLORS[index],
-              border: 0,
-              color: "white",
-              fontSize: "14px",
-              margin: "0px 5px 5px 5px",
-              borderRadius: "10px",
-              padding: "10px 15px 10px 15px"
             }}
-            onClick={() => this.props.toggleVibeFilter(VIBES[key][item])}
-            active={_.includes(this.props.vibesFilter, VIBES[key][item])}
-          >
+            onClick={() => {
+              this.props.toggleVibeFilter(VIBES[key][item])
+            }}>
             {VIBES[key][item]}
-          </Button>
+          </button>
         );
       }
       index++;

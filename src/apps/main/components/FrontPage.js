@@ -120,7 +120,10 @@ class FrontPage extends Component {
             <h1 className="front-splash-font" style={{ color: "#f7f6f6" }}>
               Find your Clubtree.
             </h1>
-            <SearchBar searchBarStyleId="search" />
+            <SearchBar
+              searchBarStyleClass="front-page-search"
+              search={true}
+            />
           </div>
         </Hero>
 

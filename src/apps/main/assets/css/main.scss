@@ -226,8 +226,9 @@ h1.front-splash-font {
   text-align: center;
 }
 
-// is this even used for anything?
-#search {
+// =================================== [ SEARCH BAR ]
+
+.front-page-search {
   border: 0px;
   border-radius: 15px;
   font-size: 20px;
@@ -236,6 +237,17 @@ h1.front-splash-font {
   width: 300px;
   opacity: 0.5;
   background-color: "white";
+  display: inline;
+}
+
+.results-page-search {
+  border: 1px #90caf9;
+  font-size: 15px;
+  margin-bottom: 10px;
+  box-shadow: 0px;
+  width: 300px;
+  opacity: 0.5;
+  background-color: #d6f0f3;
   display: inline;
 }
 
@@ -388,11 +400,19 @@ p.clubprofile-section {
 }
 
 .searchresults-vibes-btn {
+  color: #ffffff;
+  font-size: 14px;
+  border-radius: 10px;
+  padding: 10px 15px 10px 15px;
   margin: 0px 5px 5px 5px;
+}
 
-  &:active {
-    border: 5px solid #ffd783;
-  }
+.searchresults-vibes-btn-active {
+  border: 5px solid #ffd783;
+}
+
+.searchresults-vibes-btn-inactive {
+  border: none;
 }
 
 .searchresults-clubname {
@@ -485,13 +505,40 @@ p.clubprofile-section {
   height: 14px;
 }
 
-.clubcreation-continue-btn {
-  width: 70%;
-  margin: 5% 15% 5% 15%;
+.clubcreation-continue-btn-single {
+  width: 50%;
+  margin: 0% 25% 0% 25%;
   box-shadow: 5px 5px 15px #aaaaaa;
   background-color: #72bec9;
   border: none;
   padding: 15px 0px 15px 0px;
+  vertical-align: middle;
+}
+
+.clubcreation-continue-btn {
+  width: 25%;
+  margin: 0% 25% 0% 1%;
+  box-shadow: 5px 5px 15px #aaaaaa;
+  background-color: #72bec9;
+  border: none;
+  padding: 15px 0px 15px 0px;
+  vertical-align: middle;
+}
+
+.clubcreation-back-btn {
+  width: 25%;
+  margin: 0% 1% 0% 25%;
+  box-shadow: 5px 5px 15px #aaaaaa;
+  background-color: #72bec9;
+  border: none;
+  padding: 15px 0px 15px 0px;
+  vertical-align: middle;
+}
+
+.clubcreation-nav-btns {
+  display: flex;
+  width: 100%;
+  margin: auto;
 }
 
 // =================================== [ JOIN US ]

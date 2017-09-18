@@ -58,7 +58,7 @@ export class AdvancedSearch extends Component {
           <CategorySelector type="inline" />
           <h2>Interested in what a club's vibes are like?</h2>
           Pick as many as you like.
-          <VibeSelector />
+          <VibeSelector vibesFilter={this.props.vibesFilter}/>
         </div>
       </div>
     );
@@ -66,8 +66,8 @@ export class AdvancedSearch extends Component {
 }
 
 export default connect(
-  (/* state */) => ({
-    /** _INSERT_STATE_  **/
+  (state) => ({
+    vibesFilter: state.searchResultsReducer.vibesFilter
   }),
   dispatch =>
     bindActionCreators(

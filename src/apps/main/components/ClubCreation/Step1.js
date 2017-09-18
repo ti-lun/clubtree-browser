@@ -2,7 +2,7 @@
 
 import _ from "lodash";
 import axios from "axios";
-import React from "react";
+import React, {Component} from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -151,8 +151,6 @@ class Step1 extends React.Component {
             </span>
           </div>
         </div>
-
-        <Button className="clubcreation-continue-btn">Continue</Button>
       </div>
     );
   }

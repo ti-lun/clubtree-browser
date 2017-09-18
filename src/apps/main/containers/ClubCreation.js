@@ -5,9 +5,14 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import Helmet from "react-helmet";
 import Header from "../components/Header";
+import { Button } from "reactstrap";
 
 import ClubCreationHeader from "../components/ClubCreation/ClubCreationHeader";
 import Step1 from "../components/ClubCreation/Step1";
+import Step2 from "../components/ClubCreation/Step2";
+import Step3 from "../components/ClubCreation/Step3";
+import Step4 from "../components/ClubCreation/Step4";
+
 
 export class ClubCreation extends Component {
   /**
@@ -37,10 +42,28 @@ export class ClubCreation extends Component {
     switch (step) {
       case 1:
         return <Step1 />;
+      case 2:
+        return <Step2 />;
+      case 3:
+        return <Step3 />;
+      case 4:
+        return <Step4 />;
       default:
         return null;
-    }
+    };
   };
+
+  backClicked = () => {
+    this.setState({
+      step: this.state.step - 1
+    });
+  }
+
+  continueClicked = () => {
+    this.setState({
+      step: this.state.step + 1
+    });
+  }
 
   render() {
     return (
@@ -56,6 +79,25 @@ export class ClubCreation extends Component {
         <div className="clubcreation-process-body">
           {this.displayAtStep(this.state.step)}
         </div>
+        <div className="clubcreation-nav-btns">
+          {(this.state.step > 1) ? (
+              <Button
+                className="clubcreation-back-btn"
+                onClick={this.backClicked}
+                >Back</Button>
+          ) : null}
+          {(this.state.step < 4) ? (
+              <Button
+                className={(this.state.step > 1) ?
+                  "clubcreation-continue-btn" :
+                  "clubcreation-continue-btn-single"
+                }
+                onClick={this.continueClicked}
+              >Continue</Button>
+          ) : null}
+
+        </div>
+
       </div>
     );
   }
