@@ -28,32 +28,38 @@ class SearchBar extends Component {
   }
 
   componentDidMount() {
-    axios.get("/api/clubs?q=" + this.props.term).then(data => {
+    this.setState({ term: this.props.term });
+    let params = { q: this.props.term, category: this.props.category };
+    return axios.get("/api/clubs", { params }).then(data => {
       this.props.simpleSearchClub(data.data);
     });
   }
 
   componentWillReceiveProps(newProps) {
     if (newProps.term !== this.props.term) {
-      axios.get("/api/clubs?q=" + newProps.term).then(data => {
+      let params = { q: this.state.term, category: this.props.category };
+      return axios.get("/api/clubs", { params }).then(data => {
         this.props.simpleSearchClub(data.data);
       });
     }
   }
 
   returnCorrectSearchButton(searchClass) {
-    switch(searchClass) {
+    switch (searchClass) {
       case "front-page-search":
         return <Button className="btn-red">Search</Button>;
       case "results-page-search":
-        return <i className="fa fa-search" aria-hidden="true" style={{color: "#90caf9"}}></i>;
+        return <i className="fa fa-search" aria-hidden="true" style={{ color: "#90caf9" }}></i>;
     }
   }
 
   render() {
+    const url = '/search?term=' + this.state.term
+      + this.props.categoriesFilter.map(filter => '&category=' + filter).join();
+
     const searchButton = (this.props.search) ? (
-      <Link to={`/search?term=${this.state.term}`}>
-        { this.returnCorrectSearchButton(this.props.searchBarStyleClass) }
+      <Link to={url}>
+        {this.returnCorrectSearchButton(this.props.searchBarStyleClass)}
       </Link>
     ) : null;
 
@@ -71,12 +77,16 @@ class SearchBar extends Component {
           onChange={this.onInputChange}
           autoFocus={true}
         />
-      { searchButton }
+        {searchButton}
       </div>
     );
   }
 }
 
-export default connect(null, dispatch =>
-  bindActionCreators({ simpleSearchClub }, dispatch)
+export default connect(
+  state => ({
+    categoriesFilter: state.searchResultsReducer.categoriesFilter
+  }),
+  dispatch =>
+    bindActionCreators({ simpleSearchClub }, dispatch)
 )(SearchBar);
