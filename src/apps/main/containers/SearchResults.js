@@ -63,6 +63,7 @@ export class SearchResults extends Component {
             <div className="searchresults-categories mild-shadow">
               <h2>Categories</h2>
               <CategoriesCheckbox
+                qFilter={this.props.location.query.term}
                 toggleCategoryFilter={this.props.toggleCategoryFilter}
                 categoriesFilter={this.props.categoriesFilter}
               />
@@ -72,7 +73,7 @@ export class SearchResults extends Component {
               <VibeSelector
                 toggleVibeFilter={this.props.toggleVibeFilter}
                 vibesFilter={this.props.vibesFilter}
-               />
+              />
             </div>
           </Col>
           <Col
