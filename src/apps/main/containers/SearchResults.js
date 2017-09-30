@@ -9,14 +9,18 @@ import { Row, Col } from "reactstrap";
 
 import Header from "../components/Header";
 import CategoriesCheckbox from "../components/SearchResults/CategoriesCheckbox";
-import VibeSelector from "../components/VibeSelector";
+import ColorfulSelector from "../components/ColorfulSelector";
 import SearchBar from "../components/SearchBar";
 import ResultSortDropdown from "../components/SearchResults/ResultSortDropdown";
 import ClubResultsList from "../components/SearchResults/ClubResultsList";
 
-import { simpleSearchClub } from "../actions/searchResultsActions";
-import { toggleVibeFilter } from "../actions/searchResultsActions";
-import { toggleCategoryFilter } from "../actions/searchResultsActions";
+import { VIBES } from "../lib/consts";
+
+import {
+  simpleSearchClub,
+  toggleVibeFilter,
+  toggleCategoryFilter
+} from "../actions/searchResultsActions";
 
 export class SearchResults extends Component {
   /**
@@ -69,9 +73,12 @@ export class SearchResults extends Component {
             </div>
             <div className="mild-shadow searchresults-vibes">
               <h2>Vibes</h2>
-              <VibeSelector
-                toggleVibeFilter={this.props.toggleVibeFilter}
-                vibesFilter={this.props.vibesFilter}
+              <ColorfulSelector
+                selectorAction={this.props.toggleVibeFilter}
+                selectorReducer={this.props.vibesFilter}
+                selectorKeys={VIBES}
+                categories={true}
+                inline={true}
                />
             </div>
           </Col>

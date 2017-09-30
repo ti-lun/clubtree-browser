@@ -3,6 +3,13 @@ import { range } from "lodash";
 
 export const COLORS = ["#e61610", "#ff3823", "#72bec9", "#00bcd4"];
 
+export const CLUB_NAME_CHAR_LENGTH = 30;
+
+export const CLUB_DESC_WORD_LENGTH = 50;
+
+export const CLUB_MEETING_LOC_CHAR_LENGTH = 30;
+
+
 export const CATEGORIES_ICONS_MAP = {
   "Academic & Honors": "graduation-cap",
   "Career & Professional": "suitcase",
@@ -43,6 +50,20 @@ export const VIBES = {
     "Compassionate"
   ]
 };
+
+export const HOURS = range(24);
+
+export const MINUTES = ["00", "15", "30", "45"];
+
+export const DAYS = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday"
+];
 
 export const MONTHS = [
   "January",

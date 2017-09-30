@@ -4,11 +4,16 @@ import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import Helmet from "react-helmet";
+import { Button } from "reactstrap";
 
 import Header from "../components/Header";
 import SearchBar from "../components/SearchBar";
 import CategorySelector from "../components/CategorySelector";
-import VibeSelector from "../components/VibeSelector";
+import ColorfulSelector from "../components/ColorfulSelector";
+
+import { toggleVibeFilter, toggleCategoryFilter } from "../actions/searchResultsActions";
+
+import { CATEGORIES_ICONS_MAP, VIBES } from "../lib/consts";
 
 export class AdvancedSearch extends Component {
   /**
@@ -55,11 +60,24 @@ export class AdvancedSearch extends Component {
         >
           <h2>Or how about picking a category to start with?</h2>
           Pick as many as you like.
-          <CategorySelector type="inline" />
+          <ColorfulSelector
+            selectorAction={this.props.toggleCategoryFilter}
+            selectorReducer={this.props.categoriesFilter}
+            selectorKeys={CATEGORIES_ICONS_MAP}
+            inline={true}
+          />
           <h2>Interested in what a club's vibes are like?</h2>
           Pick as many as you like.
-          <VibeSelector vibesFilter={this.props.vibesFilter}/>
+          <ColorfulSelector
+            selectorAction={this.props.toggleVibeFilter}
+            selectorReducer={this.props.vibesFilter}
+            selectorKeys={VIBES}
+            inline={true}
+            categories={true}
+          />
+
         </div>
+        <Button className="clubcreation-continue-btn">Continue</Button>
       </div>
     );
   }
@@ -67,12 +85,14 @@ export class AdvancedSearch extends Component {
 
 export default connect(
   (state) => ({
+    categoriesFilter: state.searchResultsReducer.categoriesFilter,
     vibesFilter: state.searchResultsReducer.vibesFilter
   }),
   dispatch =>
     bindActionCreators(
       {
-        /** _INSERT_ACTION_CREATORS_ **/
+        toggleCategoryFilter,
+        toggleVibeFilter
       },
       dispatch
     )

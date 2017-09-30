@@ -1,11 +1,11 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import VibeSelector from "apps/main/components/VibeSelector";
+import TimeSelectorUnit from "apps/main/components/TimeSelectorUnit";
 
-describe("apps/main/components/VibeSelector", () => {
+describe("apps/main/components/TimeSelectorUnit", () => {
   it("renders without an issue", () => {
-    const subject = <VibeSelector />;
+    const subject = <TimeSelectorUnit />;
     const wrapper = shallow(subject);
     expect(wrapper).toBeDefined();
   });

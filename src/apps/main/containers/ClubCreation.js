@@ -13,6 +13,14 @@ import Step2 from "../components/ClubCreation/Step2";
 import Step3 from "../components/ClubCreation/Step3";
 import Step4 from "../components/ClubCreation/Step4";
 
+//need to pass newclub action into step 1...
+import { updateValidationStep } from "../actions/clubCreationActions";
+
+import {
+  CLUB_NAME_CHAR_LENGTH,
+  CLUB_DESC_WORD_LENGTH
+} from "../lib/consts";
+
 
 export class ClubCreation extends Component {
   /**
@@ -60,9 +68,60 @@ export class ClubCreation extends Component {
   }
 
   continueClicked = () => {
-    this.setState({
-      step: this.state.step + 1
-    });
+    console.log("was this fired)");
+    switch (this.state.step) {
+      case 1: {
+        // club name invalid
+        if (
+          (this.props.newClub.name.length > CLUB_NAME_CHAR_LENGTH) ||
+          (this.props.newClub.name.length === 0)) {
+          return;
+        }
+        // club desc invalid
+        else if ((this.props.newClub.desc.length > CLUB_DESC_WORD_LENGTH)
+        || (this.props.newClub.desc.length === 0)) {
+
+          return;
+        }
+        // no club category selected
+        else if (this.props.newClub.category === "") {
+
+          return;
+        }
+        break;
+      }
+
+      case 2: {
+        // club meeting location invalid
+        if (
+          (this.props.newClub.meetingLocation.length > CLUB_NAME_CHAR_LENGTH) ||
+          (this.props.newClub.meetingLocation.length === 0)) {
+            console.log("failed at loc");
+
+          return;
+        }
+        // no time selected
+        else if (this.props.newClub.meetingDatesAndTimes["meetingDays"].length === 0) {
+          console.log("failed at time");
+
+          return;
+        }
+        // no
+        else if (this.props.newClub.memberReq.length > CLUB_DESC_WORD_LENGTH ||
+        (this.props.newClub.memberReq.length === 0)) {
+          console.log("failed at req");
+
+          return;
+        }
+        break;
+      }
+
+      default:
+        return;
+    }
+      this.setState({
+        step: this.state.step + 1
+      });
   }
 
   render() {
@@ -104,13 +163,14 @@ export class ClubCreation extends Component {
 }
 
 export default connect(
-  (/* state */) => ({
-    /** _INSERT_STATE_  **/
+  state => ({
+    newClub: state.clubCreationReducer.newClub,
+    validationSteps: state.clubCreationReducer.validationSteps
   }),
   dispatch =>
     bindActionCreators(
       {
-        /** _INSERT_ACTION_CREATORS_ **/
+        updateValidationStep
       },
       dispatch
     )

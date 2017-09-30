@@ -25,6 +25,7 @@ export default class Index extends Component {
     return (
       <html lang="en-US">
         <head>
+          <script src="//widget.cloudinary.com/global/all.js" type="text/javascript"></script>
           {helmet.base.toComponent()}
           {helmet.title.toComponent()}
           {helmet.meta.toComponent()}
