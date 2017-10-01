@@ -1,5 +1,6 @@
 /* @flow */
 
+import qs from "qs";
 import axios from "axios";
 import React, { Component } from "react";
 import { bindActionCreators } from "redux";
@@ -17,10 +18,18 @@ import ClubResultsList from "../components/SearchResults/ClubResultsList";
 import { VIBES } from "../lib/consts";
 
 import {
+  setTermFilter,
   simpleSearchClub,
   toggleVibeFilter,
-  toggleCategoryFilter
+  toggleCategoryFilter,
+  fetchClubSearchResults
 } from "../actions/searchResultsActions";
+
+const paramsSerializer = function (params) {
+  let paramString = qs.stringify(params, { arrayFormat: 'repeat' });
+  console.log('params: ' + paramString);
+  return paramString;
+}
 
 export class SearchResults extends Component {
   /**
@@ -37,19 +46,23 @@ export class SearchResults extends Component {
    * @return {(Promise|undefined)} If this method returns a promise, the router
    * will wait for the promise to resolve before the container is loaded.
    */
-  static gsBeforeRoute(/* {dispatch}, renderProps, query, serverProps */) {}
+  static gsBeforeRoute(/* {dispatch}, renderProps, query, serverProps */) { }
 
   componentDidMount() {
-    // const query = this.props.location.query.term;
-    // if (query) {
-    //   return axios.get("/api/clubs?q=" + query).then(data => {
-    //     this.props.simpleSearchClub(data.data);
-    //   });
-    // }
+    let params = { q: this.props.location.query.term, category: this.props.location.query.category };
+
+    this.props.setTermFilter(this.props.location.query.term);
+    this.props.toggleCategoryFilter(this.props.location.query.category);
+
+    return axios.get("/api/clubs", { params, paramsSerializer }).then(data => {
+      console.log('data: ');
+      console.log(data);
+      this.props.simpleSearchClub(data.data);
+    });
   }
 
-  componentWillReceiveProps(nextProps) {
-    // if (nextProps.searchResults !== this.props.searchResults)
+  componentWillReceiveProps(newProps) {
+
   }
 
   render() {
@@ -61,15 +74,18 @@ export class SearchResults extends Component {
           <Col md="4">
             <SearchBar
               searchBarStyleClass="results-page-search"
-              term={this.props.location.query.term}
+              termFilter={this.props.termFilter}
+              categoriesFilter={this.props.categoryiesFilter}
+              setTermFilter={this.props.setTermFilter}
               search={true}
             />
             <div className="searchresults-categories mild-shadow">
               <h2>Categories</h2>
               <CategoriesCheckbox
-                qFilter={this.props.location.query.term}
-                toggleCategoryFilter={this.props.toggleCategoryFilter}
+                termFilter={this.props.termFilter}
                 categoriesFilter={this.props.categoriesFilter}
+                toggleCategoryFilter={this.props.toggleCategoryFilter}
+                fetchClubSearchResults={this.props.fetchClubSearchResults}
               />
             </div>
             <div className="mild-shadow searchresults-vibes">
@@ -80,7 +96,7 @@ export class SearchResults extends Component {
                 selectorKeys={VIBES}
                 categories={true}
                 inline={true}
-               />
+              />
             </div>
           </Col>
           <Col
@@ -107,16 +123,15 @@ export class SearchResults extends Component {
 export default connect(
   state => ({
     searchResults: state.searchResultsReducer.searchResults,
+    termFilter: state.searchResultsReducer.termFilter,
     vibesFilter: state.searchResultsReducer.vibesFilter,
     categoriesFilter: state.searchResultsReducer.categoriesFilter
   }),
-  dispatch =>
-    bindActionCreators(
-      {
-        simpleSearchClub,
-        toggleVibeFilter,
-        toggleCategoryFilter
-      },
-      dispatch
-    )
+  dispatch => bindActionCreators({
+    setTermFilter,
+    simpleSearchClub,
+    toggleVibeFilter,
+    toggleCategoryFilter,
+    fetchClubSearchResults
+  }, dispatch)
 )(SearchResults);

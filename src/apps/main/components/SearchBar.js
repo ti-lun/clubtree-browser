@@ -7,11 +7,12 @@ import { simpleSearchClub } from "../actions/index";
 import { Input, Button, Row, Col } from "reactstrap";
 import { Link } from "react-router";
 import axios from "axios";
+import { generateSearchURL } from "./../lib/utils";
+import { toggleCategoryFilter } from "../actions/searchResultsActions";
 
 class SearchBar extends Component {
   constructor(props) {
     super(props);
-    this.state = { term: "" };
 
     this.onInputChange = this.onInputChange.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
@@ -20,28 +21,11 @@ class SearchBar extends Component {
   onInputChange(event) {
     //Whenever the application senses a change in input (someone presses a key)
     // it will re-render the component to display the updated input
-    this.setState({ term: event.target.value });
+    this.props.setTermFilter(event.target.value);
   }
 
   onFormSubmit(event) {
     event.preventDefault();
-  }
-
-  componentDidMount() {
-    this.setState({ term: this.props.term });
-    let params = { q: this.props.term, category: this.props.category };
-    return axios.get("/api/clubs", { params }).then(data => {
-      this.props.simpleSearchClub(data.data);
-    });
-  }
-
-  componentWillReceiveProps(newProps) {
-    if (newProps.term !== this.props.term) {
-      let params = { q: this.state.term, category: this.props.category };
-      return axios.get("/api/clubs", { params }).then(data => {
-        this.props.simpleSearchClub(data.data);
-      });
-    }
   }
 
   returnCorrectSearchButton(searchClass) {
@@ -54,8 +38,10 @@ class SearchBar extends Component {
   }
 
   render() {
-    const url = '/search?term=' + this.state.term
-      + this.props.categoriesFilter.map(filter => '&category=' + filter).join();
+    const url = generateSearchURL({
+      term: this.props.termFilter,
+      category: this.props.categoriesFilter
+    });
 
     const searchButton = (this.props.search) ? (
       <Link to={url}>
@@ -73,7 +59,7 @@ class SearchBar extends Component {
               : null
           }
           className={this.props.searchBarStyleClass}
-          value={this.state.term}
+          value={this.props.termFilter}
           onChange={this.onInputChange}
           autoFocus={true}
         />
@@ -83,10 +69,4 @@ class SearchBar extends Component {
   }
 }
 
-export default connect(
-  state => ({
-    categoriesFilter: state.searchResultsReducer.categoriesFilter
-  }),
-  dispatch =>
-    bindActionCreators({ simpleSearchClub }, dispatch)
-)(SearchBar);
+export default SearchBar;

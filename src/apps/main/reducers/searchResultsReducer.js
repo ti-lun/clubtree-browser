@@ -1,18 +1,22 @@
 /* @flow */
 
 import _ from "lodash";
+import { SET_TERM_FILTER } from "../actions/searchResultsActions";
 import { SIMPLE_SEARCH_CLUB } from "../actions/searchResultsActions";
 import { TOGGLE_VIBE_FILTER } from "../actions/searchResultsActions";
 import { TOGGLE_CATEGORY_FILTER } from "../actions/searchResultsActions";
+import { FETCH_CLUB_SEARCH_RESULTS } from "../actions/searchResultsActions";
 
 type State = {
   searchResults: Array,
+  termFilter: String,
   categoriesFilter: Array,
   vibesFilter: Array
 };
 
 const INITIAL_STATE: State = {
   searchResults: [],
+  termFilter: undefined,
   categoriesFilter: [],
   vibesFilter: []
 };
@@ -54,6 +58,12 @@ export default (
         };
       }
       return state;
+    case SET_TERM_FILTER:
+      state = _.assign({}, state, { termFilter: action.payload });
+    case FETCH_CLUB_SEARCH_RESULTS:
+      if (action.payload) {
+        state = _.assign({}, state, { searchResults: action.payload.data });
+      }
     default:
       return state;
   }

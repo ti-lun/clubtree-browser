@@ -14,18 +14,20 @@ export default class CategoriesCheckbox extends Component {
     for (let key in CATEGORIES_ICONS_MAP) {
       const checked = _.includes(this.props.categoriesFilter, key);
 
-      let url;
+      let url, query;
 
       if (checked) {
-        url = generateSearchURL({
-          term: this.props.qFilter,
+        query = {
+          term: this.props.termFilter,
           category: _.uniq(_.without(this.props.categoriesFilter, key))
-        });
+        };
+        url = generateSearchURL(query);
       } else {
-        url = generateSearchURL({
-          term: this.props.qFilter,
+        query = {
+          term: this.props.termFilter,
           category: _.uniq(_.concat(this.props.categoriesFilter, key))
-        });
+        };
+        url = generateSearchURL(query);
       }
 
       generatedCheckboxes.push(
@@ -33,7 +35,10 @@ export default class CategoriesCheckbox extends Component {
           <Link to={url}>
             <Input
               type="checkbox"
-              onClick={() => this.props.toggleCategoryFilter(key)}
+              onClick={() => {
+                this.props.toggleCategoryFilter(key);
+                this.props.fetchClubSearchResults(query);
+              }}
               checked={checked}
             />
           </Link>
