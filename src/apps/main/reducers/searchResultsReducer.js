@@ -59,11 +59,16 @@ export default (
       }
       return state;
     case SET_TERM_FILTER:
-      state = _.assign({}, state, { termFilter: action.payload });
+      state = {
+        ...state,
+        termFilter: action.payload
+      };
+      return state;
     case FETCH_CLUB_SEARCH_RESULTS:
       if (action.payload) {
         state = _.assign({}, state, { searchResults: action.payload.data });
       }
+      return state;
     default:
       return state;
   }
