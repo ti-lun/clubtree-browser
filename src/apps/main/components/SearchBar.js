@@ -3,29 +3,26 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { simpleSearchClub } from "../actions/index";
 import { Input, Button, Row, Col } from "reactstrap";
 import { Link } from "react-router";
 import axios from "axios";
 import { generateSearchURL } from "./../lib/utils";
-import { toggleCategoryFilter } from "../actions/searchResultsActions";
+
+import {
+  simpleSearchClub,
+  toggleCategoryFilter
+} from "../actions/searchResultsActions";
 
 class SearchBar extends Component {
   constructor(props) {
     super(props);
-
     this.onInputChange = this.onInputChange.bind(this);
-    this.onFormSubmit = this.onFormSubmit.bind(this);
   }
 
   onInputChange(event) {
     //Whenever the application senses a change in input (someone presses a key)
     // it will re-render the component to display the updated input
     this.props.setTermFilter(event.target.value);
-  }
-
-  onFormSubmit(event) {
-    event.preventDefault();
   }
 
   returnCorrectSearchButton(searchClass) {
