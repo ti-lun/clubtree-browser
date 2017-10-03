@@ -1,1 +1,1 @@
-web: npm install; gluestick start
+web: gluestick start
