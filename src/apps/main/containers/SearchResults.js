@@ -21,6 +21,7 @@ import {
   setTermFilter,
   simpleSearchClub,
   toggleVibeFilter,
+  setCategoryFilter,
   toggleCategoryFilter,
   fetchClubSearchResults
 } from "../actions/searchResultsActions";
@@ -51,14 +52,21 @@ export class SearchResults extends Component {
   componentDidMount() {
     let params = { q: this.props.location.query.term, category: this.props.location.query.category };
 
-    this.props.setTermFilter(this.props.location.query.term);
-    this.props.toggleCategoryFilter(this.props.location.query.category);
+    if (this.props.location.query.term) {
+      this.props.setTermFilter(this.props.location.query.term);
+    }
 
-    return axios.get("/api/clubs", { params, paramsSerializer }).then(data => {
-      console.log('data: ');
-      console.log(data);
-      this.props.simpleSearchClub(data.data);
-    });
+    if (this.props.location.query.category) {
+      if (_.isArray(this.props.location.query.category)) {
+        this.props.setCategoryFilter(this.props.location.query.category);
+      } else {
+        this.props.setCategoryFilter([this.props.location.query.category]);
+      }
+    } else {
+      this.props.setCategoryFilter([]);
+    }
+
+    return this.props.fetchClubSearchResults(params);
   }
 
   componentWillReceiveProps(newProps) {
@@ -131,6 +139,7 @@ export default connect(
     setTermFilter,
     simpleSearchClub,
     toggleVibeFilter,
+    setCategoryFilter,
     toggleCategoryFilter,
     fetchClubSearchResults
   }, dispatch)
