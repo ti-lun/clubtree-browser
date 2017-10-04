@@ -17,7 +17,11 @@ class SearchBar extends Component {
   onInputChange(event) {
     //Whenever the application senses a change in input (someone presses a key)
     // it will re-render the component to display the updated input
-    this.props.setTermFilter(event.target.value);
+    if (event.target.value === "") {
+      this.props.setTermFilter(undefined);
+    } else {
+      this.props.setTermFilter(event.target.value);
+    }
   }
 
   returnCorrectSearchButton(searchClass) {
@@ -30,15 +34,17 @@ class SearchBar extends Component {
   }
 
   render() {
-    const url = generateSearchURL({
-      term: this.props.termFilter,
+    const query = {
+      q: this.props.termFilter,
       category: this.props.categoriesFilter
-    });
+    };
+
+    const url = generateSearchURL(query);
 
     const searchButton = (
       <Link
         to={url}
-        onClick={() => this.props.search ? this.props.fetchClubSearchResults() : null}
+        onClick={() => this.props.search ? this.props.fetchClubSearchResults(query) : null}
       >
         {this.returnCorrectSearchButton(this.props.searchBarStyleClass)}
       </Link >
