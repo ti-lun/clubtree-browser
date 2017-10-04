@@ -50,10 +50,10 @@ export class SearchResults extends Component {
   static gsBeforeRoute(/* {dispatch}, renderProps, query, serverProps */) { }
 
   componentDidMount() {
-    let params = { q: this.props.location.query.term, category: this.props.location.query.category };
+    let params = { q: this.props.location.query.q, category: this.props.location.query.category };
 
-    if (this.props.location.query.term) {
-      this.props.setTermFilter(this.props.location.query.term);
+    if (this.props.location.query.q) {
+      this.props.setTermFilter(this.props.location.query.q);
     }
 
     if (this.props.location.query.category) {
@@ -119,7 +119,7 @@ export class SearchResults extends Component {
             Sort clubs by:
             <ResultSortDropdown />
             <ClubResultsList
-              term={this.props.location.query.term}
+              term={this.props.termFilter}
               searchResults={this.props.searchResults}
             />
           </Col>
