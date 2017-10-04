@@ -8,11 +8,6 @@ import { Link } from "react-router";
 import axios from "axios";
 import { generateSearchURL } from "./../lib/utils";
 
-import {
-  simpleSearchClub,
-  toggleCategoryFilter
-} from "../actions/searchResultsActions";
-
 class SearchBar extends Component {
   constructor(props) {
     super(props);
@@ -40,11 +35,14 @@ class SearchBar extends Component {
       category: this.props.categoriesFilter
     });
 
-    const searchButton = (this.props.search) ? (
-      <Link to={url}>
+    const searchButton = (
+      <Link
+        to={url}
+        onClick={() => this.props.search ? this.props.fetchClubSearchResults() : null}
+      >
         {this.returnCorrectSearchButton(this.props.searchBarStyleClass)}
-      </Link>
-    ) : null;
+      </Link >
+    );
 
     return (
       <div className="text-center">

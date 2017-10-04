@@ -85,6 +85,7 @@ export class SearchResults extends Component {
               termFilter={this.props.termFilter}
               categoriesFilter={this.props.categoryiesFilter}
               setTermFilter={this.props.setTermFilter}
+              fetchClubSearchResults={this.props.fetchClubSearchResults}
               search={true}
             />
             <div className="searchresults-categories mild-shadow">
