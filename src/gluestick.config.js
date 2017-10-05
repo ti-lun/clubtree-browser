@@ -1,6 +1,10 @@
 export default config => ({
   ...config,
+  protocol: 'https',
   host: "0.0.0.0",
-  port: process.env.PORT,
+  ports: {
+    client: 8888,
+    server: process.env.PORT
+  },
   publicPath: process.env.ASSET_URL || "/assets/"
 });
