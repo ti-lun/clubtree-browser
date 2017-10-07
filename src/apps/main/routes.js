@@ -14,6 +14,7 @@ import ClubProfile from "./containers/ClubProfile";
 import ClubCreation from "./containers/ClubCreation";
 import AdvancedSearch from "./containers/AdvancedSearch";
 import SignUp from "./containers/SignUp";
+import Dashboard from "./containers/Dashboard";
 
 export default function routes(/*store: Object, httpClient: Object*/) {
   return (
@@ -24,6 +25,7 @@ export default function routes(/*store: Object, httpClient: Object*/) {
       <Route path="/clubcreation" component={ClubCreation} />
       <Route path="/search" component={SearchResults} />
       <Route path="/joinus" component={SignUp} />
+      <Route path="/dashboard" component={Dashboard} />
       <Route name={ROUTE_NAME_404_NOT_FOUND} path="*" component={NoMatchApp} />
     </Router>
   );
