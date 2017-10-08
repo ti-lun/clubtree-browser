@@ -1,7 +1,14 @@
 /* @flow */
 
 import React, { Component } from "react";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
 import SearchBar from "../components/SearchBar";
+import {
+  setTermFilter,
+  toggleCategoryFilter
+} from "../actions/searchResultsActions";
+
 import {
   Code,
   CustomerQuote,
@@ -62,7 +69,7 @@ const businessAddress = (
 const pricingPlan1 = {
   name: "Personal",
   description:
-    "Describe your plans with easy-to-use pricing tables. Each plan provides callbacks to handle visitor clicks.",
+  "Describe your plans with easy-to-use pricing tables. Each plan provides callbacks to handle visitor clicks.",
   price: "$99",
   features: {
     "Describe pricing plans as JSON": true,
@@ -122,7 +129,10 @@ class FrontPage extends Component {
             </h1>
             <SearchBar
               searchBarStyleClass="front-page-search"
-              search={true}
+              termFilter={this.props.termFilter}
+              categoriesFilter={this.props.categoryiesFilter}
+              setTermFilter={this.props.setTermFilter}
+              search={false}
             />
           </div>
         </Hero>
@@ -212,4 +222,12 @@ class FrontPage extends Component {
   }
 }
 
-export default FrontPage;
+export default connect(
+  state => ({
+    termFilter: state.searchResultsReducer.termFilter,
+    categoriesFilter: state.searchResultsReducer.categoriesFilter
+  }),
+  dispatch => bindActionCreators({
+    setTermFilter
+  }, dispatch)
+)(FrontPage);

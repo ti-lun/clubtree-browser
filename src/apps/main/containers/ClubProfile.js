@@ -39,7 +39,8 @@ export class ClubProfile extends Component {
         <div
           className="clubprofile-info-background"
           style={{
-            backgroundImage: `url("http://media.blizzard.com/battle.net/logos/og-sc2-legacy-of-the-void.jpg")`
+            backgroundImage: `url("http://media.blizzard.com/battle.net/logos/og-sc2-legacy-of-the-void.jpg")`,
+            size: "100%"
           }}
         />
 

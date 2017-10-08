@@ -81,6 +81,12 @@ textarea:focus {
   margin-bottom: 5px;
 }
 
+.align-middle-col {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 // =================================== [ HOMEPAGE ]
 
 .front-splash {
@@ -283,7 +289,6 @@ h1.front-splash-font {
   z-index: 2;
 }
 
-// is this used?
 .header-login {
   text-align: center;
   padding-top: 5%;
@@ -464,6 +469,11 @@ p.clubprofile-section {
 .clubcreation-sub {
   font-size: 10px;
   z-index: 2;
+  margin-bottom: 2px;
+}
+
+.clubcreation-error {
+  color: #ff3823;
 }
 
 .clubcreation-process-body {
@@ -495,6 +505,15 @@ p.clubprofile-section {
   border-bottom: 5px solid #00bcd4;
 }
 
+.clubcreation-small-input {
+  background-color: none;
+  width: 100%;
+  font-size: 16px;
+  font-weight: 300;
+  border: none;
+  border-bottom: 3px solid #00bcd4;
+}
+
 .clubcreation-divided-section {
   padding: 20px 0px 20px 0px;
 }
@@ -503,6 +522,7 @@ p.clubprofile-section {
   width: 100%;
   font-size: 12px;
   height: 14px;
+  margin: 0px 2px 0px 2px;
 }
 
 .clubcreation-continue-btn-single {
@@ -539,6 +559,32 @@ p.clubprofile-section {
   display: flex;
   width: 100%;
   margin: auto;
+}
+
+.clubcreation-time-slots {
+  margin: 10px 0px 10px 0px;
+}
+
+.clubcreation-day-slot {
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.clubcreation-time-slots:hover {
+  transition: 0.5s;
+  opacity: 1;
+}
+
+.clubcreation-active-slot {
+  transition: 0.5s;
+  opacity: 1;
+}
+
+.clubcreation-inactive-slot {
+  transition: 0.5s;
+  opacity: 0.3;
 }
 
 // =================================== [ JOIN US ]

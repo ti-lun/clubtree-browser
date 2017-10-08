@@ -1,5 +1,6 @@
 /* @flow */
 
+import qs from "qs";
 import axios from "axios";
 import React, { Component } from "react";
 import { bindActionCreators } from "redux";
@@ -9,14 +10,27 @@ import { Row, Col } from "reactstrap";
 
 import Header from "../components/Header";
 import CategoriesCheckbox from "../components/SearchResults/CategoriesCheckbox";
-import VibeSelector from "../components/VibeSelector";
+import ColorfulSelector from "../components/ColorfulSelector";
 import SearchBar from "../components/SearchBar";
 import ResultSortDropdown from "../components/SearchResults/ResultSortDropdown";
 import ClubResultsList from "../components/SearchResults/ClubResultsList";
 
-import { simpleSearchClub } from "../actions/searchResultsActions";
-import { toggleVibeFilter } from "../actions/searchResultsActions";
-import { toggleCategoryFilter } from "../actions/searchResultsActions";
+import { VIBES } from "../lib/consts";
+
+import {
+  setTermFilter,
+  simpleSearchClub,
+  toggleVibeFilter,
+  setCategoryFilter,
+  toggleCategoryFilter,
+  fetchClubSearchResults
+} from "../actions/searchResultsActions";
+
+const paramsSerializer = function (params) {
+  let paramString = qs.stringify(params, { arrayFormat: 'repeat' });
+  console.log('params: ' + paramString);
+  return paramString;
+}
 
 export class SearchResults extends Component {
   /**
@@ -33,19 +47,30 @@ export class SearchResults extends Component {
    * @return {(Promise|undefined)} If this method returns a promise, the router
    * will wait for the promise to resolve before the container is loaded.
    */
-  static gsBeforeRoute(/* {dispatch}, renderProps, query, serverProps */) {}
+  static gsBeforeRoute(/* {dispatch}, renderProps, query, serverProps */) { }
 
   componentDidMount() {
-    // const query = this.props.location.query.term;
-    // if (query) {
-    //   return axios.get("/api/clubs?q=" + query).then(data => {
-    //     this.props.simpleSearchClub(data.data);
-    //   });
-    // }
+    let params = { q: this.props.location.query.q, category: this.props.location.query.category };
+
+    if (this.props.location.query.q) {
+      this.props.setTermFilter(this.props.location.query.q);
+    }
+
+    if (this.props.location.query.category) {
+      if (_.isArray(this.props.location.query.category)) {
+        this.props.setCategoryFilter(this.props.location.query.category);
+      } else {
+        this.props.setCategoryFilter([this.props.location.query.category]);
+      }
+    } else {
+      this.props.setCategoryFilter([]);
+    }
+
+    return this.props.fetchClubSearchResults(params);
   }
 
-  componentWillReceiveProps(nextProps) {
-    // if (nextProps.searchResults !== this.props.searchResults)
+  componentWillReceiveProps(newProps) {
+
   }
 
   render() {
@@ -57,22 +82,30 @@ export class SearchResults extends Component {
           <Col md="4">
             <SearchBar
               searchBarStyleClass="results-page-search"
-              term={this.props.location.query.term}
+              termFilter={this.props.termFilter}
+              categoriesFilter={this.props.categoryiesFilter}
+              setTermFilter={this.props.setTermFilter}
+              fetchClubSearchResults={this.props.fetchClubSearchResults}
               search={true}
             />
             <div className="searchresults-categories mild-shadow">
               <h2>Categories</h2>
               <CategoriesCheckbox
-                toggleCategoryFilter={this.props.toggleCategoryFilter}
+                termFilter={this.props.termFilter}
                 categoriesFilter={this.props.categoriesFilter}
+                toggleCategoryFilter={this.props.toggleCategoryFilter}
+                fetchClubSearchResults={this.props.fetchClubSearchResults}
               />
             </div>
             <div className="mild-shadow searchresults-vibes">
               <h2>Vibes</h2>
-              <VibeSelector
-                toggleVibeFilter={this.props.toggleVibeFilter}
-                vibesFilter={this.props.vibesFilter}
-               />
+              <ColorfulSelector
+                selectorAction={this.props.toggleVibeFilter}
+                selectorReducer={this.props.vibesFilter}
+                selectorKeys={VIBES}
+                categories={true}
+                inline={true}
+              />
             </div>
           </Col>
           <Col
@@ -86,7 +119,7 @@ export class SearchResults extends Component {
             Sort clubs by:
             <ResultSortDropdown />
             <ClubResultsList
-              term={this.props.location.query.term}
+              term={this.props.termFilter}
               searchResults={this.props.searchResults}
             />
           </Col>
@@ -99,16 +132,16 @@ export class SearchResults extends Component {
 export default connect(
   state => ({
     searchResults: state.searchResultsReducer.searchResults,
+    termFilter: state.searchResultsReducer.termFilter,
     vibesFilter: state.searchResultsReducer.vibesFilter,
     categoriesFilter: state.searchResultsReducer.categoriesFilter
   }),
-  dispatch =>
-    bindActionCreators(
-      {
-        simpleSearchClub,
-        toggleVibeFilter,
-        toggleCategoryFilter
-      },
-      dispatch
-    )
+  dispatch => bindActionCreators({
+    setTermFilter,
+    simpleSearchClub,
+    toggleVibeFilter,
+    setCategoryFilter,
+    toggleCategoryFilter,
+    fetchClubSearchResults
+  }, dispatch)
 )(SearchResults);

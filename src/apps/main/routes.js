@@ -9,7 +9,7 @@ import MasterLayout from "./components/MasterLayout";
 import HomeApp from "./containers/HomeApp";
 import NoMatchApp from "./containers/NoMatchApp";
 import SearchResults from "./containers/SearchResults";
-import FrontPage from "./components/FrontPage";
+import FrontPage from "./containers/FrontPage";
 import ClubProfile from "./containers/ClubProfile";
 import ClubCreation from "./containers/ClubCreation";
 import AdvancedSearch from "./containers/AdvancedSearch";
