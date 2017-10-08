@@ -1,0 +1,7 @@
+{
+  "javascript": {
+    "main": "http://0.0.0.0:8888/assets/main.528559831b7098982adf.js",
+    "vendor": "http://0.0.0.0:8888/assets/vendor.bundle.js"
+  },
+  "styles": {}
+}
