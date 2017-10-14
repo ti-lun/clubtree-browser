@@ -67,8 +67,13 @@ hr.style1 {
 
 .mild-shadow {
   box-shadow: 10px 10px 15px #aaaaaa;
-  padding: 20px 0px 20px 40px;
+  padding: 20px;
   margin: 0px 0px 20px 0px;
+}
+
+.thin-shadow {
+  box-shadow: 5px 5px 4px #aaaaaa;
+  padding: 10px;
 }
 
 input:focus,
@@ -618,6 +623,40 @@ p.clubprofile-section {
   width: 100%;
   position: fixed;
 }
+
+// =================================== [ DASHBOARD ]
+
+.dashboard-box {
+  background-color: #FFFFFF;
+  margin: 10px;
+}
+
+.dashboard-margins {
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 5%;
+}
+
+.dashboard-action {
+  text-align: center;
+  font-size: 12px;
+  color: #FFFFFF;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.action-1 {
+  background-color: #008a9b;
+}
+
+.action-2 {
+  background-color: #72bec9;
+}
+
+.action-3 {
+  background-color: #00bcd4;
+}
+
 
 // =================================== [ FOOTER ]
 
