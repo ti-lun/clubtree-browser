@@ -1328,7 +1328,7 @@ var config = {
     head: headContent,
     proxies: [{
       path: "/api/*",
-      destination: process.env.CLUBTREE_SERVER_URL
+      destination: "http://localhost:3000/"
     }],
     logger: {
       pretty: false,

@@ -61,7 +61,7 @@ const config: Config = {
     ],
     logger: {
       pretty: false,
-      level: "warn"
+      level: "info"
     }
   }
 };
