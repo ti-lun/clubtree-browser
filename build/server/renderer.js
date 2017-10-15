@@ -1328,11 +1328,11 @@ var config = {
     head: headContent,
     proxies: [{
       path: "/api/*",
-      destination: "http://localhost:3000/"
+      destination: process.env.CLUBTREE_SERVER_URL
     }],
     logger: {
       pretty: false,
-      level: "warn"
+      level: "info"
     }
   }
 };
