@@ -69,7 +69,7 @@ module.exports =
 /*!************************!*\
   !*** external "react" ***!
   \************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports) {
 
@@ -80,7 +80,7 @@ module.exports = require("react");
 /*!*****************************!*\
   !*** external "reactstrap" ***!
   \*****************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports) {
 
@@ -91,7 +91,7 @@ module.exports = require("reactstrap");
 /*!******************************!*\
   !*** external "react-redux" ***!
   \******************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports) {
 
@@ -102,7 +102,7 @@ module.exports = require("react-redux");
 /*!************************!*\
   !*** external "redux" ***!
   \************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports) {
 
@@ -113,7 +113,7 @@ module.exports = require("redux");
 /*!*************************************!*\
   !*** ./src/apps/main/lib/consts.js ***!
   \*************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -173,7 +173,7 @@ var VALID_YEARS = exports.VALID_YEARS = (0, _lodash.range)(2017, 1970, -1);
 /*!*************************!*\
   !*** external "lodash" ***!
   \*************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports) {
 
@@ -184,7 +184,7 @@ module.exports = require("lodash");
 /*!*******************************!*\
   !*** external "react-router" ***!
   \*******************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports) {
 
@@ -195,7 +195,7 @@ module.exports = require("react-router");
 /*!*******************************!*\
   !*** external "react-helmet" ***!
   \*******************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports) {
 
@@ -206,7 +206,7 @@ module.exports = require("react-helmet");
 /*!************************!*\
   !*** external "axios" ***!
   \************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports) {
 
@@ -217,7 +217,7 @@ module.exports = require("axios");
 /*!********************************************!*\
   !*** ./src/apps/main/components/Header.js ***!
   \********************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -370,7 +370,7 @@ exports.default = Header;
 /*!*****************************!*\
   !*** external "prop-types" ***!
   \*****************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports) {
 
@@ -381,7 +381,7 @@ module.exports = require("prop-types");
 /*!************************************************!*\
   !*** ./node_modules/gluestick/shared/index.js ***!
   \************************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -465,7 +465,7 @@ exports.getHttpClient = _getHttpClient3.default;
 /*!******************************************************!*\
   !*** ./src/apps/main/actions/clubCreationActions.js ***!
   \******************************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -641,7 +641,7 @@ function toggleVibeFilterCC(vibe) {
 /*!***********************!*\
   !*** external "path" ***!
   \***********************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports) {
 
@@ -652,7 +652,7 @@ module.exports = require("path");
 /*!*******************************************************!*\
   !*** ./src/apps/main/actions/searchResultsActions.js ***!
   \*******************************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -699,7 +699,10 @@ function fetchClubSearchResults(params) {
     var paramString = _qs2.default.stringify(params, { arrayFormat: 'repeat' });
     return paramString;
   };
-  var request = _axios2.default.get("/api/clubs", { params: params, paramsSerializer: paramsSerializer });
+  console.log('sending request');
+  console.log(params);
+  // let request = axios.get("https://intense-retreat-44335.herokuapp.com/clubs", { params, paramsSerializer });
+  var request = _axios2.default.get("http://localhost:3000/clubs", { params: params, paramsSerializer: paramsSerializer });
   return {
     type: FETCH_CLUB_SEARCH_RESULTS,
     promise: request
@@ -739,7 +742,7 @@ function toggleVibeFilter(vibe) {
 /*!******************************************************!*\
   !*** ./src/apps/main/components/ColorfulSelector.js ***!
   \******************************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -887,7 +890,7 @@ exports.default = ColorfulSelector;
 /*!*********************!*\
   !*** external "fs" ***!
   \*********************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports) {
 
@@ -898,7 +901,7 @@ module.exports = require("fs");
 /*!***********************************************!*\
   !*** ./src/apps/main/components/SearchBar.js ***!
   \***********************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1023,7 +1026,7 @@ exports.default = SearchBar;
 /*!******************************************!*\
   !*** external "react-textarea-autosize" ***!
   \******************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports) {
 
@@ -1034,7 +1037,7 @@ module.exports = require("react-textarea-autosize");
 /*!***************************************!*\
   !*** external "serialize-javascript" ***!
   \***************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports) {
 
@@ -1045,7 +1048,7 @@ module.exports = require("serialize-javascript");
 /*!***********************************************************!*\
   !*** ./node_modules/gluestick/shared/lib/route-helper.js ***!
   \***********************************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1174,7 +1177,7 @@ function createTransitionHook(store, routes) {
 /*!******************************************************!*\
   !*** ./node_modules/gluestick/shared/lib/actions.js ***!
   \******************************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1204,7 +1207,7 @@ function setStatusCode(statusCode) {
 /*!*******************************************************************************!*\
   !*** ./node_modules/gluestick/shared/lib/prepareRoutesWithTransitionHooks.js ***!
   \*******************************************************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1241,7 +1244,7 @@ exports.default = function (routes) {
 /*!*******************************************************!*\
   !*** ./node_modules/gluestick/build/plugins/utils.js ***!
   \*******************************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1291,7 +1294,7 @@ module.exports = function (logger) {
 /*!***********************************!*\
   !*** ./src/config/application.js ***!
   \***********************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1328,10 +1331,14 @@ var config = {
     head: headContent,
     proxies: [{
       path: "/api/*",
-      destination: process.env.CLUBTREE_SERVER_URL
+      destination: process.env.CLUBTREE_SERVER_URL || "http://localhost:3000/",
+      onProxyReq: function onProxyReq(proxyReq, req, res) {
+        console.log('receiving the request');
+        console.log(req);
+      }
     }],
     logger: {
-      pretty: false,
+      pretty: true,
       level: "info"
     }
   }
@@ -1344,7 +1351,7 @@ exports.default = config[process.env.NODE_ENV === "production" ? "production" : 
 /*!******************************!*\
   !*** ./gluestick/entries.js ***!
   \******************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1386,7 +1393,7 @@ exports.default = {
 /*!***********************************************!*\
   !*** ./src/apps/main/containers/FrontPage.js ***!
   \***********************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1711,7 +1718,7 @@ exports.default = (0, _reactRedux.connect)(function (state) {
 /*!************************************!*\
   !*** ./src/apps/main/lib/utils.js ***!
   \************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1762,7 +1769,7 @@ function generateSearchURL(params) {
 /*!*********************!*\
   !*** external "qs" ***!
   \*********************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports) {
 
@@ -1773,7 +1780,7 @@ module.exports = require("qs");
 /*!******************************************************!*\
   !*** ./src/apps/main/components/CategorySelector.js ***!
   \******************************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1919,7 +1926,7 @@ exports.default = CategorySelector;
 /*!****************************************!*\
   !*** ./src/config/redux-middleware.js ***!
   \****************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1946,7 +1953,7 @@ var thunkMiddleware = exports.thunkMiddleware = null;
 /*!********************************************************!*\
   !*** ./node_modules/gluestick/build/renderer/entry.js ***!
   \********************************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2003,7 +2010,7 @@ __webpack_require__(/*! ./main */ 34)({ config: config, logger: logger });
 /*!***********************!*\
   !*** external "util" ***!
   \***********************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports) {
 
@@ -2014,7 +2021,7 @@ module.exports = require("util");
 /*!*********************************!*\
   !*** external "babel-polyfill" ***!
   \*********************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports) {
 
@@ -2025,7 +2032,7 @@ module.exports = require("babel-polyfill");
 /*!*******************************************************!*\
   !*** ./node_modules/gluestick/build/renderer/main.js ***!
   \*******************************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2171,7 +2178,7 @@ module.exports = function (_ref) {
 /*!**************************!*\
   !*** external "express" ***!
   \**************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports) {
 
@@ -2182,7 +2189,7 @@ module.exports = require("express");
 /*!******************************!*\
   !*** external "compression" ***!
   \******************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports) {
 
@@ -2193,7 +2200,7 @@ module.exports = require("compression");
 /*!*************************************************************!*\
   !*** ./node_modules/gluestick/build/renderer/middleware.js ***!
   \*************************************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2416,7 +2423,7 @@ module.exports = function () {
 /*!***********************************!*\
   !*** (webpack)/buildin/module.js ***!
   \***********************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2451,7 +2458,7 @@ module.exports = function (module) {
 /*!*********************************************************!*\
   !*** ./node_modules/gluestick/build/renderer/render.js ***!
   \*********************************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2577,7 +2584,7 @@ module.exports = function (context, req, _ref, _ref2, _ref3, _ref4) {
 /*!*************************!*\
   !*** external "oy-vey" ***!
   \*************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports) {
 
@@ -2588,7 +2595,7 @@ module.exports = require("oy-vey");
 /*!***********************************!*\
   !*** external "react-dom/server" ***!
   \***********************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports) {
 
@@ -2599,7 +2606,7 @@ module.exports = require("react-dom/server");
 /*!*********************************************************************!*\
   !*** ./node_modules/gluestick/build/renderer/helpers/linkAssets.js ***!
   \*********************************************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2694,7 +2701,7 @@ module.exports = function (_ref2, entryPoint, assets, loadjsConfig) {
 /*!**************************************************************************!*\
   !*** ./node_modules/gluestick/build/renderer/helpers/getAssetsLoader.js ***!
   \**************************************************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2715,7 +2722,7 @@ module.exports = function (loadjsConfig, entryPointBundle, vendorBundle) {
 /*!***********************************************************************************!*\
   !*** ./node_modules/gluestick/build/renderer/helpers/getRequirementsFromEntry.js ***!
   \***********************************************************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2786,7 +2793,7 @@ module.exports = function (_ref, req, entries) {
 /*!**********************!*\
   !*** external "url" ***!
   \**********************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports) {
 
@@ -2797,7 +2804,7 @@ module.exports = require("url");
 /*!**********************************************************************!*\
   !*** ./node_modules/gluestick/build/renderer/helpers/isChildPath.js ***!
   \**********************************************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2831,7 +2838,7 @@ module.exports = function (parent, child) {
 /*!*********************************************************************!*\
   !*** ./node_modules/gluestick/build/renderer/helpers/matchRoute.js ***!
   \*********************************************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2865,7 +2872,7 @@ module.exports = function (context, req, getRoutes, store, httpClient) {
 /*!********************************************************!*\
   !*** ./node_modules/gluestick/shared/lib/constants.js ***!
   \********************************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2882,7 +2889,7 @@ var ROUTE_NAME_404_NOT_FOUND = exports.ROUTE_NAME_404_NOT_FOUND = 'ROUTE_NAME_40
 /*!**********************************************************!*\
   !*** ./node_modules/gluestick/shared/containers/Root.js ***!
   \**********************************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3029,7 +3036,7 @@ exports.default = Root;
 /*!**************************************!*\
   !*** external "react-router-scroll" ***!
   \**************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports) {
 
@@ -3040,7 +3047,7 @@ module.exports = require("react-router-scroll");
 /*!*********************************************************************!*\
   !*** ./node_modules/gluestick/shared/components/TransitionHooks.js ***!
   \*********************************************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3116,7 +3123,7 @@ exports.default = TransitionHooks;
 /*!********************************************************************!*\
   !*** ./node_modules/gluestick/shared/components/BodyAttributes.js ***!
   \********************************************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3222,7 +3229,7 @@ exports.default = (0, _reactSideEffect2.default)(reducePropsToState, handleState
 /*!************************************!*\
   !*** external "react-side-effect" ***!
   \************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports) {
 
@@ -3233,7 +3240,7 @@ module.exports = require("react-side-effect");
 /*!**********************************************************!*\
   !*** ./node_modules/gluestick/shared/lib/createStore.js ***!
   \**********************************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3304,7 +3311,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 /*!**************************************************!*\
   !*** external "redux-immutable-state-invariant" ***!
   \**************************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports) {
 
@@ -3315,7 +3322,7 @@ module.exports = require("redux-immutable-state-invariant");
 /*!******************************!*\
   !*** external "redux-thunk" ***!
   \******************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports) {
 
@@ -3326,7 +3333,7 @@ module.exports = require("redux-thunk");
 /*!*******************************************************!*\
   !*** ./node_modules/gluestick/shared/lib/reducers.js ***!
   \*******************************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3371,7 +3378,7 @@ function _gluestick() {
 /*!****************************************************************!*\
   !*** ./node_modules/gluestick/shared/lib/promiseMiddleware.js ***!
   \****************************************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3427,7 +3434,7 @@ exports.default = promiseMiddleware;
 /*!************************************************************!*\
   !*** ./node_modules/gluestick/shared/lib/getHttpClient.js ***!
   \************************************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3564,7 +3571,7 @@ function getHttpClient() {
 /*!******************************************************!*\
   !*** ./node_modules/gluestick/shared/lib/cookies.js ***!
   \******************************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3711,7 +3718,7 @@ function merge(oldCookieString, newCookieString) {
 /*!*******************************************************************!*\
   !*** ./node_modules/gluestick/build/renderer/helpers/helpText.js ***!
   \*******************************************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3742,7 +3749,7 @@ module.exports = {
 /*!**********************************************************************!*\
   !*** ./node_modules/gluestick/build/renderer/response/setHeaders.js ***!
   \**********************************************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3763,7 +3770,7 @@ module.exports = function (res, currentRoute) {
 /*!**********************************************************************!*\
   !*** ./node_modules/gluestick/build/renderer/response/getHeaders.js ***!
   \**********************************************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3783,7 +3790,7 @@ module.exports = function (route) {
 /*!***********************************************************************!*\
   !*** ./node_modules/gluestick/build/renderer/helpers/errorHandler.js ***!
   \***********************************************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3899,7 +3906,7 @@ module.exports = function () {
 /*!*****************************!*\
   !*** external "handlebars" ***!
   \*****************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports) {
 
@@ -3910,7 +3917,7 @@ module.exports = require("handlebars");
 /*!***********************************************************************!*\
   !*** ./node_modules/gluestick/build/renderer/helpers/cacheManager.js ***!
   \***********************************************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3979,7 +3986,7 @@ module.exports = function (logger, isProduction) {
 /*!****************************!*\
   !*** external "lru-cache" ***!
   \****************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports) {
 
@@ -3990,7 +3997,7 @@ module.exports = require("lru-cache");
 /*!**********************************************!*\
   !*** external "electrode-react-ssr-caching" ***!
   \**********************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports) {
 
@@ -4001,7 +4008,7 @@ module.exports = require("electrode-react-ssr-caching");
 /*!*************************************************************************!*\
   !*** ./node_modules/gluestick/build/renderer/response/getStatusCode.js ***!
   \*************************************************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4038,7 +4045,7 @@ module.exports = function (store, currentRoute) {
 /*!*********************************************************************!*\
   !*** ./node_modules/gluestick/build/renderer/helpers/readAssets.js ***!
   \*********************************************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4072,7 +4079,7 @@ module.exports = function (assetsPath) {
 /*!******************************!*\
   !*** external "on-finished" ***!
   \******************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports) {
 
@@ -4083,7 +4090,7 @@ module.exports = require("on-finished");
 /*!********************************!*\
   !*** ./src/apps/main/Index.js ***!
   \********************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4181,7 +4188,7 @@ exports.default = Index;
 /*!********************************************!*\
   !*** ./src/apps/main/assets/css/main.scss ***!
   \********************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports) {
 
@@ -4192,7 +4199,7 @@ exports.default = Index;
 /*!*********************************!*\
   !*** ./src/apps/main/routes.js ***!
   \*********************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4270,7 +4277,7 @@ function routes() /*store: Object, httpClient: Object*/{
 /*!**************************************************!*\
   !*** ./src/apps/main/components/MasterLayout.js ***!
   \**************************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4337,7 +4344,7 @@ exports.default = MasterLayout;
 /*!*********************************************!*\
   !*** ./src/apps/main/containers/HomeApp.js ***!
   \*********************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4437,7 +4444,7 @@ exports.default = (0, _reactRedux.connect)(function () {
 /*!*****************************!*\
   !*** external "neal-react" ***!
   \*****************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports) {
 
@@ -4448,7 +4455,7 @@ module.exports = require("neal-react");
 /*!**************************************************************!*\
   !*** ./src/apps/main/assets/images/site-logo/entirelogo.png ***!
   \**************************************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4459,7 +4466,7 @@ module.exports = __webpack_require__.p + "entirelogo-56f1345faa8df0d280045012d34
 /*!**********************************************************!*\
   !*** ./src/apps/main/assets/images/homepage/milktea.jpg ***!
   \**********************************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4470,7 +4477,7 @@ module.exports = __webpack_require__.p + "milktea-15bed784464d3569cfe224416ba2dd
 /*!********************************************************!*\
   !*** ./src/apps/main/assets/images/homepage/crowd.jpg ***!
   \********************************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4481,7 +4488,7 @@ module.exports = __webpack_require__.p + "crowd-a2c282d820db10030c764099936e1700
 /*!**********************************************************!*\
   !*** ./src/apps/main/assets/images/homepage/updates.jpg ***!
   \**********************************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4492,7 +4499,7 @@ module.exports = __webpack_require__.p + "updates-29079b21335cc41aa8aa3fb8115b85
 /*!*******************************************************************!*\
   !*** ./src/apps/main/assets/images/site-logo/clubtree-stroke.png ***!
   \*******************************************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4503,7 +4510,7 @@ module.exports = __webpack_require__.p + "clubtree-stroke-db845d953602c6e5432123
 /*!************************************************!*\
   !*** ./src/apps/main/containers/NoMatchApp.js ***!
   \************************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4599,7 +4606,7 @@ exports.default = (0, _reactRedux.connect)(function () {
 /*!***************************************************!*\
   !*** ./src/apps/main/containers/SearchResults.js ***!
   \***************************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4830,7 +4837,7 @@ exports.default = (0, _reactRedux.connect)(function (state) {
 /*!**********************************************************************!*\
   !*** ./src/apps/main/components/SearchResults/CategoriesCheckbox.js ***!
   \**********************************************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4945,7 +4952,7 @@ exports.default = CategoriesCheckbox;
 /*!**********************************************************************!*\
   !*** ./src/apps/main/components/SearchResults/ResultSortDropdown.js ***!
   \**********************************************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -5017,7 +5024,7 @@ exports.default = ResultSortDropdown;
 /*!*******************************************************************!*\
   !*** ./src/apps/main/components/SearchResults/ClubResultsList.js ***!
   \*******************************************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -5091,7 +5098,7 @@ exports.default = ClubResultsList;
 /*!********************************************************************!*\
   !*** ./src/apps/main/components/SearchResults/SingleClubResult.js ***!
   \********************************************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -5213,7 +5220,7 @@ exports.default = SingleClubResult;
 /*!*************************************************!*\
   !*** ./src/apps/main/containers/ClubProfile.js ***!
   \*************************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -5395,7 +5402,7 @@ exports.default = (0, _reactRedux.connect)(function () {
 /*!***************************************************************!*\
   !*** ./src/apps/main/components/ClubProfile/ProfileHeader.js ***!
   \***************************************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -5506,7 +5513,7 @@ exports.default = ProfileHeader;
 /*!********************************************************************!*\
   !*** ./src/apps/main/assets/images/clubprofile/starcraft-logo.png ***!
   \********************************************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -5517,7 +5524,7 @@ module.exports = __webpack_require__.p + "starcraft-logo-efdadbc4570c64694319142
 /*!**************************************************!*\
   !*** ./src/apps/main/containers/ClubCreation.js ***!
   \**************************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -5754,7 +5761,7 @@ exports.default = (0, _reactRedux.connect)(function (state) {
 /*!*********************************************************************!*\
   !*** ./src/apps/main/components/ClubCreation/ClubCreationHeader.js ***!
   \*********************************************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -5873,7 +5880,7 @@ exports.default = ClubCreationHeader;
 /*!********************************************************!*\
   !*** ./src/apps/main/components/ClubCreation/Step1.js ***!
   \********************************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -6143,7 +6150,7 @@ exports.default = (0, _reactRedux.connect)(function (state) {
 /*!********************************************************!*\
   !*** ./src/apps/main/components/ClubCreation/Step2.js ***!
   \********************************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -6415,7 +6422,7 @@ exports.default = (0, _reactRedux.connect)(function (state) {
 /*!*********************************!*\
   !*** external "rc-time-picker" ***!
   \*********************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports) {
 
@@ -6426,7 +6433,7 @@ module.exports = require("rc-time-picker");
 /*!*****************************************************!*\
   !*** ./node_modules/react-fontawesome/lib/index.js ***!
   \*****************************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -6614,7 +6621,7 @@ module.exports = exports['default'];
 /*!********************************************************************!*\
   !*** ./node_modules/react-fontawesome/lib/screen-reader-styles.js ***!
   \********************************************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -6641,7 +6648,7 @@ module.exports = exports['default'];
 /*!**************************************************!*\
   !*** ./src/apps/main/components/TimeSelector.js ***!
   \**************************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -6719,7 +6726,7 @@ exports.default = TimeSelector;
 /*!******************************************************!*\
   !*** ./src/apps/main/components/TimeSelectorUnit.js ***!
   \******************************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -7013,7 +7020,7 @@ exports.default = (0, _reactRedux.connect)(function () {
 /*!********************************************************!*\
   !*** ./src/apps/main/components/ClubCreation/Step3.js ***!
   \********************************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -7204,7 +7211,7 @@ exports.default = (0, _reactRedux.connect)(function (state) {
 /*!***********************************!*\
   !*** external "cloudinary-react" ***!
   \***********************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports) {
 
@@ -7215,7 +7222,7 @@ module.exports = require("cloudinary-react");
 /*!**************************************************!*\
   !*** ./src/apps/main/components/QuestionUnit.js ***!
   \**************************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -7319,7 +7326,7 @@ exports.default = QuestionUnit;
 /*!***********************************************!*\
   !*** ./src/apps/main/lib/clubAddQuestions.js ***!
   \***********************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -7346,7 +7353,7 @@ var FACTS = exports.FACTS = ["Other than what our club's about, we also like to"
 /*!********************************************************!*\
   !*** ./src/apps/main/components/ClubCreation/Step4.js ***!
   \********************************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -7410,7 +7417,7 @@ exports.default = Step4;
 /*!****************************************************!*\
   !*** ./src/apps/main/containers/AdvancedSearch.js ***!
   \****************************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -7586,7 +7593,7 @@ exports.default = (0, _reactRedux.connect)(function (state) {
 /*!********************************************!*\
   !*** ./src/apps/main/containers/SignUp.js ***!
   \********************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -7754,7 +7761,7 @@ exports.default = (0, _reactRedux.connect)(function () {
 /*!********************************************!*\
   !*** ./src/apps/main/components/Footer.js ***!
   \********************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -7818,7 +7825,7 @@ exports.default = Footer;
 /*!***************************************************************!*\
   !*** ./src/apps/main/components/SignUp/ChooseSignUpOption.js ***!
   \***************************************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -7887,7 +7894,7 @@ exports.default = ChooseSignUpOption;
 /*!*****************************************!*\
   !*** ./src/apps/main/reducers/index.js ***!
   \*****************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -7923,7 +7930,7 @@ exports.default = {
 /*!*******************************************************!*\
   !*** ./src/apps/main/reducers/clubCreationReducer.js ***!
   \*******************************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -8241,7 +8248,7 @@ exports.default = function () {
 /*!****************************************************!*\
   !*** ./src/apps/main/reducers/frontPageReducer.js ***!
   \****************************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -8277,7 +8284,7 @@ exports.default = function () {
 /*!********************************************************!*\
   !*** ./src/apps/main/reducers/searchResultsReducer.js ***!
   \********************************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -8349,6 +8356,8 @@ exports.default = function () {
       });
       return state;
     case _searchResultsActions.FETCH_CLUB_SEARCH_RESULTS:
+      console.log('hitting payload');
+      console.log(action.payload);
       if (action.payload) {
         state = _lodash2.default.assign({}, state, { searchResults: action.payload.data });
       }
@@ -8363,7 +8372,7 @@ exports.default = function () {
 /*!**************************!*\
   !*** ./src/entries.json ***!
   \**************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports) {
 
@@ -8374,7 +8383,7 @@ module.exports = {"/":{"component":"src/apps/main/Index.js","routes":"src/apps/m
 /*!***********************************!*\
   !*** ./gluestick/EntryWrapper.js ***!
   \***********************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -8573,7 +8582,7 @@ exports.default = EntryWrapper;
 /*!****************************!*\
   !*** external "react-dom" ***!
   \****************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports) {
 
@@ -8584,7 +8593,7 @@ module.exports = require("react-dom");
 /*!***********************************!*\
   !*** external "react-hot-loader" ***!
   \***********************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports) {
 
@@ -8595,7 +8604,7 @@ module.exports = require("react-hot-loader");
 /*!*****************************************!*\
   !*** external "react-router/lib/match" ***!
   \*****************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports) {
 
@@ -8606,7 +8615,7 @@ module.exports = require("react-router/lib/match");
 /*!**************************************************!*\
   !*** external "react-router/lib/browserHistory" ***!
   \**************************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports) {
 
@@ -8617,7 +8626,7 @@ module.exports = require("react-router/lib/browserHistory");
 /*!************************************!*\
   !*** ./src/config/init.browser.js ***!
   \************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -8635,7 +8644,7 @@ module.exports = require("react-router/lib/browserHistory");
 /*!********************************!*\
   !*** ./src/gluestick.hooks.js ***!
   \********************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -8662,7 +8671,7 @@ exports.default = {
 /*!******************************************************************!*\
   !*** ./node_modules/gluestick/build/renderer/components/Body.js ***!
   \******************************************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -8778,7 +8787,7 @@ exports.default = Body;
 /*!**************************************!*\
   !*** ./src/config/caching.server.js ***!
   \**************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -8795,7 +8804,7 @@ exports.default = {};
 /*!****************************************************************!*\
   !*** ./node_modules/gluestick/build/renderer/helpers/hooks.js ***!
   \****************************************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -8841,7 +8850,7 @@ module.exports = {
 /*!**********************************************************************!*\
   !*** ./node_modules/gluestick/build/plugins/prepareServerPlugins.js ***!
   \**********************************************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -8940,7 +8949,7 @@ module.exports = function (logger, plugins) {
 /*!*****************************************************!*\
   !*** ./node_modules/gluestick/build/cli/helpers.js ***!
   \*****************************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -8967,7 +8976,7 @@ module.exports = {
 /*!******************************************!*\
   !*** ./node_modules/gluestick/build/cli ***!
   \******************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports) {
 
@@ -8984,7 +8993,7 @@ webpackEmptyContext.id = 127;
 /*!*********************************************************************!*\
   !*** ./node_modules/gluestick/build/renderer/helpers/setProxies.js ***!
   \*********************************************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9059,7 +9068,7 @@ module.exports = function (app) {
 /*!****************************************!*\
   !*** external "http-proxy-middleware" ***!
   \****************************************/
-/*! no static exports found */
+/*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports) {
 

@@ -20,7 +20,7 @@ export function fetchClubSearchResults(params: object) {
     let paramString = qs.stringify(params, { arrayFormat: 'repeat' });
     return paramString;
   }
-  let request = axios.get("/api/clubs", { params, paramsSerializer });
+  let request = axios.get("https://intense-retreat-44335.herokuapp.com/clubs", { params, paramsSerializer });
   return {
     type: FETCH_CLUB_SEARCH_RESULTS,
     promise: request

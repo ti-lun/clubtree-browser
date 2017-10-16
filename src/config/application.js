@@ -56,11 +56,11 @@ const config: Config = {
     proxies: [
       {
         path: "/api/*",
-        destination: process.env.CLUBTREE_SERVER_URL,
+        destination: process.env.CLUBTREE_SERVER_URL || "http://localhost:3000/",
       }
     ],
     logger: {
-      pretty: false,
+      pretty: true,
       level: "info"
     }
   }
