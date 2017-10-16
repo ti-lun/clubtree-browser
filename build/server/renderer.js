@@ -699,10 +699,7 @@ function fetchClubSearchResults(params) {
     var paramString = _qs2.default.stringify(params, { arrayFormat: 'repeat' });
     return paramString;
   };
-  console.log('sending request');
-  console.log(params);
-  // let request = axios.get("https://intense-retreat-44335.herokuapp.com/clubs", { params, paramsSerializer });
-  var request = _axios2.default.get("http://localhost:3000/clubs", { params: params, paramsSerializer: paramsSerializer });
+  var request = _axios2.default.get("https://intense-retreat-44335.herokuapp.com/clubs", { params: params, paramsSerializer: paramsSerializer });
   return {
     type: FETCH_CLUB_SEARCH_RESULTS,
     promise: request
@@ -1331,11 +1328,7 @@ var config = {
     head: headContent,
     proxies: [{
       path: "/api/*",
-      destination: process.env.CLUBTREE_SERVER_URL || "http://localhost:3000/",
-      onProxyReq: function onProxyReq(proxyReq, req, res) {
-        console.log('receiving the request');
-        console.log(req);
-      }
+      destination: process.env.CLUBTREE_SERVER_URL || "http://localhost:3000/"
     }],
     logger: {
       pretty: true,
@@ -8356,8 +8349,6 @@ exports.default = function () {
       });
       return state;
     case _searchResultsActions.FETCH_CLUB_SEARCH_RESULTS:
-      console.log('hitting payload');
-      console.log(action.payload);
       if (action.payload) {
         state = _lodash2.default.assign({}, state, { searchResults: action.payload.data });
       }
