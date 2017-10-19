@@ -4,6 +4,7 @@ import React, { Component } from "react";
 import FacebookLogin from "react-facebook-login";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import { Link } from "react-router";
 
 import { signInFB } from "../../actions/authActions";
 
@@ -24,14 +25,20 @@ class ChooseSignUpOption extends Component {
     this.props.signInFB(dataObj);
   }
 
+  FBloginClicked = () => {
+    return;
+  }
+
   render() {
     return (
       <div>
+        <Link to="/dashboard">If you're not logged in, this shouldn't work.</Link>
         <button className="btn joinus-signUpButton" id="joinus-facebook">
           <FacebookLogin
             appId="469991373333039"
-            autoLoad={true}
+            autoLoad={false}
             fields="name,email,picture"
+            onClick={this.FBloginClicked}
             callback={this.responseFacebook} />
         </button>
         <button className="btn joinus-signUpButton" id="joinus-google">

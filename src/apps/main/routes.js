@@ -5,6 +5,8 @@ import React from "react";
 import { Router, IndexRoute, Route, browserHistory } from "react-router";
 import { ROUTE_NAME_404_NOT_FOUND } from "compiled/gluestick";
 
+import AuthHOC from "./components/AuthHOC";
+
 import MasterLayout from "./components/MasterLayout";
 import HomeApp from "./containers/HomeApp";
 import NoMatchApp from "./containers/NoMatchApp";
@@ -22,10 +24,11 @@ export default function routes(/*store: Object, httpClient: Object*/) {
       <Route path="/" component={FrontPage} />
       <Route path="/advancedsearch" component={AdvancedSearch} />
       <Route path="/club/:id" component={ClubProfile} />
-      <Route path="/clubcreation" component={ClubCreation} />
+      <Route path="/clubcreation" component={AuthHOC(ClubCreation)} />
       <Route path="/search" component={SearchResults} />
       <Route path="/joinus" component={SignUp} />
-      <Route path="/dashboard" component={Dashboard} />
+      <Route path="/dashboard" component={AuthHOC(Dashboard)} />
+      <Route path="/404" component={NoMatchApp} />
       <Route name={ROUTE_NAME_404_NOT_FOUND} path="*" component={NoMatchApp} />
     </Router>
   );
