@@ -5532,7 +5532,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactstrap = __webpack_require__(/*! reactstrap */ 1);
 
-var _starcraftLogo = __webpack_require__(/*! ../../assets/images/clubprofile/starcraft-logo.png */ 91);
+var _consts = __webpack_require__(/*! ../../lib/consts */ 4);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
