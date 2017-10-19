@@ -13,7 +13,12 @@ import { Image, CloudinaryContext, Transformation } from "cloudinary-react";
 import ColorfulSelector from "../ColorfulSelector";
 import QuestionUnit from "../QuestionUnit";
 import { toggleVibeFilter, toggleCategoryFilter } from "../../actions/searchResultsActions";
-import { toggleVibeFilterCC } from "../../actions/clubCreationActions";
+import {
+  toggleVibeFilterCC,
+  uploadClubLogo,
+  uploadClubCover,
+  updateQuestion
+ } from "../../actions/clubCreationActions";
 
 import { VIBES } from "../../lib/consts";
 import { PERSONALITY, FACTS } from "../../lib/clubAddQuestions";
@@ -24,19 +29,57 @@ class Step3 extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      vibesFilter: []
+      vibesFilter: [],
+      clubLogo: Object,
+      clubCover: Object
     };
   }
 
-  uploadWidget() {
+  uploadWidgetLogo = () => {
    cloudinary.openUploadWidget({
      cloud_name: 'dpjydbpir',
-     upload_preset: 'splice',
-     tags:['clubphotos']},
+     upload_preset: 'r504fsmj',
+     tags:['clubLogo']},
      (error, result) => {
        console.log(result);
-     });
+       this.props.uploadClubLogo(result[0]);
+     }).bind(this);
    }
+
+   uploadWidgetCover = () => {
+    cloudinary.openUploadWidget({
+      cloud_name: 'dpjydbpir',
+      upload_preset: 'c6iq7s0e',
+      tags:['clubCovers']},
+      (error, result) => {
+        console.log(result);
+        this.props.uploadClubCover(result[0]);
+      }).bind(this);
+  }
+
+  updateQuestion = (e) => {
+    console.log("does this get fired at all");
+    const thisQuestion = this.props.q;
+    if (this.state.active) {
+      let tempQ = _.cloneDeep(this.props.questions);
+      console.log("tempQ is", tempQ);
+      tempQ[thisQuestion] = {
+        answer: e.target.value,
+        active: true
+      };
+      this.props.updateQuestion(tempQ);
+    }
+    else {
+      console.log("not active :()");
+      let tempQ = _.cloneDeep(this.props.questions, this.props.question);
+      delete tempQ[this.props.question];
+      if (!tempQ) {
+        tempQ = {};
+      }
+      this.props.updateQuestion(tempQ);
+    }
+  }
+
 
   render () {
     return (
@@ -53,19 +96,46 @@ class Step3 extends Component {
             />
         </div>
         <div className="mild-shadow clubcreation-process-section">
-          Uplaod photo shit<br/>
-        <Button onClick={this.uploadWidget} className="btn">Upload</Button>
+          <span className="clubcreation-question">Deck out your club profile!  It'll make your club more appealing and easier to find.</span>
+
+          <div className="clubcreation-upload">
+            <img
+              src={this.props.newClub.clubLogo} /><br />
+            <span className="clubcreation-upload-text">Upload Club Logo</span><br/>
+            <Button
+              onClick={this.uploadWidgetLogo}
+              className="btn clubcreation-upload-btn">Upload</Button><br />
+          </div>
+
+          <div className="clubcreation-upload">
+            <img src={this.props.newClub.clubCover} /><br/>
+            <span className="clubcreation-upload-text">Upload Club Cover</span><br/>
+            <Button
+              onClick={this.uploadWidgetCover}
+              className="btn clubcreation-upload-btn">Upload</Button><br />
+          </div>
+
         </div>
         <div className="mild-shadow clubcreation-process-section">
           <span className="clubcreation-question">Additional info</span>
           Here are some questions that are <strong>optional</strong> to fill out.  They would be great for potential club members to know about, though!  You can begin typing in your answers, and the questions that aren't grayed out will be put on your club profile.<br/>
           <span className="clubcreation-sub">Personality</span>
           { PERSONALITY.map((q, index) => {
-            return <QuestionUnit question={q}/>
+            return (
+              <QuestionUnit
+                update={this.updateQuestion}
+                question={q}
+                questions={this.props.newClub.questions} />
+            )
           }) }
           <span className="clubcreation-sub">Facts</span>
           { FACTS.map((q, index) => {
-            return <QuestionUnit question={q}/>
+            return (
+              <QuestionUnit
+                question={q}
+                questions={this.props.newClub.questions}
+                update={this.updateQuestion} />
+            )
           }) }
         </div>
       </div>
@@ -76,13 +146,16 @@ class Step3 extends Component {
 
 export default connect(
   state => ({
-    vibesFilterCC: state.clubCreationReducer.vibesFilterCC
+    vibesFilterCC: state.clubCreationReducer.vibesFilterCC,
+    newClub: state.clubCreationReducer.newClub
   }),
   dispatch =>
     bindActionCreators(
       {
         toggleVibeFilterCC,
-        toggleCategoryFilter
+        uploadClubLogo,
+        uploadClubCover,
+        updateQuestion
       },
       dispatch
     )

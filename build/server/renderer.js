@@ -1975,83 +1975,6 @@ exports.default = CategorySelector;
 
 /***/ }),
 /* 31 */
-/*!**********************************************!*\
-  !*** ./src/apps/main/actions/authActions.js ***!
-  \**********************************************/
-/*! no static exports found */
-/*! all exports used */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.UNAUTH_USER = exports.AUTH_USER = exports.SIGNIN_FB = undefined;
-exports.signInFB = signInFB;
-exports.authUser = authUser;
-exports.unauthUser = unauthUser;
-
-var _axios = __webpack_require__(/*! axios */ 6);
-
-var _axios2 = _interopRequireDefault(_axios);
-
-var _reactRouter = __webpack_require__(/*! react-router */ 5);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var SIGNIN_FB = exports.SIGNIN_FB = "SIGNIN_FB";
-var AUTH_USER = exports.AUTH_USER = "AUTH_USER";
-var UNAUTH_USER = exports.UNAUTH_USER = "UNAUTH_USER";
-
-// TODO: need to put fbID into localStorage
-function signInFB(dataObj) {
-  return function (dispatch) {
-
-    // let's say the api passes and it works hooray.
-    _axios2.default.get("api/members", {
-      params: {
-        fbID: dataObj.fbID
-      }
-    }).then(function (response) {
-      if (response.data.length) {
-        throw Error("user is already in the database");
-      } else {
-
-        _axios2.default.post("api/members", dataObj).then(function (response) {
-          _axios2.default.get("api/members").then(function (response) {
-            console.log(response);
-          });
-          console.log("something happened hooray lol", dataObj);
-        }).catch(function (err) {
-          console.log("crap", err);
-        });
-      }
-    });
-
-    dispatch({ type: AUTH_USER });
-    console.log("dataObj token is", dataObj.token);
-    localStorage.setItem("token", dataObj.token);
-
-    _reactRouter.browserHistory.push("/dashboard");
-  };
-}
-
-function authUser() {
-  return {
-    type: AUTH_USER
-  };
-}
-
-function unauthUser() {
-  return {
-    type: UNAUTH_USER
-  };
-}
-
-/***/ }),
-/* 32 */
 /*!****************************************!*\
   !*** ./src/config/redux-middleware.js ***!
   \****************************************/
@@ -4346,7 +4269,7 @@ var _reactRouter = __webpack_require__(/*! react-router */ 5);
 
 var _gluestick = __webpack_require__(/*! compiled/gluestick */ 11);
 
-var _AuthHOC = __webpack_require__(/*! ./components/AuthHOC */ 133);
+var _MasterLayout = __webpack_require__(/*! ./components/MasterLayout */ 76);
 
 var _AuthHOC2 = _interopRequireDefault(_AuthHOC);
 
@@ -4392,6 +4315,7 @@ var _Dashboard2 = _interopRequireDefault(_Dashboard);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+// import { BrowserRouter, Route, Switch } from "react-router-dom";
 function routes() /*store: Object, httpClient: Object*/{
   return _react2.default.createElement(
     _reactRouter.Router,
@@ -4402,12 +4326,9 @@ function routes() /*store: Object, httpClient: Object*/{
     _react2.default.createElement(_reactRouter.Route, { path: "/clubcreation", component: (0, _AuthHOC2.default)(_ClubCreation2.default) }),
     _react2.default.createElement(_reactRouter.Route, { path: "/search", component: _SearchResults2.default }),
     _react2.default.createElement(_reactRouter.Route, { path: "/joinus", component: _SignUp2.default }),
-    _react2.default.createElement(_reactRouter.Route, { path: "/dashboard", component: (0, _AuthHOC2.default)(_Dashboard2.default) }),
-    _react2.default.createElement(_reactRouter.Route, { path: "/404", component: _NoMatchApp2.default }),
     _react2.default.createElement(_reactRouter.Route, { name: _gluestick.ROUTE_NAME_404_NOT_FOUND, path: "*", component: _NoMatchApp2.default })
   );
 }
-// import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 /***/ }),
 /* 77 */
@@ -7942,18 +7863,6 @@ var _react = __webpack_require__(/*! react */ 0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactFacebookLogin = __webpack_require__(/*! react-facebook-login */ 110);
-
-var _reactFacebookLogin2 = _interopRequireDefault(_reactFacebookLogin);
-
-var _reactRedux = __webpack_require__(/*! react-redux */ 2);
-
-var _redux = __webpack_require__(/*! redux */ 3);
-
-var _reactRouter = __webpack_require__(/*! react-router */ 5);
-
-var _authActions = __webpack_require__(/*! ../../actions/authActions */ 31);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -7972,27 +7881,7 @@ var ChooseSignUpOption = function (_Component) {
 
     _classCallCheck(this, ChooseSignUpOption);
 
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ChooseSignUpOption.__proto__ || Object.getPrototypeOf(ChooseSignUpOption)).call.apply(_ref, [this].concat(args))), _this), _this.responseFacebook = function (response) {
-      console.log("response from FB is", response);
-      var nameArr = response.name.split();
-      var dataObj = {
-        firstName: nameArr[0],
-        lastName: nameArr[1],
-        profPicURL: response.picture.data.url,
-        fbID: response.userID,
-        token: response.accessToken
-      };
-
-      console.log("dataobj is", dataObj);
-
-      _this.props.signInFB(dataObj);
-    }, _this.FBloginClicked = function () {
-      return;
-    }, _temp), _possibleConstructorReturn(_this, _ret);
+    return _possibleConstructorReturn(this, (ChooseSignUpOption.__proto__ || Object.getPrototypeOf(ChooseSignUpOption)).apply(this, arguments));
   }
 
   _createClass(ChooseSignUpOption, [{
@@ -8009,12 +7898,7 @@ var ChooseSignUpOption = function (_Component) {
         _react2.default.createElement(
           "button",
           { className: "btn joinus-signUpButton", id: "joinus-facebook" },
-          _react2.default.createElement(_reactFacebookLogin2.default, {
-            appId: "469991373333039",
-            autoLoad: false,
-            fields: "name,email,picture",
-            onClick: this.FBloginClicked,
-            callback: this.responseFacebook })
+          "Join us with Facebook"
         ),
         _react2.default.createElement(
           "button",
@@ -9483,10 +9367,22 @@ module.exports = function (app) {
 module.exports = require("http-proxy-middleware");
 
 /***/ }),
-/* 133 */
-/*!*********************************************!*\
-  !*** ./src/apps/main/components/AuthHOC.js ***!
-  \*********************************************/
+/* 128 */
+/*!********************************************************************!*\
+  !*** ./src/apps/main/assets/images/clubprofile/starcraft-logo.png ***!
+  \********************************************************************/
+/*! no static exports found */
+/*! all exports used */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "starcraft-logo-c5a54951d85c00ebdea2b0cb79400d8e.png";
+
+/***/ })
+/******/ ]);
+//# sourceMappingURL=renderer.js.map
+/*!**********************************************!*\
+  !*** ./src/apps/main/actions/authActions.js ***!
+  \**********************************************/
 /*! no static exports found */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
@@ -9497,71 +9393,99 @@ module.exports = require("http-proxy-middleware");
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.UNAUTH_USER = exports.AUTH_USER = exports.SIGNIN_FB = undefined;
+exports.signInFB = signInFB;
+exports.authUser = authUser;
+exports.unauthUser = unauthUser;
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+var _axios = __webpack_require__(/*! axios */ 6);
 
-exports.default = AuthHOC;
+var _axios2 = _interopRequireDefault(_axios);
 
-var _react = __webpack_require__(/*! react */ 0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactRedux = __webpack_require__(/*! react-redux */ 2);
+var _reactRouter = __webpack_require__(/*! react-router */ 5);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+var SIGNIN_FB = exports.SIGNIN_FB = "SIGNIN_FB";
+var AUTH_USER = exports.AUTH_USER = "AUTH_USER";
+var UNAUTH_USER = exports.UNAUTH_USER = "UNAUTH_USER";
 
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+function signInFB(dataObj) {
+  return function (dispatch) {
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+    // let's say the api passes and it works hooray.
+    // axios.get(`api/members`, {
+    //   params: {
+    //     fbID: dataObj.fbID
+    //   }
+    // }).then((response) => {
+    //   console.log(response);
+    // });
 
-function AuthHOC(ComposedComponent) {
-  var Authentication = function (_Component) {
-    _inherits(Authentication, _Component);
+    // then we're gonna post a new user into the database.
+    // axios.post(`${ROOT_URL}/signup`, dataObj)
+    // .then(response => {
+    //   console.log("something happened hooray lol", dataObj);
+    // })
+    // .catch((err) => {
+    //   console.log("crap", err);
+    // });
 
-    function Authentication() {
-      _classCallCheck(this, Authentication);
+    dispatch({ type: AUTH_USER });
+    console.log("dataObj token is", dataObj.token);
+    localStorage.setItem("token", dataObj.token);
 
-      return _possibleConstructorReturn(this, (Authentication.__proto__ || Object.getPrototypeOf(Authentication)).apply(this, arguments));
-    }
-
-    _createClass(Authentication, [{
-      key: "componentWillMount",
-      value: function componentWillMount() {
-        if (!this.props.authenticated) {
-          this.context.router.push("/");
-        }
-      }
-    }, {
-      key: "componentWillUpdate",
-      value: function componentWillUpdate(nextProps) {
-        if (!nextProps.authenticated) {
-          this.context.router.push("/");
-        }
-      }
-    }, {
-      key: "render",
-      value: function render() {
-        return _react2.default.createElement(ComposedComponent, this.props);
-      }
-    }]);
-
-    return Authentication;
-  }(_react.Component);
-
-  Authentication.contextTypes = {
-    router: _react2.default.PropTypes.object
+    _reactRouter.browserHistory.push("/");
   };
-
-
-  return (0, _reactRedux.connect)(function (state) {
-    return {
-      authenticated: state.authReducer.authenticated
-    };
-  }, null)(Authentication);
 }
 
-/***/ })
-/******/ ]);
-//# sourceMappingURL=renderer.js.map
+function authUser() {
+  return {
+    type: AUTH_USER
+  };
+}
+
+function unauthUser() {
+  return {
+    type: UNAUTH_USER
+  };
+}
+
+/***/ }),
+/* 32 */
+var _MasterLayout = __webpack_require__(/*! ./components/MasterLayout */ 77);
+    _react2.default.createElement(_reactRouter.Route, { path: "/dashboard", component: _Dashboard2.default }),
+var _reactFacebookLogin = __webpack_require__(/*! react-facebook-login */ 110);
+
+var _reactFacebookLogin2 = _interopRequireDefault(_reactFacebookLogin);
+
+var _reactRedux = __webpack_require__(/*! react-redux */ 2);
+
+var _redux = __webpack_require__(/*! redux */ 3);
+
+var _authActions = __webpack_require__(/*! ../../actions/authActions */ 31);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ChooseSignUpOption.__proto__ || Object.getPrototypeOf(ChooseSignUpOption)).call.apply(_ref, [this].concat(args))), _this), _this.responseFacebook = function (response) {
+      console.log("response from FB is", response);
+      var nameArr = response.name.split();
+      var dataObj = {
+        firstName: nameArr[0],
+        lastName: nameArr[1],
+        profPicURL: response.picture.data.url,
+        fbID: response.userID,
+        token: response.accessToken
+      };
+
+      console.log("dataobj is", dataObj);
+
+      _this.props.signInFB(dataObj);
+    }, _temp), _possibleConstructorReturn(_this, _ret);
+          _react2.default.createElement(_reactFacebookLogin2.default, {
+            appId: "469991373333039",
+            autoLoad: true,
+            fields: "name,email,picture",
+            callback: this.responseFacebook })

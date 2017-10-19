@@ -17,8 +17,11 @@ import ColorfulSelector from "../ColorfulSelector";
 import {
   updateClubName,
   updateClubDesc,
+  updateClubMonth,
+  updateClubYear,
   toggleClubCategory,
-  updateValidationStep } from "../../actions/clubCreationActions";
+  updateValidationStep
+ } from "../../actions/clubCreationActions";
 import {
   CATEGORIES_ICONS_MAP,
   MONTHS,
@@ -51,13 +54,13 @@ class Step1 extends React.Component {
   }
 
   validateClubDesc = () => {
-    const result = (this.props.newClub.desc.length < CLUB_DESC_WORD_LENGTH) && (this.props.newClub.desc.length !== 0);
+    const result = (this.props.newClub.description.length < CLUB_DESC_WORD_LENGTH) && (this.props.newClub.description.length !== 0);
     return result;
   }
 
 
   validateClubName = () => {
-    const result = (this.props.newClub.name.length < CLUB_NAME_CHAR_LENGTH) && (this.props.newClub.name.length !== 0);
+    const result = (this.props.newClub.clubName.length < CLUB_NAME_CHAR_LENGTH) && (this.props.newClub.clubName.length !== 0);
     return result;
   }
 
@@ -80,7 +83,7 @@ class Step1 extends React.Component {
             type="text"
             className="clubcreation-input"
             onChange={this.props.updateClubName}
-            value={this.props.newClub.name}
+            value={this.props.newClub.clubName}
           >
           </input>
           <span
@@ -90,7 +93,7 @@ class Step1 extends React.Component {
               margin: "5px 0px 5px 0px"
             }}
           >
-            {this.props.newClub.name.length}/{CLUB_NAME_CHAR_LENGTH} characters
+            {this.props.newClub.clubName.length}/{CLUB_NAME_CHAR_LENGTH} characters
           </span>
         </div>
 
@@ -117,7 +120,11 @@ class Step1 extends React.Component {
               <Col>
                 <Row>
                   <Col>
-                    <Input className="mx-2 clubcreation-date-btn" type="select">
+                    <Input
+                      className="mx-2 clubcreation-date-btn"
+                      type="select"
+                      onChange={this.props.updateClubMonth}
+                      >
                       {MONTHS.map((month, index) => {
                         return (
                           <option key={index}>
@@ -128,7 +135,11 @@ class Step1 extends React.Component {
                     </Input>
                   </Col>
                   <Col>
-                    <Input className="clubcreation-date-btn" type="select">
+                    <Input
+                      className="clubcreation-date-btn"
+                      type="select"
+                      onChange={this.props.updateClubYear}
+                      >
                       {VALID_YEARS.map((year, index) => {
                         return (
                           <option key={index}>
@@ -152,7 +163,7 @@ class Step1 extends React.Component {
               className="clubcreation-input"
               minRows={3}
               onChange={this.props.updateClubDesc}
-              value={this.props.newClub.desc}
+              value={this.props.newClub.description}
             />
             <span
               className={(this.validateClubDesc()) ? "clubcreation-sub" : "clubcreation-sub clubcreation-error"}
@@ -163,7 +174,7 @@ class Step1 extends React.Component {
             >
               {this.state.clubDescription === ""
                 ? 0
-                : this.props.newClub.desc.split(/\s+/).length}/{CLUB_DESC_WORD_LENGTH} words
+                : this.props.newClub.description.split(/\s+/).length}/{CLUB_DESC_WORD_LENGTH} words
             </span>
           </div>
         </div>
@@ -182,6 +193,8 @@ export default connect(
       {
         updateClubName,
         updateClubDesc,
+        updateClubMonth,
+        updateClubYear,
         toggleClubCategory,
         updateValidationStep
       },

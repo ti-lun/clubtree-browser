@@ -23,8 +23,8 @@ export default function routes(/*store: Object, httpClient: Object*/) {
     <Router component={HomeApp} history={browserHistory}>
       <Route path="/" component={FrontPage} />
       <Route path="/advancedsearch" component={AdvancedSearch} />
-      <Route path="/club/:id" component={ClubProfile} />
-      <Route path="/clubcreation" component={AuthHOC(ClubCreation)} />
+      <Route path="/club(/:id)" component={ClubProfile} />
+      <Route path="/clubcreation(/:id)" component={ClubCreation} />
       <Route path="/search" component={SearchResults} />
       <Route path="/joinus" component={SignUp} />
       <Route path="/dashboard" component={AuthHOC(Dashboard)} />

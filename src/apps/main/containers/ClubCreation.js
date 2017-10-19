@@ -15,7 +15,7 @@ import Step3 from "../components/ClubCreation/Step3";
 import Step4 from "../components/ClubCreation/Step4";
 
 //need to pass newclub action into step 1...
-import { updateValidationStep } from "../actions/clubCreationActions";
+import { updateValidationStep, loadExistingClub } from "../actions/clubCreationActions";
 
 import {
   CLUB_NAME_CHAR_LENGTH,
@@ -43,8 +43,21 @@ export class ClubCreation extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      step: 1
+      step: 1,
+      id: ""
     };
+  }
+
+  componentWillMount() {
+    if (this.props.params.id) {
+      this.setState({
+        id: this.props.params.id
+      });
+      axios.get(`/api/clubs/${this.props.params.id}`).then((response) => {
+        const club = response.data;
+        this.props.loadExistingClub(club);
+      });
+    }
   }
 
   displayAtStep = (step: number) => {
@@ -69,17 +82,18 @@ export class ClubCreation extends Component {
   }
 
   continueClicked = () => {
+    // this definitely needs a lot of, erm... sprucing.
     switch (this.state.step) {
       case 1: {
         // club name invalid
         if (
-          (this.props.newClub.name.length > CLUB_NAME_CHAR_LENGTH) ||
-          (this.props.newClub.name.length === 0)) {
+          (this.props.newClub.clubName.length > CLUB_NAME_CHAR_LENGTH) ||
+          (this.props.newClub.clubName.length === 0)) {
           return;
         }
         // club desc invalid
-        else if ((this.props.newClub.desc.length > CLUB_DESC_WORD_LENGTH)
-        || (this.props.newClub.desc.length === 0)) {
+        else if ((this.props.newClub.description.length > CLUB_DESC_WORD_LENGTH)
+        || (this.props.newClub.description.length === 0)) {
 
           return;
         }
@@ -91,14 +105,25 @@ export class ClubCreation extends Component {
         // everything was valid, hooray.  Time to save the data.
 
         // first, check to see if the club was created already.
-        if (this.props.params.clubID) {
-          // update club
+        if (this.props.params.id) {
+          axios.put("/api/clubs", {
+            id: this.state.id,
+            updateFields: {
+              clubName: this.props.newClub.clubName,
+              description: this.props.newClub.description,
+              category: this.props.newClub.category
+            }
+          });
         }
         else {
           axios.post("/api/clubs", {
-            clubName: this.props.newClub.name,
-            description: this.props.newClub.desc,
+            clubName: this.props.newClub.clubName,
+            description: this.props.newClub.description,
             category: this.props.newClub.category
+          }).then((response) => {
+            this.setState({
+              id: response.data["_id"]
+            });
           });
         }
 
@@ -116,12 +141,62 @@ export class ClubCreation extends Component {
         else if (this.props.newClub.meetingDatesAndTimes["meetingDays"].length === 0) {
           return;
         }
+        // no fee amount, even 0
+        else if (this.props.newClub.clubFeeAmount === "") {
+          return;
+        }
         // no
         else if (this.props.newClub.memberReq.length > CLUB_DESC_WORD_LENGTH ||
         (this.props.newClub.memberReq.length === 0)) {
           return;
         }
+
+        axios.put("/api/clubs", {
+          id: this.state.id,
+          updateFields: {
+            clubFeeAmount: this.props.newClub.clubFeeAmount,
+            clubFeePeriod: this.props.newClub.clubFeePeriod,
+            meetingLocation: this.props.newClub.meetingLocation,
+            memberReq: this.props.newClub.memberReq,
+            meetingDatesAndTimes: this.props.newClub.meetingDatesAndTimes
+          }
+        });
+
         break;
+      }
+
+      case 3: {
+        console.log("does step 3 even fire");
+        // if there aren't 3 vibes
+        if (this.props.vibesFilterCC.length < 3) {
+          console.log("nope...", this.props.vibesFilterCC);
+          return;
+        }
+
+        const fieldsToUpdate = {
+          vibes: this.props.vibesFilterCC
+        };
+
+        if (this.props.newClub.clubLogo) {
+          fieldsToUpdate["clubLogo"] = this.props.newClub.clubLogo;
+        }
+
+        if (this.props.newClub.clubCover) {
+          fieldsToUpdate["clubCover"] = this.props.newClub.clubCover;
+        }
+
+        if (this.props.newClub.questions)
+
+        axios.put("/api/clubs", {
+          id: this.state.id,
+          updateFields: {
+            vibes: this.props.vibesFilterCC,
+            memberReq: this.props.newClub.memberReq,
+            meetingDatesAndTimes: this.props.newClub.meetingDatesAndTimes
+          }
+        });
+        break;
+
       }
 
       default:
@@ -173,12 +248,14 @@ export class ClubCreation extends Component {
 export default connect(
   state => ({
     newClub: state.clubCreationReducer.newClub,
-    validationSteps: state.clubCreationReducer.validationSteps
+    validationSteps: state.clubCreationReducer.validationSteps,
+    vibesFilterCC: state.clubCreationReducer.vibesFilterCC
   }),
   dispatch =>
     bindActionCreators(
       {
-        updateValidationStep
+        updateValidationStep,
+        loadExistingClub
       },
       dispatch
     )

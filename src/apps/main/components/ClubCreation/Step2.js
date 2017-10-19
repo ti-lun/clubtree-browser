@@ -62,6 +62,7 @@ class Step2 extends Component {
               type="text"
               className="clubcreation-input"
               onChange={this.props.updateClubMeetingLocation}
+              value={this.props.newClub.meetingLocation}
             />
             <span
               className={(this.validateMeetingLoc()) ? "clubcreation-sub" : "clubcreation-sub clubcreation-error"}
@@ -92,6 +93,7 @@ class Step2 extends Component {
                 <InputGroup>
                   <InputGroupAddon>$</InputGroupAddon>
                   <Input
+                    value={this.props.newClub.clubFeeAmount}
                     onChange={this.props.updateClubFeeAmount}/>
                   <InputGroupAddon>.00</InputGroupAddon>
                 </InputGroup>
@@ -102,6 +104,7 @@ class Step2 extends Component {
               <Col md={4}>
                 <Input
                   type="select"
+                  value={this.props.newClub.clubFeePeriod}
                   onChange={this.props.updateClubFeePeriod}
                 >
                   <option>meeting/session</option>

@@ -1,5 +1,5 @@
 /* @flow */
-
+import _ from "lodash";
 import React, { Component } from "react";
 import { Button, Row, Col, Form, FormGroup, Input } from "reactstrap";
 import PropTypes from "prop-types";
@@ -27,6 +27,14 @@ class TimeSelectorUnit extends Component {
       meridian: null,
       active: false
     };
+  }
+
+  componentWillMount() {
+    if (_.includes(this.props.schedule.meetingDays, this.props.day)) {
+      this.setState({
+        active: true
+      });
+    }
   }
 
   setActive = () => {
@@ -74,6 +82,7 @@ class TimeSelectorUnit extends Component {
                   <Input
                     type="select"
                     className="clubcreation-date-btn"
+                    value={(this.props.schedule[this.props.day]) ? this.props.schedule[this.props.day].start.hour : 1}
                     onChange={(e) => {
                       this.props.updateStartHour(e, this.props.day);
                     }}
@@ -85,6 +94,8 @@ class TimeSelectorUnit extends Component {
                   <Input
                     type="select"
                     className="clubcreation-date-btn"
+                    value={(this.props.schedule[this.props.day]) ? this.props.schedule[this.props.day].start.minute : "00"}
+
                     onChange={(e) => {
                       this.props.updateStartMinute(e, this.props.day);
                     }}
@@ -96,6 +107,7 @@ class TimeSelectorUnit extends Component {
                   <Input
                     type="select"
                     className="clubcreation-date-btn"
+                    value={(this.props.schedule[this.props.day]) ? this.props.schedule[this.props.day].start.meridian : "AM"}
                     onChange={(e) => {
                       this.props.updateStartMeridian(e, this.props.day);
                     }}
@@ -110,6 +122,8 @@ class TimeSelectorUnit extends Component {
                   <Input
                     type="select"
                     className="clubcreation-date-btn"
+                    value={ (this.props.schedule[this.props.day]) ? this.props.schedule[this.props.day].end.hour : 1}
+
                     onChange={(e) => {
                       this.props.updateEndHour(e, this.props.day);
                     }}
@@ -121,6 +135,7 @@ class TimeSelectorUnit extends Component {
                   <Input
                     type="select"
                     className="clubcreation-date-btn"
+                    value={(this.props.schedule[this.props.day]) ? this.props.schedule[this.props.day].end.minute : "00"}
                     onChange={(e) => {
                       this.props.updateEndMinute(e, this.props.day);
                     }}
@@ -132,6 +147,7 @@ class TimeSelectorUnit extends Component {
                   <Input
                     type="select"
                     className="clubcreation-date-btn"
+                    value={(this.props.schedule[this.props.day]) ? this.props.schedule[this.props.day].end.meridian : "AM"}
                     onChange={(e) => {
                       this.props.updateEndMeridian(e, this.props.day);
                     }}

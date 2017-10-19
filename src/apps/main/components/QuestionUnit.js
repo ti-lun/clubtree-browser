@@ -23,6 +23,7 @@ export default class QuestionUnit extends Component {
     this.setState({
       active: false
     });
+    this.props.update(this.props.question);
   }
 
   render () {
@@ -36,6 +37,7 @@ export default class QuestionUnit extends Component {
           <input
             type="text"
             className="clubcreation-small-input"
+            onChange={this.props.update}
           />
         </Col>
         <Col md={1}>
