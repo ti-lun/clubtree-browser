@@ -511,7 +511,6 @@ var REMOVE_ACTIVE_TIMESLOT = exports.REMOVE_ACTIVE_TIMESLOT = "REMOVE_ACTIVE_TIM
 var TOGGLE_VIBE_FILTER_CC = exports.TOGGLE_VIBE_FILTER_CC = "TOGGLE_VIBE_FILTER_CC";
 
 function updateClubName(e) {
-  console.log("whats goin onnn");
   return {
     type: UPDATE_CLUB_NAME,
     payload: e.target.value
@@ -5176,6 +5175,8 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactstrap = __webpack_require__(/*! reactstrap */ 1);
 
+var _reactRouter = __webpack_require__(/*! react-router */ 5);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -5197,6 +5198,7 @@ var SingleClubResult = function (_Component) {
     key: "render",
     value: function render() {
       var club = this.props.club;
+      var linkName = "/club/" + club._id;
       return _react2.default.createElement(
         "div",
         { className: "searchresults-club-result" },
@@ -5213,7 +5215,7 @@ var SingleClubResult = function (_Component) {
             _reactstrap.Col,
             null,
             "Founded ",
-            club.foundedYear
+            club.foundedYear.substring(0, 4)
           )
         ),
         _react2.default.createElement(
@@ -5225,7 +5227,11 @@ var SingleClubResult = function (_Component) {
             _react2.default.createElement(
               "span",
               { className: "searchresults-clubname" },
-              club.clubName
+              _react2.default.createElement(
+                _reactRouter.Link,
+                { to: linkName },
+                club.clubName
+              )
             )
           )
         ),
@@ -5246,7 +5252,11 @@ var SingleClubResult = function (_Component) {
             _react2.default.createElement(
               _reactstrap.Col,
               null,
-              _react2.default.createElement("img", { src: _lodash2.default.get(club, 'imageURLs.logo'), width: "150px" })
+              _react2.default.createElement(
+                _reactRouter.Link,
+                { to: linkName },
+                _react2.default.createElement("img", { src: _lodash2.default.get(club, 'imageURLs.logo'), width: "150px" })
+              )
             ),
             _react2.default.createElement(
               _reactstrap.Col,
@@ -5303,6 +5313,10 @@ var _reactHelmet2 = _interopRequireDefault(_reactHelmet);
 
 var _reactstrap = __webpack_require__(/*! reactstrap */ 1);
 
+var _axios = __webpack_require__(/*! axios */ 6);
+
+var _axios2 = _interopRequireDefault(_axios);
+
 var _Header = __webpack_require__(/*! ../components/Header */ 9);
 
 var _Header2 = _interopRequireDefault(_Header);
@@ -5310,6 +5324,10 @@ var _Header2 = _interopRequireDefault(_Header);
 var _ProfileHeader = __webpack_require__(/*! ../components/ClubProfile/ProfileHeader */ 91);
 
 var _ProfileHeader2 = _interopRequireDefault(_ProfileHeader);
+
+var _Footer = __webpack_require__(/*! ../components/Footer */ 29);
+
+var _Footer2 = _interopRequireDefault(_Footer);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -5345,10 +5363,37 @@ var ClubProfile = exports.ClubProfile = function (_Component) {
   function ClubProfile(props) {
     _classCallCheck(this, ClubProfile);
 
-    return _possibleConstructorReturn(this, (ClubProfile.__proto__ || Object.getPrototypeOf(ClubProfile)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (ClubProfile.__proto__ || Object.getPrototypeOf(ClubProfile)).call(this, props));
+
+    _this.state = {
+      clubName: "",
+      description: "",
+      category: "",
+      foundedYear: "",
+      createdDate: "",
+      vibes: [],
+      personality: [],
+      meeting: {},
+      organizers: [],
+      members: [],
+      imageURLs: {}
+    };
+    return _this;
   }
 
   _createClass(ClubProfile, [{
+    key: "componentWillMount",
+    value: function componentWillMount() {
+      var _this2 = this;
+
+      console.log(_axios2.default);
+      console.log("before axios");
+      _axios2.default.get("/api/clubs/" + this.props.params.id).then(function (response) {
+        console.log("response is", response);
+        _this2.setState(response.data);
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
       return _react2.default.createElement(
@@ -5356,11 +5401,16 @@ var ClubProfile = exports.ClubProfile = function (_Component) {
         null,
         _react2.default.createElement(_reactHelmet2.default, { title: "SearchResults" }),
         _react2.default.createElement(_Header2.default, { type: "main" }),
-        _react2.default.createElement(_ProfileHeader2.default, null),
+        _react2.default.createElement(_ProfileHeader2.default, {
+          logo: this.state.imageURLs.logo,
+          cover: this.state.imageURLs.cover,
+          clubName: this.state.clubName,
+          vibes: this.state.vibes
+        }),
         _react2.default.createElement("div", {
           className: "clubprofile-info-background",
           style: {
-            backgroundImage: "url(\"http://media.blizzard.com/battle.net/logos/og-sc2-legacy-of-the-void.jpg\")",
+            backgroundImage: "url(" + this.state.imageURLs.cover + ")",
             size: "100%"
           }
         }),
@@ -5379,7 +5429,7 @@ var ClubProfile = exports.ClubProfile = function (_Component) {
             _react2.default.createElement(
               "p",
               { className: "col-xs-12 clubprofilesection" },
-              "We play StarCraft, cheese some noobs, and do some typical bonding stuff like suck dick."
+              this.state.description
             )
           ),
           _react2.default.createElement(
@@ -5394,27 +5444,32 @@ var ClubProfile = exports.ClubProfile = function (_Component) {
             _react2.default.createElement(
               "p",
               { className: "col-xs-12 clubprofilesection" },
-              " Year started: 2342 "
-            ),
-            _react2.default.createElement(
-              "p",
-              { className: "col-xs-12 clubprofilesection" },
-              " ",
-              "Approx. number of members: 533",
+              " Year started: ",
+              this.state.foundedYear.substring(0, 4),
               " "
             ),
             _react2.default.createElement(
               "p",
               { className: "col-xs-12 clubprofilesection" },
               " ",
-              "Meeting location: sfasdf",
+              "Approx. number of members: ",
+              this.state.members.length,
               " "
             ),
             _react2.default.createElement(
               "p",
               { className: "col-xs-12 clubprofilesection" },
               " ",
-              "Meeting times: sdfasd",
+              "Meeting location: ",
+              this.state.meeting.meetingLocation,
+              " "
+            ),
+            _react2.default.createElement(
+              "p",
+              { className: "col-xs-12 clubprofilesection" },
+              " ",
+              "Meeting times: ",
+              this.state.meeting.meetingTime,
               " "
             )
           ),
@@ -5433,7 +5488,8 @@ var ClubProfile = exports.ClubProfile = function (_Component) {
               " hi "
             )
           )
-        )
+        ),
+        _react2.default.createElement(_Footer2.default, null)
       );
     }
   }]);
@@ -5476,9 +5532,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactstrap = __webpack_require__(/*! reactstrap */ 1);
 
-var _starcraftLogo = __webpack_require__(/*! ../../assets/images/clubprofile/starcraft-logo.png */ 128);
-
-var _starcraftLogo2 = _interopRequireDefault(_starcraftLogo);
+var _starcraftLogo = __webpack_require__(/*! ../../assets/images/clubprofile/starcraft-logo.png */ 91);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -5500,12 +5554,21 @@ var ProfileHeader = function (_Component) {
   _createClass(ProfileHeader, [{
     key: "render",
     value: function render() {
+      var vibes = this.props.vibes.map(function (vibe, i) {
+        return _react2.default.createElement(_reactstrap.Button, {
+          className: "btn",
+          style: {
+            backgroundColor: _consts.COLORS[i]
+          }
+        });
+      });
+
       return _react2.default.createElement(
         "div",
         null,
         _react2.default.createElement("div", {
           style: {
-            backgroundImage: "url(\"http://media.blizzard.com/battle.net/logos/og-sc2-legacy-of-the-void.jpg\")",
+            backgroundImage: "url(" + this.props.cover + ")",
             backgroundSize: "cover",
             width: "100%",
             height: "50%",
@@ -5525,7 +5588,7 @@ var ProfileHeader = function (_Component) {
               _reactstrap.Col,
               { md: 4 },
               _react2.default.createElement("img", {
-                src: _starcraftLogo2.default,
+                src: this.props.logo,
                 className: "rounded-circle clubprofile-header-logo"
               })
             ),
@@ -5538,7 +5601,7 @@ var ProfileHeader = function (_Component) {
                 _react2.default.createElement(
                   "span",
                   { className: "clubprofile-header-clubname" },
-                  "UCI StarCraft"
+                  this.props.clubName
                 )
               ),
               _react2.default.createElement(
@@ -5599,6 +5662,10 @@ var _Header = __webpack_require__(/*! ../components/Header */ 9);
 var _Header2 = _interopRequireDefault(_Header);
 
 var _reactstrap = __webpack_require__(/*! reactstrap */ 1);
+
+var _axios = __webpack_require__(/*! axios */ 6);
+
+var _axios2 = _interopRequireDefault(_axios);
 
 var _ClubCreationHeader = __webpack_require__(/*! ../components/ClubCreation/ClubCreationHeader */ 93);
 
@@ -5685,7 +5752,6 @@ var ClubCreation = exports.ClubCreation = function (_Component) {
     };
 
     _this.continueClicked = function () {
-      console.log("was this fired)");
       switch (_this.state.step) {
         case 1:
           {
@@ -5703,6 +5769,19 @@ var ClubCreation = exports.ClubCreation = function (_Component) {
 
                   return;
                 }
+            // everything was valid, hooray.  Time to save the data.
+
+            // first, check to see if the club was created already.
+            if (_this.props.params.clubID) {
+              // update club
+            } else {
+              _axios2.default.post("/api/clubs", {
+                clubName: _this.props.newClub.name,
+                description: _this.props.newClub.desc,
+                category: _this.props.newClub.category
+              });
+            }
+
             break;
           }
 
@@ -5710,20 +5789,14 @@ var ClubCreation = exports.ClubCreation = function (_Component) {
           {
             // club meeting location invalid
             if (_this.props.newClub.meetingLocation.length > _consts.CLUB_NAME_CHAR_LENGTH || _this.props.newClub.meetingLocation.length === 0) {
-              console.log("failed at loc");
-
               return;
             }
             // no time selected
             else if (_this.props.newClub.meetingDatesAndTimes["meetingDays"].length === 0) {
-                console.log("failed at time");
-
                 return;
               }
               // no
               else if (_this.props.newClub.memberReq.length > _consts.CLUB_DESC_WORD_LENGTH || _this.props.newClub.memberReq.length === 0) {
-                  console.log("failed at req");
-
                   return;
                 }
             break;
@@ -9012,3 +9085,4 @@ module.exports = __webpack_require__.p + "starcraft-logo-c5a54951d85c00ebdea2b0c
 /***/ })
 /******/ ]);
 //# sourceMappingURL=renderer.js.map
+var _consts = __webpack_require__(/*! ../../lib/consts */ 4);

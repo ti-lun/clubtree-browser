@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import Helmet from "react-helmet";
 import Header from "../components/Header";
 import { Button } from "reactstrap";
+import axios from "axios";
 
 import ClubCreationHeader from "../components/ClubCreation/ClubCreationHeader";
 import Step1 from "../components/ClubCreation/Step1";
@@ -68,7 +69,6 @@ export class ClubCreation extends Component {
   }
 
   continueClicked = () => {
-    console.log("was this fired)");
     switch (this.state.step) {
       case 1: {
         // club name invalid
@@ -88,6 +88,20 @@ export class ClubCreation extends Component {
 
           return;
         }
+        // everything was valid, hooray.  Time to save the data.
+
+        // first, check to see if the club was created already.
+        if (this.props.params.clubID) {
+          // update club
+        }
+        else {
+          axios.post("/api/clubs", {
+            clubName: this.props.newClub.name,
+            description: this.props.newClub.desc,
+            category: this.props.newClub.category
+          });
+        }
+
         break;
       }
 
@@ -96,21 +110,15 @@ export class ClubCreation extends Component {
         if (
           (this.props.newClub.meetingLocation.length > CLUB_NAME_CHAR_LENGTH) ||
           (this.props.newClub.meetingLocation.length === 0)) {
-            console.log("failed at loc");
-
           return;
         }
         // no time selected
         else if (this.props.newClub.meetingDatesAndTimes["meetingDays"].length === 0) {
-          console.log("failed at time");
-
           return;
         }
         // no
         else if (this.props.newClub.memberReq.length > CLUB_DESC_WORD_LENGTH ||
         (this.props.newClub.memberReq.length === 0)) {
-          console.log("failed at req");
-
           return;
         }
         break;

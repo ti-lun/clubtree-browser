@@ -5,10 +5,11 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import Helmet from "react-helmet";
 import { Row, Col } from "reactstrap";
+import axios from "axios";
 
 import Header from "../components/Header";
 import ProfileHeader from "../components/ClubProfile/ProfileHeader";
-
+import Footer from "../components/Footer";
 export class ClubProfile extends Component {
   /**
    * Called by ReactRouter before loading the container. Called prior to the
@@ -28,6 +29,29 @@ export class ClubProfile extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      clubName: "",
+      description: "",
+      category: "",
+      foundedYear: "",
+      createdDate: "",
+      vibes: [],
+      personality: [],
+      meeting: {},
+      organizers: [],
+      members: [],
+      imageURLs: {}
+    }
+  }
+
+  componentWillMount() {
+    console.log(axios);
+    console.log("before axios");
+    axios.get(`/api/clubs/${this.props.params.id}`).then((response) => {
+      console.log("response is", response);
+      this.setState(response.data);
+    });
+
   }
 
   render() {
@@ -35,11 +59,16 @@ export class ClubProfile extends Component {
       <div>
         <Helmet title="SearchResults" />
         <Header type="main" />
-        <ProfileHeader />
+        <ProfileHeader
+          logo={this.state.imageURLs.logo}
+          cover={this.state.imageURLs.cover}
+          clubName={this.state.clubName}
+          vibes={this.state.vibes}
+          />
         <div
           className="clubprofile-info-background"
           style={{
-            backgroundImage: `url("http://media.blizzard.com/battle.net/logos/og-sc2-legacy-of-the-void.jpg")`,
+            backgroundImage: `url(${this.state.imageURLs.cover})`,
             size: "100%"
           }}
         />
@@ -49,23 +78,22 @@ export class ClubProfile extends Component {
             <h1 className="col-xs-12 clubprofilesection"> In a nutshell </h1>
             <hr className="col-xs-12 clubprofilesection" />
             <p className="col-xs-12 clubprofilesection">
-              We play StarCraft, cheese some noobs, and do some typical bonding
-              stuff like suck dick.
+              {this.state.description}
             </p>
           </div>
 
           <div className="clubprofile-info-section">
             <h1 className="col-xs-12 clubprofilesection"> Basic info </h1>
             <hr className="col-xs-12 clubprofilesection" />
-            <p className="col-xs-12 clubprofilesection"> Year started: 2342 </p>
+            <p className="col-xs-12 clubprofilesection"> Year started: {this.state.foundedYear.substring(0,4)} </p>
             <p className="col-xs-12 clubprofilesection">
-              {" "}Approx. number of members: 533{" "}
+              {" "}Approx. number of members: {this.state.members.length}{" "}
             </p>
             <p className="col-xs-12 clubprofilesection">
-              {" "}Meeting location: sfasdf{" "}
+              {" "}Meeting location: {this.state.meeting.meetingLocation}{" "}
             </p>
             <p className="col-xs-12 clubprofilesection">
-              {" "}Meeting times: sdfasd{" "}
+              {" "}Meeting times: {this.state.meeting.meetingTime}{" "}
             </p>
           </div>
 
@@ -75,6 +103,7 @@ export class ClubProfile extends Component {
             <p className="col-xs-12 clubprofilesection"> hi </p>
           </div>
         </div>
+        <Footer />
       </div>
     );
   }

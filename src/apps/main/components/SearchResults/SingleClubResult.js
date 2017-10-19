@@ -3,10 +3,12 @@
 import _ from "lodash";
 import React, { Component } from "react";
 import { Row, Col, Button } from "reactstrap";
+import {Link} from "react-router";
 
 export default class SingleClubResult extends Component {
   render() {
     const club = this.props.club;
+    const linkName = `/club/${club._id}`;
     return (
       <div className="searchresults-club-result">
         <Row className="searchresults-right-align">
@@ -14,13 +16,13 @@ export default class SingleClubResult extends Component {
             {club.members.length} members
           </Col>
           <Col>
-            Founded {club.foundedYear}
+            Founded {club.foundedYear.substring(0,4)}
           </Col>
         </Row>
         <Row className="searchresults-right-align">
           <Col>
             <span className="searchresults-clubname">
-              {club.clubName}
+              <Link to={linkName}>{club.clubName}</Link>
             </span>
           </Col>
         </Row>
@@ -35,7 +37,7 @@ export default class SingleClubResult extends Component {
         >
           <Row>
             <Col>
-              <img src={_.get(club, 'imageURLs.logo')} width="150px" />
+              <Link to={linkName}><img src={_.get(club, 'imageURLs.logo')} width="150px" /></Link>
             </Col>
             <Col>
               {club.vibes.map((vibe, index) => {

@@ -17,7 +17,6 @@ export const REMOVE_ACTIVE_TIMESLOT = "REMOVE_ACTIVE_TIMESLOT";
 export const TOGGLE_VIBE_FILTER_CC = "TOGGLE_VIBE_FILTER_CC";
 
 export function updateClubName(e) {
-  console.log("whats goin onnn");
   return {
     type: UPDATE_CLUB_NAME,
     payload: e.target.value
