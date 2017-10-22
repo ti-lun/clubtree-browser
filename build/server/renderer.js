@@ -123,7 +123,7 @@ module.exports = require("redux");
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.VALID_YEARS = exports.MONTHS = exports.DAYS = exports.MINUTES = exports.HOURS = exports.VIBES = exports.CATEGORIES_ICONS_MAP = exports.CLUB_MEETING_LOC_CHAR_LENGTH = exports.CLUB_DESC_WORD_LENGTH = exports.CLUB_NAME_CHAR_LENGTH = exports.COLORS = undefined;
+exports.VALID_YEARS = exports.MONTHS_TO_INT = exports.MONTHS = exports.DAYS = exports.MINUTES = exports.HOURS = exports.VIBES = exports.CATEGORIES_ICONS_MAP = exports.CLUB_MEETING_LOC_CHAR_LENGTH = exports.CLUB_DESC_WORD_LENGTH = exports.CLUB_NAME_CHAR_LENGTH = exports.COLORS = exports.API_URL = undefined;
 
 var _react = __webpack_require__(/*! react */ 0);
 
@@ -1125,6 +1125,89 @@ exports.default = SearchBar;
 
 /***/ }),
 /* 18 */
+/*!**********************************************!*\
+  !*** ./src/apps/main/actions/authActions.js ***!
+  \**********************************************/
+/*! no static exports found */
+/*! all exports used */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.UNAUTH_USER = exports.AUTH_USER = exports.SIGNIN_FB = undefined;
+exports.signInFB = signInFB;
+exports.authUser = authUser;
+exports.unauthUser = unauthUser;
+
+var _axios = __webpack_require__(/*! axios */ 6);
+
+var _axios2 = _interopRequireDefault(_axios);
+
+var _reactRouter = __webpack_require__(/*! react-router */ 5);
+
+var _consts = __webpack_require__(/*! ../lib/consts */ 4);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var SIGNIN_FB = exports.SIGNIN_FB = "SIGNIN_FB";
+var AUTH_USER = exports.AUTH_USER = "AUTH_USER";
+var UNAUTH_USER = exports.UNAUTH_USER = "UNAUTH_USER";
+
+// TODO: need to put fbID into localStorage
+function signInFB(dataObj) {
+  return function (dispatch) {
+
+    // first check to see if we have this user already
+    // if we do, then no need to make a new Clubtree user.
+    _axios2.default.get(_consts.API_URL + "/members", {
+      params: {
+        fbID: dataObj.fbID
+      }
+    }).then(function (response) {
+      if (response.data.length) {
+        localStorage.setItem("_id", response.data[0]["_id"]);
+      } else {
+        _axios2.default.post(_consts.API_URL + "/members", dataObj).then(function (response) {
+          // we really need to test this
+          localStorage.setItem("_id", response["_id"]);
+          _axios2.default.get(_consts.API_URL + "/members").then(function (response) {
+            console.log(response);
+          });
+          console.log("something happened hooray lol", dataObj);
+        }).catch(function (err) {
+          console.log("crap", err);
+        });
+      }
+    });
+
+    dispatch({ type: AUTH_USER });
+    console.log("dataObj token is", dataObj.token);
+    localStorage.setItem("token", dataObj.token);
+    localStorage.setItem("profPicURL", dataObj.profPicURL);
+
+    _reactRouter.browserHistory.push("/dashboard");
+  };
+}
+
+function authUser() {
+  _reactRouter.browserHistory.push("/");
+  return {
+    type: AUTH_USER
+  };
+}
+
+function unauthUser() {
+  return {
+    type: UNAUTH_USER
+  };
+}
+
+/***/ }),
+/* 19 */
 /*!******************************************!*\
   !*** external "react-textarea-autosize" ***!
   \******************************************/
@@ -5850,7 +5933,7 @@ var _axios = __webpack_require__(/*! axios */ 6);
 
 var _axios2 = _interopRequireDefault(_axios);
 
-var _ClubCreationHeader = __webpack_require__(/*! ../components/ClubCreation/ClubCreationHeader */ 94);
+var _consts = __webpack_require__(/*! ../lib/consts */ 4);
 
 var _ClubCreationHeader = __webpack_require__(/*! ../components/ClubCreation/ClubCreationHeader */ 95);
 
@@ -5956,12 +6039,19 @@ var ClubCreation = exports.ClubCreation = function (_Component) {
             // everything was valid, hooray.  Time to save the data.
 
             // first, check to see if the club was created already.
-            if (_this.props.params.clubID) {
-              // update club
+            if (_this.props.params.id) {
+              _axios2.default.put(_consts.API_URL + "/clubs", {
+                id: _this.state.id,
+                updateFields: {
+                  clubName: _this.props.newClub.clubName,
+                  description: _this.props.newClub.description,
+                  category: _this.props.newClub.category
+                }
+              });
             } else {
-              _axios2.default.post("/api/clubs", {
-                clubName: _this.props.newClub.name,
-                description: _this.props.newClub.desc,
+              _axios2.default.post(_consts.API_URL + "/clubs", {
+                clubName: _this.props.newClub.clubName,
+                description: _this.props.newClub.description,
                 category: _this.props.newClub.category
               }).then(function (response) {
                 _this.setState({
@@ -5987,6 +6077,54 @@ var ClubCreation = exports.ClubCreation = function (_Component) {
               else if (_this.props.newClub.clubFeeAmount === "") {
                   return;
                 }
+                // no
+                else if (_this.props.newClub.memberReq.length > _consts.CLUB_DESC_WORD_LENGTH || _this.props.newClub.memberReq.length === 0) {
+                    return;
+                  }
+
+            _axios2.default.put(_consts.API_URL + "/clubs", {
+              id: _this.state.id,
+              updateFields: {
+                clubFeeAmount: _this.props.newClub.clubFeeAmount,
+                clubFeePeriod: _this.props.newClub.clubFeePeriod,
+                meetingLocation: _this.props.newClub.meetingLocation,
+                memberReq: _this.props.newClub.memberReq,
+                meetingDatesAndTimes: _this.props.newClub.meetingDatesAndTimes
+              }
+            });
+
+            break;
+          }
+
+        case 3:
+          {
+            console.log("does step 3 even fire");
+            // if there aren't 3 vibes
+            if (_this.props.vibesFilterCC.length < 3) {
+              console.log("nope...", _this.props.vibesFilterCC);
+              return;
+            }
+
+            var fieldsToUpdate = {
+              vibes: _this.props.vibesFilterCC
+            };
+
+            if (_this.props.newClub.clubLogo) {
+              fieldsToUpdate["clubLogo"] = _this.props.newClub.clubLogo;
+            }
+
+            if (_this.props.newClub.clubCover) {
+              fieldsToUpdate["clubCover"] = _this.props.newClub.clubCover;
+            }
+
+            if (_this.props.newClub.questions) _axios2.default.put(_consts.API_URL + "/clubs", {
+              id: _this.state.id,
+              updateFields: {
+                vibes: _this.props.vibesFilterCC,
+                memberReq: _this.props.newClub.memberReq,
+                meetingDatesAndTimes: _this.props.newClub.meetingDatesAndTimes
+              }
+            });
             break;
           }
 
@@ -6006,6 +6144,21 @@ var ClubCreation = exports.ClubCreation = function (_Component) {
   }
 
   _createClass(ClubCreation, [{
+    key: "componentWillMount",
+    value: function componentWillMount() {
+      var _this2 = this;
+
+      if (this.props.params.id) {
+        this.setState({
+          id: this.props.params.id
+        });
+        _axios2.default.get(_consts.API_URL + "/clubs/" + this.props.params.id).then(function (response) {
+          var club = response.data;
+          _this2.props.loadExistingClub(club);
+        });
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
       return _react2.default.createElement(
@@ -8200,7 +8353,27 @@ var ChooseSignUpOption = function (_Component) {
 
     _classCallCheck(this, ChooseSignUpOption);
 
-    return _possibleConstructorReturn(this, (ChooseSignUpOption.__proto__ || Object.getPrototypeOf(ChooseSignUpOption)).apply(this, arguments));
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ChooseSignUpOption.__proto__ || Object.getPrototypeOf(ChooseSignUpOption)).call.apply(_ref, [this].concat(args))), _this), _this.responseFacebook = function (response) {
+      console.log("response from FB is", response);
+      var nameArr = response.name.split(" ");
+      var dataObj = {
+        firstName: nameArr[0],
+        lastName: nameArr[1],
+        profPicURL: response.picture.data.url,
+        fbID: response.userID,
+        token: response.accessToken
+      };
+
+      console.log("dataobj is", dataObj);
+
+      _this.props.signInFB(dataObj);
+    }, _this.FBloginClicked = function () {
+      return;
+    }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(ChooseSignUpOption, [{
@@ -8291,7 +8464,7 @@ var _reactHelmet = __webpack_require__(/*! react-helmet */ 8);
 
 var _reactHelmet2 = _interopRequireDefault(_reactHelmet);
 
-var _OrgDashboard = __webpack_require__(/*! ../components/Dashboard/OrgDashboard */ 112);
+var _axios = __webpack_require__(/*! axios */ 6);
 
 var _axios2 = _interopRequireDefault(_axios);
 
@@ -9783,6 +9956,115 @@ module.exports = require("http-proxy-middleware");
 /***/ })
 /******/ ]);
 //# sourceMappingURL=renderer.js.map
+/*!**********************************************!*\
+  !*** ./src/apps/main/actions/authActions.js ***!
+  \**********************************************/
+/*! no static exports found */
+/*! all exports used */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.UNAUTH_USER = exports.AUTH_USER = exports.SIGNIN_FB = undefined;
+exports.signInFB = signInFB;
+exports.authUser = authUser;
+exports.unauthUser = unauthUser;
+
+var _axios = __webpack_require__(/*! axios */ 6);
+
+var _axios2 = _interopRequireDefault(_axios);
+
+var _reactRouter = __webpack_require__(/*! react-router */ 5);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var SIGNIN_FB = exports.SIGNIN_FB = "SIGNIN_FB";
+var AUTH_USER = exports.AUTH_USER = "AUTH_USER";
+var UNAUTH_USER = exports.UNAUTH_USER = "UNAUTH_USER";
+
+function signInFB(dataObj) {
+  return function (dispatch) {
+
+    // let's say the api passes and it works hooray.
+    // axios.get(`api/members`, {
+    //   params: {
+    //     fbID: dataObj.fbID
+    //   }
+    // }).then((response) => {
+    //   console.log(response);
+    // });
+
+    // then we're gonna post a new user into the database.
+    // axios.post(`${ROOT_URL}/signup`, dataObj)
+    // .then(response => {
+    //   console.log("something happened hooray lol", dataObj);
+    // })
+    // .catch((err) => {
+    //   console.log("crap", err);
+    // });
+
+    dispatch({ type: AUTH_USER });
+    console.log("dataObj token is", dataObj.token);
+    localStorage.setItem("token", dataObj.token);
+
+    _reactRouter.browserHistory.push("/");
+  };
+}
+
+function authUser() {
+  return {
+    type: AUTH_USER
+  };
+}
+
+function unauthUser() {
+  return {
+    type: UNAUTH_USER
+  };
+}
+
+/***/ }),
+/* 32 */
+var _MasterLayout = __webpack_require__(/*! ./components/MasterLayout */ 77);
+    _react2.default.createElement(_reactRouter.Route, { path: "/dashboard", component: _Dashboard2.default }),
+var _reactFacebookLogin = __webpack_require__(/*! react-facebook-login */ 110);
+
+var _reactFacebookLogin2 = _interopRequireDefault(_reactFacebookLogin);
+
+var _reactRedux = __webpack_require__(/*! react-redux */ 2);
+
+var _redux = __webpack_require__(/*! redux */ 3);
+
+var _authActions = __webpack_require__(/*! ../../actions/authActions */ 31);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ChooseSignUpOption.__proto__ || Object.getPrototypeOf(ChooseSignUpOption)).call.apply(_ref, [this].concat(args))), _this), _this.responseFacebook = function (response) {
+      console.log("response from FB is", response);
+      var nameArr = response.name.split();
+      var dataObj = {
+        firstName: nameArr[0],
+        lastName: nameArr[1],
+        profPicURL: response.picture.data.url,
+        fbID: response.userID,
+        token: response.accessToken
+      };
+
+      console.log("dataobj is", dataObj);
+
+      _this.props.signInFB(dataObj);
+    }, _temp), _possibleConstructorReturn(_this, _ret);
+          _react2.default.createElement(_reactFacebookLogin2.default, {
+            appId: "469991373333039",
+            autoLoad: true,
+            fields: "name,email,picture",
+            callback: this.responseFacebook })
 exports.VALID_YEARS = exports.MONTHS_TO_INT = exports.MONTHS = exports.DAYS = exports.MINUTES = exports.HOURS = exports.VIBES = exports.CATEGORIES_ICONS_MAP = exports.CLUB_MEETING_LOC_CHAR_LENGTH = exports.CLUB_DESC_WORD_LENGTH = exports.CLUB_NAME_CHAR_LENGTH = exports.COLORS = exports.API_URL = undefined;
 /*!**********************************************!*\
   !*** ./src/apps/main/actions/authActions.js ***!
