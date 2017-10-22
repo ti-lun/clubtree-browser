@@ -5,19 +5,32 @@ import { Row, Col, Button } from "reactstrap";
 import logo from "../assets/images/site-logo/clubtree-stroke.png";
 import PropTypes from "prop-types";
 import { Link } from "react-router";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+
+import { unauthUser } from "../actions/authActions";
 
 // need to add the following customizations:
 // 1.  logged in
 // 2.  static (fixed)
 // 3.  font-color customization.
 
-export default class Header extends Component {
+class Header extends Component {
   static PropTypes = {
     type: PropTypes.string
   };
 
   constructor(props) {
     super(props);
+    this.state = {
+      profPicURL: ""
+    };
+  }
+
+  componentDidMount() {
+    this.setState({
+      profPicURL: localStorage.getItem("profPicURL")
+    });
   }
 
   generateLinkStyle = type => {
@@ -49,10 +62,18 @@ export default class Header extends Component {
           </Col>
           {this.props.type !== "signup"
             ? <Col>
-                <Button className="btn-teal">Log in</Button>{" "}
-                <Link to="/joinus">
-                  <Button className="btn-red">Join Us</Button>
-                </Link>
+                {(this.props.authenticated) ?
+                  (
+                      <Button
+                        onClick={this.props.unauthUser}
+                        className="btn">Log out</Button>
+                  )
+                   :
+
+                  (<Link to="/joinus">
+                  <Button className="btn-red">Log in</Button>
+                  </Link>)
+                  }
               </Col>
             : null}
           <Col>
@@ -62,8 +83,22 @@ export default class Header extends Component {
               style={{ color: "#FFFFFF" }}
             />
           </Col>
+          <Col>
+            <Link to="/dashboard">
+              <img src={(this.props.authenticated) ? this.state.profPicURL : null} className="rounded-circle"/>
+            </Link>
+          </Col>
         </Row>
       </div>
     );
   }
 }
+
+export default connect(
+  (state) => ({
+    authenticated: state.authReducer.authenticated
+  }),
+  dispatch => bindActionCreators({
+    unauthUser
+  }, dispatch)
+)(Header);

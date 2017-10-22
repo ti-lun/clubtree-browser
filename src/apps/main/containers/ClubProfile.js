@@ -7,6 +7,8 @@ import Helmet from "react-helmet";
 import { Row, Col } from "reactstrap";
 import axios from "axios";
 
+import { API_URL } from "../lib/consts";
+
 import Header from "../components/Header";
 import ProfileHeader from "../components/ClubProfile/ProfileHeader";
 import Footer from "../components/Footer";
@@ -47,7 +49,7 @@ export class ClubProfile extends Component {
   componentWillMount() {
     console.log(axios);
     console.log("before axios");
-    axios.get(`/api/clubs/${this.props.params.id}`).then((response) => {
+    axios.get(`${API_URL}/clubs/${this.props.params.id}`).then((response) => {
       console.log("response is", response);
       this.setState(response.data);
     });
@@ -108,16 +110,3 @@ export class ClubProfile extends Component {
     );
   }
 }
-
-export default connect(
-  (/* state */) => ({
-    /** _INSERT_STATE_  **/
-  }),
-  dispatch =>
-    bindActionCreators(
-      {
-        /** _INSERT_ACTION_CREATORS_ **/
-      },
-      dispatch
-    )
-)(ClubProfile);

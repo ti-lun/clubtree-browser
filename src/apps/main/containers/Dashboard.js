@@ -4,9 +4,13 @@ import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import Helmet from "react-helmet";
+import axios from "axios";
 
 import OrgDashboard from "../components/Dashboard/OrgDashboard";
 import Header from "../components/Header";
+
+import { API_URL } from "../lib/consts";
+
 
 export class Dashboard extends Component {
   /**
@@ -25,13 +29,43 @@ export class Dashboard extends Component {
    */
   static gsBeforeRoute (/* {dispatch}, renderProps, query, serverProps */) {}
 
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      clubs: [],
+      displayName: {},
+    }
+  }
+
+  componentDidMount() {
+    // check to see if this user has any clubs.
+    const userID = localStorage.getItem("_id");
+    axios.get(`${API_URL}/members`, {
+      params: {
+        "_id": userID
+      }
+    }).then((response) => {
+      const responseObj = response.data[0];
+      this.setState({
+        clubs: responseObj.clubs,
+        name: {
+          first: responseObj.firstName,
+          last: responseObj.lastName
+        }
+      })
+    });
+
+
+  }
+
   render () {
     return (
       <div>
         <Helmet title="Dashboard"/>
         <Header />
         <div className="dashboard-margins">
-          <OrgDashboard />
+
         </div>
       </div>
     );

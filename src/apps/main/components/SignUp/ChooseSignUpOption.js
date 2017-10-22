@@ -11,7 +11,7 @@ import { signInFB } from "../../actions/authActions";
 class ChooseSignUpOption extends Component {
   responseFacebook = (response) => {
     console.log("response from FB is", response);
-    const nameArr = response.name.split();
+    const nameArr = response.name.split(" ");
     const dataObj = {
       firstName: nameArr[0],
       lastName: nameArr[1],

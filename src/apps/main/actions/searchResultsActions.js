@@ -1,12 +1,15 @@
 import qs from "qs";
 import axios from "axios";
 
+import { API_URL } from "../lib/consts";
+
 export const SIMPLE_SEARCH_CLUB = "SIMPLE_SEARCH_CLUB";
 export const TOGGLE_VIBE_FILTER = "TOGGLE_VIBE_FILTER";
 export const SET_CATEGORY_FILTER = "SET_CATEGORY_FILTER";
 export const TOGGLE_CATEGORY_FILTER = "TOGGLE_CATEGORY_FILTER";
 export const SET_TERM_FILTER = "SET_TERM_FILTER";
 export const FETCH_CLUB_SEARCH_RESULTS = "FETCH_CLUB_SEARCH_RESULTS";
+
 
 export function simpleSearchClub(data: array) {
   return {
@@ -20,7 +23,7 @@ export function fetchClubSearchResults(params: object) {
     let paramString = qs.stringify(params, { arrayFormat: 'repeat' });
     return paramString;
   }
-  let request = axios.get("/api/clubs", { params, paramsSerializer });
+  let request = axios.get(`${API_URL}/clubs`, { params, paramsSerializer });
   return {
     type: FETCH_CLUB_SEARCH_RESULTS,
     promise: request
