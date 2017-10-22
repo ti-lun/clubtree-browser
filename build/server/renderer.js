@@ -123,7 +123,7 @@ module.exports = require("redux");
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.VALID_YEARS = exports.MONTHS = exports.DAYS = exports.MINUTES = exports.HOURS = exports.VIBES = exports.CATEGORIES_ICONS_MAP = exports.CLUB_MEETING_LOC_CHAR_LENGTH = exports.CLUB_DESC_WORD_LENGTH = exports.CLUB_NAME_CHAR_LENGTH = exports.COLORS = undefined;
+exports.VALID_YEARS = exports.MONTHS_TO_INT = exports.MONTHS = exports.DAYS = exports.MINUTES = exports.HOURS = exports.VIBES = exports.CATEGORIES_ICONS_MAP = exports.CLUB_MEETING_LOC_CHAR_LENGTH = exports.CLUB_DESC_WORD_LENGTH = exports.CLUB_NAME_CHAR_LENGTH = exports.COLORS = undefined;
 
 var _react = __webpack_require__(/*! react */ 0);
 
@@ -165,6 +165,21 @@ var MINUTES = exports.MINUTES = ["00", "15", "30", "45"];
 var DAYS = exports.DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
 var MONTHS = exports.MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+var MONTHS_TO_INT = exports.MONTHS_TO_INT = {
+  "January": 1,
+  "February": 2,
+  "March": 3,
+  "April": 4,
+  "May": 5,
+  "June": 6,
+  "July": 7,
+  "August": 8,
+  "September": 9,
+  "October": 10,
+  "November": 11,
+  "December": 12
+};
 
 var VALID_YEARS = exports.VALID_YEARS = (0, _lodash.range)(2017, 1970, -1);
 
@@ -236,7 +251,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactstrap = __webpack_require__(/*! reactstrap */ 1);
 
-var _clubtreeStroke = __webpack_require__(/*! ../assets/images/site-logo/clubtree-stroke.png */ 84);
+var _clubtreeStroke = __webpack_require__(/*! ../assets/images/site-logo/clubtree-stroke.png */ 85);
 
 var _clubtreeStroke2 = _interopRequireDefault(_clubtreeStroke);
 
@@ -393,7 +408,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.setStatusCode = exports.set404StatusCode = exports.getHttpClient = exports.prepareRoutesWithTransitionHooks = exports.createStore = exports.BodyAttributes = exports.Root = undefined;
 
-var _routeHelper = __webpack_require__(/*! ./lib/route-helper */ 20);
+var _routeHelper = __webpack_require__(/*! ./lib/route-helper */ 21);
 
 Object.keys(_routeHelper).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
@@ -417,7 +432,7 @@ Object.keys(_constants).forEach(function (key) {
   });
 });
 
-var _actions = __webpack_require__(/*! ./lib/actions */ 21);
+var _actions = __webpack_require__(/*! ./lib/actions */ 22);
 
 Object.defineProperty(exports, 'set404StatusCode', {
   enumerable: true,
@@ -444,7 +459,7 @@ var _createStore2 = __webpack_require__(/*! ./lib/createStore */ 56);
 
 var _createStore3 = _interopRequireDefault(_createStore2);
 
-var _prepareRoutesWithTransitionHooks2 = __webpack_require__(/*! ./lib/prepareRoutesWithTransitionHooks */ 22);
+var _prepareRoutesWithTransitionHooks2 = __webpack_require__(/*! ./lib/prepareRoutesWithTransitionHooks */ 23);
 
 var _prepareRoutesWithTransitionHooks3 = _interopRequireDefault(_prepareRoutesWithTransitionHooks2);
 
@@ -475,7 +490,10 @@ exports.getHttpClient = _getHttpClient3.default;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.loadExistingClub = loadExistingClub;
 exports.updateClubName = updateClubName;
+exports.updateClubMonth = updateClubMonth;
+exports.updateClubYear = updateClubYear;
 exports.updateClubDesc = updateClubDesc;
 exports.updateClubMeetingLocation = updateClubMeetingLocation;
 exports.updateClubFeeAmount = updateClubFeeAmount;
@@ -492,9 +510,15 @@ exports.insertActiveTimeslot = insertActiveTimeslot;
 exports.removeActiveTimeslot = removeActiveTimeslot;
 exports.updateValidationStep = updateValidationStep;
 exports.toggleVibeFilterCC = toggleVibeFilterCC;
+exports.uploadClubLogo = uploadClubLogo;
+exports.uploadClubCover = uploadClubCover;
+exports.updateQuestion = updateQuestion;
+var LOAD_EXISTING_CLUB = exports.LOAD_EXISTING_CLUB = "LOAD_EXISTING_CLUB";
 var TOGGLE_CLUB_CATEGORY = exports.TOGGLE_CLUB_CATEGORY = "TOGGLE_CLUB_CATEGORY";
 var UPDATE_VALIDATION_STEP = exports.UPDATE_VALIDATION_STEP = "UPDATE_VALIDATION_STEP";
 var UPDATE_CLUB_NAME = exports.UPDATE_CLUB_NAME = "UPDATE_CLUB_NAME";
+var UPDATE_CLUB_MONTH = exports.UPDATE_CLUB_MONTH = "UPDATE_CLUB_MONTH";
+var UPDATE_CLUB_YEAR = exports.UPDATE_CLUB_YEAR = "UPDATE_CLUB_YEAR";
 var UPDATE_CLUB_DESC = exports.UPDATE_CLUB_DESC = "UPDATE_CLUB_DESC";
 var UPDATE_CLUB_MEETING_LOC = exports.UPDATE_CLUB_MEETING_LOC = "UPDATE_CLUB_MEETING_LOC";
 var UPDATE_START_HOUR = exports.UPDATE_START_HOUR = "UPDATE_START_HOUR";
@@ -509,10 +533,34 @@ var UPDATE_CLUB_MEM_REQS = exports.UPDATE_CLUB_MEM_REQS = "UPDATE_CLUB_MEM_REQS"
 var INSERT_ACTIVE_TIMESLOT = exports.INSERT_ACTIVE_TIMESLOT = "INSERT_ACTIVE_TIMESLOT";
 var REMOVE_ACTIVE_TIMESLOT = exports.REMOVE_ACTIVE_TIMESLOT = "REMOVE_ACTIVE_TIMESLOT";
 var TOGGLE_VIBE_FILTER_CC = exports.TOGGLE_VIBE_FILTER_CC = "TOGGLE_VIBE_FILTER_CC";
+var UPLOAD_CLUB_LOGO = exports.UPLOAD_CLUB_LOGO = "UPLOAD_CLUB_LOGO";
+var UPLOAD_CLUB_COVER = exports.UPLOAD_CLUB_COVER = "UPLOAD_CLUB_COVER";
+var UPDATE_QUESTION = exports.UPDATE_QUESTION = "UPDATE_QUESTION";
+
+function loadExistingClub(o) {
+  return {
+    type: LOAD_EXISTING_CLUB,
+    payload: o
+  };
+}
 
 function updateClubName(e) {
   return {
     type: UPDATE_CLUB_NAME,
+    payload: e.target.value
+  };
+}
+
+function updateClubMonth(e) {
+  return {
+    type: UPDATE_CLUB_MONTH,
+    payload: e.target.value
+  };
+}
+
+function updateClubYear(e) {
+  return {
+    type: UPDATE_CLUB_YEAR,
     payload: e.target.value
   };
 }
@@ -635,6 +683,27 @@ function toggleVibeFilterCC(vibe) {
   };
 }
 
+function uploadClubLogo(logoObj) {
+  return {
+    type: UPLOAD_CLUB_LOGO,
+    payload: logoObj
+  };
+}
+
+function uploadClubCover(coverObj) {
+  return {
+    type: UPLOAD_CLUB_COVER,
+    payload: coverObj
+  };
+}
+
+function updateQuestion(qObj) {
+  return {
+    type: UPDATE_QUESTION,
+    payload: qObj
+  };
+}
+
 /***/ }),
 /* 13 */
 /*!*******************************************************!*\
@@ -658,7 +727,7 @@ exports.setCategoryFilter = setCategoryFilter;
 exports.toggleCategoryFilter = toggleCategoryFilter;
 exports.toggleVibeFilter = toggleVibeFilter;
 
-var _qs = __webpack_require__(/*! qs */ 28);
+var _qs = __webpack_require__(/*! qs */ 29);
 
 var _qs2 = _interopRequireDefault(_qs);
 
@@ -926,7 +995,7 @@ var _axios = __webpack_require__(/*! axios */ 6);
 
 var _axios2 = _interopRequireDefault(_axios);
 
-var _utils = __webpack_require__(/*! ./../lib/utils */ 27);
+var _utils = __webpack_require__(/*! ./../lib/utils */ 28);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1019,6 +1088,83 @@ exports.default = SearchBar;
 
 /***/ }),
 /* 18 */
+/*!**********************************************!*\
+  !*** ./src/apps/main/actions/authActions.js ***!
+  \**********************************************/
+/*! no static exports found */
+/*! all exports used */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.UNAUTH_USER = exports.AUTH_USER = exports.SIGNIN_FB = undefined;
+exports.signInFB = signInFB;
+exports.authUser = authUser;
+exports.unauthUser = unauthUser;
+
+var _axios = __webpack_require__(/*! axios */ 6);
+
+var _axios2 = _interopRequireDefault(_axios);
+
+var _reactRouter = __webpack_require__(/*! react-router */ 5);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var SIGNIN_FB = exports.SIGNIN_FB = "SIGNIN_FB";
+var AUTH_USER = exports.AUTH_USER = "AUTH_USER";
+var UNAUTH_USER = exports.UNAUTH_USER = "UNAUTH_USER";
+
+// TODO: need to put fbID into localStorage
+function signInFB(dataObj) {
+  return function (dispatch) {
+
+    // let's say the api passes and it works hooray.
+    _axios2.default.get("api/members", {
+      params: {
+        fbID: dataObj.fbID
+      }
+    }).then(function (response) {
+      if (response.data.length) {
+        throw Error("user is already in the database");
+      } else {
+
+        _axios2.default.post("api/members", dataObj).then(function (response) {
+          _axios2.default.get("api/members").then(function (response) {
+            console.log(response);
+          });
+          console.log("something happened hooray lol", dataObj);
+        }).catch(function (err) {
+          console.log("crap", err);
+        });
+      }
+    });
+
+    dispatch({ type: AUTH_USER });
+    console.log("dataObj token is", dataObj.token);
+    localStorage.setItem("token", dataObj.token);
+
+    _reactRouter.browserHistory.push("/dashboard");
+  };
+}
+
+function authUser() {
+  return {
+    type: AUTH_USER
+  };
+}
+
+function unauthUser() {
+  return {
+    type: UNAUTH_USER
+  };
+}
+
+/***/ }),
+/* 19 */
 /*!******************************************!*\
   !*** external "react-textarea-autosize" ***!
   \******************************************/
@@ -1029,7 +1175,7 @@ exports.default = SearchBar;
 module.exports = require("react-textarea-autosize");
 
 /***/ }),
-/* 19 */
+/* 20 */
 /*!***************************************!*\
   !*** external "serialize-javascript" ***!
   \***************************************/
@@ -1040,7 +1186,7 @@ module.exports = require("react-textarea-autosize");
 module.exports = require("serialize-javascript");
 
 /***/ }),
-/* 20 */
+/* 21 */
 /*!***********************************************************!*\
   !*** ./node_modules/gluestick/shared/lib/route-helper.js ***!
   \***********************************************************/
@@ -1169,7 +1315,7 @@ function createTransitionHook(store, routes) {
 }
 
 /***/ }),
-/* 21 */
+/* 22 */
 /*!******************************************************!*\
   !*** ./node_modules/gluestick/shared/lib/actions.js ***!
   \******************************************************/
@@ -1199,7 +1345,7 @@ function setStatusCode(statusCode) {
 }
 
 /***/ }),
-/* 22 */
+/* 23 */
 /*!*******************************************************************************!*\
   !*** ./node_modules/gluestick/shared/lib/prepareRoutesWithTransitionHooks.js ***!
   \*******************************************************************************/
@@ -1236,7 +1382,7 @@ exports.default = function (routes) {
 };
 
 /***/ }),
-/* 23 */
+/* 24 */
 /*!*******************************************************!*\
   !*** ./node_modules/gluestick/build/plugins/utils.js ***!
   \*******************************************************/
@@ -1286,7 +1432,7 @@ module.exports = function (logger) {
 };
 
 /***/ }),
-/* 24 */
+/* 25 */
 /*!***********************************!*\
   !*** ./src/config/application.js ***!
   \***********************************/
@@ -1335,7 +1481,7 @@ var config = {
 exports.default = config[process.env.NODE_ENV === "production" ? "production" : "development"];
 
 /***/ }),
-/* 25 */
+/* 26 */
 /*!******************************!*\
   !*** ./gluestick/entries.js ***!
   \******************************/
@@ -1359,7 +1505,7 @@ var _routes = __webpack_require__(/*! src/apps/main/routes.js */ 76);
 
 var _routes2 = _interopRequireDefault(_routes);
 
-var _reducers = __webpack_require__(/*! src/apps/main/reducers */ 113);
+var _reducers = __webpack_require__(/*! src/apps/main/reducers */ 114);
 
 var _reducers2 = _interopRequireDefault(_reducers);
 
@@ -1377,7 +1523,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 26 */
+/* 27 */
 /*!***********************************************!*\
   !*** ./src/apps/main/containers/FrontPage.js ***!
   \***********************************************/
@@ -1408,23 +1554,23 @@ var _SearchBar2 = _interopRequireDefault(_SearchBar);
 
 var _searchResultsActions = __webpack_require__(/*! ../actions/searchResultsActions */ 13);
 
-var _nealReact = __webpack_require__(/*! neal-react */ 79);
+var _nealReact = __webpack_require__(/*! neal-react */ 80);
 
 var _reactstrap = __webpack_require__(/*! reactstrap */ 1);
 
-var _entirelogo = __webpack_require__(/*! ../assets/images/site-logo/entirelogo.png */ 80);
+var _entirelogo = __webpack_require__(/*! ../assets/images/site-logo/entirelogo.png */ 81);
 
 var _entirelogo2 = _interopRequireDefault(_entirelogo);
 
-var _milktea = __webpack_require__(/*! ../assets/images/homepage/milktea.jpg */ 81);
+var _milktea = __webpack_require__(/*! ../assets/images/homepage/milktea.jpg */ 82);
 
 var _milktea2 = _interopRequireDefault(_milktea);
 
-var _crowd = __webpack_require__(/*! ../assets/images/homepage/crowd.jpg */ 82);
+var _crowd = __webpack_require__(/*! ../assets/images/homepage/crowd.jpg */ 83);
 
 var _crowd2 = _interopRequireDefault(_crowd);
 
-var _updates = __webpack_require__(/*! ../assets/images/homepage/updates.jpg */ 83);
+var _updates = __webpack_require__(/*! ../assets/images/homepage/updates.jpg */ 84);
 
 var _updates2 = _interopRequireDefault(_updates);
 
@@ -1702,7 +1848,7 @@ exports.default = (0, _reactRedux.connect)(function (state) {
 })(FrontPage);
 
 /***/ }),
-/* 27 */
+/* 28 */
 /*!************************************!*\
   !*** ./src/apps/main/lib/utils.js ***!
   \************************************/
@@ -1753,7 +1899,7 @@ function generateSearchURL(params) {
 }
 
 /***/ }),
-/* 28 */
+/* 29 */
 /*!*********************!*\
   !*** external "qs" ***!
   \*********************/
@@ -1764,7 +1910,7 @@ function generateSearchURL(params) {
 module.exports = require("qs");
 
 /***/ }),
-/* 29 */
+/* 30 */
 /*!********************************************!*\
   !*** ./src/apps/main/components/Footer.js ***!
   \********************************************/
@@ -1828,7 +1974,7 @@ var Footer = function (_Component) {
 exports.default = Footer;
 
 /***/ }),
-/* 30 */
+/* 31 */
 /*!******************************************************!*\
   !*** ./src/apps/main/components/CategorySelector.js ***!
   \******************************************************/
@@ -1853,7 +1999,7 @@ var _consts = __webpack_require__(/*! ../lib/consts */ 4);
 
 var _reactstrap = __webpack_require__(/*! reactstrap */ 1);
 
-var _reactFontawesome = __webpack_require__(/*! compiled/react-fontawesome */ 98);
+var _reactFontawesome = __webpack_require__(/*! compiled/react-fontawesome */ 99);
 
 var _reactFontawesome2 = _interopRequireDefault(_reactFontawesome);
 
@@ -1974,7 +2120,7 @@ var CategorySelector = function (_Component) {
 exports.default = CategorySelector;
 
 /***/ }),
-/* 31 */
+/* 32 */
 /*!****************************************!*\
   !*** ./src/config/redux-middleware.js ***!
   \****************************************/
@@ -2105,27 +2251,27 @@ var middleware = __webpack_require__(/*! ./middleware */ 39);
 var readAssets = __webpack_require__(/*! ./helpers/readAssets */ 72);
 var onFinished = __webpack_require__(/*! on-finished */ 73);
 // $FlowIgnore
-var applicationConfig = __webpack_require__(/*! application-config */ 24).default;
-var entries = __webpack_require__(/*! project-entries */ 25).default;
+var applicationConfig = __webpack_require__(/*! application-config */ 25).default;
+var entries = __webpack_require__(/*! project-entries */ 26).default;
 // $FlowIgnore
-var entriesConfig = __webpack_require__(/*! project-entries-config */ 118);
+var entriesConfig = __webpack_require__(/*! project-entries-config */ 119);
 // $FlowIgnore
-var EntryWrapper = __webpack_require__(/*! entry-wrapper */ 119).default;
+var EntryWrapper = __webpack_require__(/*! entry-wrapper */ 120).default;
 // $FlowIgnore
-var projectHooks = __webpack_require__(/*! gluestick-hooks */ 125).default;
-var BodyWrapper = __webpack_require__(/*! ./components/Body */ 126).default;
+var projectHooks = __webpack_require__(/*! gluestick-hooks */ 126).default;
+var BodyWrapper = __webpack_require__(/*! ./components/Body */ 127).default;
 var reduxMiddlewares = __webpack_require__(/*! redux-middlewares */ 32).default;
 // $FlowIgnore
 var thunkMiddleware = __webpack_require__(/*! redux-middlewares */ 32).thunkMiddleware;
 // $FlowIgnore
-var entriesPlugins = __webpack_require__(/*! project-entries */ 25).plugins;
+var entriesPlugins = __webpack_require__(/*! project-entries */ 26).plugins;
 // $FlowIgnore
-var cachingConfig = __webpack_require__(/*! caching-config */ 127).default;
+var cachingConfig = __webpack_require__(/*! caching-config */ 128).default;
 
-var hooksHelper = __webpack_require__(/*! ./helpers/hooks */ 128);
-var prepareServerPlugins = __webpack_require__(/*! ../plugins/prepareServerPlugins */ 129);
-var createPluginUtils = __webpack_require__(/*! ../plugins/utils */ 23);
-var setProxies = __webpack_require__(/*! ./helpers/setProxies */ 131);
+var hooksHelper = __webpack_require__(/*! ./helpers/hooks */ 129);
+var prepareServerPlugins = __webpack_require__(/*! ../plugins/prepareServerPlugins */ 130);
+var createPluginUtils = __webpack_require__(/*! ../plugins/utils */ 24);
+var setProxies = __webpack_require__(/*! ./helpers/setProxies */ 132);
 
 var envVariables = process.env.ENV_VARIABLES && Array.isArray(process.env.ENV_VARIABLES) ? process.env.ENV_VARIABLES : [];
 
@@ -2301,7 +2447,7 @@ var setHeaders = __webpack_require__(/*! ./response/setHeaders */ 64);
 var errorHandler = __webpack_require__(/*! ./helpers/errorHandler */ 66);
 var getCacheManager = __webpack_require__(/*! ./helpers/cacheManager */ 68);
 var getStatusCode = __webpack_require__(/*! ./response/getStatusCode */ 71);
-var createPluginUtils = __webpack_require__(/*! ../plugins/utils */ 23);
+var createPluginUtils = __webpack_require__(/*! ../plugins/utils */ 24);
 
 var isProduction = process.env.NODE_ENV === 'production';
 
@@ -2758,7 +2904,7 @@ module.exports = function (_ref2, entryPoint, assets, loadjsConfig) {
 "use strict";
 
 
-var serialize = __webpack_require__(/*! serialize-javascript */ 19);
+var serialize = __webpack_require__(/*! serialize-javascript */ 20);
 
 /**
  * Returns script tag content with code for loading bundles in right order.
@@ -2962,7 +3108,7 @@ var _reactRedux = __webpack_require__(/*! react-redux */ 2);
 
 var _reactRouterScroll = __webpack_require__(/*! react-router-scroll */ 52);
 
-var _prepareRoutesWithTransitionHooks = __webpack_require__(/*! ../lib/prepareRoutesWithTransitionHooks */ 22);
+var _prepareRoutesWithTransitionHooks = __webpack_require__(/*! ../lib/prepareRoutesWithTransitionHooks */ 23);
 
 var _prepareRoutesWithTransitionHooks2 = _interopRequireDefault(_prepareRoutesWithTransitionHooks);
 
@@ -3114,7 +3260,7 @@ var _react = __webpack_require__(/*! react */ 0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _routeHelper = __webpack_require__(/*! ../lib/route-helper */ 20);
+var _routeHelper = __webpack_require__(/*! ../lib/route-helper */ 21);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -3398,7 +3544,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 exports.default = _gluestick;
 
-var _actions = __webpack_require__(/*! ./actions */ 21);
+var _actions = __webpack_require__(/*! ./actions */ 22);
 
 var INITIAL_STATE = {};
 
@@ -4269,69 +4415,151 @@ var _reactRouter = __webpack_require__(/*! react-router */ 5);
 
 var _gluestick = __webpack_require__(/*! compiled/gluestick */ 11);
 
-var _MasterLayout = __webpack_require__(/*! ./components/MasterLayout */ 76);
+var _AuthHOC = __webpack_require__(/*! ./components/AuthHOC */ 77);
 
 var _AuthHOC2 = _interopRequireDefault(_AuthHOC);
 
-var _MasterLayout = __webpack_require__(/*! ./components/MasterLayout */ 77);
+var _MasterLayout = __webpack_require__(/*! ./components/MasterLayout */ 78);
 
 var _MasterLayout2 = _interopRequireDefault(_MasterLayout);
 
-var _HomeApp = __webpack_require__(/*! ./containers/HomeApp */ 78);
+var _HomeApp = __webpack_require__(/*! ./containers/HomeApp */ 79);
 
 var _HomeApp2 = _interopRequireDefault(_HomeApp);
 
-var _NoMatchApp = __webpack_require__(/*! ./containers/NoMatchApp */ 85);
+var _NoMatchApp = __webpack_require__(/*! ./containers/NoMatchApp */ 86);
 
 var _NoMatchApp2 = _interopRequireDefault(_NoMatchApp);
 
-var _SearchResults = __webpack_require__(/*! ./containers/SearchResults */ 86);
+var _SearchResults = __webpack_require__(/*! ./containers/SearchResults */ 87);
 
 var _SearchResults2 = _interopRequireDefault(_SearchResults);
 
-var _FrontPage = __webpack_require__(/*! ./containers/FrontPage */ 26);
+var _FrontPage = __webpack_require__(/*! ./containers/FrontPage */ 27);
 
 var _FrontPage2 = _interopRequireDefault(_FrontPage);
 
-var _ClubProfile = __webpack_require__(/*! ./containers/ClubProfile */ 91);
+var _ClubProfile = __webpack_require__(/*! ./containers/ClubProfile */ 92);
 
 var _ClubProfile2 = _interopRequireDefault(_ClubProfile);
 
-var _ClubCreation = __webpack_require__(/*! ./containers/ClubCreation */ 93);
+var _ClubCreation = __webpack_require__(/*! ./containers/ClubCreation */ 94);
 
 var _ClubCreation2 = _interopRequireDefault(_ClubCreation);
 
-var _AdvancedSearch = __webpack_require__(/*! ./containers/AdvancedSearch */ 107);
+var _AdvancedSearch = __webpack_require__(/*! ./containers/AdvancedSearch */ 108);
 
 var _AdvancedSearch2 = _interopRequireDefault(_AdvancedSearch);
 
-var _SignUp = __webpack_require__(/*! ./containers/SignUp */ 108);
+var _SignUp = __webpack_require__(/*! ./containers/SignUp */ 109);
 
 var _SignUp2 = _interopRequireDefault(_SignUp);
 
-var _Dashboard = __webpack_require__(/*! ./containers/Dashboard */ 111);
+var _Dashboard = __webpack_require__(/*! ./containers/Dashboard */ 112);
 
 var _Dashboard2 = _interopRequireDefault(_Dashboard);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// import { BrowserRouter, Route, Switch } from "react-router-dom";
 function routes() /*store: Object, httpClient: Object*/{
   return _react2.default.createElement(
     _reactRouter.Router,
     { component: _HomeApp2.default, history: _reactRouter.browserHistory },
     _react2.default.createElement(_reactRouter.Route, { path: "/", component: _FrontPage2.default }),
     _react2.default.createElement(_reactRouter.Route, { path: "/advancedsearch", component: _AdvancedSearch2.default }),
-    _react2.default.createElement(_reactRouter.Route, { path: "/club/:id", component: _ClubProfile2.default }),
-    _react2.default.createElement(_reactRouter.Route, { path: "/clubcreation", component: (0, _AuthHOC2.default)(_ClubCreation2.default) }),
+    _react2.default.createElement(_reactRouter.Route, { path: "/club(/:id)", component: _ClubProfile2.default }),
+    _react2.default.createElement(_reactRouter.Route, { path: "/clubcreation(/:id)", component: _ClubCreation2.default }),
     _react2.default.createElement(_reactRouter.Route, { path: "/search", component: _SearchResults2.default }),
     _react2.default.createElement(_reactRouter.Route, { path: "/joinus", component: _SignUp2.default }),
+    _react2.default.createElement(_reactRouter.Route, { path: "/dashboard", component: (0, _AuthHOC2.default)(_Dashboard2.default) }),
+    _react2.default.createElement(_reactRouter.Route, { path: "/404", component: _NoMatchApp2.default }),
     _react2.default.createElement(_reactRouter.Route, { name: _gluestick.ROUTE_NAME_404_NOT_FOUND, path: "*", component: _NoMatchApp2.default })
   );
 }
+// import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 /***/ }),
 /* 77 */
+/*!*********************************************!*\
+  !*** ./src/apps/main/components/AuthHOC.js ***!
+  \*********************************************/
+/*! no static exports found */
+/*! all exports used */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+exports.default = AuthHOC;
+
+var _react = __webpack_require__(/*! react */ 0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__(/*! react-redux */ 2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+function AuthHOC(ComposedComponent) {
+  var Authentication = function (_Component) {
+    _inherits(Authentication, _Component);
+
+    function Authentication() {
+      _classCallCheck(this, Authentication);
+
+      return _possibleConstructorReturn(this, (Authentication.__proto__ || Object.getPrototypeOf(Authentication)).apply(this, arguments));
+    }
+
+    _createClass(Authentication, [{
+      key: "componentWillMount",
+      value: function componentWillMount() {
+        if (!this.props.authenticated) {
+          this.context.router.push("/");
+        }
+      }
+    }, {
+      key: "componentWillUpdate",
+      value: function componentWillUpdate(nextProps) {
+        if (!nextProps.authenticated) {
+          this.context.router.push("/");
+        }
+      }
+    }, {
+      key: "render",
+      value: function render() {
+        return _react2.default.createElement(ComposedComponent, this.props);
+      }
+    }]);
+
+    return Authentication;
+  }(_react.Component);
+
+  Authentication.contextTypes = {
+    router: _react2.default.PropTypes.object
+  };
+
+
+  return (0, _reactRedux.connect)(function (state) {
+    return {
+      authenticated: state.authReducer.authenticated
+    };
+  }, null)(Authentication);
+}
+
+/***/ }),
+/* 78 */
 /*!**************************************************!*\
   !*** ./src/apps/main/components/MasterLayout.js ***!
   \**************************************************/
@@ -4356,7 +4584,7 @@ var _reactHelmet = __webpack_require__(/*! react-helmet */ 8);
 
 var _reactHelmet2 = _interopRequireDefault(_reactHelmet);
 
-var _application = __webpack_require__(/*! config/application */ 24);
+var _application = __webpack_require__(/*! config/application */ 25);
 
 var _application2 = _interopRequireDefault(_application);
 
@@ -4398,7 +4626,7 @@ MasterLayout.propTypes = {
 exports.default = MasterLayout;
 
 /***/ }),
-/* 78 */
+/* 79 */
 /*!*********************************************!*\
   !*** ./src/apps/main/containers/HomeApp.js ***!
   \*********************************************/
@@ -4428,7 +4656,7 @@ var _reactHelmet = __webpack_require__(/*! react-helmet */ 8);
 
 var _reactHelmet2 = _interopRequireDefault(_reactHelmet);
 
-var _FrontPage = __webpack_require__(/*! ../containers/FrontPage */ 26);
+var _FrontPage = __webpack_require__(/*! ../containers/FrontPage */ 27);
 
 var _FrontPage2 = _interopRequireDefault(_FrontPage);
 
@@ -4498,7 +4726,7 @@ exports.default = (0, _reactRedux.connect)(function () {
 })(HomeApp);
 
 /***/ }),
-/* 79 */
+/* 80 */
 /*!*****************************!*\
   !*** external "neal-react" ***!
   \*****************************/
@@ -4509,7 +4737,7 @@ exports.default = (0, _reactRedux.connect)(function () {
 module.exports = require("neal-react");
 
 /***/ }),
-/* 80 */
+/* 81 */
 /*!**************************************************************!*\
   !*** ./src/apps/main/assets/images/site-logo/entirelogo.png ***!
   \**************************************************************/
@@ -4520,7 +4748,7 @@ module.exports = require("neal-react");
 module.exports = __webpack_require__.p + "entirelogo-1e48d127cdaa27643435d3fd4154c993.png";
 
 /***/ }),
-/* 81 */
+/* 82 */
 /*!**********************************************************!*\
   !*** ./src/apps/main/assets/images/homepage/milktea.jpg ***!
   \**********************************************************/
@@ -4531,7 +4759,7 @@ module.exports = __webpack_require__.p + "entirelogo-1e48d127cdaa27643435d3fd415
 module.exports = __webpack_require__.p + "milktea-53839f4156786ef9854eb60998acee20.jpg";
 
 /***/ }),
-/* 82 */
+/* 83 */
 /*!********************************************************!*\
   !*** ./src/apps/main/assets/images/homepage/crowd.jpg ***!
   \********************************************************/
@@ -4542,7 +4770,7 @@ module.exports = __webpack_require__.p + "milktea-53839f4156786ef9854eb60998acee
 module.exports = __webpack_require__.p + "crowd-1bd5ab4ca45d9446253abfcf103276b4.jpg";
 
 /***/ }),
-/* 83 */
+/* 84 */
 /*!**********************************************************!*\
   !*** ./src/apps/main/assets/images/homepage/updates.jpg ***!
   \**********************************************************/
@@ -4553,7 +4781,7 @@ module.exports = __webpack_require__.p + "crowd-1bd5ab4ca45d9446253abfcf103276b4
 module.exports = __webpack_require__.p + "updates-05576b8638c53e65dac775b40d7a15bd.jpg";
 
 /***/ }),
-/* 84 */
+/* 85 */
 /*!*******************************************************************!*\
   !*** ./src/apps/main/assets/images/site-logo/clubtree-stroke.png ***!
   \*******************************************************************/
@@ -4564,7 +4792,7 @@ module.exports = __webpack_require__.p + "updates-05576b8638c53e65dac775b40d7a15
 module.exports = __webpack_require__.p + "clubtree-stroke-5fa604ef7d966d355838e8249e2aa830.png";
 
 /***/ }),
-/* 85 */
+/* 86 */
 /*!************************************************!*\
   !*** ./src/apps/main/containers/NoMatchApp.js ***!
   \************************************************/
@@ -4660,7 +4888,7 @@ exports.default = (0, _reactRedux.connect)(function () {
 })(NoMatchApp);
 
 /***/ }),
-/* 86 */
+/* 87 */
 /*!***************************************************!*\
   !*** ./src/apps/main/containers/SearchResults.js ***!
   \***************************************************/
@@ -4678,7 +4906,7 @@ exports.SearchResults = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _qs = __webpack_require__(/*! qs */ 28);
+var _qs = __webpack_require__(/*! qs */ 29);
 
 var _qs2 = _interopRequireDefault(_qs);
 
@@ -4704,7 +4932,7 @@ var _Header = __webpack_require__(/*! ../components/Header */ 9);
 
 var _Header2 = _interopRequireDefault(_Header);
 
-var _CategoriesCheckbox = __webpack_require__(/*! ../components/SearchResults/CategoriesCheckbox */ 87);
+var _CategoriesCheckbox = __webpack_require__(/*! ../components/SearchResults/CategoriesCheckbox */ 88);
 
 var _CategoriesCheckbox2 = _interopRequireDefault(_CategoriesCheckbox);
 
@@ -4716,11 +4944,11 @@ var _SearchBar = __webpack_require__(/*! ../components/SearchBar */ 17);
 
 var _SearchBar2 = _interopRequireDefault(_SearchBar);
 
-var _ResultSortDropdown = __webpack_require__(/*! ../components/SearchResults/ResultSortDropdown */ 88);
+var _ResultSortDropdown = __webpack_require__(/*! ../components/SearchResults/ResultSortDropdown */ 89);
 
 var _ResultSortDropdown2 = _interopRequireDefault(_ResultSortDropdown);
 
-var _ClubResultsList = __webpack_require__(/*! ../components/SearchResults/ClubResultsList */ 89);
+var _ClubResultsList = __webpack_require__(/*! ../components/SearchResults/ClubResultsList */ 90);
 
 var _ClubResultsList2 = _interopRequireDefault(_ClubResultsList);
 
@@ -4891,7 +5119,7 @@ exports.default = (0, _reactRedux.connect)(function (state) {
 })(SearchResults);
 
 /***/ }),
-/* 87 */
+/* 88 */
 /*!**********************************************************************!*\
   !*** ./src/apps/main/components/SearchResults/CategoriesCheckbox.js ***!
   \**********************************************************************/
@@ -4920,7 +5148,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactstrap = __webpack_require__(/*! reactstrap */ 1);
 
-var _utils = __webpack_require__(/*! ../../lib/utils */ 27);
+var _utils = __webpack_require__(/*! ../../lib/utils */ 28);
 
 var _consts = __webpack_require__(/*! ../../lib/consts */ 4);
 
@@ -5006,7 +5234,7 @@ var CategoriesCheckbox = function (_Component) {
 exports.default = CategoriesCheckbox;
 
 /***/ }),
-/* 88 */
+/* 89 */
 /*!**********************************************************************!*\
   !*** ./src/apps/main/components/SearchResults/ResultSortDropdown.js ***!
   \**********************************************************************/
@@ -5078,7 +5306,7 @@ var ResultSortDropdown = function (_Component) {
 exports.default = ResultSortDropdown;
 
 /***/ }),
-/* 89 */
+/* 90 */
 /*!*******************************************************************!*\
   !*** ./src/apps/main/components/SearchResults/ClubResultsList.js ***!
   \*******************************************************************/
@@ -5099,7 +5327,7 @@ var _react = __webpack_require__(/*! react */ 0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _SingleClubResult = __webpack_require__(/*! ./SingleClubResult */ 90);
+var _SingleClubResult = __webpack_require__(/*! ./SingleClubResult */ 91);
 
 var _SingleClubResult2 = _interopRequireDefault(_SingleClubResult);
 
@@ -5152,7 +5380,7 @@ var ClubResultsList = function (_Component) {
 exports.default = ClubResultsList;
 
 /***/ }),
-/* 90 */
+/* 91 */
 /*!********************************************************************!*\
   !*** ./src/apps/main/components/SearchResults/SingleClubResult.js ***!
   \********************************************************************/
@@ -5285,7 +5513,7 @@ var SingleClubResult = function (_Component) {
 exports.default = SingleClubResult;
 
 /***/ }),
-/* 91 */
+/* 92 */
 /*!*************************************************!*\
   !*** ./src/apps/main/containers/ClubProfile.js ***!
   \*************************************************/
@@ -5325,11 +5553,11 @@ var _Header = __webpack_require__(/*! ../components/Header */ 9);
 
 var _Header2 = _interopRequireDefault(_Header);
 
-var _ProfileHeader = __webpack_require__(/*! ../components/ClubProfile/ProfileHeader */ 92);
+var _ProfileHeader = __webpack_require__(/*! ../components/ClubProfile/ProfileHeader */ 93);
 
 var _ProfileHeader2 = _interopRequireDefault(_ProfileHeader);
 
-var _Footer = __webpack_require__(/*! ../components/Footer */ 29);
+var _Footer = __webpack_require__(/*! ../components/Footer */ 30);
 
 var _Footer2 = _interopRequireDefault(_Footer);
 
@@ -5513,7 +5741,7 @@ exports.default = (0, _reactRedux.connect)(function () {
 })(ClubProfile);
 
 /***/ }),
-/* 92 */
+/* 93 */
 /*!***************************************************************!*\
   !*** ./src/apps/main/components/ClubProfile/ProfileHeader.js ***!
   \***************************************************************/
@@ -5631,7 +5859,7 @@ var ProfileHeader = function (_Component) {
 exports.default = ProfileHeader;
 
 /***/ }),
-/* 93 */
+/* 94 */
 /*!**************************************************!*\
   !*** ./src/apps/main/containers/ClubCreation.js ***!
   \**************************************************/
@@ -5671,23 +5899,23 @@ var _axios = __webpack_require__(/*! axios */ 6);
 
 var _axios2 = _interopRequireDefault(_axios);
 
-var _ClubCreationHeader = __webpack_require__(/*! ../components/ClubCreation/ClubCreationHeader */ 94);
+var _ClubCreationHeader = __webpack_require__(/*! ../components/ClubCreation/ClubCreationHeader */ 95);
 
 var _ClubCreationHeader2 = _interopRequireDefault(_ClubCreationHeader);
 
-var _Step = __webpack_require__(/*! ../components/ClubCreation/Step1 */ 95);
+var _Step = __webpack_require__(/*! ../components/ClubCreation/Step1 */ 96);
 
 var _Step2 = _interopRequireDefault(_Step);
 
-var _Step3 = __webpack_require__(/*! ../components/ClubCreation/Step2 */ 96);
+var _Step3 = __webpack_require__(/*! ../components/ClubCreation/Step2 */ 97);
 
 var _Step4 = _interopRequireDefault(_Step3);
 
-var _Step5 = __webpack_require__(/*! ../components/ClubCreation/Step3 */ 102);
+var _Step5 = __webpack_require__(/*! ../components/ClubCreation/Step3 */ 103);
 
 var _Step6 = _interopRequireDefault(_Step5);
 
-var _Step7 = __webpack_require__(/*! ../components/ClubCreation/Step4 */ 106);
+var _Step7 = __webpack_require__(/*! ../components/ClubCreation/Step4 */ 107);
 
 var _Step8 = _interopRequireDefault(_Step7);
 
@@ -5756,15 +5984,16 @@ var ClubCreation = exports.ClubCreation = function (_Component) {
     };
 
     _this.continueClicked = function () {
+      // this definitely needs a lot of, erm... sprucing.
       switch (_this.state.step) {
         case 1:
           {
             // club name invalid
-            if (_this.props.newClub.name.length > _consts.CLUB_NAME_CHAR_LENGTH || _this.props.newClub.name.length === 0) {
+            if (_this.props.newClub.clubName.length > _consts.CLUB_NAME_CHAR_LENGTH || _this.props.newClub.clubName.length === 0) {
               return;
             }
             // club desc invalid
-            else if (_this.props.newClub.desc.length > _consts.CLUB_DESC_WORD_LENGTH || _this.props.newClub.desc.length === 0) {
+            else if (_this.props.newClub.description.length > _consts.CLUB_DESC_WORD_LENGTH || _this.props.newClub.description.length === 0) {
 
                 return;
               }
@@ -5776,13 +6005,24 @@ var ClubCreation = exports.ClubCreation = function (_Component) {
             // everything was valid, hooray.  Time to save the data.
 
             // first, check to see if the club was created already.
-            if (_this.props.params.clubID) {
-              // update club
+            if (_this.props.params.id) {
+              _axios2.default.put("/api/clubs", {
+                id: _this.state.id,
+                updateFields: {
+                  clubName: _this.props.newClub.clubName,
+                  description: _this.props.newClub.description,
+                  category: _this.props.newClub.category
+                }
+              });
             } else {
               _axios2.default.post("/api/clubs", {
-                clubName: _this.props.newClub.name,
-                description: _this.props.newClub.desc,
+                clubName: _this.props.newClub.clubName,
+                description: _this.props.newClub.description,
                 category: _this.props.newClub.category
+              }).then(function (response) {
+                _this.setState({
+                  id: response.data["_id"]
+                });
               });
             }
 
@@ -5799,10 +6039,58 @@ var ClubCreation = exports.ClubCreation = function (_Component) {
             else if (_this.props.newClub.meetingDatesAndTimes["meetingDays"].length === 0) {
                 return;
               }
-              // no
-              else if (_this.props.newClub.memberReq.length > _consts.CLUB_DESC_WORD_LENGTH || _this.props.newClub.memberReq.length === 0) {
+              // no fee amount, even 0
+              else if (_this.props.newClub.clubFeeAmount === "") {
                   return;
                 }
+                // no
+                else if (_this.props.newClub.memberReq.length > _consts.CLUB_DESC_WORD_LENGTH || _this.props.newClub.memberReq.length === 0) {
+                    return;
+                  }
+
+            _axios2.default.put("/api/clubs", {
+              id: _this.state.id,
+              updateFields: {
+                clubFeeAmount: _this.props.newClub.clubFeeAmount,
+                clubFeePeriod: _this.props.newClub.clubFeePeriod,
+                meetingLocation: _this.props.newClub.meetingLocation,
+                memberReq: _this.props.newClub.memberReq,
+                meetingDatesAndTimes: _this.props.newClub.meetingDatesAndTimes
+              }
+            });
+
+            break;
+          }
+
+        case 3:
+          {
+            console.log("does step 3 even fire");
+            // if there aren't 3 vibes
+            if (_this.props.vibesFilterCC.length < 3) {
+              console.log("nope...", _this.props.vibesFilterCC);
+              return;
+            }
+
+            var fieldsToUpdate = {
+              vibes: _this.props.vibesFilterCC
+            };
+
+            if (_this.props.newClub.clubLogo) {
+              fieldsToUpdate["clubLogo"] = _this.props.newClub.clubLogo;
+            }
+
+            if (_this.props.newClub.clubCover) {
+              fieldsToUpdate["clubCover"] = _this.props.newClub.clubCover;
+            }
+
+            if (_this.props.newClub.questions) _axios2.default.put("/api/clubs", {
+              id: _this.state.id,
+              updateFields: {
+                vibes: _this.props.vibesFilterCC,
+                memberReq: _this.props.newClub.memberReq,
+                meetingDatesAndTimes: _this.props.newClub.meetingDatesAndTimes
+              }
+            });
             break;
           }
 
@@ -5815,12 +6103,28 @@ var ClubCreation = exports.ClubCreation = function (_Component) {
     };
 
     _this.state = {
-      step: 1
+      step: 1,
+      id: ""
     };
     return _this;
   }
 
   _createClass(ClubCreation, [{
+    key: "componentWillMount",
+    value: function componentWillMount() {
+      var _this2 = this;
+
+      if (this.props.params.id) {
+        this.setState({
+          id: this.props.params.id
+        });
+        _axios2.default.get("/api/clubs/" + this.props.params.id).then(function (response) {
+          var club = response.data;
+          _this2.props.loadExistingClub(club);
+        });
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
       return _react2.default.createElement(
@@ -5869,16 +6173,18 @@ var ClubCreation = exports.ClubCreation = function (_Component) {
 exports.default = (0, _reactRedux.connect)(function (state) {
   return {
     newClub: state.clubCreationReducer.newClub,
-    validationSteps: state.clubCreationReducer.validationSteps
+    validationSteps: state.clubCreationReducer.validationSteps,
+    vibesFilterCC: state.clubCreationReducer.vibesFilterCC
   };
 }, function (dispatch) {
   return (0, _redux.bindActionCreators)({
-    updateValidationStep: _clubCreationActions.updateValidationStep
+    updateValidationStep: _clubCreationActions.updateValidationStep,
+    loadExistingClub: _clubCreationActions.loadExistingClub
   }, dispatch);
 })(ClubCreation);
 
 /***/ }),
-/* 94 */
+/* 95 */
 /*!*********************************************************************!*\
   !*** ./src/apps/main/components/ClubCreation/ClubCreationHeader.js ***!
   \*********************************************************************/
@@ -5997,7 +6303,7 @@ var ClubCreationHeader = function (_Component) {
 exports.default = ClubCreationHeader;
 
 /***/ }),
-/* 95 */
+/* 96 */
 /*!********************************************************!*\
   !*** ./src/apps/main/components/ClubCreation/Step1.js ***!
   \********************************************************/
@@ -6036,7 +6342,7 @@ var _redux = __webpack_require__(/*! redux */ 3);
 
 var _reactstrap = __webpack_require__(/*! reactstrap */ 1);
 
-var _reactTextareaAutosize = __webpack_require__(/*! react-textarea-autosize */ 18);
+var _reactTextareaAutosize = __webpack_require__(/*! react-textarea-autosize */ 19);
 
 var _reactTextareaAutosize2 = _interopRequireDefault(_reactTextareaAutosize);
 
@@ -6072,12 +6378,12 @@ var Step1 = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (Step1.__proto__ || Object.getPrototypeOf(Step1)).call(this, props));
 
     _this.validateClubDesc = function () {
-      var result = _this.props.newClub.desc.length < _consts.CLUB_DESC_WORD_LENGTH && _this.props.newClub.desc.length !== 0;
+      var result = _this.props.newClub.description.length < _consts.CLUB_DESC_WORD_LENGTH && _this.props.newClub.description.length !== 0;
       return result;
     };
 
     _this.validateClubName = function () {
-      var result = _this.props.newClub.name.length < _consts.CLUB_NAME_CHAR_LENGTH && _this.props.newClub.name.length !== 0;
+      var result = _this.props.newClub.clubName.length < _consts.CLUB_NAME_CHAR_LENGTH && _this.props.newClub.clubName.length !== 0;
       return result;
     };
 
@@ -6115,7 +6421,7 @@ var Step1 = function (_React$Component) {
             type: "text",
             className: "clubcreation-input",
             onChange: this.props.updateClubName,
-            value: this.props.newClub.name
+            value: this.props.newClub.clubName
           }),
           _react2.default.createElement(
             "span",
@@ -6126,7 +6432,7 @@ var Step1 = function (_React$Component) {
                 margin: "5px 0px 5px 0px"
               }
             },
-            this.props.newClub.name.length,
+            this.props.newClub.clubName.length,
             "/",
             _consts.CLUB_NAME_CHAR_LENGTH,
             " characters"
@@ -6182,7 +6488,11 @@ var Step1 = function (_React$Component) {
                     null,
                     _react2.default.createElement(
                       _reactstrap.Input,
-                      { className: "mx-2 clubcreation-date-btn", type: "select" },
+                      {
+                        className: "mx-2 clubcreation-date-btn",
+                        type: "select",
+                        onChange: this.props.updateClubMonth
+                      },
                       _consts.MONTHS.map(function (month, index) {
                         return _react2.default.createElement(
                           "option",
@@ -6197,7 +6507,11 @@ var Step1 = function (_React$Component) {
                     null,
                     _react2.default.createElement(
                       _reactstrap.Input,
-                      { className: "clubcreation-date-btn", type: "select" },
+                      {
+                        className: "clubcreation-date-btn",
+                        type: "select",
+                        onChange: this.props.updateClubYear
+                      },
                       _consts.VALID_YEARS.map(function (year, index) {
                         return _react2.default.createElement(
                           "option",
@@ -6224,7 +6538,7 @@ var Step1 = function (_React$Component) {
               className: "clubcreation-input",
               minRows: 3,
               onChange: this.props.updateClubDesc,
-              value: this.props.newClub.desc
+              value: this.props.newClub.description
             }),
             _react2.default.createElement(
               "span",
@@ -6235,7 +6549,7 @@ var Step1 = function (_React$Component) {
                   margin: "5px 0px 5px 0px"
                 }
               },
-              this.state.clubDescription === "" ? 0 : this.props.newClub.desc.split(/\s+/).length,
+              this.state.clubDescription === "" ? 0 : this.props.newClub.description.split(/\s+/).length,
               "/",
               _consts.CLUB_DESC_WORD_LENGTH,
               " words"
@@ -6261,13 +6575,15 @@ exports.default = (0, _reactRedux.connect)(function (state) {
   return (0, _redux.bindActionCreators)({
     updateClubName: _clubCreationActions.updateClubName,
     updateClubDesc: _clubCreationActions.updateClubDesc,
+    updateClubMonth: _clubCreationActions.updateClubMonth,
+    updateClubYear: _clubCreationActions.updateClubYear,
     toggleClubCategory: _clubCreationActions.toggleClubCategory,
     updateValidationStep: _clubCreationActions.updateValidationStep
   }, dispatch);
 })(Step1);
 
 /***/ }),
-/* 96 */
+/* 97 */
 /*!********************************************************!*\
   !*** ./src/apps/main/components/ClubCreation/Step2.js ***!
   \********************************************************/
@@ -6306,19 +6622,19 @@ var _redux = __webpack_require__(/*! redux */ 3);
 
 var _reactstrap = __webpack_require__(/*! reactstrap */ 1);
 
-var _reactTextareaAutosize = __webpack_require__(/*! react-textarea-autosize */ 18);
+var _reactTextareaAutosize = __webpack_require__(/*! react-textarea-autosize */ 19);
 
 var _reactTextareaAutosize2 = _interopRequireDefault(_reactTextareaAutosize);
 
-var _rcTimePicker = __webpack_require__(/*! rc-time-picker */ 97);
+var _rcTimePicker = __webpack_require__(/*! rc-time-picker */ 98);
 
 var _rcTimePicker2 = _interopRequireDefault(_rcTimePicker);
 
-var _CategorySelector = __webpack_require__(/*! ../CategorySelector */ 30);
+var _CategorySelector = __webpack_require__(/*! ../CategorySelector */ 31);
 
 var _CategorySelector2 = _interopRequireDefault(_CategorySelector);
 
-var _TimeSelector = __webpack_require__(/*! ../TimeSelector */ 100);
+var _TimeSelector = __webpack_require__(/*! ../TimeSelector */ 101);
 
 var _TimeSelector2 = _interopRequireDefault(_TimeSelector);
 
@@ -6372,7 +6688,8 @@ var Step2 = function (_Component) {
           _react2.default.createElement("input", {
             type: "text",
             className: "clubcreation-input",
-            onChange: this.props.updateClubMeetingLocation
+            onChange: this.props.updateClubMeetingLocation,
+            value: this.props.newClub.meetingLocation
           }),
           _react2.default.createElement(
             "span",
@@ -6442,6 +6759,7 @@ var Step2 = function (_Component) {
                     "$"
                   ),
                   _react2.default.createElement(_reactstrap.Input, {
+                    value: this.props.newClub.clubFeeAmount,
                     onChange: this.props.updateClubFeeAmount }),
                   _react2.default.createElement(
                     _reactstrap.InputGroupAddon,
@@ -6462,6 +6780,7 @@ var Step2 = function (_Component) {
                   _reactstrap.Input,
                   {
                     type: "select",
+                    value: this.props.newClub.clubFeePeriod,
                     onChange: this.props.updateClubFeePeriod
                   },
                   _react2.default.createElement(
@@ -6539,7 +6858,7 @@ exports.default = (0, _reactRedux.connect)(function (state) {
 })(Step2);
 
 /***/ }),
-/* 97 */
+/* 98 */
 /*!*********************************!*\
   !*** external "rc-time-picker" ***!
   \*********************************/
@@ -6550,7 +6869,7 @@ exports.default = (0, _reactRedux.connect)(function (state) {
 module.exports = require("rc-time-picker");
 
 /***/ }),
-/* 98 */
+/* 99 */
 /*!*****************************************************!*\
   !*** ./node_modules/react-fontawesome/lib/index.js ***!
   \*****************************************************/
@@ -6577,7 +6896,7 @@ var _propTypes = __webpack_require__(/*! prop-types */ 10);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _screenReaderStyles = __webpack_require__(/*! ./screen-reader-styles */ 99);
+var _screenReaderStyles = __webpack_require__(/*! ./screen-reader-styles */ 100);
 
 var _screenReaderStyles2 = _interopRequireDefault(_screenReaderStyles);
 
@@ -6702,7 +7021,7 @@ exports.default = FontAwesome;
 module.exports = exports['default'];
 
 /***/ }),
-/* 99 */
+/* 100 */
 /*!********************************************************************!*\
   !*** ./node_modules/react-fontawesome/lib/screen-reader-styles.js ***!
   \********************************************************************/
@@ -6729,7 +7048,7 @@ exports.default = {
 module.exports = exports['default'];
 
 /***/ }),
-/* 100 */
+/* 101 */
 /*!**************************************************!*\
   !*** ./src/apps/main/components/TimeSelector.js ***!
   \**************************************************/
@@ -6760,7 +7079,7 @@ var _reactRedux = __webpack_require__(/*! react-redux */ 2);
 
 var _redux = __webpack_require__(/*! redux */ 3);
 
-var _TimeSelectorUnit = __webpack_require__(/*! ./TimeSelectorUnit */ 101);
+var _TimeSelectorUnit = __webpack_require__(/*! ./TimeSelectorUnit */ 102);
 
 var _TimeSelectorUnit2 = _interopRequireDefault(_TimeSelectorUnit);
 
@@ -6807,7 +7126,7 @@ var TimeSelector = function (_Component) {
 exports.default = TimeSelector;
 
 /***/ }),
-/* 101 */
+/* 102 */
 /*!******************************************************!*\
   !*** ./src/apps/main/components/TimeSelectorUnit.js ***!
   \******************************************************/
@@ -6823,6 +7142,10 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _lodash = __webpack_require__(/*! lodash */ 7);
+
+var _lodash2 = _interopRequireDefault(_lodash);
 
 var _react = __webpack_require__(/*! react */ 0);
 
@@ -6886,6 +7209,15 @@ var TimeSelectorUnit = function (_Component) {
   }
 
   _createClass(TimeSelectorUnit, [{
+    key: "componentWillMount",
+    value: function componentWillMount() {
+      if (_lodash2.default.includes(this.props.schedule.meetingDays, this.props.day)) {
+        this.setState({
+          active: true
+        });
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this2 = this;
@@ -6948,6 +7280,7 @@ var TimeSelectorUnit = function (_Component) {
                     {
                       type: "select",
                       className: "clubcreation-date-btn",
+                      value: this.props.schedule[this.props.day] ? this.props.schedule[this.props.day].start.hour : 1,
                       onChange: function onChange(e) {
                         _this2.props.updateStartHour(e, _this2.props.day);
                       }
@@ -6965,6 +7298,8 @@ var TimeSelectorUnit = function (_Component) {
                     {
                       type: "select",
                       className: "clubcreation-date-btn",
+                      value: this.props.schedule[this.props.day] ? this.props.schedule[this.props.day].start.minute : "00",
+
                       onChange: function onChange(e) {
                         _this2.props.updateStartMinute(e, _this2.props.day);
                       }
@@ -6982,6 +7317,7 @@ var TimeSelectorUnit = function (_Component) {
                     {
                       type: "select",
                       className: "clubcreation-date-btn",
+                      value: this.props.schedule[this.props.day] ? this.props.schedule[this.props.day].start.meridian : "AM",
                       onChange: function onChange(e) {
                         _this2.props.updateStartMeridian(e, _this2.props.day);
                       }
@@ -7010,6 +7346,8 @@ var TimeSelectorUnit = function (_Component) {
                     {
                       type: "select",
                       className: "clubcreation-date-btn",
+                      value: this.props.schedule[this.props.day] ? this.props.schedule[this.props.day].end.hour : 1,
+
                       onChange: function onChange(e) {
                         _this2.props.updateEndHour(e, _this2.props.day);
                       }
@@ -7027,6 +7365,7 @@ var TimeSelectorUnit = function (_Component) {
                     {
                       type: "select",
                       className: "clubcreation-date-btn",
+                      value: this.props.schedule[this.props.day] ? this.props.schedule[this.props.day].end.minute : "00",
                       onChange: function onChange(e) {
                         _this2.props.updateEndMinute(e, _this2.props.day);
                       }
@@ -7044,6 +7383,7 @@ var TimeSelectorUnit = function (_Component) {
                     {
                       type: "select",
                       className: "clubcreation-date-btn",
+                      value: this.props.schedule[this.props.day] ? this.props.schedule[this.props.day].end.meridian : "AM",
                       onChange: function onChange(e) {
                         _this2.props.updateEndMeridian(e, _this2.props.day);
                       }
@@ -7101,7 +7441,7 @@ exports.default = (0, _reactRedux.connect)(function () {
 })(TimeSelectorUnit);
 
 /***/ }),
-/* 102 */
+/* 103 */
 /*!********************************************************!*\
   !*** ./src/apps/main/components/ClubCreation/Step3.js ***!
   \********************************************************/
@@ -7140,17 +7480,17 @@ var _redux = __webpack_require__(/*! redux */ 3);
 
 var _reactstrap = __webpack_require__(/*! reactstrap */ 1);
 
-var _reactTextareaAutosize = __webpack_require__(/*! react-textarea-autosize */ 18);
+var _reactTextareaAutosize = __webpack_require__(/*! react-textarea-autosize */ 19);
 
 var _reactTextareaAutosize2 = _interopRequireDefault(_reactTextareaAutosize);
 
-var _cloudinaryReact = __webpack_require__(/*! cloudinary-react */ 103);
+var _cloudinaryReact = __webpack_require__(/*! cloudinary-react */ 104);
 
 var _ColorfulSelector = __webpack_require__(/*! ../ColorfulSelector */ 15);
 
 var _ColorfulSelector2 = _interopRequireDefault(_ColorfulSelector);
 
-var _QuestionUnit = __webpack_require__(/*! ../QuestionUnit */ 104);
+var _QuestionUnit = __webpack_require__(/*! ../QuestionUnit */ 105);
 
 var _QuestionUnit2 = _interopRequireDefault(_QuestionUnit);
 
@@ -7160,7 +7500,7 @@ var _clubCreationActions = __webpack_require__(/*! ../../actions/clubCreationAct
 
 var _consts = __webpack_require__(/*! ../../lib/consts */ 4);
 
-var _clubAddQuestions = __webpack_require__(/*! ../../lib/clubAddQuestions */ 105);
+var _clubAddQuestions = __webpack_require__(/*! ../../lib/clubAddQuestions */ 106);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -7180,25 +7520,61 @@ var Step3 = function (_Component) {
 
     var _this = _possibleConstructorReturn(this, (Step3.__proto__ || Object.getPrototypeOf(Step3)).call(this, props));
 
+    _this.uploadWidgetLogo = function () {
+      cloudinary.openUploadWidget({
+        cloud_name: 'dpjydbpir',
+        upload_preset: 'r504fsmj',
+        tags: ['clubLogo'] }, function (error, result) {
+        console.log(result);
+        _this.props.uploadClubLogo(result[0]);
+      }).bind(_this);
+    };
+
+    _this.uploadWidgetCover = function () {
+      cloudinary.openUploadWidget({
+        cloud_name: 'dpjydbpir',
+        upload_preset: 'c6iq7s0e',
+        tags: ['clubCovers'] }, function (error, result) {
+        console.log(result);
+        _this.props.uploadClubCover(result[0]);
+      }).bind(_this);
+    };
+
+    _this.updateQuestion = function (e) {
+      console.log("does this get fired at all");
+      var thisQuestion = _this.props.q;
+      if (_this.state.active) {
+        var tempQ = _lodash2.default.cloneDeep(_this.props.questions);
+        console.log("tempQ is", tempQ);
+        tempQ[thisQuestion] = {
+          answer: e.target.value,
+          active: true
+        };
+        _this.props.updateQuestion(tempQ);
+      } else {
+        console.log("not active :()");
+        var _tempQ = _lodash2.default.cloneDeep(_this.props.questions, _this.props.question);
+        delete _tempQ[_this.props.question];
+        if (!_tempQ) {
+          _tempQ = {};
+        }
+        _this.props.updateQuestion(_tempQ);
+      }
+    };
+
     _this.state = {
-      vibesFilter: []
+      vibesFilter: [],
+      clubLogo: Object,
+      clubCover: Object
     };
     return _this;
   }
 
   _createClass(Step3, [{
-    key: "uploadWidget",
-    value: function uploadWidget() {
-      cloudinary.openUploadWidget({
-        cloud_name: 'dpjydbpir',
-        upload_preset: 'splice',
-        tags: ['clubphotos'] }, function (error, result) {
-        console.log(result);
-      });
-    }
-  }, {
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       return _react2.default.createElement(
         "div",
         null,
@@ -7232,12 +7608,51 @@ var Step3 = function (_Component) {
         _react2.default.createElement(
           "div",
           { className: "mild-shadow clubcreation-process-section" },
-          "Uplaod photo shit",
-          _react2.default.createElement("br", null),
           _react2.default.createElement(
-            _reactstrap.Button,
-            { onClick: this.uploadWidget, className: "btn" },
-            "Upload"
+            "span",
+            { className: "clubcreation-question" },
+            "Deck out your club profile!  It'll make your club more appealing and easier to find."
+          ),
+          _react2.default.createElement(
+            "div",
+            { className: "clubcreation-upload" },
+            _react2.default.createElement("img", {
+              src: this.props.newClub.clubLogo }),
+            _react2.default.createElement("br", null),
+            _react2.default.createElement(
+              "span",
+              { className: "clubcreation-upload-text" },
+              "Upload Club Logo"
+            ),
+            _react2.default.createElement("br", null),
+            _react2.default.createElement(
+              _reactstrap.Button,
+              {
+                onClick: this.uploadWidgetLogo,
+                className: "btn clubcreation-upload-btn" },
+              "Upload"
+            ),
+            _react2.default.createElement("br", null)
+          ),
+          _react2.default.createElement(
+            "div",
+            { className: "clubcreation-upload" },
+            _react2.default.createElement("img", { src: this.props.newClub.clubCover }),
+            _react2.default.createElement("br", null),
+            _react2.default.createElement(
+              "span",
+              { className: "clubcreation-upload-text" },
+              "Upload Club Cover"
+            ),
+            _react2.default.createElement("br", null),
+            _react2.default.createElement(
+              _reactstrap.Button,
+              {
+                onClick: this.uploadWidgetCover,
+                className: "btn clubcreation-upload-btn" },
+              "Upload"
+            ),
+            _react2.default.createElement("br", null)
           )
         ),
         _react2.default.createElement(
@@ -7262,7 +7677,10 @@ var Step3 = function (_Component) {
             "Personality"
           ),
           _clubAddQuestions.PERSONALITY.map(function (q, index) {
-            return _react2.default.createElement(_QuestionUnit2.default, { question: q });
+            return _react2.default.createElement(_QuestionUnit2.default, {
+              update: _this2.updateQuestion,
+              question: q,
+              questions: _this2.props.newClub.questions });
           }),
           _react2.default.createElement(
             "span",
@@ -7270,7 +7688,10 @@ var Step3 = function (_Component) {
             "Facts"
           ),
           _clubAddQuestions.FACTS.map(function (q, index) {
-            return _react2.default.createElement(_QuestionUnit2.default, { question: q });
+            return _react2.default.createElement(_QuestionUnit2.default, {
+              question: q,
+              questions: _this2.props.newClub.questions,
+              update: _this2.updateQuestion });
           })
         )
       );
@@ -7282,17 +7703,20 @@ var Step3 = function (_Component) {
 
 exports.default = (0, _reactRedux.connect)(function (state) {
   return {
-    vibesFilterCC: state.clubCreationReducer.vibesFilterCC
+    vibesFilterCC: state.clubCreationReducer.vibesFilterCC,
+    newClub: state.clubCreationReducer.newClub
   };
 }, function (dispatch) {
   return (0, _redux.bindActionCreators)({
     toggleVibeFilterCC: _clubCreationActions.toggleVibeFilterCC,
-    toggleCategoryFilter: _searchResultsActions.toggleCategoryFilter
+    uploadClubLogo: _clubCreationActions.uploadClubLogo,
+    uploadClubCover: _clubCreationActions.uploadClubCover,
+    updateQuestion: _clubCreationActions.updateQuestion
   }, dispatch);
 })(Step3);
 
 /***/ }),
-/* 103 */
+/* 104 */
 /*!***********************************!*\
   !*** external "cloudinary-react" ***!
   \***********************************/
@@ -7303,7 +7727,7 @@ exports.default = (0, _reactRedux.connect)(function (state) {
 module.exports = require("cloudinary-react");
 
 /***/ }),
-/* 104 */
+/* 105 */
 /*!**************************************************!*\
   !*** ./src/apps/main/components/QuestionUnit.js ***!
   \**************************************************/
@@ -7354,6 +7778,7 @@ var QuestionUnit = function (_Component) {
       _this.setState({
         active: false
       });
+      _this.props.update(_this.props.question);
     };
 
     _this.state = {
@@ -7381,7 +7806,8 @@ var QuestionUnit = function (_Component) {
           { md: 5 },
           _react2.default.createElement("input", {
             type: "text",
-            className: "clubcreation-small-input"
+            className: "clubcreation-small-input",
+            onChange: this.props.update
           })
         ),
         _react2.default.createElement(
@@ -7407,7 +7833,7 @@ var QuestionUnit = function (_Component) {
 exports.default = QuestionUnit;
 
 /***/ }),
-/* 105 */
+/* 106 */
 /*!***********************************************!*\
   !*** ./src/apps/main/lib/clubAddQuestions.js ***!
   \***********************************************/
@@ -7434,7 +7860,7 @@ var PERSONALITY = exports.PERSONALITY = ["If our club were a food, we would be",
 var FACTS = exports.FACTS = ["Other than what our club's about, we also like to", "We hope more _______ would join us!", "At meetings we usually", "Sometimes we _______ after meetings.", "To become an officer of the club, you would", "The free food we offer includes", "Coming to our meetings, you should bring"];
 
 /***/ }),
-/* 106 */
+/* 107 */
 /*!********************************************************!*\
   !*** ./src/apps/main/components/ClubCreation/Step4.js ***!
   \********************************************************/
@@ -7498,7 +7924,7 @@ var Step4 = function (_Component) {
 exports.default = Step4;
 
 /***/ }),
-/* 107 */
+/* 108 */
 /*!****************************************************!*\
   !*** ./src/apps/main/containers/AdvancedSearch.js ***!
   \****************************************************/
@@ -7538,7 +7964,7 @@ var _SearchBar = __webpack_require__(/*! ../components/SearchBar */ 17);
 
 var _SearchBar2 = _interopRequireDefault(_SearchBar);
 
-var _CategorySelector = __webpack_require__(/*! ../components/CategorySelector */ 30);
+var _CategorySelector = __webpack_require__(/*! ../components/CategorySelector */ 31);
 
 var _CategorySelector2 = _interopRequireDefault(_CategorySelector);
 
@@ -7674,7 +8100,7 @@ exports.default = (0, _reactRedux.connect)(function (state) {
 })(AdvancedSearch);
 
 /***/ }),
-/* 108 */
+/* 109 */
 /*!********************************************!*\
   !*** ./src/apps/main/containers/SignUp.js ***!
   \********************************************/
@@ -7708,11 +8134,11 @@ var _Header = __webpack_require__(/*! ../components/Header */ 9);
 
 var _Header2 = _interopRequireDefault(_Header);
 
-var _Footer = __webpack_require__(/*! ../components/Footer */ 29);
+var _Footer = __webpack_require__(/*! ../components/Footer */ 30);
 
 var _Footer2 = _interopRequireDefault(_Footer);
 
-var _ChooseSignUpOption = __webpack_require__(/*! ../components/SignUp/ChooseSignUpOption */ 109);
+var _ChooseSignUpOption = __webpack_require__(/*! ../components/SignUp/ChooseSignUpOption */ 110);
 
 var _ChooseSignUpOption2 = _interopRequireDefault(_ChooseSignUpOption);
 
@@ -7842,7 +8268,7 @@ exports.default = (0, _reactRedux.connect)(function () {
 })(SignUp);
 
 /***/ }),
-/* 109 */
+/* 110 */
 /*!***************************************************************!*\
   !*** ./src/apps/main/components/SignUp/ChooseSignUpOption.js ***!
   \***************************************************************/
@@ -7863,6 +8289,18 @@ var _react = __webpack_require__(/*! react */ 0);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactFacebookLogin = __webpack_require__(/*! react-facebook-login */ 111);
+
+var _reactFacebookLogin2 = _interopRequireDefault(_reactFacebookLogin);
+
+var _reactRedux = __webpack_require__(/*! react-redux */ 2);
+
+var _redux = __webpack_require__(/*! redux */ 3);
+
+var _reactRouter = __webpack_require__(/*! react-router */ 5);
+
+var _authActions = __webpack_require__(/*! ../../actions/authActions */ 18);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -7881,7 +8319,27 @@ var ChooseSignUpOption = function (_Component) {
 
     _classCallCheck(this, ChooseSignUpOption);
 
-    return _possibleConstructorReturn(this, (ChooseSignUpOption.__proto__ || Object.getPrototypeOf(ChooseSignUpOption)).apply(this, arguments));
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ChooseSignUpOption.__proto__ || Object.getPrototypeOf(ChooseSignUpOption)).call.apply(_ref, [this].concat(args))), _this), _this.responseFacebook = function (response) {
+      console.log("response from FB is", response);
+      var nameArr = response.name.split();
+      var dataObj = {
+        firstName: nameArr[0],
+        lastName: nameArr[1],
+        profPicURL: response.picture.data.url,
+        fbID: response.userID,
+        token: response.accessToken
+      };
+
+      console.log("dataobj is", dataObj);
+
+      _this.props.signInFB(dataObj);
+    }, _this.FBloginClicked = function () {
+      return;
+    }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(ChooseSignUpOption, [{
@@ -7898,7 +8356,12 @@ var ChooseSignUpOption = function (_Component) {
         _react2.default.createElement(
           "button",
           { className: "btn joinus-signUpButton", id: "joinus-facebook" },
-          "Join us with Facebook"
+          _react2.default.createElement(_reactFacebookLogin2.default, {
+            appId: "469991373333039",
+            autoLoad: false,
+            fields: "name,email,picture",
+            onClick: this.FBloginClicked,
+            callback: this.responseFacebook })
         ),
         _react2.default.createElement(
           "button",
@@ -7926,7 +8389,7 @@ exports.default = (0, _reactRedux.connect)(function () {
 })(ChooseSignUpOption);
 
 /***/ }),
-/* 110 */
+/* 111 */
 /*!***************************************!*\
   !*** external "react-facebook-login" ***!
   \***************************************/
@@ -7937,7 +8400,7 @@ exports.default = (0, _reactRedux.connect)(function () {
 module.exports = require("react-facebook-login");
 
 /***/ }),
-/* 111 */
+/* 112 */
 /*!***********************************************!*\
   !*** ./src/apps/main/containers/Dashboard.js ***!
   \***********************************************/
@@ -7967,7 +8430,7 @@ var _reactHelmet = __webpack_require__(/*! react-helmet */ 8);
 
 var _reactHelmet2 = _interopRequireDefault(_reactHelmet);
 
-var _OrgDashboard = __webpack_require__(/*! ../components/Dashboard/OrgDashboard */ 112);
+var _OrgDashboard = __webpack_require__(/*! ../components/Dashboard/OrgDashboard */ 113);
 
 var _OrgDashboard2 = _interopRequireDefault(_OrgDashboard);
 
@@ -8038,7 +8501,7 @@ exports.default = (0, _reactRedux.connect)(function () {
 })(Dashboard);
 
 /***/ }),
-/* 112 */
+/* 113 */
 /*!************************************************************!*\
   !*** ./src/apps/main/components/Dashboard/OrgDashboard.js ***!
   \************************************************************/
@@ -8161,7 +8624,7 @@ var OrgDashboard = function (_Component) {
 exports.default = OrgDashboard;
 
 /***/ }),
-/* 113 */
+/* 114 */
 /*!*****************************************!*\
   !*** ./src/apps/main/reducers/index.js ***!
   \*****************************************/
@@ -8176,19 +8639,19 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _clubCreationReducer = __webpack_require__(/*! ./clubCreationReducer */ 114);
+var _clubCreationReducer = __webpack_require__(/*! ./clubCreationReducer */ 115);
 
 var _clubCreationReducer2 = _interopRequireDefault(_clubCreationReducer);
 
-var _frontPageReducer = __webpack_require__(/*! ./frontPageReducer */ 115);
+var _frontPageReducer = __webpack_require__(/*! ./frontPageReducer */ 116);
 
 var _frontPageReducer2 = _interopRequireDefault(_frontPageReducer);
 
-var _searchResultsReducer = __webpack_require__(/*! ./searchResultsReducer */ 116);
+var _searchResultsReducer = __webpack_require__(/*! ./searchResultsReducer */ 117);
 
 var _searchResultsReducer2 = _interopRequireDefault(_searchResultsReducer);
 
-var _authReducer = __webpack_require__(/*! ./authReducer */ 117);
+var _authReducer = __webpack_require__(/*! ./authReducer */ 118);
 
 var _authReducer2 = _interopRequireDefault(_authReducer);
 
@@ -8202,7 +8665,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 114 */
+/* 115 */
 /*!*******************************************************!*\
   !*** ./src/apps/main/reducers/clubCreationReducer.js ***!
   \*******************************************************/
@@ -8225,19 +8688,27 @@ var _lodash2 = _interopRequireDefault(_lodash);
 
 var _clubCreationActions = __webpack_require__(/*! ../actions/clubCreationActions */ 12);
 
+var _consts = __webpack_require__(/*! ../lib/consts */ 4);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var INITIAL_STATE = {
   newClub: {
     category: "",
-    name: "",
-    desc: "",
-    establishedDate: "",
+    clubName: "",
+    description: "",
+    establishedDate: new Date(0),
     meetingLocation: "",
     meetingDatesAndTimes: {},
     fee: {},
     memberReq: "",
-    vibes: []
+    vibes: [],
+    clubLogo: "",
+    clubCover: "",
+    id: "",
+    clubFeeAmount: 0,
+    clubFeePeriod: "meeting/session",
+    questions: {}
   },
   validationSteps: [false, false, false, false, false, false],
   vibesFilterCC: []
@@ -8248,19 +8719,50 @@ exports.default = function () {
   var action = arguments[1];
 
   var updatedDatesAndTimes = _lodash2.default.cloneDeep(state.newClub.meetingDatesAndTimes);
-  console.log("updatedDates", updatedDatesAndTimes);
   switch (action.type) {
-    case _clubCreationActions.UPDATE_CLUB_NAME:
-      console.log("receievd ", action.payload);
+
+    case _clubCreationActions.LOAD_EXISTING_CLUB:
+      var existingClub = _lodash2.default.cloneDeep(state.newClub);
+      for (var field in action.payload) {
+        if (field === "_id") {
+          existingClub["id"] = action.payload[field];
+        } else {
+          existingClub[field] = action.payload[field];
+        }
+      }
+
+      return _extends({}, state, {
+        newClub: existingClub
+      });
+
+    case _clubCreationActions.UPDATE_CLUB_MONTH:
+      var newMonth = new Date(state.newClub.establishedDate);
+      newMonth.setUTCMonth(_consts.MONTHS_TO_INT[action.payload]);
       return _extends({}, state, {
         newClub: _extends({}, state.newClub, {
-          name: action.payload })
+          establishedDate: newMonth
+        })
+      });
+
+    case _clubCreationActions.UPDATE_CLUB_YEAR:
+      var newYear = new Date(state.newClub.establishedDate);
+      newYear.setUTCFullYear(action.payload);
+      return _extends({}, state, {
+        newClub: _extends({}, state.newClub, {
+          establishedDate: newYear
+        })
+      });
+
+    case _clubCreationActions.UPDATE_CLUB_NAME:
+      return _extends({}, state, {
+        newClub: _extends({}, state.newClub, {
+          clubName: action.payload })
       });
 
     case _clubCreationActions.UPDATE_CLUB_DESC:
       return _extends({}, state, {
         newClub: _extends({}, state.newClub, {
-          desc: action.payload })
+          description: action.payload })
       });
 
     case _clubCreationActions.UPDATE_CLUB_MEETING_LOC:
@@ -8272,18 +8774,14 @@ exports.default = function () {
     case _clubCreationActions.UPDATE_CLUB_FEE_AMOUNT:
       return _extends({}, state, {
         newClub: _extends({}, state.newClub, {
-          fee: _extends({}, state.newClub.fee, {
-            amount: action.payload
-          })
+          clubFeeAmount: action.payload
         })
       });
 
     case _clubCreationActions.UPDATE_CLUB_FEE_PERIOD:
       return _extends({}, state, {
         newClub: _extends({}, state.newClub, {
-          fee: _extends({}, state.newClub.fee, {
-            period: action.payload
-          })
+          clubFeePeriod: action.payload
         })
       });
 
@@ -8500,13 +8998,13 @@ exports.default = function () {
       });
 
     case _clubCreationActions.TOGGLE_VIBE_FILTER_CC:
-      if (state.vibesFilterCC.length === 3) return state;
       if (_lodash2.default.includes(state.vibesFilterCC, action.payload)) {
         console.log("removing: " + action.payload);
         state = _extends({}, state, {
           vibesFilterCC: _lodash2.default.without(state.vibesFilterCC, action.payload)
         });
       } else {
+        if (state.vibesFilterCC.length === 3) return state;
         console.log("adding: " + action.payload);
         state = _extends({}, state, {
           vibesFilterCC: _lodash2.default.concat(state.vibesFilterCC, action.payload)
@@ -8514,13 +9012,34 @@ exports.default = function () {
       }
       return state;
 
+    case _clubCreationActions.UPLOAD_CLUB_LOGO:
+      return _extends({}, state, {
+        newClub: _extends({}, state.newClub, {
+          clubLogo: action.payload.url
+        })
+      });
+
+    case _clubCreationActions.UPLOAD_CLUB_COVER:
+      return _extends({}, state, {
+        newClub: _extends({}, state.newClub, {
+          clubCover: action.payload.url
+        })
+      });
+
+    case _clubCreationActions.UPDATE_QUESTION:
+      return _extends({}, state, {
+        newClub: _extends({}, state.newClub, {
+          questions: action.payload
+        })
+      });
+
     default:
       return state;
   }
 };
 
 /***/ }),
-/* 115 */
+/* 116 */
 /*!****************************************************!*\
   !*** ./src/apps/main/reducers/frontPageReducer.js ***!
   \****************************************************/
@@ -8556,7 +9075,7 @@ exports.default = function () {
 };
 
 /***/ }),
-/* 116 */
+/* 117 */
 /*!********************************************************!*\
   !*** ./src/apps/main/reducers/searchResultsReducer.js ***!
   \********************************************************/
@@ -8642,7 +9161,7 @@ exports.default = function () {
 };
 
 /***/ }),
-/* 117 */
+/* 118 */
 /*!***********************************************!*\
   !*** ./src/apps/main/reducers/authReducer.js ***!
   \***********************************************/
@@ -8659,7 +9178,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _authActions = __webpack_require__(/*! ../actions/authActions */ 31);
+var _authActions = __webpack_require__(/*! ../actions/authActions */ 18);
 
 var INITIAL_STATE = {
   authenticated: false
@@ -8678,7 +9197,7 @@ exports.default = function () {
 };
 
 /***/ }),
-/* 118 */
+/* 119 */
 /*!**************************!*\
   !*** ./src/entries.json ***!
   \**************************/
@@ -8689,7 +9208,7 @@ exports.default = function () {
 module.exports = {"/":{"component":"src/apps/main/Index.js","routes":"src/apps/main/routes.js","reducers":"src/apps/main/reducers"}}
 
 /***/ }),
-/* 119 */
+/* 120 */
 /*!***********************************!*\
   !*** ./gluestick/EntryWrapper.js ***!
   \***********************************/
@@ -8715,17 +9234,17 @@ var _react = __webpack_require__(/*! react */ 0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(/*! react-dom */ 120);
+var _reactDom = __webpack_require__(/*! react-dom */ 121);
 
-var _reactHotLoader = __webpack_require__(/*! react-hot-loader */ 121);
+var _reactHotLoader = __webpack_require__(/*! react-hot-loader */ 122);
 
 var _gluestick = __webpack_require__(/*! compiled/gluestick */ 11);
 
-var _match = __webpack_require__(/*! react-router/lib/match */ 122);
+var _match = __webpack_require__(/*! react-router/lib/match */ 123);
 
 var _match2 = _interopRequireDefault(_match);
 
-var _browserHistory = __webpack_require__(/*! react-router/lib/browserHistory */ 123);
+var _browserHistory = __webpack_require__(/*! react-router/lib/browserHistory */ 124);
 
 var _browserHistory2 = _interopRequireDefault(_browserHistory);
 
@@ -8818,7 +9337,7 @@ var start = function start(config, getRoutes, getStore) {
 
   // Allow developers to include code that will be executed before the app is
   // set up in the browser.
-  __webpack_require__(/*! config/init.browser */ 124);
+  __webpack_require__(/*! config/init.browser */ 125);
 
   var httpClient = (0, _gluestick.getHttpClient)(config.httpClient);
   var store = getStore(httpClient);
@@ -8888,7 +9407,7 @@ EntryWrapper.defaultProps = {
 exports.default = EntryWrapper;
 
 /***/ }),
-/* 120 */
+/* 121 */
 /*!****************************!*\
   !*** external "react-dom" ***!
   \****************************/
@@ -8899,7 +9418,7 @@ exports.default = EntryWrapper;
 module.exports = require("react-dom");
 
 /***/ }),
-/* 121 */
+/* 122 */
 /*!***********************************!*\
   !*** external "react-hot-loader" ***!
   \***********************************/
@@ -8910,7 +9429,7 @@ module.exports = require("react-dom");
 module.exports = require("react-hot-loader");
 
 /***/ }),
-/* 122 */
+/* 123 */
 /*!*****************************************!*\
   !*** external "react-router/lib/match" ***!
   \*****************************************/
@@ -8921,7 +9440,7 @@ module.exports = require("react-hot-loader");
 module.exports = require("react-router/lib/match");
 
 /***/ }),
-/* 123 */
+/* 124 */
 /*!**************************************************!*\
   !*** external "react-router/lib/browserHistory" ***!
   \**************************************************/
@@ -8932,7 +9451,7 @@ module.exports = require("react-router/lib/match");
 module.exports = require("react-router/lib/browserHistory");
 
 /***/ }),
-/* 124 */
+/* 125 */
 /*!************************************!*\
   !*** ./src/config/init.browser.js ***!
   \************************************/
@@ -8950,7 +9469,7 @@ module.exports = require("react-router/lib/browserHistory");
 
 
 /***/ }),
-/* 125 */
+/* 126 */
 /*!********************************!*\
   !*** ./src/gluestick.hooks.js ***!
   \********************************/
@@ -8977,7 +9496,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 126 */
+/* 127 */
 /*!******************************************************************!*\
   !*** ./node_modules/gluestick/build/renderer/components/Body.js ***!
   \******************************************************************/
@@ -9007,7 +9526,7 @@ var _react = __webpack_require__(/*! react */ 0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _serializeJavascript = __webpack_require__(/*! serialize-javascript */ 19);
+var _serializeJavascript = __webpack_require__(/*! serialize-javascript */ 20);
 
 var _serializeJavascript2 = _interopRequireDefault(_serializeJavascript);
 
@@ -9093,7 +9612,7 @@ var Body = (_temp = _class = function (_react$Component) {
 exports.default = Body;
 
 /***/ }),
-/* 127 */
+/* 128 */
 /*!**************************************!*\
   !*** ./src/config/caching.server.js ***!
   \**************************************/
@@ -9110,7 +9629,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = {};
 
 /***/ }),
-/* 128 */
+/* 129 */
 /*!****************************************************************!*\
   !*** ./node_modules/gluestick/build/renderer/helpers/hooks.js ***!
   \****************************************************************/
@@ -9156,7 +9675,7 @@ module.exports = {
 };
 
 /***/ }),
-/* 129 */
+/* 130 */
 /*!**********************************************************************!*\
   !*** ./node_modules/gluestick/build/plugins/prepareServerPlugins.js ***!
   \**********************************************************************/
@@ -9167,7 +9686,7 @@ module.exports = {
 "use strict";
 
 
-var _require = __webpack_require__(/*! ../cli/helpers */ 130);
+var _require = __webpack_require__(/*! ../cli/helpers */ 131);
 
 var createArrowList = _require.createArrowList;
 
@@ -9255,7 +9774,7 @@ module.exports = function (logger, plugins) {
 };
 
 /***/ }),
-/* 130 */
+/* 131 */
 /*!*****************************************************!*\
   !*** ./node_modules/gluestick/build/cli/helpers.js ***!
   \*****************************************************/
@@ -9281,7 +9800,7 @@ module.exports = {
 };
 
 /***/ }),
-/* 131 */
+/* 132 */
 /*!*********************************************************************!*\
   !*** ./node_modules/gluestick/build/renderer/helpers/setProxies.js ***!
   \*********************************************************************/
@@ -9304,7 +9823,7 @@ var _extends = Object.assign || function (target) {
   }return target;
 };
 
-var proxy = __webpack_require__(/*! http-proxy-middleware */ 132);
+var proxy = __webpack_require__(/*! http-proxy-middleware */ 133);
 
 /**
  * The array of proxy objects follow the following pattern
@@ -9356,7 +9875,7 @@ module.exports = function (app) {
 };
 
 /***/ }),
-/* 132 */
+/* 133 */
 /*!****************************************!*\
   !*** external "http-proxy-middleware" ***!
   \****************************************/
@@ -9366,126 +9885,6 @@ module.exports = function (app) {
 
 module.exports = require("http-proxy-middleware");
 
-/***/ }),
-/* 128 */
-/*!********************************************************************!*\
-  !*** ./src/apps/main/assets/images/clubprofile/starcraft-logo.png ***!
-  \********************************************************************/
-/*! no static exports found */
-/*! all exports used */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "starcraft-logo-c5a54951d85c00ebdea2b0cb79400d8e.png";
-
 /***/ })
 /******/ ]);
 //# sourceMappingURL=renderer.js.map
-/*!**********************************************!*\
-  !*** ./src/apps/main/actions/authActions.js ***!
-  \**********************************************/
-/*! no static exports found */
-/*! all exports used */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.UNAUTH_USER = exports.AUTH_USER = exports.SIGNIN_FB = undefined;
-exports.signInFB = signInFB;
-exports.authUser = authUser;
-exports.unauthUser = unauthUser;
-
-var _axios = __webpack_require__(/*! axios */ 6);
-
-var _axios2 = _interopRequireDefault(_axios);
-
-var _reactRouter = __webpack_require__(/*! react-router */ 5);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var SIGNIN_FB = exports.SIGNIN_FB = "SIGNIN_FB";
-var AUTH_USER = exports.AUTH_USER = "AUTH_USER";
-var UNAUTH_USER = exports.UNAUTH_USER = "UNAUTH_USER";
-
-function signInFB(dataObj) {
-  return function (dispatch) {
-
-    // let's say the api passes and it works hooray.
-    // axios.get(`api/members`, {
-    //   params: {
-    //     fbID: dataObj.fbID
-    //   }
-    // }).then((response) => {
-    //   console.log(response);
-    // });
-
-    // then we're gonna post a new user into the database.
-    // axios.post(`${ROOT_URL}/signup`, dataObj)
-    // .then(response => {
-    //   console.log("something happened hooray lol", dataObj);
-    // })
-    // .catch((err) => {
-    //   console.log("crap", err);
-    // });
-
-    dispatch({ type: AUTH_USER });
-    console.log("dataObj token is", dataObj.token);
-    localStorage.setItem("token", dataObj.token);
-
-    _reactRouter.browserHistory.push("/");
-  };
-}
-
-function authUser() {
-  return {
-    type: AUTH_USER
-  };
-}
-
-function unauthUser() {
-  return {
-    type: UNAUTH_USER
-  };
-}
-
-/***/ }),
-/* 32 */
-var _MasterLayout = __webpack_require__(/*! ./components/MasterLayout */ 77);
-    _react2.default.createElement(_reactRouter.Route, { path: "/dashboard", component: _Dashboard2.default }),
-var _reactFacebookLogin = __webpack_require__(/*! react-facebook-login */ 110);
-
-var _reactFacebookLogin2 = _interopRequireDefault(_reactFacebookLogin);
-
-var _reactRedux = __webpack_require__(/*! react-redux */ 2);
-
-var _redux = __webpack_require__(/*! redux */ 3);
-
-var _authActions = __webpack_require__(/*! ../../actions/authActions */ 31);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ChooseSignUpOption.__proto__ || Object.getPrototypeOf(ChooseSignUpOption)).call.apply(_ref, [this].concat(args))), _this), _this.responseFacebook = function (response) {
-      console.log("response from FB is", response);
-      var nameArr = response.name.split();
-      var dataObj = {
-        firstName: nameArr[0],
-        lastName: nameArr[1],
-        profPicURL: response.picture.data.url,
-        fbID: response.userID,
-        token: response.accessToken
-      };
-
-      console.log("dataobj is", dataObj);
-
-      _this.props.signInFB(dataObj);
-    }, _temp), _possibleConstructorReturn(_this, _ret);
-          _react2.default.createElement(_reactFacebookLogin2.default, {
-            appId: "469991373333039",
-            autoLoad: true,
-            fields: "name,email,picture",
-            callback: this.responseFacebook })
