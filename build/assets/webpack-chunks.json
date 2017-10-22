@@ -1,6 +1,10 @@
 {
   "javascript": {
+<<<<<<< Updated upstream
     "main": "http://localhost:8888/assets/main.21fc57307afdf40b1be6.js",
+=======
+    "main": "http://localhost:8888/assets/main.bc69a32eb12897bbaca3.js",
+>>>>>>> Stashed changes
     "vendor": "http://localhost:8888/assets/vendor.bundle.js"
   },
   "styles": {}
