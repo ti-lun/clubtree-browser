@@ -110,6 +110,17 @@ module.exports = require("redux");
 
 /***/ }),
 /* 4 */
+/*!*************************!*\
+  !*** external "lodash" ***!
+  \*************************/
+/*! dynamic exports provided */
+/*! all exports used */
+/***/ (function(module, exports) {
+
+module.exports = require("lodash");
+
+/***/ }),
+/* 5 */
 /*!*************************************!*\
   !*** ./src/apps/main/lib/consts.js ***!
   \*************************************/
@@ -129,7 +140,7 @@ var _react = __webpack_require__(/*! react */ 0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _lodash = __webpack_require__(/*! lodash */ 5);
+var _lodash = __webpack_require__(/*! lodash */ 4);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -167,17 +178,6 @@ var DAYS = exports.DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday
 var MONTHS = exports.MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 var VALID_YEARS = exports.VALID_YEARS = (0, _lodash.range)(2017, 1970, -1);
-
-/***/ }),
-/* 5 */
-/*!*************************!*\
-  !*** external "lodash" ***!
-  \*************************/
-/*! dynamic exports provided */
-/*! all exports used */
-/***/ (function(module, exports) {
-
-module.exports = require("lodash");
 
 /***/ }),
 /* 6 */
@@ -393,7 +393,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.setStatusCode = exports.set404StatusCode = exports.getHttpClient = exports.prepareRoutesWithTransitionHooks = exports.createStore = exports.BodyAttributes = exports.Root = undefined;
 
-var _routeHelper = __webpack_require__(/*! ./lib/route-helper */ 20);
+var _routeHelper = __webpack_require__(/*! ./lib/route-helper */ 21);
 
 Object.keys(_routeHelper).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
@@ -417,7 +417,7 @@ Object.keys(_constants).forEach(function (key) {
   });
 });
 
-var _actions = __webpack_require__(/*! ./lib/actions */ 21);
+var _actions = __webpack_require__(/*! ./lib/actions */ 22);
 
 Object.defineProperty(exports, 'set404StatusCode', {
   enumerable: true,
@@ -444,7 +444,7 @@ var _createStore2 = __webpack_require__(/*! ./lib/createStore */ 54);
 
 var _createStore3 = _interopRequireDefault(_createStore2);
 
-var _prepareRoutesWithTransitionHooks2 = __webpack_require__(/*! ./lib/prepareRoutesWithTransitionHooks */ 22);
+var _prepareRoutesWithTransitionHooks2 = __webpack_require__(/*! ./lib/prepareRoutesWithTransitionHooks */ 23);
 
 var _prepareRoutesWithTransitionHooks3 = _interopRequireDefault(_prepareRoutesWithTransitionHooks2);
 
@@ -662,11 +662,12 @@ module.exports = require("path");
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.FETCH_CLUB_SEARCH_RESULTS = exports.SET_TERM_FILTER = exports.TOGGLE_CATEGORY_FILTER = exports.SET_CATEGORY_FILTER = exports.TOGGLE_VIBE_FILTER = exports.SIMPLE_SEARCH_CLUB = undefined;
+exports.FETCH_CLUB_SEARCH_RESULTS = exports.SET_TERM_FILTER = exports.TOGGLE_CATEGORY_FILTER = exports.SET_VIBE_FILTER = exports.SET_CATEGORY_FILTER = exports.TOGGLE_VIBE_FILTER = exports.SIMPLE_SEARCH_CLUB = undefined;
 exports.simpleSearchClub = simpleSearchClub;
 exports.fetchClubSearchResults = fetchClubSearchResults;
 exports.setTermFilter = setTermFilter;
 exports.setCategoryFilter = setCategoryFilter;
+exports.setVibeFilter = setVibeFilter;
 exports.toggleCategoryFilter = toggleCategoryFilter;
 exports.toggleVibeFilter = toggleVibeFilter;
 
@@ -683,6 +684,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var SIMPLE_SEARCH_CLUB = exports.SIMPLE_SEARCH_CLUB = "SIMPLE_SEARCH_CLUB";
 var TOGGLE_VIBE_FILTER = exports.TOGGLE_VIBE_FILTER = "TOGGLE_VIBE_FILTER";
 var SET_CATEGORY_FILTER = exports.SET_CATEGORY_FILTER = "SET_CATEGORY_FILTER";
+var SET_VIBE_FILTER = exports.SET_VIBE_FILTER = "SET_VIBE_FILTER";
 var TOGGLE_CATEGORY_FILTER = exports.TOGGLE_CATEGORY_FILTER = "TOGGLE_CATEGORY_FILTER";
 var SET_TERM_FILTER = exports.SET_TERM_FILTER = "SET_TERM_FILTER";
 var FETCH_CLUB_SEARCH_RESULTS = exports.FETCH_CLUB_SEARCH_RESULTS = "FETCH_CLUB_SEARCH_RESULTS";
@@ -720,6 +722,13 @@ function setCategoryFilter(filter) {
   };
 }
 
+function setVibeFilter(filter) {
+  return {
+    type: SET_VIBE_FILTER,
+    payload: filter
+  };
+}
+
 function toggleCategoryFilter(category) {
   return {
     type: TOGGLE_CATEGORY_FILTER,
@@ -736,6 +745,205 @@ function toggleVibeFilter(vibe) {
 
 /***/ }),
 /* 15 */
+/*!*********************!*\
+  !*** external "fs" ***!
+  \*********************/
+/*! dynamic exports provided */
+/*! all exports used */
+/***/ (function(module, exports) {
+
+module.exports = require("fs");
+
+/***/ }),
+/* 16 */
+/*!***********************************************!*\
+  !*** ./src/apps/main/components/SearchBar.js ***!
+  \***********************************************/
+/*! dynamic exports provided */
+/*! all exports used */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ 0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__(/*! react-redux */ 2);
+
+var _redux = __webpack_require__(/*! redux */ 3);
+
+var _reactstrap = __webpack_require__(/*! reactstrap */ 1);
+
+var _reactRouter = __webpack_require__(/*! react-router */ 6);
+
+var _axios = __webpack_require__(/*! axios */ 8);
+
+var _axios2 = _interopRequireDefault(_axios);
+
+var _utils = __webpack_require__(/*! ./../lib/utils */ 17);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var SearchBar = function (_Component) {
+  _inherits(SearchBar, _Component);
+
+  function SearchBar(props) {
+    _classCallCheck(this, SearchBar);
+
+    var _this = _possibleConstructorReturn(this, (SearchBar.__proto__ || Object.getPrototypeOf(SearchBar)).call(this, props));
+
+    _this.onInputChange = _this.onInputChange.bind(_this);
+    return _this;
+  }
+
+  _createClass(SearchBar, [{
+    key: "onInputChange",
+    value: function onInputChange(event) {
+      //Whenever the application senses a change in input (someone presses a key)
+      // it will re-render the component to display the updated input
+      if (event.target.value === "") {
+        this.props.setTermFilter(undefined);
+      } else {
+        this.props.setTermFilter(event.target.value);
+      }
+    }
+  }, {
+    key: "returnCorrectSearchButton",
+    value: function returnCorrectSearchButton(searchClass) {
+      switch (searchClass) {
+        case "front-page-search":
+          return _react2.default.createElement(
+            _reactstrap.Button,
+            { className: "btn-red" },
+            "Search"
+          );
+        case "results-page-search":
+          return _react2.default.createElement("i", { className: "fa fa-search", "aria-hidden": "true", style: { color: "#90caf9" } });
+      }
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      var query = {
+        q: this.props.termFilter,
+        vibe: this.props.vibesFilter,
+        category: this.props.categoriesFilter
+      };
+
+      var url = (0, _utils.generateSearchURL)(query);
+
+      var searchButton = _react2.default.createElement(
+        _reactRouter.Link,
+        {
+          to: url,
+          onClick: function onClick() {
+            return _this2.props.search ? _this2.props.fetchClubSearchResults(query) : null;
+          }
+        },
+        this.returnCorrectSearchButton(this.props.searchBarStyleClass)
+      );
+
+      return _react2.default.createElement(
+        "div",
+        { className: "text-center" },
+        _react2.default.createElement(_reactstrap.Input, {
+          type: "text",
+          placeholder: this.props.searchBarStyleClass === "frontPageSearch" ? "Search for clubs@UCI:" : null,
+          className: this.props.searchBarStyleClass,
+          value: this.props.termFilter,
+          onChange: this.onInputChange,
+          autoFocus: true
+        }),
+        searchButton
+      );
+    }
+  }]);
+
+  return SearchBar;
+}(_react.Component);
+
+exports.default = SearchBar;
+
+/***/ }),
+/* 17 */
+/*!************************************!*\
+  !*** ./src/apps/main/lib/utils.js ***!
+  \************************************/
+/*! dynamic exports provided */
+/*! all exports used */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.generateSearchURL = generateSearchURL;
+
+var _lodash = __webpack_require__(/*! lodash */ 4);
+
+var _lodash2 = _interopRequireDefault(_lodash);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function generateSearchURL(params) {
+    var url = '/search';
+    var query = [];
+
+    Object.keys(params).forEach(function (key, index) {
+        var value = params[key];
+
+        if (_lodash2.default.isString(value)) {
+            query.push(key + '=' + value);
+        } else if (_lodash2.default.isNumber(value)) {
+            query.push(key + '=' + value);
+        } else if (_lodash2.default.isArray(value)) {
+            value = _lodash2.default.filter(value, _lodash2.default.negate(_lodash2.default.isNil));
+            query = query.concat(value.map(function (elem) {
+                return key + '=' + elem;
+            }));
+        }
+    });
+
+    query = query.join('&');
+
+    if (query) {
+        url = url + '?' + query;
+    }
+
+    return url;
+}
+
+/***/ }),
+/* 18 */
+/*!******************************************!*\
+  !*** external "react-textarea-autosize" ***!
+  \******************************************/
+/*! dynamic exports provided */
+/*! all exports used */
+/***/ (function(module, exports) {
+
+module.exports = require("react-textarea-autosize");
+
+/***/ }),
+/* 19 */
 /*!******************************************************!*\
   !*** ./src/apps/main/components/ColorfulSelector.js ***!
   \******************************************************/
@@ -752,7 +960,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _lodash = __webpack_require__(/*! lodash */ 5);
+var _lodash = __webpack_require__(/*! lodash */ 4);
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
@@ -760,7 +968,7 @@ var _react = __webpack_require__(/*! react */ 0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _consts = __webpack_require__(/*! ../lib/consts */ 4);
+var _consts = __webpack_require__(/*! ../lib/consts */ 5);
 
 var _reactstrap = __webpack_require__(/*! reactstrap */ 1);
 
@@ -883,154 +1091,7 @@ var ColorfulSelector = function (_Component) {
 exports.default = ColorfulSelector;
 
 /***/ }),
-/* 16 */
-/*!*********************!*\
-  !*** external "fs" ***!
-  \*********************/
-/*! dynamic exports provided */
-/*! all exports used */
-/***/ (function(module, exports) {
-
-module.exports = require("fs");
-
-/***/ }),
-/* 17 */
-/*!***********************************************!*\
-  !*** ./src/apps/main/components/SearchBar.js ***!
-  \***********************************************/
-/*! dynamic exports provided */
-/*! all exports used */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(/*! react */ 0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactRedux = __webpack_require__(/*! react-redux */ 2);
-
-var _redux = __webpack_require__(/*! redux */ 3);
-
-var _reactstrap = __webpack_require__(/*! reactstrap */ 1);
-
-var _reactRouter = __webpack_require__(/*! react-router */ 6);
-
-var _axios = __webpack_require__(/*! axios */ 8);
-
-var _axios2 = _interopRequireDefault(_axios);
-
-var _utils = __webpack_require__(/*! ./../lib/utils */ 27);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var SearchBar = function (_Component) {
-  _inherits(SearchBar, _Component);
-
-  function SearchBar(props) {
-    _classCallCheck(this, SearchBar);
-
-    var _this = _possibleConstructorReturn(this, (SearchBar.__proto__ || Object.getPrototypeOf(SearchBar)).call(this, props));
-
-    _this.onInputChange = _this.onInputChange.bind(_this);
-    return _this;
-  }
-
-  _createClass(SearchBar, [{
-    key: "onInputChange",
-    value: function onInputChange(event) {
-      //Whenever the application senses a change in input (someone presses a key)
-      // it will re-render the component to display the updated input
-      if (event.target.value === "") {
-        this.props.setTermFilter(undefined);
-      } else {
-        this.props.setTermFilter(event.target.value);
-      }
-    }
-  }, {
-    key: "returnCorrectSearchButton",
-    value: function returnCorrectSearchButton(searchClass) {
-      switch (searchClass) {
-        case "front-page-search":
-          return _react2.default.createElement(
-            _reactstrap.Button,
-            { className: "btn-red" },
-            "Search"
-          );
-        case "results-page-search":
-          return _react2.default.createElement("i", { className: "fa fa-search", "aria-hidden": "true", style: { color: "#90caf9" } });
-      }
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      var _this2 = this;
-
-      var query = {
-        q: this.props.termFilter,
-        category: this.props.categoriesFilter
-      };
-
-      var url = (0, _utils.generateSearchURL)(query);
-
-      var searchButton = _react2.default.createElement(
-        _reactRouter.Link,
-        {
-          to: url,
-          onClick: function onClick() {
-            return _this2.props.search ? _this2.props.fetchClubSearchResults(query) : null;
-          }
-        },
-        this.returnCorrectSearchButton(this.props.searchBarStyleClass)
-      );
-
-      return _react2.default.createElement(
-        "div",
-        { className: "text-center" },
-        _react2.default.createElement(_reactstrap.Input, {
-          type: "text",
-          placeholder: this.props.searchBarStyleClass === "frontPageSearch" ? "Search for clubs@UCI:" : null,
-          className: this.props.searchBarStyleClass,
-          value: this.props.termFilter,
-          onChange: this.onInputChange,
-          autoFocus: true
-        }),
-        searchButton
-      );
-    }
-  }]);
-
-  return SearchBar;
-}(_react.Component);
-
-exports.default = SearchBar;
-
-/***/ }),
-/* 18 */
-/*!******************************************!*\
-  !*** external "react-textarea-autosize" ***!
-  \******************************************/
-/*! dynamic exports provided */
-/*! all exports used */
-/***/ (function(module, exports) {
-
-module.exports = require("react-textarea-autosize");
-
-/***/ }),
-/* 19 */
+/* 20 */
 /*!***************************************!*\
   !*** external "serialize-javascript" ***!
   \***************************************/
@@ -1041,7 +1102,7 @@ module.exports = require("react-textarea-autosize");
 module.exports = require("serialize-javascript");
 
 /***/ }),
-/* 20 */
+/* 21 */
 /*!***********************************************************!*\
   !*** ./node_modules/gluestick/shared/lib/route-helper.js ***!
   \***********************************************************/
@@ -1170,7 +1231,7 @@ function createTransitionHook(store, routes) {
 }
 
 /***/ }),
-/* 21 */
+/* 22 */
 /*!******************************************************!*\
   !*** ./node_modules/gluestick/shared/lib/actions.js ***!
   \******************************************************/
@@ -1200,7 +1261,7 @@ function setStatusCode(statusCode) {
 }
 
 /***/ }),
-/* 22 */
+/* 23 */
 /*!*******************************************************************************!*\
   !*** ./node_modules/gluestick/shared/lib/prepareRoutesWithTransitionHooks.js ***!
   \*******************************************************************************/
@@ -1237,7 +1298,7 @@ exports.default = function (routes) {
 };
 
 /***/ }),
-/* 23 */
+/* 24 */
 /*!*******************************************************!*\
   !*** ./node_modules/gluestick/build/plugins/utils.js ***!
   \*******************************************************/
@@ -1287,7 +1348,7 @@ module.exports = function (logger) {
 };
 
 /***/ }),
-/* 24 */
+/* 25 */
 /*!***********************************!*\
   !*** ./src/config/application.js ***!
   \***********************************/
@@ -1340,7 +1401,7 @@ var config = {
 exports.default = config[process.env.NODE_ENV === "production" ? "production" : "development"];
 
 /***/ }),
-/* 25 */
+/* 26 */
 /*!******************************!*\
   !*** ./gluestick/entries.js ***!
   \******************************/
@@ -1364,7 +1425,7 @@ var _routes = __webpack_require__(/*! src/apps/main/routes.js */ 74);
 
 var _routes2 = _interopRequireDefault(_routes);
 
-var _reducers = __webpack_require__(/*! src/apps/main/reducers */ 110);
+var _reducers = __webpack_require__(/*! src/apps/main/reducers */ 111);
 
 var _reducers2 = _interopRequireDefault(_reducers);
 
@@ -1382,7 +1443,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 26 */
+/* 27 */
 /*!***********************************************!*\
   !*** ./src/apps/main/containers/FrontPage.js ***!
   \***********************************************/
@@ -1407,7 +1468,7 @@ var _redux = __webpack_require__(/*! redux */ 3);
 
 var _reactRedux = __webpack_require__(/*! react-redux */ 2);
 
-var _SearchBar = __webpack_require__(/*! ../components/SearchBar */ 17);
+var _SearchBar = __webpack_require__(/*! ../components/SearchBar */ 16);
 
 var _SearchBar2 = _interopRequireDefault(_SearchBar);
 
@@ -1707,57 +1768,6 @@ exports.default = (0, _reactRedux.connect)(function (state) {
 })(FrontPage);
 
 /***/ }),
-/* 27 */
-/*!************************************!*\
-  !*** ./src/apps/main/lib/utils.js ***!
-  \************************************/
-/*! dynamic exports provided */
-/*! all exports used */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.generateSearchURL = generateSearchURL;
-
-var _lodash = __webpack_require__(/*! lodash */ 5);
-
-var _lodash2 = _interopRequireDefault(_lodash);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function generateSearchURL(params) {
-    var url = '/search';
-    var query = [];
-
-    Object.keys(params).forEach(function (key, index) {
-        var value = params[key];
-
-        if (_lodash2.default.isString(value)) {
-            query.push(key + '=' + value);
-        } else if (_lodash2.default.isNumber(value)) {
-            query.push(key + '=' + value);
-        } else if (_lodash2.default.isArray(value)) {
-            value = _lodash2.default.filter(value, _lodash2.default.negate(_lodash2.default.isNil));
-            query = query.concat(value.map(function (elem) {
-                return key + '=' + elem;
-            }));
-        }
-    });
-
-    query = query.join('&');
-
-    if (query) {
-        url = url + '?' + query;
-    }
-
-    return url;
-}
-
-/***/ }),
 /* 28 */
 /*!*********************!*\
   !*** external "qs" ***!
@@ -1790,11 +1800,11 @@ var _react = __webpack_require__(/*! react */ 0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _consts = __webpack_require__(/*! ../lib/consts */ 4);
+var _consts = __webpack_require__(/*! ../lib/consts */ 5);
 
 var _reactstrap = __webpack_require__(/*! reactstrap */ 1);
 
-var _reactFontawesome = __webpack_require__(/*! compiled/react-fontawesome */ 97);
+var _reactFontawesome = __webpack_require__(/*! compiled/react-fontawesome */ 98);
 
 var _reactFontawesome2 = _interopRequireDefault(_reactFontawesome);
 
@@ -2046,27 +2056,27 @@ var middleware = __webpack_require__(/*! ./middleware */ 37);
 var readAssets = __webpack_require__(/*! ./helpers/readAssets */ 70);
 var onFinished = __webpack_require__(/*! on-finished */ 71);
 // $FlowIgnore
-var applicationConfig = __webpack_require__(/*! application-config */ 24).default;
-var entries = __webpack_require__(/*! project-entries */ 25).default;
+var applicationConfig = __webpack_require__(/*! application-config */ 25).default;
+var entries = __webpack_require__(/*! project-entries */ 26).default;
 // $FlowIgnore
-var entriesConfig = __webpack_require__(/*! project-entries-config */ 114);
+var entriesConfig = __webpack_require__(/*! project-entries-config */ 115);
 // $FlowIgnore
-var EntryWrapper = __webpack_require__(/*! entry-wrapper */ 115).default;
+var EntryWrapper = __webpack_require__(/*! entry-wrapper */ 116).default;
 // $FlowIgnore
-var projectHooks = __webpack_require__(/*! gluestick-hooks */ 121).default;
-var BodyWrapper = __webpack_require__(/*! ./components/Body */ 122).default;
+var projectHooks = __webpack_require__(/*! gluestick-hooks */ 122).default;
+var BodyWrapper = __webpack_require__(/*! ./components/Body */ 123).default;
 var reduxMiddlewares = __webpack_require__(/*! redux-middlewares */ 30).default;
 // $FlowIgnore
 var thunkMiddleware = __webpack_require__(/*! redux-middlewares */ 30).thunkMiddleware;
 // $FlowIgnore
-var entriesPlugins = __webpack_require__(/*! project-entries */ 25).plugins;
+var entriesPlugins = __webpack_require__(/*! project-entries */ 26).plugins;
 // $FlowIgnore
-var cachingConfig = __webpack_require__(/*! caching-config */ 123).default;
+var cachingConfig = __webpack_require__(/*! caching-config */ 124).default;
 
-var hooksHelper = __webpack_require__(/*! ./helpers/hooks */ 124);
-var prepareServerPlugins = __webpack_require__(/*! ../plugins/prepareServerPlugins */ 125);
-var createPluginUtils = __webpack_require__(/*! ../plugins/utils */ 23);
-var setProxies = __webpack_require__(/*! ./helpers/setProxies */ 128);
+var hooksHelper = __webpack_require__(/*! ./helpers/hooks */ 125);
+var prepareServerPlugins = __webpack_require__(/*! ../plugins/prepareServerPlugins */ 126);
+var createPluginUtils = __webpack_require__(/*! ../plugins/utils */ 24);
+var setProxies = __webpack_require__(/*! ./helpers/setProxies */ 129);
 
 var envVariables = process.env.ENV_VARIABLES && Array.isArray(process.env.ENV_VARIABLES) ? process.env.ENV_VARIABLES : [];
 
@@ -2242,7 +2252,7 @@ var setHeaders = __webpack_require__(/*! ./response/setHeaders */ 62);
 var errorHandler = __webpack_require__(/*! ./helpers/errorHandler */ 64);
 var getCacheManager = __webpack_require__(/*! ./helpers/cacheManager */ 66);
 var getStatusCode = __webpack_require__(/*! ./response/getStatusCode */ 69);
-var createPluginUtils = __webpack_require__(/*! ../plugins/utils */ 23);
+var createPluginUtils = __webpack_require__(/*! ../plugins/utils */ 24);
 
 var isProduction = process.env.NODE_ENV === 'production';
 
@@ -2619,7 +2629,7 @@ var _extends = Object.assign || function (target) {
 var React = __webpack_require__(/*! react */ 0);
 
 var path = __webpack_require__(/*! path */ 13);
-var fs = __webpack_require__(/*! fs */ 16);
+var fs = __webpack_require__(/*! fs */ 15);
 var getAssetsLoader = __webpack_require__(/*! ./getAssetsLoader */ 43);
 
 var getAssetPathForFile = function getAssetPathForFile(filename, section, webpackAssets) {
@@ -2701,7 +2711,7 @@ module.exports = function (_ref2, entryPoint, assets, loadjsConfig) {
 "use strict";
 
 
-var serialize = __webpack_require__(/*! serialize-javascript */ 19);
+var serialize = __webpack_require__(/*! serialize-javascript */ 20);
 
 /**
  * Returns script tag content with code for loading bundles in right order.
@@ -2905,7 +2915,7 @@ var _reactRedux = __webpack_require__(/*! react-redux */ 2);
 
 var _reactRouterScroll = __webpack_require__(/*! react-router-scroll */ 50);
 
-var _prepareRoutesWithTransitionHooks = __webpack_require__(/*! ../lib/prepareRoutesWithTransitionHooks */ 22);
+var _prepareRoutesWithTransitionHooks = __webpack_require__(/*! ../lib/prepareRoutesWithTransitionHooks */ 23);
 
 var _prepareRoutesWithTransitionHooks2 = _interopRequireDefault(_prepareRoutesWithTransitionHooks);
 
@@ -3057,7 +3067,7 @@ var _react = __webpack_require__(/*! react */ 0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _routeHelper = __webpack_require__(/*! ../lib/route-helper */ 20);
+var _routeHelper = __webpack_require__(/*! ../lib/route-helper */ 21);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -3341,7 +3351,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 exports.default = _gluestick;
 
-var _actions = __webpack_require__(/*! ./actions */ 21);
+var _actions = __webpack_require__(/*! ./actions */ 22);
 
 var INITIAL_STATE = {};
 
@@ -3812,7 +3822,7 @@ function _asyncToGenerator(fn) {
   };
 }
 
-var fs = __webpack_require__(/*! fs */ 16);
+var fs = __webpack_require__(/*! fs */ 15);
 // We use handlebars to deliver the 500 page. This lets you
 // use a handlebars template so you can display the stack trace or
 // any request, response information you would like.
@@ -4046,7 +4056,7 @@ module.exports = function (store, currentRoute) {
 
 
 var path = __webpack_require__(/*! path */ 13);
-var fs = __webpack_require__(/*! fs */ 16);
+var fs = __webpack_require__(/*! fs */ 15);
 
 var cache = null;
 
@@ -4228,23 +4238,23 @@ var _SearchResults = __webpack_require__(/*! ./containers/SearchResults */ 84);
 
 var _SearchResults2 = _interopRequireDefault(_SearchResults);
 
-var _FrontPage = __webpack_require__(/*! ./containers/FrontPage */ 26);
+var _FrontPage = __webpack_require__(/*! ./containers/FrontPage */ 27);
 
 var _FrontPage2 = _interopRequireDefault(_FrontPage);
 
-var _ClubProfile = __webpack_require__(/*! ./containers/ClubProfile */ 89);
+var _ClubProfile = __webpack_require__(/*! ./containers/ClubProfile */ 90);
 
 var _ClubProfile2 = _interopRequireDefault(_ClubProfile);
 
-var _ClubCreation = __webpack_require__(/*! ./containers/ClubCreation */ 92);
+var _ClubCreation = __webpack_require__(/*! ./containers/ClubCreation */ 93);
 
 var _ClubCreation2 = _interopRequireDefault(_ClubCreation);
 
-var _AdvancedSearch = __webpack_require__(/*! ./containers/AdvancedSearch */ 106);
+var _AdvancedSearch = __webpack_require__(/*! ./containers/AdvancedSearch */ 107);
 
 var _AdvancedSearch2 = _interopRequireDefault(_AdvancedSearch);
 
-var _SignUp = __webpack_require__(/*! ./containers/SignUp */ 107);
+var _SignUp = __webpack_require__(/*! ./containers/SignUp */ 108);
 
 var _SignUp2 = _interopRequireDefault(_SignUp);
 
@@ -4291,7 +4301,7 @@ var _reactHelmet = __webpack_require__(/*! react-helmet */ 7);
 
 var _reactHelmet2 = _interopRequireDefault(_reactHelmet);
 
-var _application = __webpack_require__(/*! config/application */ 24);
+var _application = __webpack_require__(/*! config/application */ 25);
 
 var _application2 = _interopRequireDefault(_application);
 
@@ -4363,7 +4373,7 @@ var _reactHelmet = __webpack_require__(/*! react-helmet */ 7);
 
 var _reactHelmet2 = _interopRequireDefault(_reactHelmet);
 
-var _FrontPage = __webpack_require__(/*! ../containers/FrontPage */ 26);
+var _FrontPage = __webpack_require__(/*! ../containers/FrontPage */ 27);
 
 var _FrontPage2 = _interopRequireDefault(_FrontPage);
 
@@ -4643,23 +4653,23 @@ var _CategoriesCheckbox = __webpack_require__(/*! ../components/SearchResults/Ca
 
 var _CategoriesCheckbox2 = _interopRequireDefault(_CategoriesCheckbox);
 
-var _ColorfulSelector = __webpack_require__(/*! ../components/ColorfulSelector */ 15);
+var _VibeFilterSelector = __webpack_require__(/*! ../components/VibeFilterSelector */ 86);
 
-var _ColorfulSelector2 = _interopRequireDefault(_ColorfulSelector);
+var _VibeFilterSelector2 = _interopRequireDefault(_VibeFilterSelector);
 
-var _SearchBar = __webpack_require__(/*! ../components/SearchBar */ 17);
+var _SearchBar = __webpack_require__(/*! ../components/SearchBar */ 16);
 
 var _SearchBar2 = _interopRequireDefault(_SearchBar);
 
-var _ResultSortDropdown = __webpack_require__(/*! ../components/SearchResults/ResultSortDropdown */ 86);
+var _ResultSortDropdown = __webpack_require__(/*! ../components/SearchResults/ResultSortDropdown */ 87);
 
 var _ResultSortDropdown2 = _interopRequireDefault(_ResultSortDropdown);
 
-var _ClubResultsList = __webpack_require__(/*! ../components/SearchResults/ClubResultsList */ 87);
+var _ClubResultsList = __webpack_require__(/*! ../components/SearchResults/ClubResultsList */ 88);
 
 var _ClubResultsList2 = _interopRequireDefault(_ClubResultsList);
 
-var _consts = __webpack_require__(/*! ../lib/consts */ 4);
+var _consts = __webpack_require__(/*! ../lib/consts */ 5);
 
 var _searchResultsActions = __webpack_require__(/*! ../actions/searchResultsActions */ 14);
 
@@ -4689,7 +4699,11 @@ var SearchResults = exports.SearchResults = function (_Component) {
   _createClass(SearchResults, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      var params = { q: this.props.location.query.q, category: this.props.location.query.category };
+      var params = {
+        q: this.props.location.query.q,
+        vibe: this.props.location.query.vibe,
+        category: this.props.location.query.category
+      };
 
       if (this.props.location.query.q) {
         this.props.setTermFilter(this.props.location.query.q);
@@ -4703,6 +4717,16 @@ var SearchResults = exports.SearchResults = function (_Component) {
         }
       } else {
         this.props.setCategoryFilter([]);
+      }
+
+      if (this.props.location.query.vibe) {
+        if (_.isArray(this.props.location.query.vibe)) {
+          this.props.setVibeFilter(this.props.location.query.vibe);
+        } else {
+          this.props.setVibeFilter([this.props.location.query.vibe]);
+        }
+      } else {
+        this.props.setVibeFilter([]);
       }
 
       return this.props.fetchClubSearchResults(params);
@@ -4727,7 +4751,8 @@ var SearchResults = exports.SearchResults = function (_Component) {
             _react2.default.createElement(_SearchBar2.default, {
               searchBarStyleClass: "results-page-search",
               termFilter: this.props.termFilter,
-              categoriesFilter: this.props.categoryiesFilter,
+              vibesFilter: this.props.vibesFilter,
+              categoriesFilter: this.props.categoriesFilter,
               setTermFilter: this.props.setTermFilter,
               fetchClubSearchResults: this.props.fetchClubSearchResults,
               search: true
@@ -4743,6 +4768,7 @@ var SearchResults = exports.SearchResults = function (_Component) {
               _react2.default.createElement(_CategoriesCheckbox2.default, {
                 termFilter: this.props.termFilter,
                 categoriesFilter: this.props.categoriesFilter,
+                vibesFilter: this.props.vibesFilter,
                 toggleCategoryFilter: this.props.toggleCategoryFilter,
                 fetchClubSearchResults: this.props.fetchClubSearchResults
               })
@@ -4755,12 +4781,47 @@ var SearchResults = exports.SearchResults = function (_Component) {
                 null,
                 "Vibes"
               ),
-              _react2.default.createElement(_ColorfulSelector2.default, {
+              _react2.default.createElement(
+                "h4",
+                null,
+                "Group tightness"
+              ),
+              _react2.default.createElement(_VibeFilterSelector2.default, {
+                termFilter: this.props.termFilter,
+                categoriesFilter: this.props.categoriesFilter,
+                fetchClubSearchResults: this.props.fetchClubSearchResults,
                 selectorAction: this.props.toggleVibeFilter,
                 selectorReducer: this.props.vibesFilter,
-                selectorKeys: _consts.VIBES,
-                categories: true,
-                inline: true
+                selectorKeys: _consts.VIBES['Group tightness'],
+                buttonColor: _consts.COLORS[0]
+              }),
+              _react2.default.createElement(
+                "h4",
+                null,
+                "Energy"
+              ),
+              _react2.default.createElement(_VibeFilterSelector2.default, {
+                termFilter: this.props.termFilter,
+                categoriesFilter: this.props.categoriesFilter,
+                fetchClubSearchResults: this.props.fetchClubSearchResults,
+                selectorAction: this.props.toggleVibeFilter,
+                selectorReducer: this.props.vibesFilter,
+                selectorKeys: _consts.VIBES['Energy'],
+                buttonColor: _consts.COLORS[1]
+              }),
+              _react2.default.createElement(
+                "h4",
+                null,
+                "Personality"
+              ),
+              _react2.default.createElement(_VibeFilterSelector2.default, {
+                termFilter: this.props.termFilter,
+                categoriesFilter: this.props.categoriesFilter,
+                fetchClubSearchResults: this.props.fetchClubSearchResults,
+                selectorAction: this.props.toggleVibeFilter,
+                selectorReducer: this.props.vibesFilter,
+                selectorKeys: _consts.VIBES['Personality'],
+                buttonColor: _consts.COLORS[2]
               })
             )
           ),
@@ -4818,6 +4879,7 @@ exports.default = (0, _reactRedux.connect)(function (state) {
   return (0, _redux.bindActionCreators)({
     setTermFilter: _searchResultsActions.setTermFilter,
     simpleSearchClub: _searchResultsActions.simpleSearchClub,
+    setVibeFilter: _searchResultsActions.setVibeFilter,
     toggleVibeFilter: _searchResultsActions.toggleVibeFilter,
     setCategoryFilter: _searchResultsActions.setCategoryFilter,
     toggleCategoryFilter: _searchResultsActions.toggleCategoryFilter,
@@ -4843,7 +4905,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _lodash = __webpack_require__(/*! lodash */ 5);
+var _lodash = __webpack_require__(/*! lodash */ 4);
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
@@ -4855,9 +4917,9 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactstrap = __webpack_require__(/*! reactstrap */ 1);
 
-var _utils = __webpack_require__(/*! ../../lib/utils */ 27);
+var _utils = __webpack_require__(/*! ../../lib/utils */ 17);
 
-var _consts = __webpack_require__(/*! ../../lib/consts */ 4);
+var _consts = __webpack_require__(/*! ../../lib/consts */ 5);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -4892,12 +4954,14 @@ var CategoriesCheckbox = function (_Component) {
         if (checked) {
           query = {
             q: _this2.props.termFilter,
+            vibe: _this2.props.vibesFilter,
             category: _lodash2.default.uniq(_lodash2.default.without(_this2.props.categoriesFilter, key))
           };
           url = (0, _utils.generateSearchURL)(query);
         } else {
           query = {
             q: _this2.props.termFilter,
+            vibe: _this2.props.vibesFilter,
             category: _lodash2.default.uniq(_lodash2.default.concat(_this2.props.categoriesFilter, key))
           };
           url = (0, _utils.generateSearchURL)(query);
@@ -4942,6 +5006,118 @@ exports.default = CategoriesCheckbox;
 
 /***/ }),
 /* 86 */
+/*!********************************************************!*\
+  !*** ./src/apps/main/components/VibeFilterSelector.js ***!
+  \********************************************************/
+/*! dynamic exports provided */
+/*! all exports used */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _lodash = __webpack_require__(/*! lodash */ 4);
+
+var _lodash2 = _interopRequireDefault(_lodash);
+
+var _react = __webpack_require__(/*! react */ 0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouter = __webpack_require__(/*! react-router */ 6);
+
+var _utils = __webpack_require__(/*! ../lib/utils */ 17);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var VibeFilterSelector = function (_Component) {
+  _inherits(VibeFilterSelector, _Component);
+
+  function VibeFilterSelector() {
+    _classCallCheck(this, VibeFilterSelector);
+
+    return _possibleConstructorReturn(this, (VibeFilterSelector.__proto__ || Object.getPrototypeOf(VibeFilterSelector)).apply(this, arguments));
+  }
+
+  _createClass(VibeFilterSelector, [{
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      var generatedKeys = [];
+
+      this.props.selectorKeys.forEach(function (item, index) {
+
+        var className = void 0,
+            query = void 0,
+            url = void 0;
+        var active = _this2.props.selectorReducer.includes(item);
+
+        if (active) {
+          className = "searchresults-vibes-btn searchresults-vibes-btn-active";
+          query = {
+            q: _this2.props.termFilter,
+            category: _this2.props.categoriesFilter,
+            vibe: _lodash2.default.uniq(_lodash2.default.without(_this2.props.selectorReducer, item))
+          };
+          url = (0, _utils.generateSearchURL)(query);
+        } else {
+          className = "searchresults-vibes-btn searchresults-vibes-btn-inactive";
+          query = {
+            q: _this2.props.termFilter,
+            category: _this2.props.categoriesFilter,
+            vibe: _lodash2.default.uniq(_lodash2.default.concat(_this2.props.selectorReducer, item))
+          };
+          url = (0, _utils.generateSearchURL)(query);
+        }
+
+        generatedKeys.push(_react2.default.createElement(
+          _reactRouter.Link,
+          { to: url },
+          _react2.default.createElement(
+            "button",
+            {
+              key: index,
+              className: className,
+              style: {
+                backgroundColor: _this2.props.buttonColor
+              },
+              onClick: function onClick() {
+                _this2.props.selectorAction(item);
+                _this2.props.fetchClubSearchResults(query);
+              } },
+            item
+          )
+        ));
+      });
+
+      return _react2.default.createElement(
+        "div",
+        null,
+        generatedKeys
+      );
+    }
+  }]);
+
+  return VibeFilterSelector;
+}(_react.Component);
+
+exports.default = VibeFilterSelector;
+
+/***/ }),
+/* 87 */
 /*!**********************************************************************!*\
   !*** ./src/apps/main/components/SearchResults/ResultSortDropdown.js ***!
   \**********************************************************************/
@@ -5013,7 +5189,7 @@ var ResultSortDropdown = function (_Component) {
 exports.default = ResultSortDropdown;
 
 /***/ }),
-/* 87 */
+/* 88 */
 /*!*******************************************************************!*\
   !*** ./src/apps/main/components/SearchResults/ClubResultsList.js ***!
   \*******************************************************************/
@@ -5034,7 +5210,7 @@ var _react = __webpack_require__(/*! react */ 0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _SingleClubResult = __webpack_require__(/*! ./SingleClubResult */ 88);
+var _SingleClubResult = __webpack_require__(/*! ./SingleClubResult */ 89);
 
 var _SingleClubResult2 = _interopRequireDefault(_SingleClubResult);
 
@@ -5087,7 +5263,7 @@ var ClubResultsList = function (_Component) {
 exports.default = ClubResultsList;
 
 /***/ }),
-/* 88 */
+/* 89 */
 /*!********************************************************************!*\
   !*** ./src/apps/main/components/SearchResults/SingleClubResult.js ***!
   \********************************************************************/
@@ -5104,7 +5280,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _lodash = __webpack_require__(/*! lodash */ 5);
+var _lodash = __webpack_require__(/*! lodash */ 4);
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
@@ -5209,7 +5385,7 @@ var SingleClubResult = function (_Component) {
 exports.default = SingleClubResult;
 
 /***/ }),
-/* 89 */
+/* 90 */
 /*!*************************************************!*\
   !*** ./src/apps/main/containers/ClubProfile.js ***!
   \*************************************************/
@@ -5245,7 +5421,7 @@ var _Header = __webpack_require__(/*! ../components/Header */ 9);
 
 var _Header2 = _interopRequireDefault(_Header);
 
-var _ProfileHeader = __webpack_require__(/*! ../components/ClubProfile/ProfileHeader */ 90);
+var _ProfileHeader = __webpack_require__(/*! ../components/ClubProfile/ProfileHeader */ 91);
 
 var _ProfileHeader2 = _interopRequireDefault(_ProfileHeader);
 
@@ -5391,7 +5567,7 @@ exports.default = (0, _reactRedux.connect)(function () {
 })(ClubProfile);
 
 /***/ }),
-/* 90 */
+/* 91 */
 /*!***************************************************************!*\
   !*** ./src/apps/main/components/ClubProfile/ProfileHeader.js ***!
   \***************************************************************/
@@ -5414,7 +5590,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactstrap = __webpack_require__(/*! reactstrap */ 1);
 
-var _starcraftLogo = __webpack_require__(/*! ../../assets/images/clubprofile/starcraft-logo.png */ 91);
+var _starcraftLogo = __webpack_require__(/*! ../../assets/images/clubprofile/starcraft-logo.png */ 92);
 
 var _starcraftLogo2 = _interopRequireDefault(_starcraftLogo);
 
@@ -5502,7 +5678,7 @@ var ProfileHeader = function (_Component) {
 exports.default = ProfileHeader;
 
 /***/ }),
-/* 91 */
+/* 92 */
 /*!********************************************************************!*\
   !*** ./src/apps/main/assets/images/clubprofile/starcraft-logo.png ***!
   \********************************************************************/
@@ -5513,7 +5689,7 @@ exports.default = ProfileHeader;
 module.exports = __webpack_require__.p + "starcraft-logo-efdadbc4570c64694319142b7e2e24a2.png";
 
 /***/ }),
-/* 92 */
+/* 93 */
 /*!**************************************************!*\
   !*** ./src/apps/main/containers/ClubCreation.js ***!
   \**************************************************/
@@ -5549,29 +5725,29 @@ var _Header2 = _interopRequireDefault(_Header);
 
 var _reactstrap = __webpack_require__(/*! reactstrap */ 1);
 
-var _ClubCreationHeader = __webpack_require__(/*! ../components/ClubCreation/ClubCreationHeader */ 93);
+var _ClubCreationHeader = __webpack_require__(/*! ../components/ClubCreation/ClubCreationHeader */ 94);
 
 var _ClubCreationHeader2 = _interopRequireDefault(_ClubCreationHeader);
 
-var _Step = __webpack_require__(/*! ../components/ClubCreation/Step1 */ 94);
+var _Step = __webpack_require__(/*! ../components/ClubCreation/Step1 */ 95);
 
 var _Step2 = _interopRequireDefault(_Step);
 
-var _Step3 = __webpack_require__(/*! ../components/ClubCreation/Step2 */ 95);
+var _Step3 = __webpack_require__(/*! ../components/ClubCreation/Step2 */ 96);
 
 var _Step4 = _interopRequireDefault(_Step3);
 
-var _Step5 = __webpack_require__(/*! ../components/ClubCreation/Step3 */ 101);
+var _Step5 = __webpack_require__(/*! ../components/ClubCreation/Step3 */ 102);
 
 var _Step6 = _interopRequireDefault(_Step5);
 
-var _Step7 = __webpack_require__(/*! ../components/ClubCreation/Step4 */ 105);
+var _Step7 = __webpack_require__(/*! ../components/ClubCreation/Step4 */ 106);
 
 var _Step8 = _interopRequireDefault(_Step7);
 
 var _clubCreationActions = __webpack_require__(/*! ../actions/clubCreationActions */ 12);
 
-var _consts = __webpack_require__(/*! ../lib/consts */ 4);
+var _consts = __webpack_require__(/*! ../lib/consts */ 5);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -5750,7 +5926,7 @@ exports.default = (0, _reactRedux.connect)(function (state) {
 })(ClubCreation);
 
 /***/ }),
-/* 93 */
+/* 94 */
 /*!*********************************************************************!*\
   !*** ./src/apps/main/components/ClubCreation/ClubCreationHeader.js ***!
   \*********************************************************************/
@@ -5869,7 +6045,7 @@ var ClubCreationHeader = function (_Component) {
 exports.default = ClubCreationHeader;
 
 /***/ }),
-/* 94 */
+/* 95 */
 /*!********************************************************!*\
   !*** ./src/apps/main/components/ClubCreation/Step1.js ***!
   \********************************************************/
@@ -5886,7 +6062,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _lodash = __webpack_require__(/*! lodash */ 5);
+var _lodash = __webpack_require__(/*! lodash */ 4);
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
@@ -5912,13 +6088,13 @@ var _reactTextareaAutosize = __webpack_require__(/*! react-textarea-autosize */ 
 
 var _reactTextareaAutosize2 = _interopRequireDefault(_reactTextareaAutosize);
 
-var _ColorfulSelector = __webpack_require__(/*! ../ColorfulSelector */ 15);
+var _ColorfulSelector = __webpack_require__(/*! ../ColorfulSelector */ 19);
 
 var _ColorfulSelector2 = _interopRequireDefault(_ColorfulSelector);
 
 var _clubCreationActions = __webpack_require__(/*! ../../actions/clubCreationActions */ 12);
 
-var _consts = __webpack_require__(/*! ../../lib/consts */ 4);
+var _consts = __webpack_require__(/*! ../../lib/consts */ 5);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -6139,7 +6315,7 @@ exports.default = (0, _reactRedux.connect)(function (state) {
 })(Step1);
 
 /***/ }),
-/* 95 */
+/* 96 */
 /*!********************************************************!*\
   !*** ./src/apps/main/components/ClubCreation/Step2.js ***!
   \********************************************************/
@@ -6156,7 +6332,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _lodash = __webpack_require__(/*! lodash */ 5);
+var _lodash = __webpack_require__(/*! lodash */ 4);
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
@@ -6182,7 +6358,7 @@ var _reactTextareaAutosize = __webpack_require__(/*! react-textarea-autosize */ 
 
 var _reactTextareaAutosize2 = _interopRequireDefault(_reactTextareaAutosize);
 
-var _rcTimePicker = __webpack_require__(/*! rc-time-picker */ 96);
+var _rcTimePicker = __webpack_require__(/*! rc-time-picker */ 97);
 
 var _rcTimePicker2 = _interopRequireDefault(_rcTimePicker);
 
@@ -6190,13 +6366,13 @@ var _CategorySelector = __webpack_require__(/*! ../CategorySelector */ 29);
 
 var _CategorySelector2 = _interopRequireDefault(_CategorySelector);
 
-var _TimeSelector = __webpack_require__(/*! ../TimeSelector */ 99);
+var _TimeSelector = __webpack_require__(/*! ../TimeSelector */ 100);
 
 var _TimeSelector2 = _interopRequireDefault(_TimeSelector);
 
 var _clubCreationActions = __webpack_require__(/*! ../../actions/clubCreationActions */ 12);
 
-var _consts = __webpack_require__(/*! ../../lib/consts */ 4);
+var _consts = __webpack_require__(/*! ../../lib/consts */ 5);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -6411,7 +6587,7 @@ exports.default = (0, _reactRedux.connect)(function (state) {
 })(Step2);
 
 /***/ }),
-/* 96 */
+/* 97 */
 /*!*********************************!*\
   !*** external "rc-time-picker" ***!
   \*********************************/
@@ -6422,7 +6598,7 @@ exports.default = (0, _reactRedux.connect)(function (state) {
 module.exports = require("rc-time-picker");
 
 /***/ }),
-/* 97 */
+/* 98 */
 /*!*****************************************************!*\
   !*** ./node_modules/react-fontawesome/lib/index.js ***!
   \*****************************************************/
@@ -6467,7 +6643,7 @@ var _propTypes = __webpack_require__(/*! prop-types */ 10);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _screenReaderStyles = __webpack_require__(/*! ./screen-reader-styles */ 98);
+var _screenReaderStyles = __webpack_require__(/*! ./screen-reader-styles */ 99);
 
 var _screenReaderStyles2 = _interopRequireDefault(_screenReaderStyles);
 
@@ -6610,7 +6786,7 @@ exports.default = FontAwesome;
 module.exports = exports['default'];
 
 /***/ }),
-/* 98 */
+/* 99 */
 /*!********************************************************************!*\
   !*** ./node_modules/react-fontawesome/lib/screen-reader-styles.js ***!
   \********************************************************************/
@@ -6637,7 +6813,7 @@ exports.default = {
 module.exports = exports['default'];
 
 /***/ }),
-/* 99 */
+/* 100 */
 /*!**************************************************!*\
   !*** ./src/apps/main/components/TimeSelector.js ***!
   \**************************************************/
@@ -6668,11 +6844,11 @@ var _reactRedux = __webpack_require__(/*! react-redux */ 2);
 
 var _redux = __webpack_require__(/*! redux */ 3);
 
-var _TimeSelectorUnit = __webpack_require__(/*! ./TimeSelectorUnit */ 100);
+var _TimeSelectorUnit = __webpack_require__(/*! ./TimeSelectorUnit */ 101);
 
 var _TimeSelectorUnit2 = _interopRequireDefault(_TimeSelectorUnit);
 
-var _consts = __webpack_require__(/*! ../lib/consts */ 4);
+var _consts = __webpack_require__(/*! ../lib/consts */ 5);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -6715,7 +6891,7 @@ var TimeSelector = function (_Component) {
 exports.default = TimeSelector;
 
 /***/ }),
-/* 100 */
+/* 101 */
 /*!******************************************************!*\
   !*** ./src/apps/main/components/TimeSelectorUnit.js ***!
   \******************************************************/
@@ -6746,7 +6922,7 @@ var _reactRedux = __webpack_require__(/*! react-redux */ 2);
 
 var _redux = __webpack_require__(/*! redux */ 3);
 
-var _consts = __webpack_require__(/*! ../lib/consts */ 4);
+var _consts = __webpack_require__(/*! ../lib/consts */ 5);
 
 var _clubCreationActions = __webpack_require__(/*! ../actions/clubCreationActions */ 12);
 
@@ -7009,7 +7185,7 @@ exports.default = (0, _reactRedux.connect)(function () {
 })(TimeSelectorUnit);
 
 /***/ }),
-/* 101 */
+/* 102 */
 /*!********************************************************!*\
   !*** ./src/apps/main/components/ClubCreation/Step3.js ***!
   \********************************************************/
@@ -7026,7 +7202,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _lodash = __webpack_require__(/*! lodash */ 5);
+var _lodash = __webpack_require__(/*! lodash */ 4);
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
@@ -7052,13 +7228,13 @@ var _reactTextareaAutosize = __webpack_require__(/*! react-textarea-autosize */ 
 
 var _reactTextareaAutosize2 = _interopRequireDefault(_reactTextareaAutosize);
 
-var _cloudinaryReact = __webpack_require__(/*! cloudinary-react */ 102);
+var _cloudinaryReact = __webpack_require__(/*! cloudinary-react */ 103);
 
-var _ColorfulSelector = __webpack_require__(/*! ../ColorfulSelector */ 15);
+var _ColorfulSelector = __webpack_require__(/*! ../ColorfulSelector */ 19);
 
 var _ColorfulSelector2 = _interopRequireDefault(_ColorfulSelector);
 
-var _QuestionUnit = __webpack_require__(/*! ../QuestionUnit */ 103);
+var _QuestionUnit = __webpack_require__(/*! ../QuestionUnit */ 104);
 
 var _QuestionUnit2 = _interopRequireDefault(_QuestionUnit);
 
@@ -7066,9 +7242,9 @@ var _searchResultsActions = __webpack_require__(/*! ../../actions/searchResultsA
 
 var _clubCreationActions = __webpack_require__(/*! ../../actions/clubCreationActions */ 12);
 
-var _consts = __webpack_require__(/*! ../../lib/consts */ 4);
+var _consts = __webpack_require__(/*! ../../lib/consts */ 5);
 
-var _clubAddQuestions = __webpack_require__(/*! ../../lib/clubAddQuestions */ 104);
+var _clubAddQuestions = __webpack_require__(/*! ../../lib/clubAddQuestions */ 105);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -7200,7 +7376,7 @@ exports.default = (0, _reactRedux.connect)(function (state) {
 })(Step3);
 
 /***/ }),
-/* 102 */
+/* 103 */
 /*!***********************************!*\
   !*** external "cloudinary-react" ***!
   \***********************************/
@@ -7211,7 +7387,7 @@ exports.default = (0, _reactRedux.connect)(function (state) {
 module.exports = require("cloudinary-react");
 
 /***/ }),
-/* 103 */
+/* 104 */
 /*!**************************************************!*\
   !*** ./src/apps/main/components/QuestionUnit.js ***!
   \**************************************************/
@@ -7315,7 +7491,7 @@ var QuestionUnit = function (_Component) {
 exports.default = QuestionUnit;
 
 /***/ }),
-/* 104 */
+/* 105 */
 /*!***********************************************!*\
   !*** ./src/apps/main/lib/clubAddQuestions.js ***!
   \***********************************************/
@@ -7342,7 +7518,7 @@ var PERSONALITY = exports.PERSONALITY = ["If our club were a food, we would be",
 var FACTS = exports.FACTS = ["Other than what our club's about, we also like to", "We hope more _______ would join us!", "At meetings we usually", "Sometimes we _______ after meetings.", "To become an officer of the club, you would", "The free food we offer includes", "Coming to our meetings, you should bring"];
 
 /***/ }),
-/* 105 */
+/* 106 */
 /*!********************************************************!*\
   !*** ./src/apps/main/components/ClubCreation/Step4.js ***!
   \********************************************************/
@@ -7406,7 +7582,7 @@ var Step4 = function (_Component) {
 exports.default = Step4;
 
 /***/ }),
-/* 106 */
+/* 107 */
 /*!****************************************************!*\
   !*** ./src/apps/main/containers/AdvancedSearch.js ***!
   \****************************************************/
@@ -7442,7 +7618,7 @@ var _Header = __webpack_require__(/*! ../components/Header */ 9);
 
 var _Header2 = _interopRequireDefault(_Header);
 
-var _SearchBar = __webpack_require__(/*! ../components/SearchBar */ 17);
+var _SearchBar = __webpack_require__(/*! ../components/SearchBar */ 16);
 
 var _SearchBar2 = _interopRequireDefault(_SearchBar);
 
@@ -7450,13 +7626,13 @@ var _CategorySelector = __webpack_require__(/*! ../components/CategorySelector *
 
 var _CategorySelector2 = _interopRequireDefault(_CategorySelector);
 
-var _ColorfulSelector = __webpack_require__(/*! ../components/ColorfulSelector */ 15);
+var _ColorfulSelector = __webpack_require__(/*! ../components/ColorfulSelector */ 19);
 
 var _ColorfulSelector2 = _interopRequireDefault(_ColorfulSelector);
 
 var _searchResultsActions = __webpack_require__(/*! ../actions/searchResultsActions */ 14);
 
-var _consts = __webpack_require__(/*! ../lib/consts */ 4);
+var _consts = __webpack_require__(/*! ../lib/consts */ 5);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -7582,7 +7758,7 @@ exports.default = (0, _reactRedux.connect)(function (state) {
 })(AdvancedSearch);
 
 /***/ }),
-/* 107 */
+/* 108 */
 /*!********************************************!*\
   !*** ./src/apps/main/containers/SignUp.js ***!
   \********************************************/
@@ -7616,11 +7792,11 @@ var _Header = __webpack_require__(/*! ../components/Header */ 9);
 
 var _Header2 = _interopRequireDefault(_Header);
 
-var _Footer = __webpack_require__(/*! ../components/Footer */ 108);
+var _Footer = __webpack_require__(/*! ../components/Footer */ 109);
 
 var _Footer2 = _interopRequireDefault(_Footer);
 
-var _ChooseSignUpOption = __webpack_require__(/*! ../components/SignUp/ChooseSignUpOption */ 109);
+var _ChooseSignUpOption = __webpack_require__(/*! ../components/SignUp/ChooseSignUpOption */ 110);
 
 var _ChooseSignUpOption2 = _interopRequireDefault(_ChooseSignUpOption);
 
@@ -7750,7 +7926,7 @@ exports.default = (0, _reactRedux.connect)(function () {
 })(SignUp);
 
 /***/ }),
-/* 108 */
+/* 109 */
 /*!********************************************!*\
   !*** ./src/apps/main/components/Footer.js ***!
   \********************************************/
@@ -7814,7 +7990,7 @@ var Footer = function (_Component) {
 exports.default = Footer;
 
 /***/ }),
-/* 109 */
+/* 110 */
 /*!***************************************************************!*\
   !*** ./src/apps/main/components/SignUp/ChooseSignUpOption.js ***!
   \***************************************************************/
@@ -7883,7 +8059,7 @@ var ChooseSignUpOption = function (_Component) {
 exports.default = ChooseSignUpOption;
 
 /***/ }),
-/* 110 */
+/* 111 */
 /*!*****************************************!*\
   !*** ./src/apps/main/reducers/index.js ***!
   \*****************************************/
@@ -7898,15 +8074,15 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _clubCreationReducer = __webpack_require__(/*! ./clubCreationReducer */ 111);
+var _clubCreationReducer = __webpack_require__(/*! ./clubCreationReducer */ 112);
 
 var _clubCreationReducer2 = _interopRequireDefault(_clubCreationReducer);
 
-var _frontPageReducer = __webpack_require__(/*! ./frontPageReducer */ 112);
+var _frontPageReducer = __webpack_require__(/*! ./frontPageReducer */ 113);
 
 var _frontPageReducer2 = _interopRequireDefault(_frontPageReducer);
 
-var _searchResultsReducer = __webpack_require__(/*! ./searchResultsReducer */ 113);
+var _searchResultsReducer = __webpack_require__(/*! ./searchResultsReducer */ 114);
 
 var _searchResultsReducer2 = _interopRequireDefault(_searchResultsReducer);
 
@@ -7919,7 +8095,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 111 */
+/* 112 */
 /*!*******************************************************!*\
   !*** ./src/apps/main/reducers/clubCreationReducer.js ***!
   \*******************************************************/
@@ -7936,7 +8112,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _lodash = __webpack_require__(/*! lodash */ 5);
+var _lodash = __webpack_require__(/*! lodash */ 4);
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
@@ -8237,7 +8413,7 @@ exports.default = function () {
 };
 
 /***/ }),
-/* 112 */
+/* 113 */
 /*!****************************************************!*\
   !*** ./src/apps/main/reducers/frontPageReducer.js ***!
   \****************************************************/
@@ -8273,7 +8449,7 @@ exports.default = function () {
 };
 
 /***/ }),
-/* 113 */
+/* 114 */
 /*!********************************************************!*\
   !*** ./src/apps/main/reducers/searchResultsReducer.js ***!
   \********************************************************/
@@ -8290,7 +8466,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _lodash = __webpack_require__(/*! lodash */ 5);
+var _lodash = __webpack_require__(/*! lodash */ 4);
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
@@ -8315,6 +8491,11 @@ exports.default = function () {
     case _searchResultsActions.SET_CATEGORY_FILTER:
       state = _extends({}, state, {
         categoriesFilter: action.payload
+      });
+      return state;
+    case _searchResultsActions.SET_VIBE_FILTER:
+      state = _extends({}, state, {
+        vibesFilter: action.payload
       });
       return state;
     case _searchResultsActions.TOGGLE_CATEGORY_FILTER:
@@ -8359,7 +8540,7 @@ exports.default = function () {
 };
 
 /***/ }),
-/* 114 */
+/* 115 */
 /*!**************************!*\
   !*** ./src/entries.json ***!
   \**************************/
@@ -8370,7 +8551,7 @@ exports.default = function () {
 module.exports = {"/":{"component":"src/apps/main/Index.js","routes":"src/apps/main/routes.js","reducers":"src/apps/main/reducers"}}
 
 /***/ }),
-/* 115 */
+/* 116 */
 /*!***********************************!*\
   !*** ./gluestick/EntryWrapper.js ***!
   \***********************************/
@@ -8396,17 +8577,17 @@ var _react = __webpack_require__(/*! react */ 0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(/*! react-dom */ 116);
+var _reactDom = __webpack_require__(/*! react-dom */ 117);
 
-var _reactHotLoader = __webpack_require__(/*! react-hot-loader */ 117);
+var _reactHotLoader = __webpack_require__(/*! react-hot-loader */ 118);
 
 var _gluestick = __webpack_require__(/*! compiled/gluestick */ 11);
 
-var _match = __webpack_require__(/*! react-router/lib/match */ 118);
+var _match = __webpack_require__(/*! react-router/lib/match */ 119);
 
 var _match2 = _interopRequireDefault(_match);
 
-var _browserHistory = __webpack_require__(/*! react-router/lib/browserHistory */ 119);
+var _browserHistory = __webpack_require__(/*! react-router/lib/browserHistory */ 120);
 
 var _browserHistory2 = _interopRequireDefault(_browserHistory);
 
@@ -8499,7 +8680,7 @@ var start = function start(config, getRoutes, getStore) {
 
   // Allow developers to include code that will be executed before the app is
   // set up in the browser.
-  __webpack_require__(/*! config/init.browser */ 120);
+  __webpack_require__(/*! config/init.browser */ 121);
 
   var httpClient = (0, _gluestick.getHttpClient)(config.httpClient);
   var store = getStore(httpClient);
@@ -8569,7 +8750,7 @@ EntryWrapper.defaultProps = {
 exports.default = EntryWrapper;
 
 /***/ }),
-/* 116 */
+/* 117 */
 /*!****************************!*\
   !*** external "react-dom" ***!
   \****************************/
@@ -8580,7 +8761,7 @@ exports.default = EntryWrapper;
 module.exports = require("react-dom");
 
 /***/ }),
-/* 117 */
+/* 118 */
 /*!***********************************!*\
   !*** external "react-hot-loader" ***!
   \***********************************/
@@ -8591,7 +8772,7 @@ module.exports = require("react-dom");
 module.exports = require("react-hot-loader");
 
 /***/ }),
-/* 118 */
+/* 119 */
 /*!*****************************************!*\
   !*** external "react-router/lib/match" ***!
   \*****************************************/
@@ -8602,7 +8783,7 @@ module.exports = require("react-hot-loader");
 module.exports = require("react-router/lib/match");
 
 /***/ }),
-/* 119 */
+/* 120 */
 /*!**************************************************!*\
   !*** external "react-router/lib/browserHistory" ***!
   \**************************************************/
@@ -8613,7 +8794,7 @@ module.exports = require("react-router/lib/match");
 module.exports = require("react-router/lib/browserHistory");
 
 /***/ }),
-/* 120 */
+/* 121 */
 /*!************************************!*\
   !*** ./src/config/init.browser.js ***!
   \************************************/
@@ -8631,7 +8812,7 @@ module.exports = require("react-router/lib/browserHistory");
 
 
 /***/ }),
-/* 121 */
+/* 122 */
 /*!********************************!*\
   !*** ./src/gluestick.hooks.js ***!
   \********************************/
@@ -8658,7 +8839,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 122 */
+/* 123 */
 /*!******************************************************************!*\
   !*** ./node_modules/gluestick/build/renderer/components/Body.js ***!
   \******************************************************************/
@@ -8688,7 +8869,7 @@ var _react = __webpack_require__(/*! react */ 0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _serializeJavascript = __webpack_require__(/*! serialize-javascript */ 19);
+var _serializeJavascript = __webpack_require__(/*! serialize-javascript */ 20);
 
 var _serializeJavascript2 = _interopRequireDefault(_serializeJavascript);
 
@@ -8774,7 +8955,7 @@ var Body = (_temp = _class = function (_react$Component) {
 exports.default = Body;
 
 /***/ }),
-/* 123 */
+/* 124 */
 /*!**************************************!*\
   !*** ./src/config/caching.server.js ***!
   \**************************************/
@@ -8791,7 +8972,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = {};
 
 /***/ }),
-/* 124 */
+/* 125 */
 /*!****************************************************************!*\
   !*** ./node_modules/gluestick/build/renderer/helpers/hooks.js ***!
   \****************************************************************/
@@ -8837,7 +9018,7 @@ module.exports = {
 };
 
 /***/ }),
-/* 125 */
+/* 126 */
 /*!**********************************************************************!*\
   !*** ./node_modules/gluestick/build/plugins/prepareServerPlugins.js ***!
   \**********************************************************************/
@@ -8848,7 +9029,7 @@ module.exports = {
 "use strict";
 
 
-var _require = __webpack_require__(/*! ../cli/helpers */ 126);
+var _require = __webpack_require__(/*! ../cli/helpers */ 127);
 
 var createArrowList = _require.createArrowList;
 
@@ -8936,7 +9117,7 @@ module.exports = function (logger, plugins) {
 };
 
 /***/ }),
-/* 126 */
+/* 127 */
 /*!*****************************************************!*\
   !*** ./node_modules/gluestick/build/cli/helpers.js ***!
   \*****************************************************/
@@ -8963,7 +9144,7 @@ module.exports = {
 };
 
 /***/ }),
-/* 127 */
+/* 128 */
 /*!******************************************!*\
   !*** ./node_modules/gluestick/build/cli ***!
   \******************************************/
@@ -8977,10 +9158,10 @@ function webpackEmptyContext(req) {
 webpackEmptyContext.keys = function() { return []; };
 webpackEmptyContext.resolve = webpackEmptyContext;
 module.exports = webpackEmptyContext;
-webpackEmptyContext.id = 127;
+webpackEmptyContext.id = 128;
 
 /***/ }),
-/* 128 */
+/* 129 */
 /*!*********************************************************************!*\
   !*** ./node_modules/gluestick/build/renderer/helpers/setProxies.js ***!
   \*********************************************************************/
@@ -9003,7 +9184,7 @@ var _extends = Object.assign || function (target) {
   }return target;
 };
 
-var proxy = __webpack_require__(/*! http-proxy-middleware */ 129);
+var proxy = __webpack_require__(/*! http-proxy-middleware */ 130);
 
 /**
  * The array of proxy objects follow the following pattern
@@ -9055,7 +9236,7 @@ module.exports = function (app) {
 };
 
 /***/ }),
-/* 129 */
+/* 130 */
 /*!****************************************!*\
   !*** external "http-proxy-middleware" ***!
   \****************************************/

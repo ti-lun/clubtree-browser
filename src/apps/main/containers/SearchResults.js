@@ -10,18 +10,19 @@ import { Row, Col } from "reactstrap";
 
 import Header from "../components/Header";
 import CategoriesCheckbox from "../components/SearchResults/CategoriesCheckbox";
-import ColorfulSelector from "../components/ColorfulSelector";
+import VibeFilterSelector from "../components/VibeFilterSelector";
 import SearchBar from "../components/SearchBar";
 import ResultSortDropdown from "../components/SearchResults/ResultSortDropdown";
 import ClubResultsList from "../components/SearchResults/ClubResultsList";
 
-import { VIBES } from "../lib/consts";
+import { VIBES, COLORS } from "../lib/consts";
 
 import {
   setTermFilter,
   simpleSearchClub,
   toggleVibeFilter,
   setCategoryFilter,
+  setVibeFilter,
   toggleCategoryFilter,
   fetchClubSearchResults
 } from "../actions/searchResultsActions";
@@ -50,7 +51,11 @@ export class SearchResults extends Component {
   static gsBeforeRoute(/* {dispatch}, renderProps, query, serverProps */) { }
 
   componentDidMount() {
-    let params = { q: this.props.location.query.q, category: this.props.location.query.category };
+    let params = {
+      q: this.props.location.query.q,
+      vibe: this.props.location.query.vibe,
+      category: this.props.location.query.category
+    };
 
     if (this.props.location.query.q) {
       this.props.setTermFilter(this.props.location.query.q);
@@ -64,6 +69,16 @@ export class SearchResults extends Component {
       }
     } else {
       this.props.setCategoryFilter([]);
+    }
+
+    if (this.props.location.query.vibe) {
+      if (_.isArray(this.props.location.query.vibe)) {
+        this.props.setVibeFilter(this.props.location.query.vibe);
+      } else {
+        this.props.setVibeFilter([this.props.location.query.vibe]);
+      }
+    } else {
+      this.props.setVibeFilter([]);
     }
 
     return this.props.fetchClubSearchResults(params);
@@ -83,7 +98,8 @@ export class SearchResults extends Component {
             <SearchBar
               searchBarStyleClass="results-page-search"
               termFilter={this.props.termFilter}
-              categoriesFilter={this.props.categoryiesFilter}
+              vibesFilter={this.props.vibesFilter}
+              categoriesFilter={this.props.categoriesFilter}
               setTermFilter={this.props.setTermFilter}
               fetchClubSearchResults={this.props.fetchClubSearchResults}
               search={true}
@@ -93,18 +109,42 @@ export class SearchResults extends Component {
               <CategoriesCheckbox
                 termFilter={this.props.termFilter}
                 categoriesFilter={this.props.categoriesFilter}
+                vibesFilter={this.props.vibesFilter}
                 toggleCategoryFilter={this.props.toggleCategoryFilter}
                 fetchClubSearchResults={this.props.fetchClubSearchResults}
               />
             </div>
             <div className="mild-shadow searchresults-vibes">
               <h2>Vibes</h2>
-              <ColorfulSelector
+              <h4>Group tightness</h4>
+              <VibeFilterSelector
+                termFilter={this.props.termFilter}
+                categoriesFilter={this.props.categoriesFilter}
+                fetchClubSearchResults={this.props.fetchClubSearchResults}
                 selectorAction={this.props.toggleVibeFilter}
                 selectorReducer={this.props.vibesFilter}
-                selectorKeys={VIBES}
-                categories={true}
-                inline={true}
+                selectorKeys={VIBES['Group tightness']}
+                buttonColor={COLORS[0]}
+              />
+              <h4>Energy</h4>
+              <VibeFilterSelector
+                termFilter={this.props.termFilter}
+                categoriesFilter={this.props.categoriesFilter}
+                fetchClubSearchResults={this.props.fetchClubSearchResults}
+                selectorAction={this.props.toggleVibeFilter}
+                selectorReducer={this.props.vibesFilter}
+                selectorKeys={VIBES['Energy']}
+                buttonColor={COLORS[1]}
+              />
+              <h4>Personality</h4>
+              <VibeFilterSelector
+                termFilter={this.props.termFilter}
+                categoriesFilter={this.props.categoriesFilter}
+                fetchClubSearchResults={this.props.fetchClubSearchResults}
+                selectorAction={this.props.toggleVibeFilter}
+                selectorReducer={this.props.vibesFilter}
+                selectorKeys={VIBES['Personality']}
+                buttonColor={COLORS[2]}
               />
             </div>
           </Col>
@@ -139,6 +179,7 @@ export default connect(
   dispatch => bindActionCreators({
     setTermFilter,
     simpleSearchClub,
+    setVibeFilter,
     toggleVibeFilter,
     setCategoryFilter,
     toggleCategoryFilter,
