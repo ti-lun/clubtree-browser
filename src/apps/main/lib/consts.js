@@ -1,6 +1,6 @@
 import { range } from "lodash";
 
-export const API_URL = "https://intense-retreat-44335.herokuapp.com";
+export const API_URL = process.env.CLUBTREE_SERVER_URL || "http://localhost:3000";
 
 export const COLORS = ["#e61610", "#ff3823", "#72bec9", "#00bcd4"];
 

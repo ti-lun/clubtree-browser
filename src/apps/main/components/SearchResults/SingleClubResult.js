@@ -16,7 +16,7 @@ export default class SingleClubResult extends Component {
             {club.members.length} members
           </Col>
           <Col>
-            Founded {club.foundedYear.substring(0,4)}
+            Founded {club.foundedYear ? club.foundedYear.substring(0,4) : 'N/A'}
           </Col>
         </Row>
         <Row className="searchresults-right-align">
