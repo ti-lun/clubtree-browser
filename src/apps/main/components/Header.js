@@ -42,9 +42,19 @@ class Header extends Component {
     }
   };
 
+  optionalColor = () => {
+    const thisPage = this.props.type;
+    switch(this.props.type) {
+      case "dashboard":
+        return "header-dashboard";
+      default:
+        return "";
+    }
+  }
+
   render() {
     return (
-      <div className="header-float">
+      <div className={`header-float ${this.optionalColor()}`}>
         <Row>
           <Col>
             <Link to="/">
@@ -54,9 +64,7 @@ class Header extends Component {
           <Col>
             <span className={this.generateLinkStyle(this.props.type)}>
               <span className="header-explore">
-                <Link to="/search">EXPLORE</Link>
-              </span>&nbsp; | &nbsp;<span className="header-find">
-                <Link to="/advancedsearch">FEATURED</Link>
+                <Link to="/advancedsearch">EXPLORE</Link>
               </span>
             </span>
           </Col>

@@ -49,7 +49,7 @@ export class ClubProfile extends Component {
   componentWillMount() {
     console.log(axios);
     console.log("before axios");
-    axios.get(`${API_URL}/clubs/${this.props.params.id}`).then((response) => {
+    axios.get(`/api/clubs/${this.props.params.id}`).then((response) => {
       console.log("response is", response);
       this.setState(response.data);
     });

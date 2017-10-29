@@ -265,8 +265,8 @@ h1.front-splash-font {
 // =================================== [ HEADER ]
 
 .header-float {
-  margin-top: 2%;
-  margin-left: 15%;
+  padding-top: 2%;
+  padding-left: 15%;
   position: relative;
   z-index: 5;
   margin-bottom: 1%;
@@ -297,6 +297,10 @@ h1.front-splash-font {
 .header-login {
   text-align: center;
   padding-top: 5%;
+}
+
+.header-dashboard {
+  background-color: #1e424d;
 }
 
 .header-clubprofile {
@@ -446,7 +450,7 @@ p.clubprofile-section {
   position: fixed;
   width: 100%;
   height: 25%;
-  background-color: #8ac8d1;
+  background-color: #1e424d;
   z-index: 1;
   opacity: 0.9;
 }
@@ -649,9 +653,13 @@ p.clubprofile-section {
   margin: 10px;
 }
 
+.dashboard-centered {
+  text-align :center;
+}
+
 .dashboard-margins {
-  margin-left: 10%;
-  margin-right: 10%;
+  margin-left: 15%;
+  margin-right: 15%;
   margin-top: 5%;
 }
 
@@ -675,6 +683,25 @@ p.clubprofile-section {
   background-color: #00bcd4;
 }
 
+.noclubs {
+  text-align:center;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 40%;
+}
+
+.dash-tabs {
+  position: absolute;
+  left: -7%;
+  -webkit-transform: rotate(90deg);
+  background-color: #eeeeee;
+  padding: 40px 100px 40px 100px;
+}
+
+@mixin single-dash-tab($number) {
+  top: (($number-1)*20 + 20) * 100%;
+}
 
 // =================================== [ FOOTER ]
 

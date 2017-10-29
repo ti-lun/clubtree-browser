@@ -7,6 +7,9 @@ import Helmet from "react-helmet";
 import axios from "axios";
 
 import OrgDashboard from "../components/Dashboard/OrgDashboard";
+import NoClubsDashboard from "../components/Dashboard/NoClubsDashboard";
+import OrgDashTabs from "../components/Dashboard/OrgDashTabs";
+
 import Header from "../components/Header";
 
 import { API_URL } from "../lib/consts";
@@ -34,14 +37,14 @@ export class Dashboard extends Component {
     super(props);
     this.state = {
       clubs: [],
-      displayName: {},
+      name: {},
     }
   }
 
-  componentDidMount() {
+   componentDidMount() {
     // check to see if this user has any clubs.
     const userID = localStorage.getItem("_id");
-    axios.get(`${API_URL}/members`, {
+    axios.get(`/api/members`, {
       params: {
         "_id": userID
       }
@@ -53,20 +56,24 @@ export class Dashboard extends Component {
           first: responseObj.firstName,
           last: responseObj.lastName
         }
-      })
+      });
     });
-
-
   }
 
   render () {
     return (
       <div>
         <Helmet title="Dashboard"/>
-        <Header />
+        <Header type="dashboard"/>
         <div className="dashboard-margins">
-
+          { (this.state.clubs.length === 0) ? <NoClubsDashboard /> :
+            <OrgDashboard
+              user={this.state}
+              /> }
         </div>
+        <OrgDashTabs
+          clubs={this.state.clubs}
+          />
       </div>
     );
   }

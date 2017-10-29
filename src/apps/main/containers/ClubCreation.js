@@ -55,7 +55,7 @@ export class ClubCreation extends Component {
       this.setState({
         id: this.props.params.id
       });
-      axios.get(`${API_URL}/clubs/${this.props.params.id}`).then((response) => {
+      axios.get(`/api/clubs/${this.props.params.id}`).then((response) => {
         const club = response.data;
         this.props.loadExistingClub(club);
       });
@@ -108,7 +108,7 @@ export class ClubCreation extends Component {
 
         // first, check to see if the club was created already.
         if (this.props.params.id) {
-          axios.put(`${API_URL}/clubs`, {
+          axios.put(`/api/clubs`, {
             id: this.state.id,
             updateFields: {
               clubName: this.props.newClub.clubName,
@@ -118,10 +118,12 @@ export class ClubCreation extends Component {
           });
         }
         else {
-          axios.post(`${API_URL}/clubs`, {
+
+          axios.post(`/api/clubs`, {
             clubName: this.props.newClub.clubName,
             description: this.props.newClub.description,
-            category: this.props.newClub.category
+            category: this.props.newClub.category,
+            organizerID: localStorage.getItem("_id")
           }).then((response) => {
             this.setState({
               id: response.data["_id"]
@@ -153,7 +155,7 @@ export class ClubCreation extends Component {
           return;
         }
 
-        axios.put(`${API_URL}/clubs`, {
+        axios.put(`/api/clubs`, {
           id: this.state.id,
           updateFields: {
             clubFeeAmount: this.props.newClub.clubFeeAmount,
@@ -189,7 +191,7 @@ export class ClubCreation extends Component {
 
         if (this.props.newClub.questions)
 
-        axios.put(`${API_URL}/clubs`, {
+        axios.put(`/api/clubs`, {
           id: this.state.id,
           updateFields: {
             vibes: this.props.vibesFilterCC,

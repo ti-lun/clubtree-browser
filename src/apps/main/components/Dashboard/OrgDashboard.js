@@ -6,11 +6,19 @@ import { Row, Col } from "reactstrap";
 
 export default class OrgDashboard extends Component {
   render () {
+
+    const pic = localStorage.getItem("profPicURL");
+
     return (
       <div>
         <Row>
           <Col>
-            <div className="dashboard-box mild-shadow">Profile pic</div>
+            <div className="dashboard-box dashboard-centered mild-shadow">
+              <img
+                className="rounded-circle"
+                src={pic} />
+              <h3>{this.props.user.name.first}</h3>
+            </div>
           </Col>
           <Col>
             <div className="dashboard-box mild-shadow">
