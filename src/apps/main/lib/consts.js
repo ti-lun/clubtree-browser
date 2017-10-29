@@ -1,4 +1,3 @@
-import React from "react";
 import { range } from "lodash";
 
 export const API_URL = "https://intense-retreat-44335.herokuapp.com";
