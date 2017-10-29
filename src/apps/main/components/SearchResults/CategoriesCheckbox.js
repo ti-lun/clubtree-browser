@@ -19,12 +19,14 @@ export default class CategoriesCheckbox extends Component {
       if (checked) {
         query = {
           q: this.props.termFilter,
+          vibe: this.props.vibesFilter,
           category: _.uniq(_.without(this.props.categoriesFilter, key))
         };
         url = generateSearchURL(query);
       } else {
         query = {
           q: this.props.termFilter,
+          vibe: this.props.vibesFilter,
           category: _.uniq(_.concat(this.props.categoriesFilter, key))
         };
         url = generateSearchURL(query);

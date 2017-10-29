@@ -1,1 +1,1 @@
-web: gluestick start
+web: gluestick start --skip-build

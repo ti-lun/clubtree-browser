@@ -36,6 +36,7 @@ class SearchBar extends Component {
   render() {
     const query = {
       q: this.props.termFilter,
+      vibe: this.props.vibesFilter,
       category: this.props.categoriesFilter
     };
 

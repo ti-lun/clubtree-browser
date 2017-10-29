@@ -53,9 +53,15 @@ const config: Config = {
   },
   production: {
     head: headContent,
+    proxies: [
+      {
+        path: "/api/*",
+        destination: process.env.CLUBTREE_SERVER_URL || "http://localhost:3000/",
+      }
+    ],
     logger: {
-      pretty: false,
-      level: "warn"
+      pretty: true,
+      level: "info"
     }
   }
 };

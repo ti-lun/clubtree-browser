@@ -3,6 +3,7 @@
 import _ from "lodash";
 import { SET_TERM_FILTER } from "../actions/searchResultsActions";
 import { SIMPLE_SEARCH_CLUB } from "../actions/searchResultsActions";
+import { SET_VIBE_FILTER } from "../actions/searchResultsActions";
 import { TOGGLE_VIBE_FILTER } from "../actions/searchResultsActions";
 import { SET_CATEGORY_FILTER } from "../actions/searchResultsActions";
 import { TOGGLE_CATEGORY_FILTER } from "../actions/searchResultsActions";
@@ -33,6 +34,12 @@ export default (
       state = {
         ...state,
         categoriesFilter: action.payload
+      };
+      return state;
+    case SET_VIBE_FILTER:
+      state = {
+        ...state,
+        vibesFilter: action.payload
       };
       return state;
     case TOGGLE_CATEGORY_FILTER:
