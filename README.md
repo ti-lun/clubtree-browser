@@ -42,7 +42,7 @@ Before you can get the the client build and running, you will need to do the fol
 
 Normally, you wouldn't commit build files to the repository, but because the Heroku Buildpack hasn't been configured yet, we need to do it locally on the machine.
 
-If you are using a Windows OS, you will need to install [additional software](https://stackoverflow.com/questions/21365714/nodejs-error-installing-with-npm) before you can run `npm install`. It is worth noting that you might get better luck with `npm install --msvs_version=2015` instead of setting the enviroment variable, when you get to that step.
+If you are using a Windows OS, you will need to install [additional software](https://stackoverflow.com/questions/21365714/nodejs-error-installing-with-npm) and/or the [Visual Studio 2015 C++ Standalone Compilter](http://landinghub.visualstudio.com/visual-cpp-build-tools) before you can run `npm install`. It is worth noting that you might get better luck with `npm install --msvs_version=2015` instead of setting the enviroment variable, when you get to that step.
 
 1. Generate the build files on your local machine.
 

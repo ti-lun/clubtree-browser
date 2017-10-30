@@ -4,6 +4,8 @@ import React, { Component } from "react";
 import { Link } from "react-router";
 import axios from "axios";
 
+import { API_URL } from "../../lib/consts";
+
 export default class OrgDashTabs extends Component {
 
   constructor(props) {
@@ -18,7 +20,7 @@ export default class OrgDashTabs extends Component {
     let tabIndex = 0;
     await Promise.all(nextProps.clubs.map(async(club, index) => {
       if (club.club) {
-        const clubInfo = await axios.get(`/api/clubs/${club.club}`).then((response) => {
+        const clubInfo = await axios.get(`${API_URL}/clubs`).then((response) => {
             tabIndex++;
             newTabs.push(
                 <div

@@ -5,12 +5,14 @@ export const UNAUTH_USER = "UNAUTH_USER";
 import axios from "axios";
 import { browserHistory } from "react-router";
 
+import { API_URL } from "../lib/consts";
+
 // TODO: need to put fbID into localStorage
 export function signInFB(dataObj) {
-  return function(dispatch) {
+  return function (dispatch) {
 
     // let's say the api passes and it works hooray.
-    axios.get(`api/members`, {
+    axios.get(`${API_URL}/members`, {
       params: {
         fbID: dataObj.fbID
       }
@@ -19,13 +21,10 @@ export function signInFB(dataObj) {
         // do nothing i guess lol
       }
       else {
-
-        axios.post(`api/members`, dataObj)
-        .then(response => {
-          axios.get(`api/members`).then((response) => {console.log(response)});
+        axios.post(`${API_URL}/members`, dataObj).then((response) => {
+          axios.get(`${API_URL}/members`).then((response) => { console.log(response) });
           console.log("something happened hooray lol", dataObj);
-        })
-        .catch((err) => {
+        }).catch((err) => {
           console.log("crap", err);
         });
       }

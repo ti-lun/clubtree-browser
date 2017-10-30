@@ -1,6 +1,6 @@
 export default config => ({
   ...config,
-  protocol: 'https',
+  protocol: 'http',
   host: process.env.HOSTNAME || "localhost",
   ports: {
     client: 8888,

@@ -27,7 +27,7 @@ export default class ClubProfile extends Component {
    * @return {(Promise|undefined)} If this method returns a promise, the router
    * will wait for the promise to resolve before the container is loaded.
    */
-  static gsBeforeRoute(/* {dispatch}, renderProps, query, serverProps */) {}
+  static gsBeforeRoute(/* {dispatch}, renderProps, query, serverProps */) { }
 
   constructor(props) {
     super(props);
@@ -52,7 +52,7 @@ export default class ClubProfile extends Component {
     console.log("ANYTHING?!");
     console.log(axios);
     console.log("before axios");
-    axios.get(`/api/clubs/${this.props.params.id}`).then((response) => {
+    axios.get(`${API_URL}/clubs/${this.props.params.id}`).then((response) => {
       console.log("response is", response);
       this.setState(response.data);
     });
@@ -88,7 +88,7 @@ export default class ClubProfile extends Component {
           cover={this.state.clubCover}
           clubName={this.state.clubName}
           vibes={this.state.vibes}
-          />
+        />
         <div
           className="clubprofile-info-background"
           style={{
@@ -109,6 +109,7 @@ export default class ClubProfile extends Component {
           <div className="clubprofile-info-section">
             <h1 className="col-xs-12 clubprofilesection"> Basic info </h1>
             <hr className="col-xs-12 clubprofilesection" />
+            <p className="col-xs-12 clubprofilesection"> Year started: {this.state.foundedYear.substring(0, 4)} </p>
             <p className="col-xs-12 clubprofilesection">
                Year started: {this.state.foundedYear.substring(0,4)}
             </p>
@@ -139,3 +140,9 @@ export default class ClubProfile extends Component {
     );
   }
 }
+
+export default connect(
+  state => ({}),
+  dispatch =>
+    bindActionCreators({}, dispatch)
+)(ClubProfile);

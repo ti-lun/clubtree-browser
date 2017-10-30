@@ -54,7 +54,7 @@ export class Dashboard extends Component {
   componentDidMount() {
     // check to see if this user has any clubs.
     const userID = localStorage.getItem("_id");
-    axios.get(`/api/members`, {
+    axios.get(`${API_URL}/members`, {
       params: {
         "_id": userID
       }
