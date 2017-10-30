@@ -18,7 +18,7 @@ export default class OrgDashTabs extends Component {
   async componentWillReceiveProps(nextProps) {
     let newTabs = [];
     let tabIndex = 0;
-    await Promise.all(nextProps.clubs.map(async(club, index) => {
+    await Promise.all(nextProps.clubs.map(async (club, index) => {
       if (club.club) {
         const clubInfo = await axios.get(`${API_URL}/clubs`).then((response) => {
             tabIndex++;
@@ -39,12 +39,12 @@ export default class OrgDashTabs extends Component {
           <div className={`dash-tabs single-dash-tab${tabIndex} mild-shadow`}>
             Add club
           </div>
-        </Link>
-      )
+      </Link>
+    )
 
-      this.setState({
-        tabs: newTabs
-      });
+    this.setState({
+      tabs: newTabs
+    });
 
   }
 
@@ -66,7 +66,7 @@ export default class OrgDashTabs extends Component {
   //   });
   // }
 
-  render () {
+  render() {
     if (this.props.clubs.length === 0) {
       this.state.tabs.push((
         <Link to="/clubcreation">
@@ -83,7 +83,7 @@ export default class OrgDashTabs extends Component {
     console.log("tabs are", this.state.tabs.length);
     return (
       <div id="pls">
-        { this.state.tabs }
+        {this.state.tabs}
       </div>
     );
   }

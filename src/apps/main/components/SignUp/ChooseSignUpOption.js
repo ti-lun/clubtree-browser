@@ -33,14 +33,14 @@ class ChooseSignUpOption extends Component {
     return (
       <div>
         <Link to="/dashboard">If you're not logged in, this shouldn't work.</Link>
-        <button className="btn joinus-signUpButton" id="joinus-facebook">
+        <div className="btn joinus-signUpButton" id="joinus-facebook">
           <FacebookLogin
             appId="469991373333039"
             autoLoad={false}
             fields="name,email,picture"
             onClick={this.FBloginClicked}
             callback={this.responseFacebook} />
-        </button>
+        </div>
         <button className="btn joinus-signUpButton" id="joinus-google">
           Join us with Google
         </button>

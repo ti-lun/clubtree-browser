@@ -36,9 +36,8 @@ export default class VibeFilterSelector extends Component {
       }
 
       generatedKeys.push(
-        <Link to={url}>
+        <Link to={url} key={index}>
           <button
-            key={index}
             className={className}
             style={{
               backgroundColor: this.props.buttonColor,
