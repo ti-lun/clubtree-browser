@@ -43,7 +43,7 @@ class Step3 extends Component {
      (error, result) => {
        console.log(result);
        this.props.uploadClubLogo(result[0]);
-     }).bind(this);
+     });
    }
 
    uploadWidgetCover = () => {
@@ -54,7 +54,7 @@ class Step3 extends Component {
       (error, result) => {
         console.log(result);
         this.props.uploadClubCover(result[0]);
-      }).bind(this);
+      });
   }
 
   updateQuestion = (e) => {

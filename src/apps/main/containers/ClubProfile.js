@@ -7,12 +7,12 @@ import Helmet from "react-helmet";
 import { Row, Col } from "reactstrap";
 import axios from "axios";
 
-import { API_URL } from "../lib/consts";
+import { API_URL, DAYS } from "../lib/consts";
 
 import Header from "../components/Header";
 import ProfileHeader from "../components/ClubProfile/ProfileHeader";
 import Footer from "../components/Footer";
-export class ClubProfile extends Component {
+export default class ClubProfile extends Component {
   /**
    * Called by ReactRouter before loading the container. Called prior to the
    * React life cycle so doesn't have access to component's props or state.
@@ -42,11 +42,14 @@ export class ClubProfile extends Component {
       meeting: {},
       organizers: [],
       members: [],
-      imageURLs: {}
+      clubLogo: "",
+      clubCover: ""
     }
+    console.log("in constructor rn");
   }
 
   componentWillMount() {
+    console.log("ANYTHING?!");
     console.log(axios);
     console.log("before axios");
     axios.get(`/api/clubs/${this.props.params.id}`).then((response) => {
@@ -56,21 +59,40 @@ export class ClubProfile extends Component {
 
   }
 
+  extractMeetingDatesAndTimes = (meetingObj) => {
+    if (!meetingObj) {
+      return "";
+    }
+    return DAYS.map((day, index) => {
+      if (day in meetingObj) {
+        const startHour = ("hour" in meetingObj[day]["start"]) ? meetingObj[day]["start"]["hour"] : "1";
+        const startMinutes = ("minutes" in meetingObj[day]["start"]) ? meetingObj[day]["start"]["minutes"] : "00";
+        const startMeridian = ("meridian" in meetingObj[day]["start"]) ? meetingObj[day]["start"]["meridian"] : "AM";
+        const endHour = ("hour" in meetingObj[day]["end"]) ? meetingObj[day]["end"]["hour"] : "1";
+        const endMinutes = ("minutes" in meetingObj[day]["end"]) ? meetingObj[day]["end"]["minutes"] : "00";
+        const endMeridian = ("meridian" in meetingObj[day]["end"]) ? meetingObj[day]["end"]["meridian"] : "AM";
+
+
+        return `${day}s from ${startHour}:${startMinutes} ${startMeridian} to ${endHour}:${endMinutes} ${endMeridian} \n`;
+      }
+    });
+  }
+
   render() {
     return (
       <div>
         <Helmet title="SearchResults" />
         <Header type="main" />
         <ProfileHeader
-          logo={this.state.imageURLs.logo}
-          cover={this.state.imageURLs.cover}
+          logo={this.state.clubLogo}
+          cover={this.state.clubCover}
           clubName={this.state.clubName}
           vibes={this.state.vibes}
           />
         <div
           className="clubprofile-info-background"
           style={{
-            backgroundImage: `url(${this.state.imageURLs.cover})`,
+            backgroundImage: `url(${this.state.clubCover})`,
             size: "100%"
           }}
         />
@@ -87,25 +109,32 @@ export class ClubProfile extends Component {
           <div className="clubprofile-info-section">
             <h1 className="col-xs-12 clubprofilesection"> Basic info </h1>
             <hr className="col-xs-12 clubprofilesection" />
-            <p className="col-xs-12 clubprofilesection"> Year started: {this.state.foundedYear.substring(0,4)} </p>
+            <p className="col-xs-12 clubprofilesection">
+               Year started: {this.state.foundedYear.substring(0,4)}
+            </p>
             <p className="col-xs-12 clubprofilesection">
               {" "}Approx. number of members: {this.state.members.length}{" "}
             </p>
             <p className="col-xs-12 clubprofilesection">
-              {" "}Meeting location: {this.state.meeting.meetingLocation}{" "}
+              {" "}Meeting location: {this.state.meetingLocation}{" "}
             </p>
             <p className="col-xs-12 clubprofilesection">
-              {" "}Meeting times: {this.state.meeting.meetingTime}{" "}
+              {" "}Meeting times:<br />
+              {this.extractMeetingDatesAndTimes(this.state.meetingDatesAndTimes)}{" "}
             </p>
           </div>
 
           <div className="clubprofile-info-section">
-            <h1 className="col-xs-12 clubprofilesection"> Teamwork values </h1>
-            <hr className="col-xs-12 clubprofilesection question" />
-            <p className="col-xs-12 clubprofilesection"> hi </p>
+            <h1 className="col-xs-12 clubprofilesection"> Membership requirements </h1>
+            <hr className="col-xs-12 clubprofilesection" />
+            <p className="col-xs-12 clubprofilesection">
+              {this.state.memberReq}
+            </p>
+            <p>
+              For any dues or fees, this club requires ${this.state.clubFeeAmount} per {this.state.clubFeePeriod}.
+            </p>
           </div>
         </div>
-        <Footer />
       </div>
     );
   }

@@ -38,10 +38,20 @@ export class Dashboard extends Component {
     this.state = {
       clubs: [],
       name: {},
-    }
+      currentClub: {},
+      simpleClubData: {}
+    };
   }
 
-   componentDidMount() {
+  viewDiffClub = (response, club) => {
+    console.log("club clicked was", club, "additional data is", response);
+    this.setState({
+      currentClub: response.data,
+      simpleClubData: club
+    });
+  }
+
+  componentDidMount() {
     // check to see if this user has any clubs.
     const userID = localStorage.getItem("_id");
     axios.get(`/api/members`, {
@@ -50,22 +60,28 @@ export class Dashboard extends Component {
       }
     }).then((response) => {
       const responseObj = response.data[0];
-      this.setState({
-        clubs: responseObj.clubs,
-        name: {
-          first: responseObj.firstName,
-          last: responseObj.lastName
-        }
-      });
+      if (this.refs.body){
+        this.setState({
+          clubs: responseObj.clubs,
+          name: {
+            first: responseObj.firstName,
+            last: responseObj.lastName
+          }
+        });
+      }
     });
   }
 
   render () {
+    console.log("cover URL is", this.state.currentClub)
     return (
       <div>
         <Helmet title="Dashboard"/>
         <Header type="dashboard"/>
-        <div className="dashboard-margins">
+        <div className="dashboard-margins" ref="body">
+          <div className="dashboard-cover-crop">
+            <img src={this.state.currentClub.clubCover}/>
+          </div>
           { (this.state.clubs.length === 0) ? <NoClubsDashboard /> :
             <OrgDashboard
               user={this.state}
@@ -73,6 +89,7 @@ export class Dashboard extends Component {
         </div>
         <OrgDashTabs
           clubs={this.state.clubs}
+          viewDiffClub={this.viewDiffClub}
           />
       </div>
     );

@@ -10,12 +10,15 @@ export default class ProfileHeader extends Component {
     const vibes = this.props.vibes.map((vibe, i) => {
       return (
         <Button
-          className="btn"
+          className="btn searchresults-vibes-btn"
           style={{
             backgroundColor: COLORS[i]
           }}
-          ></Button>
+          >
+          {vibe}
+        </Button>
       )});
+
 
     return (
       <div>
@@ -45,7 +48,7 @@ export default class ProfileHeader extends Component {
                 {this.props.clubName}
                 </span>
               </div>
-              <div>Tags</div>
+              <div>{ vibes }</div>
               <div>See club tree</div>
             </Col>
           </Row>

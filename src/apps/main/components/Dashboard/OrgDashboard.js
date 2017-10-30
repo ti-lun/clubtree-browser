@@ -16,8 +16,11 @@ export default class OrgDashboard extends Component {
             <div className="dashboard-box dashboard-centered mild-shadow">
               <img
                 className="rounded-circle"
-                src={pic} />
-              <h3>{this.props.user.name.first}</h3>
+                src={pic} /><br /><br/>
+              <h3>{this.props.user.name.first}</h3><br/>
+              <h5>{this.props.user.simpleClubData.role}</h5>
+              <h6>of</h6>
+              <h5>{this.props.user.currentClub.clubName}</h5>
             </div>
           </Col>
           <Col>

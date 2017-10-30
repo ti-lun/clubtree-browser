@@ -196,7 +196,9 @@ export class ClubCreation extends Component {
           updateFields: {
             vibes: this.props.vibesFilterCC,
             memberReq: this.props.newClub.memberReq,
-            meetingDatesAndTimes: this.props.newClub.meetingDatesAndTimes
+            meetingDatesAndTimes: this.props.newClub.meetingDatesAndTimes,
+            clubLogo: this.props.newClub.clubLogo,
+            clubCover: this.props.newClub.clubCover
           }
         });
         break;

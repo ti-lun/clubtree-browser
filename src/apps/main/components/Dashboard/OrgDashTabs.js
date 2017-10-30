@@ -14,7 +14,6 @@ export default class OrgDashTabs extends Component {
   }
 
   async componentWillReceiveProps(nextProps) {
-    console.log("cwrp props", nextProps.clubs.length);
     let newTabs = [];
     let tabIndex = 0;
     await Promise.all(nextProps.clubs.map(async(club, index) => {
@@ -22,13 +21,12 @@ export default class OrgDashTabs extends Component {
         const clubInfo = await axios.get(`/api/clubs/${club.club}`).then((response) => {
             tabIndex++;
             newTabs.push(
-              <Link to={`/club/${response.data.club}`}>
                 <div
+                  onClick={ () => this.props.viewDiffClub(response, club) }
                   key={index}
                   className={`dash-tabs single-dash-tab${tabIndex} mild-shadow`}>
                   { response.data.clubName }
                 </div>
-              </Link>
             );
           });
         }
