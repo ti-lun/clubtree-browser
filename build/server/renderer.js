@@ -125,15 +125,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.VALID_YEARS = exports.MONTHS_TO_INT = exports.MONTHS = exports.DAYS = exports.MINUTES = exports.HOURS = exports.VIBES = exports.CATEGORIES_ICONS_MAP = exports.CLUB_MEETING_LOC_CHAR_LENGTH = exports.CLUB_DESC_WORD_LENGTH = exports.CLUB_NAME_CHAR_LENGTH = exports.COLORS = exports.API_URL = undefined;
 
-var _react = __webpack_require__(/*! react */ 0);
-
-var _react2 = _interopRequireDefault(_react);
-
 var _lodash = __webpack_require__(/*! lodash */ 7);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var API_URL = exports.API_URL = "https://intense-retreat-44335.herokuapp.com";
+var API_URL = exports.API_URL = process.env.CLUBTREE_SERVER_URL || "http://localhost:3000";
 
 var COLORS = exports.COLORS = ["#e61610", "#ff3823", "#72bec9", "#00bcd4"];
 
@@ -299,6 +293,16 @@ var Header = function (_Component) {
       }
     };
 
+    _this.optionalColor = function () {
+      var thisPage = _this.props.type;
+      switch (_this.props.type) {
+        case "dashboard":
+          return "header-dashboard";
+        default:
+          return "";
+      }
+    };
+
     _this.state = {
       profPicURL: ""
     };
@@ -317,7 +321,7 @@ var Header = function (_Component) {
     value: function render() {
       return _react2.default.createElement(
         "div",
-        { className: "header-float" },
+        { className: "header-float " + this.optionalColor() },
         _react2.default.createElement(
           _reactstrap.Row,
           null,
@@ -341,18 +345,8 @@ var Header = function (_Component) {
                 { className: "header-explore" },
                 _react2.default.createElement(
                   _reactRouter.Link,
-                  { to: "/search" },
-                  "EXPLORE"
-                )
-              ),
-              "\xA0 | \xA0",
-              _react2.default.createElement(
-                "span",
-                { className: "header-find" },
-                _react2.default.createElement(
-                  _reactRouter.Link,
                   { to: "/advancedsearch" },
-                  "FEATURED"
+                  "EXPLORE"
                 )
               )
             )
@@ -795,7 +789,7 @@ function fetchClubSearchResults(params) {
     var paramString = _qs2.default.stringify(params, { arrayFormat: 'repeat' });
     return paramString;
   };
-  var request = _axios2.default.get("https://intense-retreat-44335.herokuapp.com/clubs", { params: params, paramsSerializer: paramsSerializer });
+  var request = _axios2.default.get(_consts.API_URL + "/clubs", { params: params, paramsSerializer: paramsSerializer });
   return {
     type: FETCH_CLUB_SEARCH_RESULTS,
     promise: request
@@ -1074,19 +1068,16 @@ var UNAUTH_USER = exports.UNAUTH_USER = "UNAUTH_USER";
 function signInFB(dataObj) {
   return function (dispatch) {
 
-    // first check to see if we have this user already
-    // if we do, then no need to make a new Clubtree user.
+    // let's say the api passes and it works hooray.
     _axios2.default.get(_consts.API_URL + "/members", {
       params: {
         fbID: dataObj.fbID
       }
     }).then(function (response) {
       if (response.data.length) {
-        localStorage.setItem("_id", response.data[0]["_id"]);
+        // do nothing i guess lol
       } else {
         _axios2.default.post(_consts.API_URL + "/members", dataObj).then(function (response) {
-          // we really need to test this
-          localStorage.setItem("_id", response["_id"]);
           _axios2.default.get(_consts.API_URL + "/members").then(function (response) {
             console.log(response);
           });
@@ -1100,14 +1091,12 @@ function signInFB(dataObj) {
     dispatch({ type: AUTH_USER });
     console.log("dataObj token is", dataObj.token);
     localStorage.setItem("token", dataObj.token);
-    localStorage.setItem("profPicURL", dataObj.profPicURL);
 
     _reactRouter.browserHistory.push("/dashboard");
   };
 }
 
 function authUser() {
-  _reactRouter.browserHistory.push("/");
   return {
     type: AUTH_USER
   };
@@ -1662,8 +1651,6 @@ var _SearchBar2 = _interopRequireDefault(_SearchBar);
 
 var _searchResultsActions = __webpack_require__(/*! ../actions/searchResultsActions */ 13);
 
-var _nealReact = __webpack_require__(/*! neal-react */ 80);
-
 var _reactstrap = __webpack_require__(/*! reactstrap */ 1);
 
 var _entirelogo = __webpack_require__(/*! ../assets/images/site-logo/entirelogo.png */ 81);
@@ -1694,73 +1681,6 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var brandName = "SamplePage";
-var brand = _react2.default.createElement(
-  "span",
-  null,
-  brandName
-);
-
-var onSignup = function onSignup(_ref) {
-  var name = _ref.name,
-      email = _ref.email,
-      password = _ref.password;
-  return _nealReact.Stripe.StripeHandler.open({
-    name: "Stripe Integration Included",
-    description: "Like this? Donate $5 <3",
-    panelLabel: "Donate {{amount}}",
-    email: email,
-    amount: 500
-  });
-};
-
-var businessAddress = _react2.default.createElement(
-  "address",
-  null,
-  _react2.default.createElement(
-    "strong",
-    null,
-    brandName
-  ),
-  _react2.default.createElement("br", null),
-  "1337 Market Street, Suite 1337",
-  _react2.default.createElement("br", null),
-  "San Francisco, CA 94103",
-  _react2.default.createElement("br", null),
-  "+1 (123) 456-7890"
-);
-
-var pricingPlan1 = {
-  name: "Personal",
-  description: "Describe your plans with easy-to-use pricing tables. Each plan provides callbacks to handle visitor clicks.",
-  price: "$99",
-  features: {
-    "Describe pricing plans as JSON": true,
-    "Features can be active/inactive": true,
-    "Works on mobile": true,
-    "Custom callbacks": true,
-    "Extra Feature 1": false,
-    "Extra Feature 2": false
-  },
-  onClick: onSignup
-};
-
-var pricingPlan2 = Object.assign({}, pricingPlan1, {
-  price: "$499",
-  name: "Startup",
-  features: Object.assign({}, pricingPlan1.features, {
-    "Extra Feature 1": true
-  })
-});
-
-var pricingPlan3 = Object.assign({}, pricingPlan2, {
-  price: "$999",
-  name: "Enterprise",
-  features: Object.assign({}, pricingPlan2.features, {
-    "Extra Feature 2": true
-  })
-});
-
 var FrontPage = function (_Component) {
   _inherits(FrontPage, _Component);
 
@@ -1782,11 +1702,11 @@ var FrontPage = function (_Component) {
     key: "render",
     value: function render() {
       return _react2.default.createElement(
-        _nealReact.Page,
+        "div",
         null,
         _react2.default.createElement(_Header2.default, null),
         _react2.default.createElement(
-          _nealReact.Hero,
+          "div",
           {
             id: "bootstrap-override-jumbotron",
             className: "text-xs-center home-initial-picture background-cover-center front-splash nopad-bottom",
@@ -1814,8 +1734,8 @@ var FrontPage = function (_Component) {
           )
         ),
         _react2.default.createElement(
-          _nealReact.Section,
-          { className: "subhero home-intro" },
+          "div",
+          { className: "subdiv home-intro" },
           _react2.default.createElement(
             _reactstrap.Row,
             null,
@@ -1905,7 +1825,7 @@ var FrontPage = function (_Component) {
           )
         ),
         _react2.default.createElement(
-          _nealReact.Hero,
+          "div",
           { className: "home-organizer-picture background-cover-center text-center" },
           _react2.default.createElement(
             "h1",
@@ -1914,29 +1834,10 @@ var FrontPage = function (_Component) {
           )
         ),
         _react2.default.createElement(
-          _nealReact.Section,
-          { heading: "Inline and Modal Signup components", className: "gray" },
+          "div",
+          { className: "gray" },
           "We appreciate your hard work in supporting the backbone of your university's culture. Now let's make your jobs easier."
-        ),
-        _react2.default.createElement(
-          _nealReact.Section,
-          null,
-          _react2.default.createElement(
-            _nealReact.PricingTable,
-            null,
-            _react2.default.createElement(_nealReact.PricingPlan, pricingPlan1),
-            _react2.default.createElement(_nealReact.PricingPlan, pricingPlan2),
-            _react2.default.createElement(_nealReact.PricingPlan, pricingPlan3)
-          )
-        ),
-        _react2.default.createElement(_nealReact.Section, null),
-        _react2.default.createElement(_nealReact.Footer, {
-          brandName: brandName,
-          facebookUrl: "http://www.facebook.com",
-          twitterUrl: "http://www.twitter.com/dennybritz",
-          githubUrl: "https://github.com/dennybritz/neal-react",
-          address: businessAddress
-        })
+        )
       );
     }
   }]);
@@ -4783,17 +4684,7 @@ exports.default = (0, _reactRedux.connect)(function () {
 })(HomeApp);
 
 /***/ }),
-/* 80 */
-/*!*****************************!*\
-  !*** external "neal-react" ***!
-  \*****************************/
-/*! no static exports found */
-/*! all exports used */
-/***/ (function(module, exports) {
-
-module.exports = require("neal-react");
-
-/***/ }),
+/* 80 */,
 /* 81 */
 /*!**************************************************************!*\
   !*** ./src/apps/main/assets/images/site-logo/entirelogo.png ***!
@@ -5670,7 +5561,7 @@ var SingleClubResult = function (_Component) {
             _reactstrap.Col,
             null,
             "Founded ",
-            club.foundedYear.substring(0, 4)
+            club.foundedYear ? club.foundedYear.substring(0, 4) : 'N/A'
           )
         ),
         _react2.default.createElement(
@@ -5822,6 +5713,24 @@ var ClubProfile = exports.ClubProfile = function (_Component) {
 
     var _this = _possibleConstructorReturn(this, (ClubProfile.__proto__ || Object.getPrototypeOf(ClubProfile)).call(this, props));
 
+    _this.extractMeetingDatesAndTimes = function (meetingObj) {
+      if (!meetingObj) {
+        return "";
+      }
+      return _consts.DAYS.map(function (day, index) {
+        if (day in meetingObj) {
+          var startHour = "hour" in meetingObj[day]["start"] ? meetingObj[day]["start"]["hour"] : "1";
+          var startMinutes = "minutes" in meetingObj[day]["start"] ? meetingObj[day]["start"]["minutes"] : "00";
+          var startMeridian = "meridian" in meetingObj[day]["start"] ? meetingObj[day]["start"]["meridian"] : "AM";
+          var endHour = "hour" in meetingObj[day]["end"] ? meetingObj[day]["end"]["hour"] : "1";
+          var endMinutes = "minutes" in meetingObj[day]["end"] ? meetingObj[day]["end"]["minutes"] : "00";
+          var endMeridian = "meridian" in meetingObj[day]["end"] ? meetingObj[day]["end"]["meridian"] : "AM";
+
+          return day + "s from " + startHour + ":" + startMinutes + " " + startMeridian + " to " + endHour + ":" + endMinutes + " " + endMeridian + " \n";
+        }
+      });
+    };
+
     _this.state = {
       clubName: "",
       description: "",
@@ -5833,8 +5742,10 @@ var ClubProfile = exports.ClubProfile = function (_Component) {
       meeting: {},
       organizers: [],
       members: [],
-      imageURLs: {}
+      clubLogo: "",
+      clubCover: ""
     };
+    console.log("in constructor rn");
     return _this;
   }
 
@@ -5843,6 +5754,7 @@ var ClubProfile = exports.ClubProfile = function (_Component) {
     value: function componentWillMount() {
       var _this2 = this;
 
+      console.log("ANYTHING?!");
       console.log(_axios2.default);
       console.log("before axios");
       _axios2.default.get(_consts.API_URL + "/clubs/" + this.props.params.id).then(function (response) {
@@ -5859,15 +5771,15 @@ var ClubProfile = exports.ClubProfile = function (_Component) {
         _react2.default.createElement(_reactHelmet2.default, { title: "SearchResults" }),
         _react2.default.createElement(_Header2.default, { type: "main" }),
         _react2.default.createElement(_ProfileHeader2.default, {
-          logo: this.state.imageURLs.logo,
-          cover: this.state.imageURLs.cover,
+          logo: this.state.clubLogo,
+          cover: this.state.clubCover,
           clubName: this.state.clubName,
           vibes: this.state.vibes
         }),
         _react2.default.createElement("div", {
           className: "clubprofile-info-background",
           style: {
-            backgroundImage: "url(" + this.state.imageURLs.cover + ")",
+            backgroundImage: "url(" + this.state.clubCover + ")",
             size: "100%"
           }
         }),
@@ -5908,6 +5820,12 @@ var ClubProfile = exports.ClubProfile = function (_Component) {
             _react2.default.createElement(
               "p",
               { className: "col-xs-12 clubprofilesection" },
+              "Year started: ",
+              this.state.foundedYear.substring(0, 4)
+            ),
+            _react2.default.createElement(
+              "p",
+              { className: "col-xs-12 clubprofilesection" },
               " ",
               "Approx. number of members: ",
               this.state.members.length,
@@ -5918,15 +5836,16 @@ var ClubProfile = exports.ClubProfile = function (_Component) {
               { className: "col-xs-12 clubprofilesection" },
               " ",
               "Meeting location: ",
-              this.state.meeting.meetingLocation,
+              this.state.meetingLocation,
               " "
             ),
             _react2.default.createElement(
               "p",
               { className: "col-xs-12 clubprofilesection" },
               " ",
-              "Meeting times: ",
-              this.state.meeting.meetingTime,
+              "Meeting times:",
+              _react2.default.createElement("br", null),
+              this.extractMeetingDatesAndTimes(this.state.meetingDatesAndTimes),
               " "
             )
           ),
@@ -5936,23 +5855,37 @@ var ClubProfile = exports.ClubProfile = function (_Component) {
             _react2.default.createElement(
               "h1",
               { className: "col-xs-12 clubprofilesection" },
-              " Teamwork values "
+              " Membership requirements "
             ),
-            _react2.default.createElement("hr", { className: "col-xs-12 clubprofilesection question" }),
+            _react2.default.createElement("hr", { className: "col-xs-12 clubprofilesection" }),
             _react2.default.createElement(
               "p",
               { className: "col-xs-12 clubprofilesection" },
-              " hi "
+              this.state.memberReq
+            ),
+            _react2.default.createElement(
+              "p",
+              null,
+              "For any dues or fees, this club requires $",
+              this.state.clubFeeAmount,
+              " per ",
+              this.state.clubFeePeriod,
+              "."
             )
           )
-        ),
-        _react2.default.createElement(_Footer2.default, null)
+        )
       );
     }
   }]);
 
   return ClubProfile;
 }(_react.Component);
+
+exports.default = (0, _reactRedux.connect)(function (state) {
+  return {};
+}, function (dispatch) {
+  return (0, _redux.bindActionCreators)({}, dispatch);
+})(ClubProfile);
 
 /***/ }),
 /* 94 */
@@ -6001,12 +5934,16 @@ var ProfileHeader = function (_Component) {
     key: "render",
     value: function render() {
       var vibes = this.props.vibes.map(function (vibe, i) {
-        return _react2.default.createElement(_reactstrap.Button, {
-          className: "btn",
-          style: {
-            backgroundColor: _consts.COLORS[i]
-          }
-        });
+        return _react2.default.createElement(
+          _reactstrap.Button,
+          {
+            className: "btn searchresults-vibes-btn",
+            style: {
+              backgroundColor: _consts.COLORS[i]
+            }
+          },
+          vibe
+        );
       });
 
       return _react2.default.createElement(
@@ -6053,7 +5990,7 @@ var ProfileHeader = function (_Component) {
               _react2.default.createElement(
                 "div",
                 null,
-                "Tags"
+                vibes
               ),
               _react2.default.createElement(
                 "div",
@@ -6229,10 +6166,12 @@ var ClubCreation = exports.ClubCreation = function (_Component) {
                 }
               });
             } else {
+
               _axios2.default.post(_consts.API_URL + "/clubs", {
                 clubName: _this.props.newClub.clubName,
                 description: _this.props.newClub.description,
-                category: _this.props.newClub.category
+                category: _this.props.newClub.category,
+                organizerID: localStorage.getItem("_id")
               }).then(function (response) {
                 _this.setState({
                   id: response.data["_id"]
@@ -6302,7 +6241,9 @@ var ClubCreation = exports.ClubCreation = function (_Component) {
               updateFields: {
                 vibes: _this.props.vibesFilterCC,
                 memberReq: _this.props.newClub.memberReq,
-                meetingDatesAndTimes: _this.props.newClub.meetingDatesAndTimes
+                meetingDatesAndTimes: _this.props.newClub.meetingDatesAndTimes,
+                clubLogo: _this.props.newClub.clubLogo,
+                clubCover: _this.props.newClub.clubCover
               }
             });
             break;
@@ -7741,7 +7682,7 @@ var Step3 = function (_Component) {
         tags: ['clubLogo'] }, function (error, result) {
         console.log(result);
         _this.props.uploadClubLogo(result[0]);
-      }).bind(_this);
+      });
     };
 
     _this.uploadWidgetCover = function () {
@@ -7751,7 +7692,7 @@ var Step3 = function (_Component) {
         tags: ['clubCovers'] }, function (error, result) {
         console.log(result);
         _this.props.uploadClubCover(result[0]);
-      }).bind(_this);
+      });
     };
 
     _this.updateQuestion = function (e) {
@@ -8652,6 +8593,14 @@ var _OrgDashboard = __webpack_require__(/*! ../components/Dashboard/OrgDashboard
 
 var _OrgDashboard2 = _interopRequireDefault(_OrgDashboard);
 
+var _NoClubsDashboard = __webpack_require__(/*! ../components/Dashboard/NoClubsDashboard */ 135);
+
+var _NoClubsDashboard2 = _interopRequireDefault(_NoClubsDashboard);
+
+var _OrgDashTabs = __webpack_require__(/*! ../components/Dashboard/OrgDashTabs */ 136);
+
+var _OrgDashTabs2 = _interopRequireDefault(_OrgDashTabs);
+
 var _Header = __webpack_require__(/*! ../components/Header */ 9);
 
 var _Header2 = _interopRequireDefault(_Header);
@@ -8694,9 +8643,19 @@ var Dashboard = exports.Dashboard = function (_Component) {
 
     var _this = _possibleConstructorReturn(this, (Dashboard.__proto__ || Object.getPrototypeOf(Dashboard)).call(this, props));
 
+    _this.viewDiffClub = function (response, club) {
+      console.log("club clicked was", club, "additional data is", response);
+      _this.setState({
+        currentClub: response.data,
+        simpleClubData: club
+      });
+    };
+
     _this.state = {
       clubs: [],
-      displayName: {}
+      name: {},
+      currentClub: {},
+      simpleClubData: {}
     };
     return _this;
   }
@@ -8714,24 +8673,42 @@ var Dashboard = exports.Dashboard = function (_Component) {
         }
       }).then(function (response) {
         var responseObj = response.data[0];
-        _this2.setState({
-          clubs: responseObj.clubs,
-          name: {
-            first: responseObj.firstName,
-            last: responseObj.lastName
-          }
-        });
+        if (_this2.refs.body) {
+          _this2.setState({
+            clubs: responseObj.clubs,
+            name: {
+              first: responseObj.firstName,
+              last: responseObj.lastName
+            }
+          });
+        }
       });
     }
   }, {
     key: "render",
     value: function render() {
+      console.log("cover URL is", this.state.currentClub);
       return _react2.default.createElement(
         "div",
         null,
         _react2.default.createElement(_reactHelmet2.default, { title: "Dashboard" }),
-        _react2.default.createElement(_Header2.default, null),
-        _react2.default.createElement("div", { className: "dashboard-margins" })
+        _react2.default.createElement(_Header2.default, { type: "dashboard" }),
+        _react2.default.createElement(
+          "div",
+          { className: "dashboard-margins", ref: "body" },
+          _react2.default.createElement(
+            "div",
+            { className: "dashboard-cover-crop" },
+            _react2.default.createElement("img", { src: this.state.currentClub.clubCover })
+          ),
+          this.state.clubs.length === 0 ? _react2.default.createElement(_NoClubsDashboard2.default, null) : _react2.default.createElement(_OrgDashboard2.default, {
+            user: this.state
+          })
+        ),
+        _react2.default.createElement(_OrgDashTabs2.default, {
+          clubs: this.state.clubs,
+          viewDiffClub: this.viewDiffClub
+        })
       );
     }
   }]);
@@ -8790,6 +8767,9 @@ var OrgDashboard = function (_Component) {
   _createClass(OrgDashboard, [{
     key: "render",
     value: function render() {
+
+      var pic = localStorage.getItem("profPicURL");
+
       return _react2.default.createElement(
         "div",
         null,
@@ -8801,8 +8781,33 @@ var OrgDashboard = function (_Component) {
             null,
             _react2.default.createElement(
               "div",
-              { className: "dashboard-box mild-shadow" },
-              "Profile pic"
+              { className: "dashboard-box dashboard-centered mild-shadow" },
+              _react2.default.createElement("img", {
+                className: "rounded-circle",
+                src: pic }),
+              _react2.default.createElement("br", null),
+              _react2.default.createElement("br", null),
+              _react2.default.createElement(
+                "h3",
+                null,
+                this.props.user.name.first
+              ),
+              _react2.default.createElement("br", null),
+              _react2.default.createElement(
+                "h5",
+                null,
+                this.props.user.simpleClubData.role
+              ),
+              _react2.default.createElement(
+                "h6",
+                null,
+                "of"
+              ),
+              _react2.default.createElement(
+                "h5",
+                null,
+                this.props.user.currentClub.clubName
+              )
             )
           ),
           _react2.default.createElement(
@@ -10137,6 +10142,255 @@ module.exports = function (app) {
 /***/ (function(module, exports) {
 
 module.exports = require("http-proxy-middleware");
+
+/***/ }),
+/* 135 */
+/*!****************************************************************!*\
+  !*** ./src/apps/main/components/Dashboard/NoClubsDashboard.js ***!
+  \****************************************************************/
+/*! no static exports found */
+/*! all exports used */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ 0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var NoClubsDashboard = function (_Component) {
+  _inherits(NoClubsDashboard, _Component);
+
+  function NoClubsDashboard() {
+    _classCallCheck(this, NoClubsDashboard);
+
+    return _possibleConstructorReturn(this, (NoClubsDashboard.__proto__ || Object.getPrototypeOf(NoClubsDashboard)).apply(this, arguments));
+  }
+
+  _createClass(NoClubsDashboard, [{
+    key: "render",
+    value: function render() {
+      return _react2.default.createElement(
+        "div",
+        { className: "noclubs" },
+        _react2.default.createElement(
+          "h2",
+          null,
+          "It seems you haven't made any clubs!"
+        ),
+        "Want to create one?  It'll take just about 10 minutes."
+      );
+    }
+  }]);
+
+  return NoClubsDashboard;
+}(_react.Component);
+
+exports.default = NoClubsDashboard;
+
+/***/ }),
+/* 136 */
+/*!***********************************************************!*\
+  !*** ./src/apps/main/components/Dashboard/OrgDashTabs.js ***!
+  \***********************************************************/
+/*! no static exports found */
+/*! all exports used */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ 0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouter = __webpack_require__(/*! react-router */ 5);
+
+var _axios = __webpack_require__(/*! axios */ 6);
+
+var _axios2 = _interopRequireDefault(_axios);
+
+var _consts = __webpack_require__(/*! ../../lib/consts */ 4);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var OrgDashTabs = function (_Component) {
+  _inherits(OrgDashTabs, _Component);
+
+  function OrgDashTabs(props) {
+    _classCallCheck(this, OrgDashTabs);
+
+    var _this = _possibleConstructorReturn(this, (OrgDashTabs.__proto__ || Object.getPrototypeOf(OrgDashTabs)).call(this, props));
+
+    _this.state = {
+      tabs: []
+    };
+    return _this;
+  }
+
+  _createClass(OrgDashTabs, [{
+    key: "componentWillReceiveProps",
+    value: function () {
+      var _ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee2(nextProps) {
+        var _this2 = this;
+
+        var newTabs, tabIndex;
+        return regeneratorRuntime.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                newTabs = [];
+                tabIndex = 0;
+                _context2.next = 4;
+                return Promise.all(nextProps.clubs.map(function () {
+                  var _ref2 = _asyncToGenerator(regeneratorRuntime.mark(function _callee(club, index) {
+                    var clubInfo;
+                    return regeneratorRuntime.wrap(function _callee$(_context) {
+                      while (1) {
+                        switch (_context.prev = _context.next) {
+                          case 0:
+                            if (!club.club) {
+                              _context.next = 4;
+                              break;
+                            }
+
+                            _context.next = 3;
+                            return _axios2.default.get(_consts.API_URL + "/clubs").then(function (response) {
+                              tabIndex++;
+                              newTabs.push(_react2.default.createElement(
+                                "div",
+                                {
+                                  onClick: function onClick() {
+                                    return _this2.props.viewDiffClub(response, club);
+                                  },
+                                  key: index,
+                                  className: "dash-tabs single-dash-tab" + tabIndex + " mild-shadow" },
+                                response.data.clubName
+                              ));
+                            });
+
+                          case 3:
+                            clubInfo = _context.sent;
+
+                          case 4:
+                          case "end":
+                            return _context.stop();
+                        }
+                      }
+                    }, _callee, _this2);
+                  }));
+
+                  return function (_x2, _x3) {
+                    return _ref2.apply(this, arguments);
+                  };
+                }()));
+
+              case 4:
+                tabIndex++;
+                newTabs.push(_react2.default.createElement(
+                  _reactRouter.Link,
+                  { to: "/clubcreation" },
+                  _react2.default.createElement(
+                    "div",
+                    { className: "dash-tabs single-dash-tab" + tabIndex + " mild-shadow" },
+                    "Add club"
+                  )
+                ));
+
+                this.setState({
+                  tabs: newTabs
+                });
+
+              case 7:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
+      }));
+
+      function componentWillReceiveProps(_x) {
+        return _ref.apply(this, arguments);
+      }
+
+      return componentWillReceiveProps;
+    }()
+
+    // componentWillMount() {
+    //   console.log("club in CWM is", this.props.clubs);
+    //   this.props.clubs.map((club, index) => {
+    //     console.log("club in loop is", club);
+    //     if (club.club) {
+    //       axios.get(`api/clubs/${club.club}`).then((response) => {
+    //         const club = response.data;
+    //         console.log("now pushing", club);
+    //         this.state.clubs.push({
+    //           club: club["club"],
+    //           clubName: club.clubName,
+    //           clubCover: club.clubCover
+    //         });
+    //       });
+    //     }
+    //   });
+    // }
+
+  }, {
+    key: "render",
+    value: function render() {
+      if (this.props.clubs.length === 0) {
+        this.state.tabs.push(_react2.default.createElement(
+          _reactRouter.Link,
+          { to: "/clubcreation" },
+          _react2.default.createElement(
+            "div",
+            { className: "dash-tabs single-dash-tab1 mild-shadow" },
+            "Add club"
+          )
+        ));
+      } else {}
+
+      console.log("tabs are", this.state.tabs.length);
+      return _react2.default.createElement(
+        "div",
+        { id: "pls" },
+        this.state.tabs
+      );
+    }
+  }]);
+
+  return OrgDashTabs;
+}(_react.Component);
+
+exports.default = OrgDashTabs;
 
 /***/ })
 /******/ ]);

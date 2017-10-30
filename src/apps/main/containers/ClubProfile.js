@@ -12,7 +12,7 @@ import { API_URL, DAYS } from "../lib/consts";
 import Header from "../components/Header";
 import ProfileHeader from "../components/ClubProfile/ProfileHeader";
 import Footer from "../components/Footer";
-export default class ClubProfile extends Component {
+export class ClubProfile extends Component {
   /**
    * Called by ReactRouter before loading the container. Called prior to the
    * React life cycle so doesn't have access to component's props or state.
