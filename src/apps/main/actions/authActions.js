@@ -24,6 +24,7 @@ export function signInFB(dataObj) {
         axios.post(`${API_URL}/members`, dataObj).then((response) => {
           axios.get(`${API_URL}/members`).then((response) => { console.log(response) });
           console.log("something happened hooray lol", dataObj);
+          localStorage.setItem("_id", response._id);
         }).catch((err) => {
           console.log("crap", err);
         });
