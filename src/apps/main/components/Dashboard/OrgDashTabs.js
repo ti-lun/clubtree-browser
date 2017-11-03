@@ -25,8 +25,8 @@ export default class OrgDashTabs extends Component {
             newTabs.push(
                 <div
                   onClick={ () => this.props.viewDiffClub(response, club) }
-                  className={`dash-tabs single-dash-tab${tabIndex} mild-shadow`}>
                   key={newTabs.length}
+                  className={`dash-tabs include: single-dash-tab${newTabs.length} mild-shadow`}>
                   { response.data.clubName }
                 </div>
             );
@@ -35,8 +35,8 @@ export default class OrgDashTabs extends Component {
       }));
       tabIndex++;
       newTabs.push(
-          <div className={`dash-tabs single-dash-tab${tabIndex} mild-shadow`}>
         <Link key={newTabs.length} to="/clubcreation">
+          <div className={`dash-tabs single-dash-tab${newTabs.length} mild-shadow`}>
             Add club
           </div>
       </Link>
@@ -69,8 +69,8 @@ export default class OrgDashTabs extends Component {
   render() {
     if (this.props.clubs.length === 0) {
       this.state.tabs.push((
-          <div className="dash-tabs single-dash-tab1 mild-shadow">
         <Link key={this.state.tabs.length} to="/clubcreation">
+          <div className={`dash-tabs single-dash-tab${this.state.tabs.length} mild-shadow`}>
             Add club
           </div>
         </Link>

@@ -700,8 +700,16 @@ p.clubprofile-section {
 }
 
 @mixin single-dash-tab($number) {
-  top: (($number-1)*20 + 20) * 100%;
+  .single-dash-tab#{$number - 1} {
+    top: ( $number - 1 ) * 300px  + 150px;
+  }
 }
+
+@include single-dash-tab(1);  
+@include single-dash-tab(2);
+@include single-dash-tab(3);
+@include single-dash-tab(4);
+@include single-dash-tab(5);
 
 .dashboard-cover-crop {
   max-height: 200px;
