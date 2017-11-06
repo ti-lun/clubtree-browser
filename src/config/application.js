@@ -56,7 +56,7 @@ const config: Config = {
     proxies: [
       {
         path: "/api/*",
-        destination: process.env.CLUBTREE_SERVER_URL || "http://localhost:3000/",
+        destination: "https://intense-retreat-44335.herokuapp.com/",
       }
     ],
     logger: {

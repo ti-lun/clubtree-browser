@@ -1,7 +1,9 @@
 {
   "javascript": {
-    "main": "http://localhost:8888/assets/main.8661e421a288683693c5.js",
-    "vendor": "http://localhost:8888/assets/vendor.bundle.js"
+    "main": "/assets/main.f8411eaaad2cd38f115f.js",
+    "vendor": "/assets/vendor-f8411eaaad2cd38f115f.bundle.js"
   },
-  "styles": {}
+  "styles": {
+    "main": "/assets/main-5bd9f9002a5b94af5181.css"
+  }
 }
