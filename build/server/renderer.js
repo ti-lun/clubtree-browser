@@ -855,9 +855,53 @@ function toggleVibeFilter(vibe) {
   \***********************************/
 /*! dynamic exports provided */
 /*! all exports used */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-throw new Error("Module build failed: SyntaxError: C:/Users/nikit/OneDrive/Documents/clubtree-browser/src/config/application.js: Unexpected token, expected , (43:4)\n\n\u001b[0m \u001b[90m 41 | \u001b[39m  development\u001b[33m:\u001b[39m {\n \u001b[90m 42 | \u001b[39m    \u001b[33mFACEBOOK_APP_ID\u001b[39m\u001b[33m:\u001b[39m \u001b[32m\"469991373333039\"\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 43 | \u001b[39m    head\u001b[33m:\u001b[39m headContent\u001b[33m,\u001b[39m\n \u001b[90m    | \u001b[39m    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 44 | \u001b[39m    proxies\u001b[33m:\u001b[39m [\n \u001b[90m 45 | \u001b[39m      {\n \u001b[90m 46 | \u001b[39m        path\u001b[33m:\u001b[39m \u001b[32m\"/api/*\"\u001b[39m\u001b[33m,\u001b[39m\u001b[0m\n");
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+
+// WARNING: The contents of this file _including process.env variables_ will be
+// exposed in the client code.
+
+var headContent = {
+  title: "My Gluestick App",
+  titleTemplate: "%s | Gluestick Application",
+  meta: [{ name: "description", content: "Gluestick application" }]
+};
+
+var config = {
+  development: {
+    FACEBOOK_APP_ID: "469991373333039",
+    head: headContent,
+    proxies: [{
+      path: "/api/*",
+      destination: "http://localhost:3000"
+    }],
+    logger: {
+      pretty: true,
+      level: "info"
+    }
+  },
+  production: {
+    FACEBOOK_APP_ID: "465854210413422",
+    head: headContent,
+    proxies: [{
+      path: "/api/*",
+      destination: "https://intense-retreat-44335.herokuapp.com"
+    }],
+    logger: {
+      pretty: true,
+      level: "info"
+    }
+  }
+};
+
+exports.default = config[process.env.NODE_ENV === "production" ? "production" : "development"];
 
 /***/ }),
 /* 16 */
