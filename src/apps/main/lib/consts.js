@@ -1,6 +1,7 @@
 import { range } from "lodash";
+import config from "config/application";
 
-export const API_URL = "/api";
+export const API_URL = config.proxies[0].destination;
 
 export const COLORS = ["#e61610", "#ff3823", "#72bec9", "#00bcd4"];
 

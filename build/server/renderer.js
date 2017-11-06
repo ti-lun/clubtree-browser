@@ -127,7 +127,13 @@ exports.VALID_YEARS = exports.MONTHS_TO_INT = exports.MONTHS = exports.DAYS = ex
 
 var _lodash = __webpack_require__(/*! lodash */ 7);
 
-var API_URL = exports.API_URL = "/api";
+var _application = __webpack_require__(/*! config/application */ 15);
+
+var _application2 = _interopRequireDefault(_application);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var API_URL = exports.API_URL = _application2.default.proxies[0].destination;
 
 var COLORS = exports.COLORS = ["#e61610", "#ff3823", "#72bec9", "#00bcd4"];
 
@@ -261,7 +267,7 @@ var _reactRedux = __webpack_require__(/*! react-redux */ 2);
 
 var _redux = __webpack_require__(/*! redux */ 3);
 
-var _authActions = __webpack_require__(/*! ../actions/authActions */ 18);
+var _authActions = __webpack_require__(/*! ../actions/authActions */ 19);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -437,7 +443,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.setStatusCode = exports.set404StatusCode = exports.getHttpClient = exports.prepareRoutesWithTransitionHooks = exports.createStore = exports.BodyAttributes = exports.Root = undefined;
 
-var _routeHelper = __webpack_require__(/*! ./lib/route-helper */ 22);
+var _routeHelper = __webpack_require__(/*! ./lib/route-helper */ 23);
 
 Object.keys(_routeHelper).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
@@ -461,7 +467,7 @@ Object.keys(_constants).forEach(function (key) {
   });
 });
 
-var _actions = __webpack_require__(/*! ./lib/actions */ 23);
+var _actions = __webpack_require__(/*! ./lib/actions */ 24);
 
 Object.defineProperty(exports, 'set404StatusCode', {
   enumerable: true,
@@ -488,7 +494,7 @@ var _createStore2 = __webpack_require__(/*! ./lib/createStore */ 56);
 
 var _createStore3 = _interopRequireDefault(_createStore2);
 
-var _prepareRoutesWithTransitionHooks2 = __webpack_require__(/*! ./lib/prepareRoutesWithTransitionHooks */ 24);
+var _prepareRoutesWithTransitionHooks2 = __webpack_require__(/*! ./lib/prepareRoutesWithTransitionHooks */ 25);
 
 var _prepareRoutesWithTransitionHooks3 = _interopRequireDefault(_prepareRoutesWithTransitionHooks2);
 
@@ -844,6 +850,17 @@ function toggleVibeFilter(vibe) {
 
 /***/ }),
 /* 15 */
+/*!***********************************!*\
+  !*** ./src/config/application.js ***!
+  \***********************************/
+/*! dynamic exports provided */
+/*! all exports used */
+/***/ (function(module, exports) {
+
+throw new Error("Module build failed: SyntaxError: C:/Users/nikit/OneDrive/Documents/clubtree-browser/src/config/application.js: Unexpected token, expected , (43:4)\n\n\u001b[0m \u001b[90m 41 | \u001b[39m  development\u001b[33m:\u001b[39m {\n \u001b[90m 42 | \u001b[39m    \u001b[33mFACEBOOK_APP_ID\u001b[39m\u001b[33m:\u001b[39m \u001b[32m\"469991373333039\"\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 43 | \u001b[39m    head\u001b[33m:\u001b[39m headContent\u001b[33m,\u001b[39m\n \u001b[90m    | \u001b[39m    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 44 | \u001b[39m    proxies\u001b[33m:\u001b[39m [\n \u001b[90m 45 | \u001b[39m      {\n \u001b[90m 46 | \u001b[39m        path\u001b[33m:\u001b[39m \u001b[32m\"/api/*\"\u001b[39m\u001b[33m,\u001b[39m\u001b[0m\n");
+
+/***/ }),
+/* 16 */
 /*!*********************!*\
   !*** external "fs" ***!
   \*********************/
@@ -854,7 +871,7 @@ function toggleVibeFilter(vibe) {
 module.exports = require("fs");
 
 /***/ }),
-/* 16 */
+/* 17 */
 /*!***********************************************!*\
   !*** ./src/apps/main/components/SearchBar.js ***!
   \***********************************************/
@@ -887,7 +904,7 @@ var _axios = __webpack_require__(/*! axios */ 6);
 
 var _axios2 = _interopRequireDefault(_axios);
 
-var _utils = __webpack_require__(/*! ./../lib/utils */ 17);
+var _utils = __webpack_require__(/*! ./../lib/utils */ 18);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -980,7 +997,7 @@ var SearchBar = function (_Component) {
 exports.default = SearchBar;
 
 /***/ }),
-/* 17 */
+/* 18 */
 /*!************************************!*\
   !*** ./src/apps/main/lib/utils.js ***!
   \************************************/
@@ -1031,7 +1048,7 @@ function generateSearchURL(params) {
 }
 
 /***/ }),
-/* 18 */
+/* 19 */
 /*!**********************************************!*\
   !*** ./src/apps/main/actions/authActions.js ***!
   \**********************************************/
@@ -1110,7 +1127,7 @@ function unauthUser() {
 }
 
 /***/ }),
-/* 19 */
+/* 20 */
 /*!******************************************!*\
   !*** external "react-textarea-autosize" ***!
   \******************************************/
@@ -1121,7 +1138,7 @@ function unauthUser() {
 module.exports = require("react-textarea-autosize");
 
 /***/ }),
-/* 20 */
+/* 21 */
 /*!******************************************************!*\
   !*** ./src/apps/main/components/ColorfulSelector.js ***!
   \******************************************************/
@@ -1269,7 +1286,7 @@ var ColorfulSelector = function (_Component) {
 exports.default = ColorfulSelector;
 
 /***/ }),
-/* 21 */
+/* 22 */
 /*!***************************************!*\
   !*** external "serialize-javascript" ***!
   \***************************************/
@@ -1280,7 +1297,7 @@ exports.default = ColorfulSelector;
 module.exports = require("serialize-javascript");
 
 /***/ }),
-/* 22 */
+/* 23 */
 /*!***********************************************************!*\
   !*** ./node_modules/gluestick/shared/lib/route-helper.js ***!
   \***********************************************************/
@@ -1409,7 +1426,7 @@ function createTransitionHook(store, routes) {
 }
 
 /***/ }),
-/* 23 */
+/* 24 */
 /*!******************************************************!*\
   !*** ./node_modules/gluestick/shared/lib/actions.js ***!
   \******************************************************/
@@ -1439,7 +1456,7 @@ function setStatusCode(statusCode) {
 }
 
 /***/ }),
-/* 24 */
+/* 25 */
 /*!*******************************************************************************!*\
   !*** ./node_modules/gluestick/shared/lib/prepareRoutesWithTransitionHooks.js ***!
   \*******************************************************************************/
@@ -1476,7 +1493,7 @@ exports.default = function (routes) {
 };
 
 /***/ }),
-/* 25 */
+/* 26 */
 /*!*******************************************************!*\
   !*** ./node_modules/gluestick/build/plugins/utils.js ***!
   \*******************************************************/
@@ -1524,59 +1541,6 @@ module.exports = function (logger) {
     getCustomLogger: _getCustomLogger
   };
 };
-
-/***/ }),
-/* 26 */
-/*!***********************************!*\
-  !*** ./src/config/application.js ***!
-  \***********************************/
-/*! dynamic exports provided */
-/*! all exports used */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-
-// WARNING: The contents of this file _including process.env variables_ will be
-// exposed in the client code.
-
-var headContent = {
-  title: "My Gluestick App",
-  titleTemplate: "%s | Gluestick Application",
-  meta: [{ name: "description", content: "Gluestick application" }]
-};
-
-var config = {
-  development: {
-    head: headContent,
-    proxies: [{
-      path: "/api/*",
-      destination: "http://localhost:3000/"
-    }],
-    logger: {
-      pretty: true,
-      level: "info"
-    }
-  },
-  production: {
-    head: headContent,
-    proxies: [{
-      path: "/api/*",
-      destination: "https://intense-retreat-44335.herokuapp.com/"
-    }],
-    logger: {
-      pretty: true,
-      level: "info"
-    }
-  }
-};
-
-exports.default = config[process.env.NODE_ENV === "production" ? "production" : "development"];
 
 /***/ }),
 /* 27 */
@@ -1646,7 +1610,7 @@ var _redux = __webpack_require__(/*! redux */ 3);
 
 var _reactRedux = __webpack_require__(/*! react-redux */ 2);
 
-var _SearchBar = __webpack_require__(/*! ../components/SearchBar */ 16);
+var _SearchBar = __webpack_require__(/*! ../components/SearchBar */ 17);
 
 var _SearchBar2 = _interopRequireDefault(_SearchBar);
 
@@ -2210,7 +2174,7 @@ var middleware = __webpack_require__(/*! ./middleware */ 39);
 var readAssets = __webpack_require__(/*! ./helpers/readAssets */ 72);
 var onFinished = __webpack_require__(/*! on-finished */ 73);
 // $FlowIgnore
-var applicationConfig = __webpack_require__(/*! application-config */ 26).default;
+var applicationConfig = __webpack_require__(/*! application-config */ 15).default;
 var entries = __webpack_require__(/*! project-entries */ 27).default;
 // $FlowIgnore
 var entriesConfig = __webpack_require__(/*! project-entries-config */ 121);
@@ -2229,7 +2193,7 @@ var cachingConfig = __webpack_require__(/*! caching-config */ 130).default;
 
 var hooksHelper = __webpack_require__(/*! ./helpers/hooks */ 131);
 var prepareServerPlugins = __webpack_require__(/*! ../plugins/prepareServerPlugins */ 132);
-var createPluginUtils = __webpack_require__(/*! ../plugins/utils */ 25);
+var createPluginUtils = __webpack_require__(/*! ../plugins/utils */ 26);
 var setProxies = __webpack_require__(/*! ./helpers/setProxies */ 135);
 
 var envVariables = process.env.ENV_VARIABLES && Array.isArray(process.env.ENV_VARIABLES) ? process.env.ENV_VARIABLES : [];
@@ -2406,7 +2370,7 @@ var setHeaders = __webpack_require__(/*! ./response/setHeaders */ 64);
 var errorHandler = __webpack_require__(/*! ./helpers/errorHandler */ 66);
 var getCacheManager = __webpack_require__(/*! ./helpers/cacheManager */ 68);
 var getStatusCode = __webpack_require__(/*! ./response/getStatusCode */ 71);
-var createPluginUtils = __webpack_require__(/*! ../plugins/utils */ 25);
+var createPluginUtils = __webpack_require__(/*! ../plugins/utils */ 26);
 
 var isProduction = process.env.NODE_ENV === 'production';
 
@@ -2783,7 +2747,7 @@ var _extends = Object.assign || function (target) {
 var React = __webpack_require__(/*! react */ 0);
 
 var path = __webpack_require__(/*! path */ 13);
-var fs = __webpack_require__(/*! fs */ 15);
+var fs = __webpack_require__(/*! fs */ 16);
 var getAssetsLoader = __webpack_require__(/*! ./getAssetsLoader */ 45);
 
 var getAssetPathForFile = function getAssetPathForFile(filename, section, webpackAssets) {
@@ -2865,7 +2829,7 @@ module.exports = function (_ref2, entryPoint, assets, loadjsConfig) {
 "use strict";
 
 
-var serialize = __webpack_require__(/*! serialize-javascript */ 21);
+var serialize = __webpack_require__(/*! serialize-javascript */ 22);
 
 /**
  * Returns script tag content with code for loading bundles in right order.
@@ -3069,7 +3033,7 @@ var _reactRedux = __webpack_require__(/*! react-redux */ 2);
 
 var _reactRouterScroll = __webpack_require__(/*! react-router-scroll */ 52);
 
-var _prepareRoutesWithTransitionHooks = __webpack_require__(/*! ../lib/prepareRoutesWithTransitionHooks */ 24);
+var _prepareRoutesWithTransitionHooks = __webpack_require__(/*! ../lib/prepareRoutesWithTransitionHooks */ 25);
 
 var _prepareRoutesWithTransitionHooks2 = _interopRequireDefault(_prepareRoutesWithTransitionHooks);
 
@@ -3221,7 +3185,7 @@ var _react = __webpack_require__(/*! react */ 0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _routeHelper = __webpack_require__(/*! ../lib/route-helper */ 22);
+var _routeHelper = __webpack_require__(/*! ../lib/route-helper */ 23);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -3505,7 +3469,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 exports.default = _gluestick;
 
-var _actions = __webpack_require__(/*! ./actions */ 23);
+var _actions = __webpack_require__(/*! ./actions */ 24);
 
 var INITIAL_STATE = {};
 
@@ -3976,7 +3940,7 @@ function _asyncToGenerator(fn) {
   };
 }
 
-var fs = __webpack_require__(/*! fs */ 15);
+var fs = __webpack_require__(/*! fs */ 16);
 // We use handlebars to deliver the 500 page. This lets you
 // use a handlebars template so you can display the stack trace or
 // any request, response information you would like.
@@ -4210,7 +4174,7 @@ module.exports = function (store, currentRoute) {
 
 
 var path = __webpack_require__(/*! path */ 13);
-var fs = __webpack_require__(/*! fs */ 15);
+var fs = __webpack_require__(/*! fs */ 16);
 
 var cache = null;
 
@@ -4545,7 +4509,7 @@ var _reactHelmet = __webpack_require__(/*! react-helmet */ 8);
 
 var _reactHelmet2 = _interopRequireDefault(_reactHelmet);
 
-var _application = __webpack_require__(/*! config/application */ 26);
+var _application = __webpack_require__(/*! config/application */ 15);
 
 var _application2 = _interopRequireDefault(_application);
 
@@ -4890,7 +4854,7 @@ var _VibeFilterSelector = __webpack_require__(/*! ../components/VibeFilterSelect
 
 var _VibeFilterSelector2 = _interopRequireDefault(_VibeFilterSelector);
 
-var _SearchBar = __webpack_require__(/*! ../components/SearchBar */ 16);
+var _SearchBar = __webpack_require__(/*! ../components/SearchBar */ 17);
 
 var _SearchBar2 = _interopRequireDefault(_SearchBar);
 
@@ -5150,7 +5114,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactstrap = __webpack_require__(/*! reactstrap */ 1);
 
-var _utils = __webpack_require__(/*! ../../lib/utils */ 17);
+var _utils = __webpack_require__(/*! ../../lib/utils */ 18);
 
 var _consts = __webpack_require__(/*! ../../lib/consts */ 4);
 
@@ -5265,7 +5229,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouter = __webpack_require__(/*! react-router */ 5);
 
-var _utils = __webpack_require__(/*! ../lib/utils */ 17);
+var _utils = __webpack_require__(/*! ../lib/utils */ 18);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -6498,11 +6462,11 @@ var _redux = __webpack_require__(/*! redux */ 3);
 
 var _reactstrap = __webpack_require__(/*! reactstrap */ 1);
 
-var _reactTextareaAutosize = __webpack_require__(/*! react-textarea-autosize */ 19);
+var _reactTextareaAutosize = __webpack_require__(/*! react-textarea-autosize */ 20);
 
 var _reactTextareaAutosize2 = _interopRequireDefault(_reactTextareaAutosize);
 
-var _ColorfulSelector = __webpack_require__(/*! ../ColorfulSelector */ 20);
+var _ColorfulSelector = __webpack_require__(/*! ../ColorfulSelector */ 21);
 
 var _ColorfulSelector2 = _interopRequireDefault(_ColorfulSelector);
 
@@ -6778,7 +6742,7 @@ var _redux = __webpack_require__(/*! redux */ 3);
 
 var _reactstrap = __webpack_require__(/*! reactstrap */ 1);
 
-var _reactTextareaAutosize = __webpack_require__(/*! react-textarea-autosize */ 19);
+var _reactTextareaAutosize = __webpack_require__(/*! react-textarea-autosize */ 20);
 
 var _reactTextareaAutosize2 = _interopRequireDefault(_reactTextareaAutosize);
 
@@ -7672,13 +7636,13 @@ var _redux = __webpack_require__(/*! redux */ 3);
 
 var _reactstrap = __webpack_require__(/*! reactstrap */ 1);
 
-var _reactTextareaAutosize = __webpack_require__(/*! react-textarea-autosize */ 19);
+var _reactTextareaAutosize = __webpack_require__(/*! react-textarea-autosize */ 20);
 
 var _reactTextareaAutosize2 = _interopRequireDefault(_reactTextareaAutosize);
 
 var _cloudinaryReact = __webpack_require__(/*! cloudinary-react */ 104);
 
-var _ColorfulSelector = __webpack_require__(/*! ../ColorfulSelector */ 20);
+var _ColorfulSelector = __webpack_require__(/*! ../ColorfulSelector */ 21);
 
 var _ColorfulSelector2 = _interopRequireDefault(_ColorfulSelector);
 
@@ -8152,7 +8116,7 @@ var _Header = __webpack_require__(/*! ../components/Header */ 9);
 
 var _Header2 = _interopRequireDefault(_Header);
 
-var _SearchBar = __webpack_require__(/*! ../components/SearchBar */ 16);
+var _SearchBar = __webpack_require__(/*! ../components/SearchBar */ 17);
 
 var _SearchBar2 = _interopRequireDefault(_SearchBar);
 
@@ -8160,7 +8124,7 @@ var _CategorySelector = __webpack_require__(/*! ../components/CategorySelector *
 
 var _CategorySelector2 = _interopRequireDefault(_CategorySelector);
 
-var _ColorfulSelector = __webpack_require__(/*! ../components/ColorfulSelector */ 20);
+var _ColorfulSelector = __webpack_require__(/*! ../components/ColorfulSelector */ 21);
 
 var _ColorfulSelector2 = _interopRequireDefault(_ColorfulSelector);
 
@@ -8481,6 +8445,10 @@ var _react = __webpack_require__(/*! react */ 0);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _application = __webpack_require__(/*! config/application */ 15);
+
+var _application2 = _interopRequireDefault(_application);
+
 var _reactFacebookLogin = __webpack_require__(/*! react-facebook-login */ 111);
 
 var _reactFacebookLogin2 = _interopRequireDefault(_reactFacebookLogin);
@@ -8491,7 +8459,7 @@ var _redux = __webpack_require__(/*! redux */ 3);
 
 var _reactRouter = __webpack_require__(/*! react-router */ 5);
 
-var _authActions = __webpack_require__(/*! ../../actions/authActions */ 18);
+var _authActions = __webpack_require__(/*! ../../actions/authActions */ 19);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -8549,7 +8517,7 @@ var ChooseSignUpOption = function (_Component) {
           "div",
           { className: "btn joinus-signUpButton", id: "joinus-facebook" },
           _react2.default.createElement(_reactFacebookLogin2.default, {
-            appId: "469991373333039",
+            appId: _application2.default.FACEBOOK_APP_ID,
             autoLoad: false,
             fields: "name,email,picture",
             onClick: this.FBloginClicked,
@@ -9720,7 +9688,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _authActions = __webpack_require__(/*! ../actions/authActions */ 18);
+var _authActions = __webpack_require__(/*! ../actions/authActions */ 19);
 
 var INITIAL_STATE = {
   authenticated: false
@@ -10070,7 +10038,7 @@ var _react = __webpack_require__(/*! react */ 0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _serializeJavascript = __webpack_require__(/*! serialize-javascript */ 21);
+var _serializeJavascript = __webpack_require__(/*! serialize-javascript */ 22);
 
 var _serializeJavascript2 = _interopRequireDefault(_serializeJavascript);
 

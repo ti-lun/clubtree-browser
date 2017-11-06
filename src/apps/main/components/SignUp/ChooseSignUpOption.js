@@ -1,6 +1,7 @@
 /* @flow */
 
 import React, { Component } from "react";
+import config from "config/application";
 import FacebookLogin from "react-facebook-login";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -35,7 +36,7 @@ class ChooseSignUpOption extends Component {
         <Link to="/dashboard">If you're not logged in, this shouldn't work.</Link>
         <div className="btn joinus-signUpButton" id="joinus-facebook">
           <FacebookLogin
-            appId="469991373333039"
+            appId={config.FACEBOOK_APP_ID}
             autoLoad={false}
             fields="name,email,picture"
             onClick={this.FBloginClicked}
