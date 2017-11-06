@@ -42,14 +42,16 @@ Before you can get the the client build and running, you will need to do the fol
 
 Normally, you wouldn't commit build files to the repository, but because the Heroku Buildpack hasn't been configured yet, we need to do it locally on the machine.
 
-If you are using a Windows OS, you will need to install [additional software](https://stackoverflow.com/questions/21365714/nodejs-error-installing-with-npm) and/or the [Visual Studio 2015 C++ Standalone Compilter](http://landinghub.visualstudio.com/visual-cpp-build-tools) before you can run `npm install`. It is worth noting that you might get better luck with `npm install --msvs_version=2015` instead of setting the enviroment variable, when you get to that step.
+If you are using a Windows OS, you will need to install [additional software](https://stackoverflow.com/questions/21365714/nodejs-error-installing-with-npm) before you can run `npm install` properly.
+* When it says you need to install the Visual Studio Community 2013 Edition, you could probably just install the [Visual Studio 2015 C++ Standalone Compiler](http://landinghub.visualstudio.com/visual-cpp-build-tools), instead.
+* When it says to set the enironment variable GPY_MSVS_VERSION, you don't really have to. You can actually pass in the environment variable directly with `npm install --msvs_version=2015`.
 
 1. Generate the build files on your local machine.
 
     If using Powershell, run these commands.
     ```
     Set-Item ENV:NODE_ENV "production"
-    gluestick start
+    gluestick build
     ```
 
     If using Bash, run these commands.
@@ -64,6 +66,7 @@ If you are using a Windows OS, you will need to install [additional software](ht
 | Key                 | Value                                        |
 |---------------------|----------------------------------------------|
 | CLUBTREE_SERVER_URL | https://intense-retreat-44335.herokuapp.com/ |
+| HOSTNAME            | intense-springs-61886.herokuapp.com          |
 | NODE_ENV            | production                                   |
 
 4. Go to Deploy > Manual Deploy. Choose the branch that you want to deploy (e.g. the one with the new build files), and click Deploy Branch.
