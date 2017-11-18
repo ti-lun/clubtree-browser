@@ -10,6 +10,9 @@
     "lint": "eslint src",
     "format": "prettier --parser flow --write '{src,test}/**/*.{js,scss}'"
   },
+  "engines": {
+    "node": "8.x"
+  },
   "dependencies": {
     "ajv": "^5.3.0",
     "babel-loader": "7.0.0",
