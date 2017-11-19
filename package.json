@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "heroku-postbuild": "gluestick build",
     "start": "gluestick start",
     "test": "gluestick test",
     "flow": "flow",
