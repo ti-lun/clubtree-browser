@@ -21,11 +21,18 @@ export const TOGGLE_VIBE_FILTER_CC = "TOGGLE_VIBE_FILTER_CC";
 export const UPLOAD_CLUB_LOGO = "UPLOAD_CLUB_LOGO";
 export const UPLOAD_CLUB_COVER = "UPLOAD_CLUB_COVER";
 export const UPDATE_QUESTION = "UPDATE_QUESTION";
+export const CLEAR_INFO = "CLEAR_INFO";
 
 export function loadExistingClub(o) {
   return {
     type: LOAD_EXISTING_CLUB,
     payload: o
+  };
+}
+
+export function clearInfo() {
+  return {
+    type: CLEAR_INFO
   };
 }
 

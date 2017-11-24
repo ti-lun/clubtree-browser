@@ -64,10 +64,36 @@ class FrontPage extends Component {
               </span>
             </Col>
             <Col>
-              <p id="intro-text-per">your promo flyers.</p>
-              <p id="intro-text-per">your club announcements.</p>
-              <p id="intro-text-per">your members and officers.</p>
-              <p id="intro-text-per">all in one place.</p>
+              <div style={{
+                  color: "white"
+                }}>
+                <p id="intro-text-per">your promo flyers.
+                  <i
+                    style={{float: "right"}}
+                    className="fa fa-newspaper-o" aria-hidden="true"></i>
+                </p>
+                <p id="intro-text-per">
+                  your club announcements.
+                  <i
+                    style={{float: "right"}}
+                    className="fa fa-bullhorn" aria-hidden="true"></i>
+                </p>
+                <p id="intro-text-per">
+                  your members and officers.
+                  <i
+                    style={{float: "right"}}
+                    className="fa fa-users" aria-hidden="true"></i>
+
+                </p>
+                <p id="intro-text-per">
+                  all in one place.
+                  <i
+                    style={{float: "right"}}
+                    className="fa fa-home" aria-hidden="true"></i>
+
+                </p>
+              </div>
+
             </Col>
           </Row>
         </div>
@@ -114,9 +140,13 @@ class FrontPage extends Component {
           </h1>
         </div>
 
-        <div className="gray">
+        <div className="home-organizer-header">
           We appreciate your hard work in supporting the backbone of your
           university's culture. Now let's make your jobs easier.
+        </div>
+
+        <div className="home-organizer-info">
+          Have no idea where to start when creating your club?  Don't worry; there's a wizard to help you out.
         </div>
 
       </div>

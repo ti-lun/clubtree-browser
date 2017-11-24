@@ -17,7 +17,7 @@ import Step3 from "../components/ClubCreation/Step3";
 import Step4 from "../components/ClubCreation/Step4";
 
 //need to pass newclub action into step 1...
-import { updateValidationStep, loadExistingClub } from "../actions/clubCreationActions";
+import { updateValidationStep, loadExistingClub, clearInfo } from "../actions/clubCreationActions";
 
 import {
   CLUB_NAME_CHAR_LENGTH,
@@ -59,6 +59,9 @@ export class ClubCreation extends Component {
         const club = response.data;
         this.props.loadExistingClub(club);
       });
+    }
+    else {
+      this.props.clearInfo();
     }
   }
 
@@ -261,7 +264,8 @@ export default connect(
     bindActionCreators(
       {
         updateValidationStep,
-        loadExistingClub
+        loadExistingClub,
+        clearInfo
       },
       dispatch
     )

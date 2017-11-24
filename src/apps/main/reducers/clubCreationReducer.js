@@ -23,7 +23,8 @@ import {
   TOGGLE_VIBE_FILTER_CC,
   UPLOAD_CLUB_LOGO,
   UPLOAD_CLUB_COVER,
-  UPDATE_QUESTION
+  UPDATE_QUESTION,
+  CLEAR_INFO
  } from "../actions/clubCreationActions";
  import { MONTHS_TO_INT } from "../lib/consts";
 
@@ -73,6 +74,9 @@ export default (
 ) => {
   let updatedDatesAndTimes = _.cloneDeep(state.newClub.meetingDatesAndTimes);
   switch (action.type) {
+
+    case CLEAR_INFO:
+      return INITIAL_STATE;
 
     case LOAD_EXISTING_CLUB:
       let existingClub = _.cloneDeep(state.newClub);

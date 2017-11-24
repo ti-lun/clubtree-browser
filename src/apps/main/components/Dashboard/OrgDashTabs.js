@@ -20,7 +20,7 @@ export default class OrgDashTabs extends Component {
     let tabIndex = 0;
     await Promise.all(nextProps.clubs.map(async (club, index) => {
       if (club.club) {
-        const clubInfo = await axios.get(`${API_URL}/clubs`).then((response) => {
+        const clubInfo = await axios.get(`${API_URL}/clubs/${club.club}`).then((response) => {
             tabIndex++;
             newTabs.push(
                 <div

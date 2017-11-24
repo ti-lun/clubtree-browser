@@ -15,7 +15,7 @@ export default class ClubCreationHeader extends Component {
               <Col>
                 <Row className="clubcreation-header-right">
                   <Col>
-                    <Progress value={this.props.completed * (100 / 5)} />
+                    <Progress value={this.props.completed * (100 / 4)} />
                   </Col>
                 </Row>
                 <Row className="clubcreation-header-right">
@@ -24,7 +24,7 @@ export default class ClubCreationHeader extends Component {
                       className="clubcreation-sub"
                       style={{ float: "left" }}
                     >
-                      {this.props.completed * (100 / 5)}% completed
+                      {this.props.completed * (100 / 4)}% completed
                     </span>
                   </Col>
                   <Col sm={8}>

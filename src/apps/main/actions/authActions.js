@@ -18,7 +18,8 @@ export function signInFB(dataObj) {
       }
     }).then((response) => {
       if (response.data.length) {
-        // do nothing i guess lol
+        console.log("response is", response);
+        localStorage.setItem("_id", response.data[0]["_id"]);
       }
       else {
         axios.post(`${API_URL}/members`, dataObj).then((response) => {
@@ -32,8 +33,11 @@ export function signInFB(dataObj) {
     });
 
     dispatch({ type: AUTH_USER });
-    console.log("dataObj token is", dataObj.token);
     localStorage.setItem("token", dataObj.token);
+    localStorage.setItem("profPicURL", dataObj.profPicURL);
+    localStorage.setItem("firstName", dataObj.firstName);
+    localStorage.setItem("lastName", dataObj.lastName);
+    localStorage.setItem("fbID", dataObj.fbID);
 
     browserHistory.push("/dashboard");
 

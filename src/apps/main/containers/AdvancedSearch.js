@@ -5,6 +5,7 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import Helmet from "react-helmet";
 import { Button } from "reactstrap";
+import { Link } from "react-router";
 
 import Header from "../components/Header";
 import SearchBar from "../components/SearchBar";
@@ -58,26 +59,36 @@ export class AdvancedSearch extends Component {
             backgroundColor: "white"
           }}
         >
-          <h2>Or how about picking a category to start with?</h2>
-          Pick as many as you like.
-          <ColorfulSelector
-            selectorAction={this.props.toggleCategoryFilter}
-            selectorReducer={this.props.categoriesFilter}
-            selectorKeys={CATEGORIES_ICONS_MAP}
-            inline={true}
-          />
-          <h2>Interested in what a club's vibes are like?</h2>
-          Pick as many as you like.
-          <ColorfulSelector
-            selectorAction={this.props.toggleVibeFilter}
-            selectorReducer={this.props.vibesFilter}
-            selectorKeys={VIBES}
-            inline={true}
-            categories={true}
-          />
 
+          <div className="inner-box-margin">
+            <h2>Or how about picking a category to start with?</h2>
+            Pick as many as you like.
+            <ColorfulSelector
+              selectorAction={this.props.toggleCategoryFilter}
+              selectorReducer={this.props.categoriesFilter}
+              selectorKeys={CATEGORIES_ICONS_MAP}
+              inline={true}
+            />
+          </div>
+          <div className="inner-box-margin">
+            <h2>Interested in what a club's vibes are like?</h2>
+            Pick as many as you like.
+            <ColorfulSelector
+              selectorAction={this.props.toggleVibeFilter}
+              selectorReducer={this.props.vibesFilter}
+              selectorKeys={VIBES}
+              inline={true}
+              categories={true}
+            />
+          </div>
         </div>
-        <Button className="clubcreation-continue-btn">Continue</Button>
+        <Link>
+          <Button
+            className="clubcreation-continue-btn">
+            Continue
+          </Button>
+        </Link>
+
       </div>
     );
   }
