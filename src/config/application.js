@@ -39,12 +39,12 @@ const headContent: HeadContent = {
 
 const config: Config = {
   development: {
-    FACEBOOK_APP_ID: "469991373333039",
+    FACEBOOK_APP_ID: "465854210413422",
     head: headContent,
     proxies: [
       {
         path: "/api/*",
-        destination: "http://localhost:3000"
+        destination: "https://intense-retreat-44335.herokuapp.com"
       }
     ],
     logger: {
