@@ -39,7 +39,7 @@ const headContent: HeadContent = {
 
 const config: Config = {
   development: {
-    FACEBOOK_APP_ID: "465854210413422",
+    FACEBOOK_APP_ID: "469991373333039",
     head: headContent,
     proxies: [
       {
