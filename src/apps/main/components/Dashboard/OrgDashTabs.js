@@ -67,18 +67,18 @@ export default class OrgDashTabs extends Component {
   // }
 
   render() {
-    if (this.props.clubs.length === 0) {
-      this.state.tabs.push((
-        <Link key={this.state.tabs.length} to="/clubcreation">
-          <div className={`dash-tabs single-dash-tab${this.state.tabs.length} mild-shadow`}>
-            Add club
-          </div>
-        </Link>
-      ));
-    }
-
-    else {
-    }
+    // if (this.props.clubs.length === 0) {
+    //   this.state.tabs.push((
+    //     <Link key={this.state.tabs.length} to="/clubcreation">
+    //       <div className={`dash-tabs single-dash-tab${this.state.tabs.length} mild-shadow`}>
+    //         Add club
+    //       </div>
+    //     </Link>
+    //   ));
+    // }
+    //
+    // else {
+    // }
 
     console.log("tabs are", this.state.tabs.length);
     return (

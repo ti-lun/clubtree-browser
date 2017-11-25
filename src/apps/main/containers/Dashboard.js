@@ -53,23 +53,28 @@ export class Dashboard extends Component {
 
   componentDidMount() {
     // check to see if this user has any clubs.
-    const userID = localStorage.getItem("_id");
-    axios.get(`${API_URL}/members`, {
-      params: {
-        "_id": userID
-      }
-    }).then((response) => {
-      const responseObj = response.data[0];
-      if (this.refs.body){
-        this.setState({
-          clubs: responseObj.clubs,
-          name: {
-            first: responseObj.firstName,
-            last: responseObj.lastName
-          }
-        });
-      }
-    });
+    // however we gotta make sure _id has been set in localStorage
+    if (this.props.authenticated) {
+      console.log("fired!  authenticated");
+      const userID = localStorage.getItem("_id");
+      console.log("userID is", userID);
+      axios.get(`${API_URL}/members`, {
+        params: {
+          "_id": userID
+        }
+      }).then((response) => {
+        const responseObj = response.data[0];
+        // if (this.refs.body){
+          this.setState({
+            clubs: responseObj.clubs,
+            name: {
+              first: responseObj.firstName,
+              last: responseObj.lastName
+            }
+          });
+        // }
+      });
+    }
   }
 
   render () {
@@ -97,6 +102,8 @@ export class Dashboard extends Component {
 }
 
 export default connect(
-  (/* state */) => ({/** _INSERT_STATE_  **/}),
+  (state) => ({
+    authenticated: state.authReducer.authenticated
+  }),
   (dispatch) => bindActionCreators({/** _INSERT_ACTION_CREATORS_ **/}, dispatch)
 )(Dashboard);

@@ -9,16 +9,18 @@ import { API_URL } from "../lib/consts";
 
 // TODO: need to put fbID into localStorage
 export function signInFB(dataObj) {
-  return function (dispatch) {
+  return async function (dispatch) {
 
     // let's say the api passes and it works hooray.
-    axios.get(`${API_URL}/members`, {
+    await axios.get(`${API_URL}/members`, {
       params: {
         fbID: dataObj.fbID
       }
     }).then((response) => {
       if (response.data.length) {
         console.log("response is", response);
+        // why twice?  lol
+        console.log("got", response.data[0]["_id"]);
         localStorage.setItem("_id", response.data[0]["_id"]);
       }
       else {
@@ -32,12 +34,17 @@ export function signInFB(dataObj) {
       }
     });
 
-    dispatch({ type: AUTH_USER });
     localStorage.setItem("token", dataObj.token);
     localStorage.setItem("profPicURL", dataObj.profPicURL);
     localStorage.setItem("firstName", dataObj.firstName);
     localStorage.setItem("lastName", dataObj.lastName);
-    localStorage.setItem("fbID", dataObj.fbID);
+
+    let test = localStorage.getItem("firstName");
+
+
+    // once localStorage is all set, authenticate the user.
+    console.log("right before dispatching auth user named", test);
+    dispatch({ type: AUTH_USER });
 
     browserHistory.push("/dashboard");
 
