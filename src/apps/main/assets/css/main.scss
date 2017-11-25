@@ -703,19 +703,28 @@ p.clubprofile-section {
 
 .dash-tabs {
   position: absolute;
-  left: -7%;
   -webkit-transform: rotate(90deg);
   background-color: #eeeeee;
-  padding: 40px 100px 40px 100px;
+  padding: 20px 50px 20px 50px;
+  font-weight: 900;
+  float: left;
+}
+
+@media all and (min-width: 1000px) {
+  .dash-tabs {
+    width: 250px;
+    height: 200px;
+    left: -10%;
+  }
 }
 
 @mixin single-dash-tab($number) {
   .single-dash-tab#{$number - 1} {
-    top: ( $number - 1 ) * 300px  + 150px;
+    top: ( $number - 1 ) * 270px  + 150px;
   }
 }
 
-@include single-dash-tab(1);  
+@include single-dash-tab(1);
 @include single-dash-tab(2);
 @include single-dash-tab(3);
 @include single-dash-tab(4);

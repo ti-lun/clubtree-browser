@@ -64,14 +64,21 @@ export class Dashboard extends Component {
         }
       }).then((response) => {
         const responseObj = response.data[0];
-        // if (this.refs.body){
+        console.log("got a response yay");
+        if (responseObj.clubs) {
           this.setState({
-            clubs: responseObj.clubs,
-            name: {
-              first: responseObj.firstName,
-              last: responseObj.lastName
-            }
+            clubs: responseObj.clubs
           });
+        }
+        // if (this.refs.body){
+        this.setState({
+          name: {
+            first: responseObj.firstName,
+            last: responseObj.lastName
+          }
+        });
+
+          console.log("clubs are", this.state.clubs);
         // }
       });
     }
