@@ -9,9 +9,9 @@ import { API_URL } from "../lib/consts";
 
 // TODO: need to put fbID into localStorage
 export function signInFB(dataObj) {
-  return async function (dispatch) {
+  return function (dispatch) {
 
-    await axios.get(`${API_URL}/members`, {
+    return axios.get(`${API_URL}/members`, {
       params: {
         fbID: dataObj.fbID
       }
@@ -27,18 +27,19 @@ export function signInFB(dataObj) {
           console.log("crap", err);
         });
       }
+    }).then(function () {
+
+      localStorage.setItem("token", dataObj.token);
+      localStorage.setItem("profPicURL", dataObj.profPicURL);
+      localStorage.setItem("firstName", dataObj.firstName);
+      localStorage.setItem("lastName", dataObj.lastName);
+
+      // once localStorage is all set, authenticate the user.
+      dispatch({ type: AUTH_USER });
+
+      browserHistory.push("/dashboard");
+
     });
-
-    localStorage.setItem("token", dataObj.token);
-    localStorage.setItem("profPicURL", dataObj.profPicURL);
-    localStorage.setItem("firstName", dataObj.firstName);
-    localStorage.setItem("lastName", dataObj.lastName);
-
-    // once localStorage is all set, authenticate the user.
-    dispatch({ type: AUTH_USER });
-
-    browserHistory.push("/dashboard");
-
   }
 }
 
