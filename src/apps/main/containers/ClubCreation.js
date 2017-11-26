@@ -116,6 +116,7 @@ export class ClubCreation extends Component {
             updateFields: {
               clubName: this.props.newClub.clubName,
               description: this.props.newClub.description,
+              foundedYear: this.props.newClub.establishedDate,
               category: this.props.newClub.category
             }
           });
@@ -126,7 +127,9 @@ export class ClubCreation extends Component {
             clubName: this.props.newClub.clubName,
             description: this.props.newClub.description,
             category: this.props.newClub.category,
-            organizerID: localStorage.getItem("_id") // createdDate: Date.now(), foundedDate: this.props.newClub.establishedDate
+            createdDate: new Date(),
+            foundedYear: this.props.newClub.establishedDate,
+            organizerID: localStorage.getItem("_id")
           }).then((response) => {
             this.setState({
               id: response.data["_id"]
