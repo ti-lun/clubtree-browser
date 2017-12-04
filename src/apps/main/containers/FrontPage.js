@@ -49,7 +49,7 @@ class FrontPage extends Component {
             <SearchBar
               searchBarStyleClass="front-page-search"
               termFilter={this.props.termFilter}
-              categoriesFilter={this.props.categoryiesFilter}
+              categoriesFilter={this.props.categoriesFilter}
               setTermFilter={this.props.setTermFilter}
               search={false}
             />

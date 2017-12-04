@@ -7,6 +7,9 @@ import PropTypes from "prop-types";
 import { Link } from "react-router";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import SearchBar from "./SearchBar";
+
+import { setTermFilter } from "../actions/searchResultsActions";
 
 import { unauthUser } from "../actions/authActions";
 
@@ -44,7 +47,7 @@ class Header extends Component {
 
   optionalColor = () => {
     const thisPage = this.props.type;
-    switch(this.props.type) {
+    switch (this.props.type) {
       case "dashboard":
         return "header-dashboard";
       default:
@@ -70,30 +73,32 @@ class Header extends Component {
           </Col>
           {this.props.type !== "signup"
             ? <Col>
-                {(this.props.authenticated) ?
-                  (
-                      <Button
-                        onClick={this.props.unauthUser}
-                        className="btn">Log out</Button>
-                  )
-                   :
+              {(this.props.authenticated) ?
+                (
+                  <Button
+                    onClick={this.props.unauthUser}
+                    className="btn">Log out</Button>
+                )
+                :
 
-                  (<Link to="/joinus">
+                (<Link to="/joinus">
                   <Button className="btn-red">Log in</Button>
-                  </Link>)
-                  }
-              </Col>
+                </Link>)
+              }
+            </Col>
             : null}
           <Col>
-            <i
-              className="fa fa-2x fa-search"
-              aria-hidden="true"
-              style={{ color: "#FFFFFF" }}
+            <SearchBar
+              searchBarStyleClass="header-page-search"
+              termFilter={this.props.termFilter}
+              categoriesFilter={this.props.categoriesFilter}
+              setTermFilter={this.props.setTermFilter}
+              search={false}
             />
           </Col>
           <Col>
             <Link to="/dashboard">
-              <img src={(this.props.authenticated) ? this.state.profPicURL : null} className="rounded-circle"/>
+              <img src={(this.props.authenticated) ? this.state.profPicURL : null} className="rounded-circle" />
             </Link>
           </Col>
         </Row>
@@ -104,9 +109,12 @@ class Header extends Component {
 
 export default connect(
   (state) => ({
+    termFilter: state.searchResultsReducer.termFilter,
+    categoriesFilter: state.searchResultsReducer.categoriesFilter,
     authenticated: state.authReducer.authenticated
   }),
   dispatch => bindActionCreators({
+    setTermFilter,
     unauthUser
   }, dispatch)
 )(Header);
