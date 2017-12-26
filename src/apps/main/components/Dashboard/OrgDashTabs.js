@@ -33,17 +33,23 @@ export default class OrgDashTabs extends Component {
               {response.data.clubName}
             </div>
           );
+        }).catch(function (err) {
+          // ignore errors so it doesn't prevent clubs from appearing
         });
       }
     }).then(() => {
       tabIndex++;
-      newTabs.push(
-        <Link key={newTabs.length} to="/clubcreation">
-          <div className={`dash-tabs include: single-dash-tab${newTabs.length} mild-shadow`}>
-            Add club
-              </div>
-        </Link>
-      )
+
+      let numberOfClubs = newTabs.length;
+      if (numberOfClubs < 2) {
+        newTabs.push(
+          <Link key={newTabs.length} to="/clubcreation">
+            <div className={`dash-tabs include: single-dash-tab${newTabs.length} mild-shadow`}>
+              Add club
+            </div>
+          </Link>
+        )
+      }
 
       this.setState({
         tabs: newTabs
