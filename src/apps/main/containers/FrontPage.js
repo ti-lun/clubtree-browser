@@ -110,7 +110,7 @@ class FrontPage extends Component {
           </Col>
         </Row>
 
-        <Row style={{ height: "100%", display: "flex" }}>
+        <Row style={{ height: "100%", display: "flex", margin: 0 }}>
           <Col
             className="home-perks-description-one"
             id="bootstrap-override-desc"
