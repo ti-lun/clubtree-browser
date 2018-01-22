@@ -71,22 +71,6 @@ class Header extends Component {
               </span>
             </span>
           </Col>
-          {this.props.type !== "signup"
-            ? <Col>
-              {(this.props.authenticated) ?
-                (
-                  <Button
-                    onClick={this.props.unauthUser}
-                    className="btn">Log out</Button>
-                )
-                :
-
-                (<Link to="/joinus">
-                  <Button className="btn-red">Log in</Button>
-                </Link>)
-              }
-            </Col>
-            : null}
           <Col>
             <SearchBar
               searchBarStyleClass="header-page-search"
