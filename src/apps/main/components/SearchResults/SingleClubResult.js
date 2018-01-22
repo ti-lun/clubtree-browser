@@ -28,7 +28,7 @@ export default class SingleClubResult extends Component {
         </Row>
         <div
           style={{
-            backgroundImage: `url(${_.get(club, 'imageURLs.cover')})`,
+            backgroundImage: `url(${_.get(club, 'clubCover')})`,
             backgroundSize: "cover",
             width: "100%",
             height: "100%",
@@ -37,7 +37,7 @@ export default class SingleClubResult extends Component {
         >
           <Row>
             <Col>
-              <Link to={linkName}><img src={_.get(club, 'imageURLs.logo')} width="150px" /></Link>
+              <Link to={linkName}><img src={_.get(club, 'clubLogo')} width="150px" /></Link>
             </Col>
             <Col>
               {club.vibes.map((vibe, index) => {
