@@ -47,7 +47,8 @@ export class AdvancedSearch extends Component {
           }}
         >
           <h2>Do you have a particular club in mind?</h2>
-          <SearchBar searchBarStyleId="advanced-search" /> <br />
+          <SearchBar
+            searchBarStyleClass="advanced-search" /> <br />
           Examples: part of a club name, a game you are interested in, people
           you know
         </div>
@@ -71,7 +72,7 @@ export class AdvancedSearch extends Component {
             />
           </div>
           <div className="inner-box-margin">
-            <h2>Interested in what a club's vibes are like?</h2>
+            <h2>Interested in what a clubs vibes are like?</h2>
             Pick as many as you like.
             <ColorfulSelector
               selectorAction={this.props.toggleVibeFilter}
