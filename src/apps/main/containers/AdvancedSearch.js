@@ -14,6 +14,7 @@ import ColorfulSelector from "../components/ColorfulSelector";
 
 import { toggleVibeFilter, toggleCategoryFilter } from "../actions/searchResultsActions";
 
+import { generateSearchURL } from "../lib/utils";
 import { CATEGORIES_ICONS_MAP, VIBES } from "../lib/consts";
 
 export class AdvancedSearch extends Component {
@@ -34,6 +35,12 @@ export class AdvancedSearch extends Component {
   static gsBeforeRoute(/* {dispatch}, renderProps, query, serverProps */) {}
 
   render() {
+    let query = {
+      q: this.props.termFilter,
+      category: this.props.categoriesFilter,
+      vibe: this.props.vibesFilter
+    };
+    let url = generateSearchURL(query);
     return (
       <div className="container">
         <Helmet title="AdvancedSearch" />
@@ -83,7 +90,7 @@ export class AdvancedSearch extends Component {
             />
           </div>
         </div>
-        <Link>
+        <Link to={url}>
           <Button
             className="clubcreation-continue-btn">
             Continue
@@ -97,6 +104,7 @@ export class AdvancedSearch extends Component {
 
 export default connect(
   (state) => ({
+    termFilter: state.searchResultsReducer.termsFilter,
     categoriesFilter: state.searchResultsReducer.categoriesFilter,
     vibesFilter: state.searchResultsReducer.vibesFilter
   }),
