@@ -12,7 +12,11 @@ import SearchBar from "../components/SearchBar";
 import CategorySelector from "../components/CategorySelector";
 import ColorfulSelector from "../components/ColorfulSelector";
 
-import { toggleVibeFilter, toggleCategoryFilter } from "../actions/searchResultsActions";
+import {
+  setTermFilter,
+  toggleVibeFilter,
+  toggleCategoryFilter
+} from "../actions/searchResultsActions";
 
 import { generateSearchURL } from "../lib/utils";
 import { CATEGORIES_ICONS_MAP, VIBES } from "../lib/consts";
@@ -55,6 +59,7 @@ export class AdvancedSearch extends Component {
         >
           <h2>Do you have a particular club in mind?</h2>
           <SearchBar
+            setTermFilter={this.props.setTermFilter}
             searchBarStyleClass="advanced-search" /> <br />
           Examples: part of a club name, a game you are interested in, people
           you know
@@ -104,13 +109,14 @@ export class AdvancedSearch extends Component {
 
 export default connect(
   (state) => ({
-    termFilter: state.searchResultsReducer.termsFilter,
+    termFilter: state.searchResultsReducer.termFilter,
     categoriesFilter: state.searchResultsReducer.categoriesFilter,
     vibesFilter: state.searchResultsReducer.vibesFilter
   }),
   dispatch =>
     bindActionCreators(
       {
+        setTermFilter,
         toggleCategoryFilter,
         toggleVibeFilter
       },
