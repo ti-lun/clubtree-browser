@@ -20,6 +20,7 @@ export function simpleSearchClub(data: array) {
 }
 
 export function fetchClubSearchResults(params: object) {
+  params = _.assign(params, { sort: 'new' });
   const paramsSerializer = function (params) {
     let paramString = qs.stringify(params, { arrayFormat: 'repeat' });
     return paramString;

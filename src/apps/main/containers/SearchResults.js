@@ -163,8 +163,8 @@ export class SearchResults extends Component {
               margin: "0px 0px 20px 0px"
             }}
           >
-            Sort clubs by:
-            <ResultSortDropdown />
+            {/* Sort clubs by:
+            <ResultSortDropdown /> */}
             <ClubResultsList
               term={this.props.termFilter}
               searchResults={this.props.searchResults}
