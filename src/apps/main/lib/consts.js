@@ -24,11 +24,11 @@ export const CATEGORIES_ICONS_MAP = {
 
 export const VIBES = {
   "Time commitment": [
-    "Close-knit",
-    "Family",
-    "Teamwork",
+    "A lot, almost like a one-unit class",
+    "Quite a bit, ~5 hrs/week",
+    "Not very much, ~2 hrs/week",
     "Low commitment",
-    "Casual"
+    "Attendance is optional"
   ],
   Energy: [
     "Super lit",

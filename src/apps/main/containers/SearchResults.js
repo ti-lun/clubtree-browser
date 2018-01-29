@@ -117,14 +117,14 @@ export class SearchResults extends Component {
             <div className="mild-shadow searchresults-vibes">
               <h2>Vibes</h2>
               <div className="margin-bottom-20px">
-                <h4>Group tightness</h4>
+                <h4>Time commitment</h4>
                 <VibeFilterSelector
                   termFilter={this.props.termFilter}
                   categoriesFilter={this.props.categoriesFilter}
                   fetchClubSearchResults={this.props.fetchClubSearchResults}
                   selectorAction={this.props.toggleVibeFilter}
                   selectorReducer={this.props.vibesFilter}
-                  selectorKeys={VIBES['Group tightness']}
+                  selectorKeys={VIBES['Time commitment']}
                   buttonColor={COLORS[0]}
                 />
               </div>
