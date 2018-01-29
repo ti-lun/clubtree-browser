@@ -4,7 +4,7 @@ import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import Helmet from "react-helmet";
-import { Button } from "reactstrap";
+import { Row, Col, Button } from "reactstrap";
 import { Link } from "react-router";
 
 import Header from "../components/Header";
@@ -17,6 +17,8 @@ import {
   toggleVibeFilter,
   toggleCategoryFilter
 } from "../actions/searchResultsActions";
+
+import exploreImg from "../assets/images/advanced-search/explorer.png";
 
 import { generateSearchURL } from "../lib/utils";
 import { CATEGORIES_ICONS_MAP, VIBES } from "../lib/consts";
@@ -46,9 +48,45 @@ export class AdvancedSearch extends Component {
     };
     let url = generateSearchURL(query);
     return (
-      <div className="container">
+      <div
+        className="container"
+        style={{width: "60%"}}
+      >
         <Helmet title="AdvancedSearch" />
         <Header type="advancedsearch" />
+        <div
+          style={{
+            backgroundColor: "#ffffff",
+            boxShadow: "10px 10px 15px #aaaaaa",
+            padding: "40px 20px 40px 40px",
+            margin: "50px 0px 20px 0px",
+            border: "20px solid #008a9b"
+          }}
+        >
+
+          <Row>
+            <Col md={6}>
+              <span className="explore">Explore clubs</span><br /><br />
+              <span className="explore-text">Trying to find a club at UC Irvine?  Whether you're trying to look up a particular club or discover the one that's right for you, you can find what you need.</span>
+            </Col>
+            <Col md={6} style={{textAlign : "center"}}>
+              <div
+                style={{
+                  position: "absolute",
+                  top: "50%",
+                  left: "50%",
+                  transform: "translate(-50%, -50%)"
+                }}
+                >
+                <img
+                  src={exploreImg}
+                  width={"120%"}
+                  alt="Vecteezy vector; artist is twilightmoon"
+                  />
+              </div>
+            </Col>
+          </Row>
+        </div>
         <div
           style={{
             backgroundColor: "#d6f0f3",
@@ -57,7 +95,7 @@ export class AdvancedSearch extends Component {
             margin: "0px 0px 20px 0px"
           }}
         >
-          <h2>Do you have a particular club in mind?</h2>
+          <span className="explore-subheader">Do you have a particular club in mind?</span>
           <SearchBar
             setTermFilter={this.props.setTermFilter}
             searchBarStyleClass="advanced-search" /> <br />
@@ -74,7 +112,7 @@ export class AdvancedSearch extends Component {
         >
 
           <div className="inner-box-margin">
-            <h2>Or how about picking a category to start with?</h2>
+            <span className="explore-subheader">Or how about picking a category to start with?</span><br/>
             Pick as many as you like.
             <ColorfulSelector
               selectorAction={this.props.toggleCategoryFilter}
@@ -83,8 +121,9 @@ export class AdvancedSearch extends Component {
               inline={true}
             />
           </div>
+          <br /><br/>
           <div className="inner-box-margin">
-            <h2>Interested in what a clubs vibes are like?</h2>
+            <span className="explore-subheader">Interested in what a clubs vibes are like?</span><br/>
             Pick as many as you like.
             <ColorfulSelector
               selectorAction={this.props.toggleVibeFilter}
@@ -95,13 +134,16 @@ export class AdvancedSearch extends Component {
             />
           </div>
         </div>
-        <Link to={url}>
-          <Button
-            className="clubcreation-continue-btn">
-            Continue
-          </Button>
-        </Link>
-
+        <div style={{
+          textAlign: "center"
+        }}>
+          <Link to={url}>
+            <Button
+              className="clubcreation-continue-btn">
+              Continue
+            </Button>
+          </Link>
+        </div>
       </div>
     );
   }

@@ -23,7 +23,7 @@ export const CATEGORIES_ICONS_MAP = {
 };
 
 export const VIBES = {
-  "Group tightness": [
+  "Time commitment": [
     "Close-knit",
     "Family",
     "Teamwork",
@@ -31,11 +31,11 @@ export const VIBES = {
     "Casual"
   ],
   Energy: [
-    "Wild",
+    "Super lit",
     "Fun",
     "Chill",
     "Laid back",
-    "Dynamic",
+    "Focused",
     "Exciting",
     "Relaxing"
   ],
@@ -43,7 +43,7 @@ export const VIBES = {
     "Professional",
     "Intellectual",
     "Adventurous",
-    "Party",
+    "Party-loving",
     "Intense",
     "Artsy",
     "Nerdy",

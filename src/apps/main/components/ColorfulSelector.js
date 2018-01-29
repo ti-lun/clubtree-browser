@@ -12,9 +12,14 @@ export default class ColorfulSelector extends Component {
     for (const key in this.props.selectorKeys) {
       if (this.props.categories) {
         generatedKeys.push(
-          <h4 key={key}>
-            {key}
-          </h4>
+          <span
+            className="vibe-category-label"
+            key={key}
+            style={{
+              marginBottom: "55px",
+              marginTop: "5px"}}>
+            <br /><br/>{key}<br /><br />
+          </span>
         );
 
         for (const item in this.props.selectorKeys[key]) {
@@ -85,7 +90,7 @@ export default class ColorfulSelector extends Component {
     }
 
     return (
-      <div>
+      <div style={{margin: "5px"}}>
         {this.props.inline ? generatedKeys : gridButtons}
       </div>
     );

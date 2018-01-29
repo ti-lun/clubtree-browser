@@ -86,10 +86,22 @@ textarea:focus {
   margin-bottom: 5px;
 }
 
+.margin-bottom-20px {
+  margin-bottom: 20px;
+}
+
 .align-middle-col {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.vibe-category-label {
+  text-transform: uppercase;
+  font-size: 13px;
+  font-weight: 700;
+  border-bottom: 5px #ff7043 solid;
+  margin-bottom: 10px;
 }
 
 // =================================== [ HOMEPAGE ]
@@ -275,7 +287,7 @@ h1.front-splash-font {
 
 .header-float {
   padding-top: 2%;
-  padding-left: 15%;
+  padding-left: 10%;
   padding-right: 15px;
   position: relative;
   z-index: 5;
@@ -316,6 +328,17 @@ h1.front-splash-font {
 .header-clubprofile {
   margin-top: 50pt;
   margin-bottom: 30pt;
+}
+
+.header-page-search {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 5px solid #ff3823;
+  background-color: transparent;
+  display: inline !important;
+  width: 60%;
+  margin-right: 20px;
 }
 
 // =================================== [ CLUB PROFILE ]
@@ -403,7 +426,7 @@ p.clubprofile-section {
 }
 
 // is this even used?
-#advanced-search {
+.advanced-search {
   font-size: 20px;
   background: transparent;
   border: none;
@@ -555,8 +578,8 @@ p.clubprofile-section {
 }
 
 .clubcreation-continue-btn {
-  width: 25%;
-  margin: 0% 25% 0% 1%;
+  width: 50%;
+  margin: 0% 0% 5% 0%;
   box-shadow: 5px 5px 15px #aaaaaa;
   background-color: #72bec9;
   border: none;
@@ -746,7 +769,23 @@ p.clubprofile-section {
 // =================================== [ ADVANCED SEARCH ]
 
 .inner-box-margin {
-  margin: 40px;
+  margin: 5px;
+}
+
+.explore {
+  font-size: 50px;
+  font-weight: 100;
+}
+
+.explore-text {
+  font-size: 20px;
+  font-weight: 100;
+}
+
+.explore-subheader {
+  font-size: 25px;
+  margin-bottom: 5px;
+  font-weight: 100;
 }
 
 // =================================== [ FOOTER ]

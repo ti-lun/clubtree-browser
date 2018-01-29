@@ -59,19 +59,19 @@ class Header extends Component {
     return (
       <div className={`header-float ${this.optionalColor()}`}>
         <Row>
-          <Col>
+          <Col md={4}>
             <Link to="/">
               <img src={logo} width={"50%"} />
             </Link>
           </Col>
-          <Col>
+          <Col md={2}>
             <span className={this.generateLinkStyle(this.props.type)}>
               <span className="header-explore">
                 <Link to="/advancedsearch">EXPLORE</Link>
               </span>
             </span>
           </Col>
-          <Col>
+          <Col md={5}>
             <SearchBar
               searchBarStyleClass="header-page-search"
               termFilter={this.props.termFilter}
@@ -80,7 +80,7 @@ class Header extends Component {
               search={false}
             />
           </Col>
-          <Col>
+          <Col md={1}>
             <Link to="/dashboard">
               <img src={(this.props.authenticated) ? this.state.profPicURL : null} className="rounded-circle" />
             </Link>

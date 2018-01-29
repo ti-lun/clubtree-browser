@@ -116,36 +116,43 @@ export class SearchResults extends Component {
             </div>
             <div className="mild-shadow searchresults-vibes">
               <h2>Vibes</h2>
-              <h4>Group tightness</h4>
-              <VibeFilterSelector
-                termFilter={this.props.termFilter}
-                categoriesFilter={this.props.categoriesFilter}
-                fetchClubSearchResults={this.props.fetchClubSearchResults}
-                selectorAction={this.props.toggleVibeFilter}
-                selectorReducer={this.props.vibesFilter}
-                selectorKeys={VIBES['Group tightness']}
-                buttonColor={COLORS[0]}
-              />
-              <h4>Energy</h4>
-              <VibeFilterSelector
-                termFilter={this.props.termFilter}
-                categoriesFilter={this.props.categoriesFilter}
-                fetchClubSearchResults={this.props.fetchClubSearchResults}
-                selectorAction={this.props.toggleVibeFilter}
-                selectorReducer={this.props.vibesFilter}
-                selectorKeys={VIBES['Energy']}
-                buttonColor={COLORS[1]}
-              />
-              <h4>Personality</h4>
-              <VibeFilterSelector
-                termFilter={this.props.termFilter}
-                categoriesFilter={this.props.categoriesFilter}
-                fetchClubSearchResults={this.props.fetchClubSearchResults}
-                selectorAction={this.props.toggleVibeFilter}
-                selectorReducer={this.props.vibesFilter}
-                selectorKeys={VIBES['Personality']}
-                buttonColor={COLORS[2]}
-              />
+              <div className="margin-bottom-20px">
+                <h4>Group tightness</h4>
+                <VibeFilterSelector
+                  termFilter={this.props.termFilter}
+                  categoriesFilter={this.props.categoriesFilter}
+                  fetchClubSearchResults={this.props.fetchClubSearchResults}
+                  selectorAction={this.props.toggleVibeFilter}
+                  selectorReducer={this.props.vibesFilter}
+                  selectorKeys={VIBES['Group tightness']}
+                  buttonColor={COLORS[0]}
+                />
+              </div>
+              <div className="margin-bottom-20px">
+                <h4>Energy</h4>
+                <VibeFilterSelector
+                  termFilter={this.props.termFilter}
+                  categoriesFilter={this.props.categoriesFilter}
+                  fetchClubSearchResults={this.props.fetchClubSearchResults}
+                  selectorAction={this.props.toggleVibeFilter}
+                  selectorReducer={this.props.vibesFilter}
+                  selectorKeys={VIBES['Energy']}
+                  buttonColor={COLORS[1]}
+                />
+              </div>
+
+              <div className="margin-bottom-20px">
+                <h4>Personality</h4>
+                <VibeFilterSelector
+                  termFilter={this.props.termFilter}
+                  categoriesFilter={this.props.categoriesFilter}
+                  fetchClubSearchResults={this.props.fetchClubSearchResults}
+                  selectorAction={this.props.toggleVibeFilter}
+                  selectorReducer={this.props.vibesFilter}
+                  selectorKeys={VIBES['Personality']}
+                  buttonColor={COLORS[2]}
+                />
+              </div>
             </div>
           </Col>
           <Col

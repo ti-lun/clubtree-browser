@@ -8,6 +8,7 @@ import { Link } from "react-router";
 import axios from "axios";
 import { generateSearchURL } from "./../lib/utils";
 
+// this.props.searchBarStyleId
 class SearchBar extends Component {
   constructor(props) {
     super(props);
@@ -31,7 +32,7 @@ class SearchBar extends Component {
       case "results-page-search":
         return <i className="fa fa-search" aria-hidden="true" style={{ color: "#90caf9" }}></i>;
       case "header-page-search":
-        return <i className="fa fa-2x fa-search" aria-hidden="true" style={{ color: "#FFFFFF" }} />
+        return <i className="fa fa-2x fa-search" aria-hidden="true" style={{ color: "#ff3823" }} />
     }
   }
 

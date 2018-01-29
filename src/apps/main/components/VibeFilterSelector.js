@@ -41,6 +41,7 @@ export default class VibeFilterSelector extends Component {
             className={className}
             style={{
               backgroundColor: this.props.buttonColor,
+              margin: "5px"
             }}
             onClick={() => {
               this.props.selectorAction(item);
