@@ -8,12 +8,12 @@ export function generateSearchURL(params: object) {
         let value = params[key];
 
         if (_.isString(value)) {
-            query.push(key + '=' + value);
+            query.push(key + '=' + encodeURIComponent(value));
         } else if (_.isNumber(value)) {
-            query.push(key + '=' + value);
+            query.push(key + '=' + encodeURIComponent(value));
         } else if (_.isArray(value)) {
             value = _.filter(value, _.negate(_.isNil));
-            query = query.concat(value.map((elem) => key + '=' + elem));
+            query = query.concat(value.map((elem) => key + '=' + encodeURIComponent(elem)));
         }
     });
 
