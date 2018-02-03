@@ -3,7 +3,8 @@
 import _ from "lodash";
 import React, { Component } from "react";
 import { Row, Col, Button } from "reactstrap";
-import {Link} from "react-router";
+import { Link } from "react-router";
+import OnlyVibeFilterButton from "./OnlyVibeFilterButton";
 
 export default class SingleClubResult extends Component {
   render() {
@@ -16,7 +17,7 @@ export default class SingleClubResult extends Component {
             {club.members.length} members
           </Col>
           <Col>
-            Founded {club.foundedYear ? club.foundedYear.substring(0,4) : 'N/A'}
+            Founded {club.foundedYear ? club.foundedYear.substring(0, 4) : 'N/A'}
           </Col>
         </Row>
         <Row className="searchresults-right-align">
@@ -42,9 +43,19 @@ export default class SingleClubResult extends Component {
             <Col>
               {club.vibes.map((vibe, index) => {
                 return (
-                  <Button key={index} className="btn searchresults-vibes-btn">
+                  <OnlyVibeFilterButton
+                    key={index}
+                    label={vibe}
+                    className="btn searchresults-vibes-btn"
+                    termFilter={this.props.termFilter}
+                    categoriesFilter={this.props.categoriesFilter}
+                    vibesFilter={this.props.vibesFilter}
+                    fetchClubSearchResults={this.props.fetchClubSearchResults}
+                    setTermFilter={this.props.setTermFilter()}
+                    setVibeFilter={this.props.setVibeFilter}
+                  >
                     {vibe}
-                  </Button>
+                  </OnlyVibeFilterButton>
                 );
               })}
             </Col>

@@ -166,8 +166,12 @@ export class SearchResults extends Component {
             {/* Sort clubs by:
             <ResultSortDropdown /> */}
             <ClubResultsList
-              term={this.props.termFilter}
               searchResults={this.props.searchResults}
+              termFilter={this.props.termFilter}
+              vibesFilter={this.props.vibesFilter}
+              categoriesFilter={this.props.categoriesFilter}
+              fetchClubSearchResults={this.props.fetchClubSearchResults}
+              setVibeFilter={this.props.setVibeFilter}
             />
           </Col>
         </Row>
