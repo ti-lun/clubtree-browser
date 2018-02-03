@@ -8,7 +8,14 @@ export default class ClubResultsList extends Component {
     const clubRows = this.props.searchResults.map((club, index) => {
       return (
         <div key={index} >
-          <SingleClubResult club={club} />
+          <SingleClubResult
+            club={club}
+            termFilter={this.props.termFilter}
+            vibesFilter={this.props.vibesFilter}
+            categoriesFilter={this.props.categoriesFilter}
+            fetchClubSearchResults={this.props.fetchClubSearchResults}
+            setVibeFilter={this.props.setVibeFilter}
+          />
           <hr />
         </div>
       );
