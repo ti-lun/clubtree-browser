@@ -14,12 +14,25 @@ export default class ClubResultsList extends Component {
       );
     });
 
+    let displayText;
+
+    if (this.props.term) {
+      displayText = (<div>Displaying results for <span className="searchresults-keyword">{this.props.term}</span> - {clubRows.length} results</div>);
+    }
+    else {
+        displayText = (<div>Displaying <span className="searchresults-keyword">all clubs</span> - {clubRows.length} results</div>);
+    }
+
+
+
     return (
-      <div>
-        <h3>
-          Displaying results for: {this.props.term}
+      <div
+        style={{marginTop: "2%"}}
+      >
+        <h3 className="searchresults-displaying-results-text">
+          { displayText }
         </h3>
-        {clubRows}
+        {(clubRows.length > 0) ? clubRows : "Sorry, no results were found!"}
       </div>
     );
   }

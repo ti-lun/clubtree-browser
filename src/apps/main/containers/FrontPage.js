@@ -43,25 +43,45 @@ class FrontPage extends Component {
           }}
         >
           <div id="text-center">
-            <h1 className="front-splash-font" style={{ color: "#f7f6f6" }}>
-              Find your Clubtree.
-            </h1>
+            <div style={{margin: "50px"}}>
+              <h1
+                className="front-splash-font"
+                style={{
+                  color: "#f7f6f6"
+              }}>
+                Find your club.
+              </h1>
+              <span
+                className="front-splash-subtitle"
+                style={{ color: "#f7f6f6"
+              }}>Trying to find a group of people to hang or work with at UC Irvine?  Search for a hobby, a subject, a name of a club...
+              </span>
+            </div>
             <SearchBar
               searchBarStyleClass="front-page-search"
               termFilter={this.props.termFilter}
               categoriesFilter={this.props.categoriesFilter}
               setTermFilter={this.props.setTermFilter}
-              search={false}
+              search={true}
             />
           </div>
         </div>
 
         <div className="subdiv home-intro">
           <Row>
-            <Col style={{ verticalAlign: "middle" }}>
-              <span id="intro-text" style={{ color: "white" }}>
-                Clubtree is...
-              </span>
+            <Col>
+            <div
+              style={{
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+              }}
+              >
+                <span id="intro-text" style={{ color: "white" }}>
+                  Clubtree is...
+                </span>
+              </div>
             </Col>
             <Col>
               <div style={{
@@ -69,27 +89,43 @@ class FrontPage extends Component {
                 }}>
                 <p id="intro-text-per">your promo flyers.
                   <i
-                    style={{float: "right"}}
-                    className="fa fa-newspaper-o" aria-hidden="true"></i>
+                    style={{
+                      float: "right",
+                      marginRight: "30%"
+                    }}
+                    className="fa fa-newspaper-o"
+                    aria-hidden="true"></i>
                 </p>
                 <p id="intro-text-per">
                   your club announcements.
                   <i
-                    style={{float: "right"}}
-                    className="fa fa-bullhorn" aria-hidden="true"></i>
+                  style={{
+                    float: "right",
+                    marginRight: "30%"
+                  }}
+                    className="fa fa-bullhorn"
+                    aria-hidden="true"></i>
                 </p>
                 <p id="intro-text-per">
                   your members and officers.
                   <i
-                    style={{float: "right"}}
-                    className="fa fa-users" aria-hidden="true"></i>
+                  style={{
+                    float: "right",
+                    marginRight: "30%"
+                  }}
+                    className="fa fa-users"
+                    aria-hidden="true"></i>
 
                 </p>
                 <p id="intro-text-per">
                   all in one place.
                   <i
-                    style={{float: "right"}}
-                    className="fa fa-home" aria-hidden="true"></i>
+                  style={{
+                    float: "right",
+                    marginRight: "30%"
+                  }}
+                  className="fa fa-home"
+                  aria-hidden="true"></i>
 
                 </p>
               </div>
@@ -116,7 +152,10 @@ class FrontPage extends Component {
             id="bootstrap-override-desc"
             style={{ color: "#f7f6f6" }}
           >
+            <div>
             Easily find free food and club fundraisers
+
+            </div>
           </Col>
           <Col
             className="home-perks-description-two"

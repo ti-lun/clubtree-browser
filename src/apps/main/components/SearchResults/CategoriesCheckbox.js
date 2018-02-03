@@ -35,7 +35,7 @@ export default class CategoriesCheckbox extends Component {
       generatedCheckboxes.push(
         <div key={key} >
           <Link to={url}>
-            <Input
+            <input
               type="checkbox"
               onClick={() => {
                 this.props.toggleCategoryFilter(key);
@@ -44,7 +44,7 @@ export default class CategoriesCheckbox extends Component {
               checked={checked}
             />
           </Link>
-          &nbsp; {key}
+          &nbsp; <span className="searchresults-categories-label">{key}</span>
         </div>
       );
     }

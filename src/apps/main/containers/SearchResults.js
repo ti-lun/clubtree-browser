@@ -84,83 +84,81 @@ export class SearchResults extends Component {
     return this.props.fetchClubSearchResults(params);
   }
 
-  componentWillReceiveProps(newProps) {
-
-  }
-
   render() {
     return (
-      <div className="container">
+      <div>
         <Helmet title="SearchResults" />
         <Header type="main" />
-        <Row>
-          <Col md="4">
-            <SearchBar
-              searchBarStyleClass="results-page-search"
-              termFilter={this.props.termFilter}
-              vibesFilter={this.props.vibesFilter}
-              categoriesFilter={this.props.categoriesFilter}
-              setTermFilter={this.props.setTermFilter}
-              fetchClubSearchResults={this.props.fetchClubSearchResults}
-              search={true}
-            />
-            <div className="searchresults-categories mild-shadow">
-              <h2>Categories</h2>
-              <CategoriesCheckbox
-                termFilter={this.props.termFilter}
-                categoriesFilter={this.props.categoriesFilter}
-                vibesFilter={this.props.vibesFilter}
-                toggleCategoryFilter={this.props.toggleCategoryFilter}
-                fetchClubSearchResults={this.props.fetchClubSearchResults}
-              />
-            </div>
-            <div className="mild-shadow searchresults-vibes">
-              <h2>Vibes</h2>
-              <div className="margin-bottom-20px">
-                <h4>Time commitment</h4>
-                <VibeFilterSelector
-                  termFilter={this.props.termFilter}
-                  categoriesFilter={this.props.categoriesFilter}
-                  fetchClubSearchResults={this.props.fetchClubSearchResults}
-                  selectorAction={this.props.toggleVibeFilter}
-                  selectorReducer={this.props.vibesFilter}
-                  selectorKeys={VIBES['Time commitment']}
-                  buttonColor={COLORS[0]}
-                />
-              </div>
-              <div className="margin-bottom-20px">
-                <h4>Energy</h4>
-                <VibeFilterSelector
-                  termFilter={this.props.termFilter}
-                  categoriesFilter={this.props.categoriesFilter}
-                  fetchClubSearchResults={this.props.fetchClubSearchResults}
-                  selectorAction={this.props.toggleVibeFilter}
-                  selectorReducer={this.props.vibesFilter}
-                  selectorKeys={VIBES['Energy']}
-                  buttonColor={COLORS[1]}
-                />
-              </div>
-
-              <div className="margin-bottom-20px">
-                <h4>Personality</h4>
-                <VibeFilterSelector
-                  termFilter={this.props.termFilter}
-                  categoriesFilter={this.props.categoriesFilter}
-                  fetchClubSearchResults={this.props.fetchClubSearchResults}
-                  selectorAction={this.props.toggleVibeFilter}
-                  selectorReducer={this.props.vibesFilter}
-                  selectorKeys={VIBES['Personality']}
-                  buttonColor={COLORS[2]}
-                />
-              </div>
-            </div>
-          </Col>
-          <Col
-            md="8"
+          <div
             style={{
+              margin: "2%",
+              paddingRight: "2%",
+              width: "20%",
+              position: "fixed",
+              zIndex: 99,
+              height: "100%",
+              overflowY: "scroll",
+              paddingBottom: "10%"
+            }}>
+
+              <div className="searchresults-categories mild-shadow">
+                <span className="searchresults-filter-header">Categories</span>
+                <CategoriesCheckbox
+                  termFilter={this.props.termFilter}
+                  categoriesFilter={this.props.categoriesFilter}
+                  vibesFilter={this.props.vibesFilter}
+                  toggleCategoryFilter={this.props.toggleCategoryFilter}
+                  fetchClubSearchResults={this.props.fetchClubSearchResults}
+                />
+              </div>
+              <div className="mild-shadow searchresults-vibes">
+                <span className="searchresults-filter-header">Vibes</span>
+                <div className="margin-bottom-20px">
+                  <span className="vibe-category-label">Time commitment</span>
+                  <VibeFilterSelector
+                    termFilter={this.props.termFilter}
+                    categoriesFilter={this.props.categoriesFilter}
+                    fetchClubSearchResults={this.props.fetchClubSearchResults}
+                    selectorAction={this.props.toggleVibeFilter}
+                    selectorReducer={this.props.vibesFilter}
+                    selectorKeys={VIBES['Time commitment']}
+                    buttonColor={COLORS[0]}
+                  />
+                </div>
+                <div className="margin-bottom-20px">
+                  <span className="vibe-category-label">Energy</span>
+                  <VibeFilterSelector
+                    termFilter={this.props.termFilter}
+                    categoriesFilter={this.props.categoriesFilter}
+                    fetchClubSearchResults={this.props.fetchClubSearchResults}
+                    selectorAction={this.props.toggleVibeFilter}
+                    selectorReducer={this.props.vibesFilter}
+                    selectorKeys={VIBES['Energy']}
+                    buttonColor={COLORS[1]}
+                  />
+                </div>
+
+                <div className="margin-bottom-20px">
+                  <span className="vibe-category-label">Personality</span>
+                  <VibeFilterSelector
+                    termFilter={this.props.termFilter}
+                    categoriesFilter={this.props.categoriesFilter}
+                    fetchClubSearchResults={this.props.fetchClubSearchResults}
+                    selectorAction={this.props.toggleVibeFilter}
+                    selectorReducer={this.props.vibesFilter}
+                    selectorKeys={VIBES['Personality']}
+                    buttonColor={COLORS[2]}
+                  />
+                </div>
+            </div>
+          </div>
+          <div
+            style={{
+              float: "right",
               backgroundColor: "white",
               padding: "20px 0px 20px 40px",
-              margin: "0px 0px 20px 0px"
+              margin: "2% 2% 2% 0%",
+              width: "73%"
             }}
           >
             {/* Sort clubs by:
@@ -169,8 +167,7 @@ export class SearchResults extends Component {
               term={this.props.termFilter}
               searchResults={this.props.searchResults}
             />
-          </Col>
-        </Row>
+          </div>
       </div>
     );
   }

@@ -37,7 +37,17 @@ export default class SingleClubResult extends Component {
         >
           <Row>
             <Col>
-              <Link to={linkName}><img src={_.get(club, 'clubLogo')} width="150px" /></Link>
+              <Link to={linkName}>
+                <img
+                  src={_.get(club, 'clubLogo')}
+                  width="140px"
+                  className="rounded-circle"
+                  style={{
+                    margin: "10px",
+                    border: "3px white solid"
+                  }}
+                />
+              </Link>
             </Col>
             <Col>
               {club.vibes.map((vibe, index) => {

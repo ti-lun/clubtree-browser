@@ -3,10 +3,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Input, Button, Row, Col } from "reactstrap";
+import { Button, Row, Col } from "reactstrap";
 import { Link } from "react-router";
+import { browserHistory } from "react-router";
+
 import axios from "axios";
 import { generateSearchURL } from "./../lib/utils";
+
 
 // this.props.searchBarStyleId
 class SearchBar extends Component {
@@ -28,11 +31,29 @@ class SearchBar extends Component {
   returnCorrectSearchButton(searchClass) {
     switch (searchClass) {
       case "front-page-search":
-        return <Button className="btn-red">Search</Button>;
+        return <div><br/><Button className="btn-red">Search</Button></div>;
       case "results-page-search":
         return <i className="fa fa-search" aria-hidden="true" style={{ color: "#90caf9" }}></i>;
       case "header-page-search":
         return <i className="fa fa-2x fa-search" aria-hidden="true" style={{ color: "#ff3823" }} />
+    }
+  }
+
+  handleKeyPress = (e) => {
+    if (e.key == "Enter") {
+      if (this.props.search) {
+        // sorry for shitty repeated code; I'm lazy
+        const query = {
+          q: this.props.termFilter,
+          vibe: this.props.vibesFilter,
+          category: this.props.categoriesFilter
+        };
+
+        const url = generateSearchURL(query);
+
+        browserHistory.push(url);
+
+      }
     }
   }
 
@@ -56,13 +77,13 @@ class SearchBar extends Component {
 
     return (
       <div className="text-center">
-        <Input
+        <input
           type="text"
           placeholder={
             this.props.searchBarStyleClass === "frontPageSearch"
               ? "Search for clubs@UCI:"
-              : null
-          }
+              : null}
+          onKeyPress={this.handleKeyPress}
           className={this.props.searchBarStyleClass}
           value={this.props.termFilter}
           onChange={this.onInputChange}

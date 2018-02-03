@@ -49,11 +49,7 @@ export class ClubProfile extends Component {
   }
 
   componentWillMount() {
-    console.log("ANYTHING?!");
-    console.log(axios);
-    console.log("before axios");
     axios.get(`${API_URL}/clubs/${this.props.params.id}`).then((response) => {
-      console.log("response is", response);
       this.setState(response.data);
     });
 
@@ -99,7 +95,7 @@ export class ClubProfile extends Component {
 
         <div className="clubprofile-info-body">
           <div className="clubprofile-info-section">
-            <h1 className="col-xs-12 clubprofilesection"> In a nutshell </h1>
+            <h3 className="col-xs-12 clubprofilesection"> In a nutshell </h3>
             <hr className="col-xs-12 clubprofilesection" />
             <p className="col-xs-12 clubprofilesection">
               {this.state.description}
@@ -107,7 +103,7 @@ export class ClubProfile extends Component {
           </div>
 
           <div className="clubprofile-info-section">
-            <h1 className="col-xs-12 clubprofilesection"> Basic info </h1>
+            <h3 className="col-xs-12 clubprofilesection"> Basic info </h3>
             <hr className="col-xs-12 clubprofilesection" />
             <p className="col-xs-12 clubprofilesection"> Year started: {this.state.foundedYear.substring(0, 4)} </p>
             <p className="col-xs-12 clubprofilesection">
@@ -126,7 +122,7 @@ export class ClubProfile extends Component {
           </div>
 
           <div className="clubprofile-info-section">
-            <h1 className="col-xs-12 clubprofilesection"> Membership requirements </h1>
+            <h3 className="col-xs-12 clubprofilesection"> Membership requirements </h3>
             <hr className="col-xs-12 clubprofilesection" />
             <p className="col-xs-12 clubprofilesection">
               {this.state.memberReq}
