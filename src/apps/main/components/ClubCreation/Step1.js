@@ -54,8 +54,30 @@ class Step1 extends React.Component {
   }
 
   validateClubDesc = () => {
-    const result = (this.props.newClub.description.length < CLUB_DESC_WORD_LENGTH) && (this.props.newClub.description.length !== 0);
+    var word_array = this.props.newClub.description.split(" ");
+    var wordCount = 0;
+    for(let i = 0; i < word_array.length; i++)
+    {
+      if(word_array[i].length != 0)
+      {
+        wordCount ++;
+      }
+    }
+    const result = (wordCount < CLUB_DESC_WORD_LENGTH) && (this.props.newClub.description.length !== 0);
     return result;
+  }
+
+  clubDescWordCount = () => {
+    var word_array = this.props.newClub.description.split(" ");
+    var wordCount = 0;
+    for(let i = 0; i < word_array.length; i++)
+    {
+      if( (word_array[i].length != 0) && (wordCount[i] != " "))
+      {
+        wordCount ++;
+      }
+    }
+    return wordCount;
   }
 
 
@@ -73,7 +95,7 @@ class Step1 extends React.Component {
       />
     );
 
-    return (
+      return (
       <div>
         <div className="mild-shadow clubcreation-process-section">
           <span className="clubcreation-question margin-bottom-5px">
@@ -172,9 +194,9 @@ class Step1 extends React.Component {
                 margin: "5px 0px 5px 0px"
               }}
             >
-              {this.state.clubDescription === ""
+              {this.props.newClub.description === ""
                 ? 0
-                : this.props.newClub.description.split(/\s+/).length}/{CLUB_DESC_WORD_LENGTH} words
+            : this.clubDescWordCount() }/{CLUB_DESC_WORD_LENGTH} words
             </span>
           </div>
         </div>
