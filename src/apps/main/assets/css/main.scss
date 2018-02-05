@@ -104,6 +104,24 @@ textarea:focus {
   margin-bottom: 10px;
 }
 
+// rename this later
+.content {
+  filter: blur(5px);
+  transition: filter 1s;
+}
+
+
+.black-screen {
+  background-color: black;
+  opacity: 0.6;
+  z-index: 98;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transition: opacity 1s;
+
+}
+
 // =================================== [ HOMEPAGE ]
 
 .front-splash {
@@ -119,7 +137,7 @@ textarea:focus {
 .home-intro {
   height: 50%;
   background-color: #e16e69;
-  padding: 50px 5% 50px 5%;
+  padding: 3% 5% 3% 5%;
 }
 
 .home-perks-description-one {
@@ -150,21 +168,25 @@ textarea:focus {
 }
 
 .home-organizer-picture {
-  height: 30%;
+  height: 25%;
   background-image: url("../images/homepage/organize.jpg");
   padding: 150px;
 }
 
+.home-organizer-hook {
+  font-size: 50px;
+  font-weight: 700;
+}
+
 .home-organizer-header {
-  font-size: 35px;
-  padding: 100px;
+  font-size: 30px;
+  padding: 5% 20% 5% 20%;
   font-weight: 100;
   text-align: center;
 }
-
 .home-organizer-info {
-  font-size: 20px;
-  padding: 0px 200px 200px 200px;
+  font-size: 18px;
+  padding: 0px 200px 100px 200px;
 }
 
 .home-organizer-graphs {
@@ -176,8 +198,72 @@ textarea:focus {
   background-color: #e99491;
 }
 
+.home-developers {
+  background-color: #c43c38;
+  height: 20%;
+  padding: 80px;
+  color: white;
+}
+
+.home-developers-header {
+  font-size: 50px;
+  font-weight: 100;
+  margin: 0 auto;
+  display: table;
+}
+
+.home-developers-col {
+  margin: 75px 0px 0px 0px;
+  font-size: 14px;
+}
+
 .home-footer {
   height: 8%;
+}
+
+.home-developers-pic {
+  width: 80%;
+  display: table;
+  margin: 0 auto;
+  padding: 4px;
+  border: 5px solid white;
+}
+
+.home-developers-subtitle1 {
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.home-developers-subtitle2 {
+  font-size: 11px;
+  text-transform: uppercase;
+  font-style: italic;
+}
+
+.home-developers-subtitle3 {
+  font-size: 10px;
+}
+
+.home-developers-subtitle3 a{
+  font-size: 10px;
+  color: white;
+  border-bottom: 1px solid white;
+  border-spacing: 5px;
+}
+
+.home-feedback {
+  background-color: #d6d6d6;
+  padding: 5% 15% 5% 15%;
+}
+
+.home-feedback-send-msg {
+  font-size: 20px;
+  font-weight: 100;
+  background-color: #00bcd4;
+  color: white;
+  border: 0px;
+  border-radius: 10px;
+  padding: 5px 10px 5px 10px;
 }
 
 .pic-sizes {
@@ -216,7 +302,7 @@ textarea:focus {
 }
 
 #intro-text {
-  font-size: 60px;
+  font-size: 50px;
   font-weight: 300;
   color: "white";
 }
@@ -227,7 +313,7 @@ textarea:focus {
 }
 
 #intro-text-per {
-  font-size: 30px;
+  font-size: 20px;
   font-weight: 100;
   color: #FFFFFF;
 }
@@ -502,6 +588,17 @@ p.clubprofile-section {
 .searchresults-keyword {
   color: #00bcd4;
   font-weight: 400;
+}
+
+.searchresults-filter-module {
+  width: 60%;
+  height: 60%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 99;
+  background-color: white;
 }
 
 // =================================== [ CLUB CREATION ]

@@ -3,18 +3,28 @@
 import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
+import { Row, Col } from "reactstrap";
+
 import SearchBar from "../components/SearchBar";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+
 import {
   setTermFilter,
   toggleCategoryFilter
 } from "../actions/searchResultsActions";
 
-import { Row, Col } from "reactstrap";
 import logo from "../assets/images/site-logo/entirelogo.png";
 import desc1 from "../assets/images/homepage/milktea.jpg";
 import desc2 from "../assets/images/homepage/crowd.jpg";
 import desc3 from "../assets/images/homepage/updates.jpg";
-import Header from "../components/Header";
+import katie from "../assets/images/homepage/katie.png";
+import david from "../assets/images/homepage/david.jpg";
+import bryan from "../assets/images/homepage/bryan.png";
+import feedback from "../assets/images/homepage/feedback.png";
+
+
+
 
 class FrontPage extends Component {
   constructor(props) {
@@ -79,8 +89,12 @@ class FrontPage extends Component {
               }}
               >
                 <span id="intro-text" style={{ color: "white" }}>
-                  Clubtree is...
+                  Clubtree is...*
                 </span>
+                <p style={{
+                  color: "white",
+                  fontSize: "12px"
+                }}>still developing these features, of course</p>
               </div>
             </Col>
             <Col>
@@ -174,9 +188,9 @@ class FrontPage extends Component {
         </Row>
 
         <div className="home-organizer-picture background-cover-center text-center">
-          <h1 className="front-splash-font" style={{ color: "#f7f6f6" }}>
+          <h2 className="home-organizer-hook" style={{ color: "#f7f6f6" }}>
             Are you a club organizer?
-          </h1>
+          </h2>
         </div>
 
         <div className="home-organizer-header">
@@ -185,8 +199,83 @@ class FrontPage extends Component {
         </div>
 
         <div className="home-organizer-info">
-          Have no idea where to start when creating your club?  Don't worry; there's a wizard to help you out.
+          <p>Think of it this way: what makes up a university's personality and culture?  What do you tend to fondly remember about your university experience if and when you graduate?  Surely it's not the boring essays and assignments... it's the people you form strong bonds with.  Clubs are the epicenter of this phenomenon and serve as the bulk of a university's identity. We at Clubtree are grateful for your presence and leadership.</p>
+          <p>Chances are, your club is listed on Clubtree already.  If you would like to claim your club or add your club, contact us at <strong>clubtreeteam@gmail.com</strong> and we can can give you the next steps.</p>
         </div>
+
+        <div className="home-developers">
+          <span className="home-developers-header">Hi, we made this app!</span>
+          <Row>
+            <Col className="home-developers-col">
+              <Row>
+                <Col style={{textAlign: "center"}}>
+                  <img src={katie} className="rounded-circle img-fluid home-developers-pic" /><br />
+                  <span className="home-developers-subtitle1">Katharine Bui</span><br />
+                  <span className="home-developers-subtitle2">Founder</span><br />
+                  <span className="home-developers-subtitle3">
+                    <a href="http://ti-lun.github.io" target="/">ti-lun.github.io</a>
+                  </span><br />
+
+                </Col>
+                <Col>
+                  When Katharine wasn't coding, she was on the board of some campus organization or attending a meeting of one.  Noticing that there was a gap between students and organizers, she kicked off Clubtree one winter break on her own.  She's super interested in startups, artificial intelligence and the social ramifications of technology (go debate with her!).  Other than programming or UI/UX design, she's singing Ariana Grande songs at the top of her lungs.
+                </Col>
+              </Row>
+            </Col>
+            <Col className="home-developers-col">
+              <Row>
+                <Col style={{textAlign: "center"}}>
+                  <img src={david} className="rounded-circle img-fluid home-developers-pic" />
+                  <br />
+                    <span className="home-developers-subtitle1">David Dinh</span><br />
+                    <span className="home-developers-subtitle2">Software Engineer<br /> & Dev Ops</span><br />
+                </Col>
+                <Col>
+                              Kids have names? Actually, that's still true. Who's brave enough to fly into something we all keep calling a death sphere? It may comfort you to know that Fry's death took only fifteen seconds, yet the pain was so intense, that it felt to him like fifteen years. And it goes without saying, it caused him to empty his bowels.'
+                </Col>
+              </Row>
+            </Col>
+            <Col className="home-developers-col">
+              <Row>
+                <Col style={{textAlign: "center"}}>
+                  <img src={bryan} className="rounded-circle img-fluid home-developers-pic" />
+                  <br />
+                  <span className="home-developers-subtitle1">Bryan Liu</span><br />
+                  <span className="home-developers-subtitle2">Web/Mobile Intern</span><br />
+
+                </Col>
+                <Col>
+                              Kids have names? Actually, that's still true. Who's brave enough to fly into something we all keep calling a death sphere? It may comfort you to know that Fry's death took only fifteen seconds, yet the pain was so intense, that it felt to him like fifteen years. And it goes without saying, it caused him to empty his bowels.'
+                </Col>
+              </Row>
+            </Col>
+          </Row>
+        </div>
+
+        <div className="home-feedback">
+          <Row>
+            <Col>
+              <span className="home-developers-header">Feedback?<br/></span>
+              <p style={{
+                margin: "20px 10px 20px 10px"
+              }}>We are always trying to make Clubtree better and better.  If you find a bug, have a suggestion or just want to say something nice (and make our day!), drop us a comment!</p>
+              <div style={{textAlign: "center"}}>
+                <button className="home-feedback-send-msg">Send us a message</button>
+              </div>
+            </Col>
+            <Col>
+            <img
+              src={feedback}
+              className="img-fluid"
+              width="50%"
+              style={{
+                padding: "5%",
+                float: "right"
+              }}
+            /></Col>
+          </Row>
+        </div>
+
 
       </div>
     );
