@@ -9,6 +9,11 @@ import { generateSearchURL } from "../../lib/utils"
 import { CATEGORIES_ICONS_MAP } from "../../lib/consts";
 
 export default class CategoriesCheckbox extends Component {
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return this.props.categoriesFilter !== nextProps.categoriesFilter;
+  }
+
   render() {
     const generatedCheckboxes = [];
     for (let key in CATEGORIES_ICONS_MAP) {

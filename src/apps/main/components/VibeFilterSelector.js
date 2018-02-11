@@ -8,6 +8,11 @@ import { generateSearchURL } from "../lib/utils";
 
 
 export default class VibeFilterSelector extends Component {
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return this.props.selectorKeys !== nextProps.selectorKeys;
+  }
+
   render() {
 
     const generatedKeys = [];

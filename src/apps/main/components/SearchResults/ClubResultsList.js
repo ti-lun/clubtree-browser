@@ -4,6 +4,25 @@ import React, { Component } from "react";
 import SingleClubResult from "./SingleClubResult";
 
 export default class ClubResultsList extends Component {
+
+  componentDidMount() {
+    return this.fetchResults();
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return this.props.searchResults !== nextProps.searchResults;
+  }
+
+  fetchResults() {
+    let params = {
+      q: this.props.termFilter,
+      vibe: this.props.vibesFilter,
+      category: this.props.categoriesFilter
+    };
+
+    return this.props.fetchClubSearchResults(params);
+  }
+
   render() {
     const clubRows = this.props.searchResults.map((club, index) => {
       return (

@@ -72,7 +72,7 @@ class FrontPage extends Component {
               termFilter={this.props.termFilter}
               categoriesFilter={this.props.categoriesFilter}
               setTermFilter={this.props.setTermFilter}
-              search={true}
+              search={false}
             />
           </div>
         </div>

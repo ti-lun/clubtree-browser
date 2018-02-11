@@ -9,7 +9,10 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import SearchBar from "./SearchBar";
 
-import { setTermFilter } from "../actions/searchResultsActions";
+import {
+  setTermFilter,
+  fetchClubSearchResults,
+} from "../actions/searchResultsActions";
 
 import { unauthUser } from "../actions/authActions";
 
@@ -77,7 +80,8 @@ class Header extends Component {
               termFilter={this.props.termFilter}
               categoriesFilter={this.props.categoriesFilter}
               setTermFilter={this.props.setTermFilter}
-              search={false}
+              fetchClubSearchResults={this.props.fetchClubSearchResults}
+              search={true}
             />
           </Col>
           <Col md={1}>
@@ -99,6 +103,7 @@ export default connect(
   }),
   dispatch => bindActionCreators({
     setTermFilter,
+    fetchClubSearchResults,
     unauthUser
   }, dispatch)
 )(Header);
