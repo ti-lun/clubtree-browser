@@ -107,7 +107,7 @@ export class ClubProfile extends Component {
             <hr className="col-xs-12 clubprofilesection" />
             <p className="col-xs-12 clubprofilesection"> Year started: {this.state.foundedYear.substring(0, 4)} </p>
             <p className="col-xs-12 clubprofilesection">
-               Year started: {this.state.foundedYear.substring(0,4)}
+              Year started: {this.state.foundedYear.substring(0, 4)}
             </p>
             <p className="col-xs-12 clubprofilesection">
               {" "}Approx. number of members: {this.state.members.length}{" "}

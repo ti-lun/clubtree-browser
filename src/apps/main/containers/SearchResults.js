@@ -20,7 +20,6 @@ import { VIBES, COLORS } from "../lib/consts";
 
 import {
   setTermFilter,
-  simpleSearchClub,
   toggleVibeFilter,
   setCategoryFilter,
   setVibeFilter,
@@ -50,33 +49,6 @@ export class SearchResults extends Component {
    * will wait for the promise to resolve before the container is loaded.
    */
   static gsBeforeRoute(/* {dispatch}, renderProps, query, serverProps */) { }
-
-  componentWillMount() {
-
-    if (this.props.location.query.q) {
-      this.props.setTermFilter(this.props.location.query.q);
-    }
-
-    if (this.props.location.query.category) {
-      if (_.isArray(this.props.location.query.category)) {
-        this.props.setCategoryFilter(this.props.location.query.category);
-      } else {
-        this.props.setCategoryFilter([this.props.location.query.category]);
-      }
-    } else {
-      this.props.setCategoryFilter([]);
-    }
-
-    if (this.props.location.query.vibe) {
-      if (_.isArray(this.props.location.query.vibe)) {
-        this.props.setVibeFilter(this.props.location.query.vibe);
-      } else {
-        this.props.setVibeFilter([this.props.location.query.vibe]);
-      }
-    } else {
-      this.props.setVibeFilter([]);
-    }
-  }
 
   componentWillUnmount() {
     this.props.setTermFilter();
@@ -185,7 +157,6 @@ export default connect(
   }),
   dispatch => bindActionCreators({
     setTermFilter,
-    simpleSearchClub,
     setVibeFilter,
     toggleVibeFilter,
     setCategoryFilter,

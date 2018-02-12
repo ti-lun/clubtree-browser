@@ -9,10 +9,6 @@ export default class ClubResultsList extends Component {
     return this.fetchResults();
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    return this.props.searchResults !== nextProps.searchResults;
-  }
-
   fetchResults() {
     let params = {
       q: this.props.termFilter,

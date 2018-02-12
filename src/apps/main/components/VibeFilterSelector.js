@@ -9,10 +9,6 @@ import { generateSearchURL } from "../lib/utils";
 
 export default class VibeFilterSelector extends Component {
 
-  shouldComponentUpdate(nextProps, nextState) {
-    return this.props.selectorKeys !== nextProps.selectorKeys;
-  }
-
   render() {
 
     const generatedKeys = [];
@@ -41,20 +37,19 @@ export default class VibeFilterSelector extends Component {
       }
 
       generatedKeys.push(
-        <Link to={url} key={index}>
-          <button
-            className={className}
-            style={{
-              backgroundColor: this.props.buttonColor,
-              margin: "5px"
-            }}
-            onClick={() => {
-              this.props.selectorAction(item);
-              this.props.fetchClubSearchResults(query);
-            }}>
-            {item}
-          </button>
-        </Link>
+        <button
+          key={index}
+          className={className}
+          style={{
+            backgroundColor: this.props.buttonColor,
+            margin: "5px"
+          }}
+          onClick={() => {
+            this.props.selectorAction(item);
+            this.props.fetchClubSearchResults(query);
+          }}>
+          {item}
+        </button>
       );
     });
 

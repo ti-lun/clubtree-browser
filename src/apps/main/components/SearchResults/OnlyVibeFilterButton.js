@@ -18,17 +18,15 @@ export default class OnlyVibeFilterButton extends Component {
         let url = generateSearchURL(query);
 
         return (
-            <Link to={url}>
-                <button
-                    className="btn searchresults-vibes-btn"
-                    onClick={() => {
-                        this.props.setTermFilter();
-                        this.props.setVibeFilter([this.props.label]);
-                        this.props.fetchClubSearchResults(query);
-                    }}>
-                    {this.props.label}
-                </button>
-            </Link>
+            <button
+                className="btn searchresults-vibes-btn"
+                onClick={() => {
+                    this.props.setTermFilter();
+                    this.props.setVibeFilter([this.props.label]);
+                    this.props.fetchClubSearchResults(query);
+                }}>
+                {this.props.label}
+            </button>
         );
     }
 }
