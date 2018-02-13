@@ -15,7 +15,7 @@ export default class CategoriesCheckbox extends Component {
     for (let key in CATEGORIES_ICONS_MAP) {
       const checked = _.includes(this.props.categoriesFilter, key);
 
-      let url, query;
+      let query;
 
       if (checked) {
         query = {
@@ -23,14 +23,12 @@ export default class CategoriesCheckbox extends Component {
           vibe: this.props.vibesFilter,
           category: _.uniq(_.without(this.props.categoriesFilter, key))
         };
-        url = generateSearchURL(query);
       } else {
         query = {
           q: this.props.termFilter,
           vibe: this.props.vibesFilter,
           category: _.uniq(_.concat(this.props.categoriesFilter, key))
         };
-        url = generateSearchURL(query);
       }
 
       generatedCheckboxes.push(

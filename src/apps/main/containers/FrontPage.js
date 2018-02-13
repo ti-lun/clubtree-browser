@@ -11,7 +11,6 @@ import Footer from "../components/Footer";
 
 import {
   setTermFilter,
-  toggleCategoryFilter
 } from "../actions/searchResultsActions";
 
 import logo from "../assets/images/site-logo/entirelogo.png";
@@ -53,7 +52,7 @@ class FrontPage extends Component {
           }}
         >
           <div id="text-center">
-            <div style={{margin: "50px"}}>
+            <div style={{ margin: "50px" }}>
               <h1
                 className="front-splash-font"
                 style={{
@@ -63,16 +62,15 @@ class FrontPage extends Component {
               </h1>
               <span
                 className="front-splash-subtitle"
-                style={{ color: "#f7f6f6"
+                style={{
+                  color: "#f7f6f6"
               }}>Trying to find a group of people to hang or work with at UC Irvine?  Search for a hobby, a subject, a name of a club...
               </span>
             </div>
             <SearchBar
               searchBarStyleClass="front-page-search"
               termFilter={this.props.termFilter}
-              categoriesFilter={this.props.categoriesFilter}
               setTermFilter={this.props.setTermFilter}
-              search={false}
             />
           </div>
         </div>
@@ -208,7 +206,7 @@ class FrontPage extends Component {
           <Row>
             <Col className="home-developers-col">
               <Row>
-                <Col style={{textAlign: "center"}}>
+                <Col style={{ textAlign: "center" }}>
                   <img src={katie} className="rounded-circle img-fluid home-developers-pic" /><br />
                   <span className="home-developers-subtitle1">Katharine Bui</span><br />
                   <span className="home-developers-subtitle2">Founder</span><br />
@@ -224,7 +222,7 @@ class FrontPage extends Component {
             </Col>
             <Col className="home-developers-col">
               <Row>
-                <Col style={{textAlign: "center"}}>
+                <Col style={{ textAlign: "center" }}>
                   <img src={david} className="rounded-circle img-fluid home-developers-pic" />
                   <br />
                     <span className="home-developers-subtitle1">David Dinh</span><br />
@@ -237,7 +235,7 @@ class FrontPage extends Component {
             </Col>
             <Col className="home-developers-col">
               <Row>
-                <Col style={{textAlign: "center"}}>
+                <Col style={{ textAlign: "center" }}>
                   <img src={bryan} className="rounded-circle img-fluid home-developers-pic" />
                   <br />
                   <span className="home-developers-subtitle1">Bryan Liu</span><br />
@@ -255,11 +253,11 @@ class FrontPage extends Component {
         <div className="home-feedback">
           <Row>
             <Col>
-              <span className="home-developers-header">Feedback?<br/></span>
+              <span className="home-developers-header">Feedback?<br /></span>
               <p style={{
                 margin: "20px 10px 20px 10px"
               }}>We are always trying to make Clubtree better and better.  If you find a bug, have a suggestion or just want to say something nice (and make our day!), drop us a comment!</p>
-              <div style={{textAlign: "center"}}>
+              <div style={{ textAlign: "center" }}>
                 <button className="home-feedback-send-msg">Send us a message</button>
               </div>
             </Col>
@@ -285,7 +283,6 @@ class FrontPage extends Component {
 export default connect(
   state => ({
     termFilter: state.searchResultsReducer.termFilter,
-    categoriesFilter: state.searchResultsReducer.categoriesFilter
   }),
   dispatch => bindActionCreators({
     setTermFilter

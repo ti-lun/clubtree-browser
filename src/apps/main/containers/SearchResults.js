@@ -51,7 +51,9 @@ export class SearchResults extends Component {
   static gsBeforeRoute(/* {dispatch}, renderProps, query, serverProps */) { }
 
   componentWillUnmount() {
-    this.props.setTermFilter();
+    this.props.setTermFilter(undefined);
+    this.props.setVibeFilter([]);
+    this.props.setCategoryFilter([]);
   }
 
   render() {

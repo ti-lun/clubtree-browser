@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import SearchBar from "./SearchBar";
+import HeaderSearchBar from "./HeaderSearchBar";
 
 import {
   setTermFilter,
@@ -75,13 +75,12 @@ class Header extends Component {
             </span>
           </Col>
           <Col md={5}>
-            <SearchBar
-              searchBarStyleClass="header-page-search"
+            <HeaderSearchBar
               termFilter={this.props.termFilter}
+              vibesFilter={this.props.vibesFilter}
               categoriesFilter={this.props.categoriesFilter}
               setTermFilter={this.props.setTermFilter}
               fetchClubSearchResults={this.props.fetchClubSearchResults}
-              search={true}
             />
           </Col>
           <Col md={1}>
@@ -98,6 +97,7 @@ class Header extends Component {
 export default connect(
   (state) => ({
     termFilter: state.searchResultsReducer.termFilter,
+    vibesFilter: state.searchResultsReducer.vibesFilter,
     categoriesFilter: state.searchResultsReducer.categoriesFilter,
     authenticated: state.authReducer.authenticated
   }),
