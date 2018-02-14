@@ -4,6 +4,13 @@ import React, { Component } from "react";
 
 export default class HeaderSearchBar extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      textInput: props.termFilter
+    };
+  }
+
   moveCaretAtEnd = (e) => {
     var temp_value = e.target.value
     e.target.value = ''
@@ -11,21 +18,22 @@ export default class HeaderSearchBar extends Component {
   }
 
   onChange = (event) => {
-    if (event.target.value === "") {
-      this.props.setTermFilter(undefined);
+    if (event.target.value) {
+      this.setState({ textInput: event.target.value });
     } else {
-      this.props.setTermFilter(event.target.value);
+      this.setState({ textInput: undefined });
     }
   }
 
   onKeyPress = (event) => {
     if (event.key === "Enter") {
       const query = {
-        q: this.props.termFilter,
+        q: this.state.textInput,
         vibe: this.props.vibesFilter,
         category: this.props.categoriesFilter
       };
 
+      this.props.setTermFilter(this.state.textInput);
       this.props.fetchClubSearchResults(query);
     }
   }
@@ -57,7 +65,7 @@ export default class HeaderSearchBar extends Component {
           className="header-page-search"
           onChange={this.onChange}
           onKeyPress={this.onKeyPress}
-          value={this.props.termFilter}
+          value={this.state.textInput}
           autoFocus={true}
           onFocus={this.moveCaretAtEnd}
         />
