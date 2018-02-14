@@ -6,7 +6,14 @@ import SingleClubResult from "./SingleClubResult";
 export default class ClubResultsList extends Component {
 
   componentDidMount() {
+    this.props.setLoading(true);
     return this.fetchResults();
+  }
+
+  componentDidUpdate() {
+    if (this.props.loading) {
+      return this.fetchResults();
+    }
   }
 
   fetchResults() {
@@ -16,7 +23,9 @@ export default class ClubResultsList extends Component {
       category: this.props.categoriesFilter
     };
 
-    return this.props.fetchClubSearchResults(params);
+    return this.props.fetchClubSearchResults(params).then(() => {
+      this.props.setLoading(false);
+    });
   }
 
   render() {
@@ -39,21 +48,22 @@ export default class ClubResultsList extends Component {
 
     let displayText;
 
-    if (this.props.term) {
-      displayText = (<div>Displaying results for <span className="searchresults-keyword">{this.props.term}</span> - {clubRows.length} results</div>);
-    }
-    else {
-        displayText = (<div>Displaying <span className="searchresults-keyword">all clubs</span> - {clubRows.length} results</div>);
+    if (this.props.loading) {
+      displayText = (<div>loading...</div>);
+    } else if (this.props.termFilter) {
+      displayText = (<div>Displaying results for <span className="searchresults-keyword">{this.props.termFilter}</span> - {clubRows.length} results</div>);
+    } else {
+      displayText = (<div>Displaying <span className="searchresults-keyword">all clubs</span> - {clubRows.length} results</div>);
     }
 
 
 
     return (
       <div
-        style={{marginTop: "2%"}}
+        style={{ marginTop: "2%" }}
       >
         <h3 className="searchresults-displaying-results-text">
-          { displayText }
+          {displayText}
         </h3>
         {(clubRows.length > 0) ? clubRows : "Sorry, no results were found!"}
       </div>

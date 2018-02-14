@@ -1,9 +1,11 @@
 import qs from "qs";
 import axios from "axios";
+import Promise from "bluebird";
 
 import { API_URL } from "../lib/consts";
 
 export const SIMPLE_SEARCH_CLUB = "SIMPLE_SEARCH_CLUB";
+export const SET_LOADING = "SET_LOADING";
 export const TOGGLE_VIBE_FILTER = "TOGGLE_VIBE_FILTER";
 export const SET_CATEGORY_FILTER = "SET_CATEGORY_FILTER";
 export const SET_VIBE_FILTER = "SET_VIBE_FILTER";
@@ -19,13 +21,22 @@ export function simpleSearchClub(data: array) {
   };
 }
 
+export function setLoading(data: boolean) {
+  return {
+    type: SET_LOADING,
+    payload: data,
+  }
+}
+
 export function fetchClubSearchResults(params: object) {
   params = _.assign(params, { sort: 'relevance' });
   const paramsSerializer = function (params) {
     let paramString = qs.stringify(params, { arrayFormat: 'repeat' });
     return paramString;
   }
-  let request = axios.get(`${API_URL}/clubs`, { params, paramsSerializer });
+  let request = Promise.try(function () {
+    return axios.get(`${API_URL}/clubs`, { params, paramsSerializer });
+  }).delay(1000);
   return {
     type: FETCH_CLUB_SEARCH_RESULTS,
     promise: request

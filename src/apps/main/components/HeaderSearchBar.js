@@ -33,6 +33,7 @@ export default class HeaderSearchBar extends Component {
         category: this.props.categoriesFilter
       };
 
+      this.props.setLoading(true);
       this.props.setTermFilter(this.state.textInput);
       this.props.fetchClubSearchResults(query);
     }

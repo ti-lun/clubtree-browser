@@ -10,6 +10,7 @@ import { bindActionCreators } from "redux";
 import HeaderSearchBar from "./HeaderSearchBar";
 
 import {
+  setLoading,
   setTermFilter,
   fetchClubSearchResults,
 } from "../actions/searchResultsActions";
@@ -79,6 +80,7 @@ class Header extends Component {
               termFilter={this.props.termFilter}
               vibesFilter={this.props.vibesFilter}
               categoriesFilter={this.props.categoriesFilter}
+              setLoading={this.props.setLoading}
               setTermFilter={this.props.setTermFilter}
               fetchClubSearchResults={this.props.fetchClubSearchResults}
             />
@@ -102,6 +104,7 @@ export default connect(
     authenticated: state.authReducer.authenticated
   }),
   dispatch => bindActionCreators({
+    setLoading,
     setTermFilter,
     fetchClubSearchResults,
     unauthUser

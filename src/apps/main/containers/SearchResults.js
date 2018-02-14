@@ -19,6 +19,7 @@ import ClubResultsList from "../components/SearchResults/ClubResultsList";
 import { VIBES, COLORS } from "../lib/consts";
 
 import {
+  setLoading,
   setTermFilter,
   toggleVibeFilter,
   setCategoryFilter,
@@ -27,11 +28,6 @@ import {
   fetchClubSearchResults
 } from "../actions/searchResultsActions";
 
-const paramsSerializer = function (params) {
-  let paramString = qs.stringify(params, { arrayFormat: 'repeat' });
-  console.log('params: ' + paramString);
-  return paramString;
-}
 
 export class SearchResults extends Component {
   /**
@@ -136,6 +132,8 @@ export class SearchResults extends Component {
           {/* Sort clubs by:
             <ResultSortDropdown /> */}
           <ClubResultsList
+            loading={this.props.loading}
+            setLoading={this.props.setLoading}
             searchResults={this.props.searchResults}
             termFilter={this.props.termFilter}
             vibesFilter={this.props.vibesFilter}
@@ -152,12 +150,14 @@ export class SearchResults extends Component {
 
 export default connect(
   state => ({
+    loading: state.searchResultsReducer.loading,
     searchResults: state.searchResultsReducer.searchResults,
     termFilter: state.searchResultsReducer.termFilter,
     vibesFilter: state.searchResultsReducer.vibesFilter,
     categoriesFilter: state.searchResultsReducer.categoriesFilter
   }),
   dispatch => bindActionCreators({
+    setLoading,
     setTermFilter,
     setVibeFilter,
     toggleVibeFilter,

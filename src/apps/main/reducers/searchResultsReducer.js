@@ -1,15 +1,19 @@
 /* @flow */
 
 import _ from "lodash";
-import { SET_TERM_FILTER } from "../actions/searchResultsActions";
-import { SIMPLE_SEARCH_CLUB } from "../actions/searchResultsActions";
-import { SET_VIBE_FILTER } from "../actions/searchResultsActions";
-import { TOGGLE_VIBE_FILTER } from "../actions/searchResultsActions";
-import { SET_CATEGORY_FILTER } from "../actions/searchResultsActions";
-import { TOGGLE_CATEGORY_FILTER } from "../actions/searchResultsActions";
-import { FETCH_CLUB_SEARCH_RESULTS } from "../actions/searchResultsActions";
+import {
+  SET_TERM_FILTER,
+  SET_LOADING,
+  SIMPLE_SEARCH_CLUB,
+  SET_VIBE_FILTER,
+  TOGGLE_VIBE_FILTER,
+  SET_CATEGORY_FILTER,
+  TOGGLE_CATEGORY_FILTER,
+  FETCH_CLUB_SEARCH_RESULTS,
+} from "../actions/searchResultsActions";
 
 type State = {
+  loading: Boolean,
   searchResults: Array,
   termFilter: String,
   categoriesFilter: Array,
@@ -17,6 +21,7 @@ type State = {
 };
 
 const INITIAL_STATE: State = {
+  loading: false,
   searchResults: [],
   termFilter: undefined,
   categoriesFilter: [],
@@ -30,6 +35,12 @@ export default (
   switch (action.type) {
     case SIMPLE_SEARCH_CLUB:
       return { ...state, searchResults: action.payload };
+    case SET_LOADING:
+      state = {
+        ...state,
+        loading: action.payload
+      };
+      return state;
     case SET_CATEGORY_FILTER:
       state = {
         ...state,
