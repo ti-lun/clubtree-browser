@@ -38,6 +38,7 @@ export default class ClubResultsList extends Component {
             vibesFilter={this.props.vibesFilter}
             categoriesFilter={this.props.categoriesFilter}
             fetchClubSearchResults={this.props.fetchClubSearchResults}
+            setLoading={this.props.setLoading}
             setTermFilter={this.props.setTermFilter}
             setVibeFilter={this.props.setVibeFilter}
           />

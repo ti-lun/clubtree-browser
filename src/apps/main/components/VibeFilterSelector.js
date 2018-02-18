@@ -45,6 +45,7 @@ export default class VibeFilterSelector extends Component {
             margin: "5px"
           }}
           onClick={() => {
+            this.props.setLoading(true);
             this.props.selectorAction(item);
             this.props.fetchClubSearchResults(query);
           }}>

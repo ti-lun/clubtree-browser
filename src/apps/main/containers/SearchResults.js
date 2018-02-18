@@ -77,7 +77,8 @@ export class SearchResults extends Component {
               vibesFilter={this.props.vibesFilter}
               toggleCategoryFilter={this.props.toggleCategoryFilter}
               fetchClubSearchResults={this.props.fetchClubSearchResults}
-            />
+              setLoading={this.props.setLoading}
+              />
           </div>
           <div className="mild-shadow searchresults-vibes">
             <span className="searchresults-filter-header">Vibes</span>
@@ -87,6 +88,7 @@ export class SearchResults extends Component {
                 termFilter={this.props.termFilter}
                 categoriesFilter={this.props.categoriesFilter}
                 fetchClubSearchResults={this.props.fetchClubSearchResults}
+                setLoading={this.props.setLoading}
                 selectorAction={this.props.toggleVibeFilter}
                 selectorReducer={this.props.vibesFilter}
                 selectorKeys={VIBES['Time commitment']}
@@ -99,6 +101,7 @@ export class SearchResults extends Component {
                 termFilter={this.props.termFilter}
                 categoriesFilter={this.props.categoriesFilter}
                 fetchClubSearchResults={this.props.fetchClubSearchResults}
+                setLoading={this.props.setLoading}
                 selectorAction={this.props.toggleVibeFilter}
                 selectorReducer={this.props.vibesFilter}
                 selectorKeys={VIBES['Energy']}
@@ -112,6 +115,7 @@ export class SearchResults extends Component {
                 termFilter={this.props.termFilter}
                 categoriesFilter={this.props.categoriesFilter}
                 fetchClubSearchResults={this.props.fetchClubSearchResults}
+                setLoading={this.props.setLoading}
                 selectorAction={this.props.toggleVibeFilter}
                 selectorReducer={this.props.vibesFilter}
                 selectorKeys={VIBES['Personality']}
