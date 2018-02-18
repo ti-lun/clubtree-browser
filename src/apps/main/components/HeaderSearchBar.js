@@ -41,7 +41,7 @@ export default class HeaderSearchBar extends Component {
 
   render() {
     const query = {
-      q: this.props.termFilter,
+      q: this.state.textInput,
       vibe: this.props.vibesFilter,
       category: this.props.categoriesFilter
     };
@@ -53,8 +53,11 @@ export default class HeaderSearchBar extends Component {
           cursor: "pointer",
           backgroundColor: "transparent",
         }}
-        onClick={() => this.props.fetchClubSearchResults(query)}
-      >
+        onClick={() => {
+          this.props.setLoading(true);
+          this.props.setTermFilter(this.state.textInput);
+          this.props.fetchClubSearchResults(query);
+        }}>
         <i className="fa fa-2x fa-search" aria-hidden="true" style={{ color: "#ff3823" }} />
       </button >
     );
