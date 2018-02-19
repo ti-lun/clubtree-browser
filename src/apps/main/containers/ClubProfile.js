@@ -12,6 +12,7 @@ import { API_URL, DAYS } from "../lib/consts";
 import Header from "../components/Header";
 import ProfileHeader from "../components/ClubProfile/ProfileHeader";
 import Footer from "../components/Footer";
+
 export class ClubProfile extends Component {
   /**
    * Called by ReactRouter before loading the container. Called prior to the
@@ -78,7 +79,10 @@ export class ClubProfile extends Component {
     return (
       <div>
         <Helmet title="SearchResults" />
-        <Header type="main" />
+        <Header
+          type="main"
+          showSearch={true}
+        />
         <ProfileHeader
           logo={this.state.clubLogo}
           cover={this.state.clubCover}
@@ -105,7 +109,6 @@ export class ClubProfile extends Component {
           <div className="clubprofile-info-section">
             <h3 className="col-xs-12 clubprofilesection"> Basic info </h3>
             <hr className="col-xs-12 clubprofilesection" />
-            <p className="col-xs-12 clubprofilesection"> Year started: {this.state.foundedYear.substring(0, 4)} </p>
             <p className="col-xs-12 clubprofilesection">
               Year started: {this.state.foundedYear.substring(0, 4)}
             </p>
@@ -128,7 +131,7 @@ export class ClubProfile extends Component {
               {this.state.memberReq}
             </p>
             <p>
-              For any dues or fees, this club requires ${this.state.clubFeeAmount} per {this.state.clubFeePeriod}.
+              For any dues or fees, this club requires: {this.state.feeDescription}
             </p>
           </div>
         </div>

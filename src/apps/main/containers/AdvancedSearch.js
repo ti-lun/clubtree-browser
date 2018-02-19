@@ -49,100 +49,103 @@ export class AdvancedSearch extends Component {
     let url = generateSearchURL(query);
     return (
       <div
-        className="container"
-        style={{width: "60%"}}
       >
         <Helmet title="AdvancedSearch" />
         <Header type="advancedsearch" />
-        <div
-          style={{
-            backgroundColor: "#ffffff",
-            boxShadow: "10px 10px 15px #aaaaaa",
-            padding: "40px 20px 40px 40px",
-            margin: "50px 0px 20px 0px",
-            border: "20px solid #008a9b"
-          }}
-        >
-
-          <Row>
-            <Col md={6}>
-              <span className="explore">Explore clubs</span><br /><br />
-              <span className="explore-text">Trying to find a club at UC Irvine?  Whether you're trying to look up a particular club or discover the one that's right for you, you can find what you need.</span>
-            </Col>
-            <Col md={6} style={{textAlign : "center"}}>
-              <div
-                style={{
-                  position: "absolute",
-                  top: "50%",
-                  left: "50%",
-                  transform: "translate(-50%, -50%)"
-                }}
-                >
-                <img
-                  src={exploreImg}
-                  width={"120%"}
-                  alt="Vecteezy vector; artist is twilightmoon"
-                  />
-              </div>
-            </Col>
-          </Row>
-        </div>
-        <div
-          style={{
-            backgroundColor: "#d6f0f3",
-            boxShadow: "10px 10px 15px #aaaaaa",
-            padding: "40px 20px 40px 40px",
-            margin: "0px 0px 20px 0px"
-          }}
-        >
-          <span className="explore-subheader">Do you have a particular club in mind?</span>
-          <SearchBar
-            setTermFilter={this.props.setTermFilter}
-            searchBarStyleClass="advanced-search" /> <br />
-          Examples: part of a club name, a game you are interested in, people
-          you know
-        </div>
-        <div
-          style={{
-            boxShadow: "10px 10px 15px #aaaaaa",
-            padding: "40px 0px 40px 40px",
-            margin: "0px 0px 20px 0px",
-            backgroundColor: "white"
-          }}
-        >
-
-          <div className="inner-box-margin">
-            <span className="explore-subheader">Or how about picking a category to start with?</span><br/>
-            Pick as many as you like.
-            <ColorfulSelector
-              selectorAction={this.props.toggleCategoryFilter}
-              selectorReducer={this.props.categoriesFilter}
-              selectorKeys={CATEGORIES_ICONS_MAP}
-              inline={true}
-            />
-          </div>
-          <br /><br/>
-          <div className="inner-box-margin">
-            <span className="explore-subheader">Interested in what a clubs vibes are like?</span><br/>
-            Pick as many as you like.
-            <ColorfulSelector
-              selectorAction={this.props.toggleVibeFilter}
-              selectorReducer={this.props.vibesFilter}
-              selectorKeys={VIBES}
-              inline={true}
-              categories={true}
-            />
-          </div>
-        </div>
         <div style={{
-          textAlign: "center"
+          width: "60%",
+          margin: "0 auto"
         }}>
-          <Link to={url}>
-            <Button
-              className="clubcreation-continue-btn">
-              Continue
-            </Button>
-          </Link>
+          <div
+            style={{
+              backgroundColor: "#ffffff",
+              boxShadow: "10px 10px 15px #aaaaaa",
+              padding: "40px 20px 40px 40px",
+              margin: "0px 0px 20px 0px",
+              border: "20px solid #008a9b",
+            }}
+          >
+
+            <Row>
+              <Col md={6}>
+                <span className="explore">Explore clubs</span><br /><br />
+                <span className="explore-text">Trying to find a club at UC Irvine?  Whether you're trying to look up a particular club or discover the one that's right for you, you can find what you need.</span>
+              </Col>
+              <Col md={6} style={{textAlign : "center"}}>
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "50%",
+                    left: "50%",
+                    transform: "translate(-50%, -50%)"
+                  }}
+                  >
+                  <img
+                    src={exploreImg}
+                    width={"120%"}
+                    alt="Vecteezy vector; artist is twilightmoon"
+                    />
+                </div>
+              </Col>
+            </Row>
+          </div>
+          <div
+            style={{
+              backgroundColor: "#d6f0f3",
+              boxShadow: "10px 10px 15px #aaaaaa",
+              padding: "40px 20px 40px 40px",
+              margin: "0px 0px 20px 0px"
+            }}
+          >
+            <span className="explore-subheader">Do you have a particular club in mind?</span>
+            <SearchBar
+              setTermFilter={this.props.setTermFilter}
+              searchBarStyleClass="advanced-search" /> <br />
+            Examples: part of a club name, a game you are interested in, people
+            you know
+          </div>
+          <div
+            style={{
+              boxShadow: "10px 10px 15px #aaaaaa",
+              padding: "40px 0px 40px 40px",
+              margin: "0px 0px 20px 0px",
+              backgroundColor: "white"
+            }}
+          >
+
+            <div className="inner-box-margin">
+              <span className="explore-subheader">Or how about picking a category to start with?</span><br/>
+              Pick as many as you like.
+              <ColorfulSelector
+                selectorAction={this.props.toggleCategoryFilter}
+                selectorReducer={this.props.categoriesFilter}
+                selectorKeys={CATEGORIES_ICONS_MAP}
+                inline={true}
+              />
+            </div>
+            <br /><br/>
+            <div className="inner-box-margin">
+              <span className="explore-subheader">Interested in what a clubs vibes are like?</span><br/>
+              Pick as many as you like.
+              <ColorfulSelector
+                selectorAction={this.props.toggleVibeFilter}
+                selectorReducer={this.props.vibesFilter}
+                selectorKeys={VIBES}
+                inline={true}
+                categories={true}
+              />
+            </div>
+          </div>
+          <div style={{
+            textAlign: "center"
+          }}>
+            <Link to={url}>
+              <Button
+                className="clubcreation-continue-btn">
+                Continue
+              </Button>
+            </Link>
+          </div>
         </div>
       </div>
     );

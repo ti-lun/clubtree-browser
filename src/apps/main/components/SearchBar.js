@@ -29,7 +29,10 @@ class SearchBar extends Component {
       case "results-page-search":
         return <i className="fa fa-search" aria-hidden="true" style={{ color: "#90caf9" }}></i>;
       case "header-page-search":
-        return <i className="fa fa-2x fa-search" aria-hidden="true" style={{ color: "#ff3823" }} />
+        return <i className="fa fa-lg fa-search"
+          aria-hidden="true"
+          data-fa-transform="shrink-8"
+          style={{ color: "#ff3823" }} />
     }
   }
 

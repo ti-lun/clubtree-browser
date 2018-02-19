@@ -104,8 +104,12 @@ textarea:focus {
   margin-bottom: 10px;
 }
 
-// rename this later
 .content {
+
+}
+
+// rename this later
+.content-blur {
   filter: blur(5px);
   transition: filter 1s;
 }
@@ -383,15 +387,23 @@ h1.front-splash-font {
   padding-top: 2%;
   padding-left: 10%;
   padding-right: 15px;
+  padding-bottom: 2%;
   position: relative;
   z-index: 5;
-  margin-bottom: 1%;
 }
 
-.header-explore {
+.header-btn-1 {
   font-weight: 700;
-  font-size: 1.2em;
+  font-size: 15px;
   z-index: 2;
+  margin-left: 10px;
+  margin-right: 10px;
+  border: 3px solid white;
+  border-radius: 10px;
+  color: white;
+  background-color: #ff5d55;
+  padding: 3px 6px 3px 6px;
+  text-transform: uppercase;
 }
 
 .header-find {
@@ -401,7 +413,7 @@ h1.front-splash-font {
 }
 
 .header-main a {
-  color: #ff5d55;
+  color: white;
   z-index: 2;
 }
 
@@ -425,14 +437,15 @@ h1.front-splash-font {
 }
 
 .header-page-search {
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  border-bottom: 5px solid #ff3823;
-  background-color: transparent;
+  border: none;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
   display: inline !important;
   width: 60%;
+  padding: 5px 10px 5px 10px;
   margin-right: 20px;
+  font-size: 14px;
 }
 
 // =================================== [ CLUB PROFILE ]
@@ -480,10 +493,10 @@ h1.front-splash-font {
 }
 
 .clubprofile-info-background {
-  background-size: cover;
+  background-size: contain;
   opacity: 1;
-  width: 120%;
-  height: 120%;
+  width: 105%;
+  height: 105%;
   position: fixed;
   z-index: -10000;
   filter: blur(20px);
@@ -555,6 +568,7 @@ p.clubprofile-section {
   border-radius: 10px;
   padding: 5px 10px 5px 10px;
   margin: 0px 5px 5px 5px;
+  border: none;
 }
 
 .searchresults-vibes-btn-active {
@@ -573,7 +587,18 @@ p.clubprofile-section {
 }
 
 .searchresults-right-align {
-  text-align: right;
+  text-align: left;
+}
+
+.searchresults-desc-text {
+  color: white;
+  font-size: 13px;
+  line-height: 1.5;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  border-radius: 10px;
+  border: 3px solid rgba(256, 256, 256, 0.5);
+  margin: 5px;
 }
 
 .searchresults-club-result {

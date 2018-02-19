@@ -14,10 +14,10 @@ export default class SingleClubResult extends Component {
       <div className="searchresults-club-result">
         <Row className="searchresults-right-align">
           <Col>
-            {club.members.length} members
+            <span className="home-developers-subtitle1">{club.members.length} members</span>
           </Col>
           <Col>
-            Founded {club.foundedYear ? club.foundedYear.substring(0, 4) : 'N/A'}
+            <span className="home-developers-subtitle1">Founded {club.foundedYear ? club.foundedYear.substring(0, 4) : 'N/A'}</span>
           </Col>
         </Row>
         <Row className="searchresults-right-align">
@@ -37,7 +37,7 @@ export default class SingleClubResult extends Component {
           }}
         >
           <Row>
-            <Col>
+            <Col md={3}>
               <Link to={linkName}>
                 <img
                   src={_.get(club, 'clubLogo')}
@@ -50,7 +50,7 @@ export default class SingleClubResult extends Component {
                 />
               </Link>
             </Col>
-            <Col>
+            <Col md={9}>
               {club.vibes.map((vibe, index) => {
                 return (
                   <OnlyVibeFilterButton
@@ -69,6 +69,10 @@ export default class SingleClubResult extends Component {
                   </OnlyVibeFilterButton>
                 );
               })}
+              <br/><br/>
+              <div className="searchresults-desc-text">
+                {club.description}
+              </div>
             </Col>
           </Row>
         </div>

@@ -17,7 +17,7 @@ import logo from "../assets/images/site-logo/entirelogo.png";
 import desc1 from "../assets/images/homepage/milktea.jpg";
 import desc2 from "../assets/images/homepage/crowd.jpg";
 import desc3 from "../assets/images/homepage/updates.jpg";
-import katie from "../assets/images/homepage/katie.png";
+import chloe from "../assets/images/homepage/chloe.png";
 import david from "../assets/images/homepage/david.jpg";
 import bryan from "../assets/images/homepage/bryan.png";
 import feedback from "../assets/images/homepage/feedback.png";
@@ -41,7 +41,9 @@ class FrontPage extends Component {
   render() {
     return (
       <div>
-        <Header />
+        <Header 
+          showSearch={false}
+        />
         <div
           id="bootstrap-override-jumbotron"
           className="text-xs-center home-initial-picture background-cover-center front-splash nopad-bottom"
@@ -207,8 +209,8 @@ class FrontPage extends Component {
             <Col className="home-developers-col">
               <Row>
                 <Col style={{ textAlign: "center" }}>
-                  <img src={katie} className="rounded-circle img-fluid home-developers-pic" /><br />
-                  <span className="home-developers-subtitle1">Katharine Bui</span><br />
+                  <img src={chloe} className="rounded-circle img-fluid home-developers-pic" /><br />
+                  <span className="home-developers-subtitle1">Chloé Agápe</span><br />
                   <span className="home-developers-subtitle2">Founder</span><br />
                   <span className="home-developers-subtitle3">
                     <a href="http://ti-lun.github.io" target="/">ti-lun.github.io</a>
@@ -216,7 +218,7 @@ class FrontPage extends Component {
 
                 </Col>
                 <Col>
-                  When Katharine wasn't coding, she was on the board of some campus organization or attending a meeting of one.  Noticing that there was a gap between students and organizers, she kicked off Clubtree one winter break on her own.  She's super interested in startups, artificial intelligence and the social ramifications of technology (go debate with her!).  Other than programming or UI/UX design, she's singing Ariana Grande songs at the top of her lungs.
+                  When Chloé wasn't coding, she was on the board of some campus organization or attending a meeting of one.  Noticing that there was a gap between students and organizers, she kicked off Clubtree one winter break on her own.  She's super interested in startups, artificial intelligence and the social ramifications of technology (go debate with her!).  Other than programming or UI/UX design, she's singing Ariana Grande songs at the top of her lungs.
                 </Col>
               </Row>
             </Col>
@@ -229,7 +231,7 @@ class FrontPage extends Component {
                     <span className="home-developers-subtitle2">Software Engineer<br /> & Dev Ops</span><br />
                 </Col>
                 <Col>
-                              Kids have names? Actually, that's still true. Who's brave enough to fly into something we all keep calling a death sphere? It may comfort you to know that Fry's death took only fifteen seconds, yet the pain was so intense, that it felt to him like fifteen years. And it goes without saying, it caused him to empty his bowels.'
+                  David has a passion for growing his skills in software development, being particularly interested in creating something for UCI students to use.  In his spare time, he likes to play video games and go food adventuring in Orange County.  Fun fact: he uses a game controller as a mouse when developing.
                 </Col>
               </Row>
             </Col>
@@ -243,7 +245,8 @@ class FrontPage extends Component {
 
                 </Col>
                 <Col>
-                              Kids have names? Actually, that's still true. Who's brave enough to fly into something we all keep calling a death sphere? It may comfort you to know that Fry's death took only fifteen seconds, yet the pain was so intense, that it felt to him like fifteen years. And it goes without saying, it caused him to empty his bowels.'
+                  Bryan Liu is a student at UCI with goals of becoming a leader by utilizing the potential of virtual reality in order to improve the quality of life of people from all walks of life. He grew up in Northern California which has undoubtedly contributed to his extreme aversion to hot weather. Having previously worked as a cancer research assistant at Stanford University as well as a marketing assistant at a design firm, he has found his true passion in his love for programming.
+
                 </Col>
               </Row>
             </Col>
@@ -256,16 +259,10 @@ class FrontPage extends Component {
               <span className="home-developers-header">Feedback?<br /></span>
               <p style={{
                 margin: "20px 10px 20px 10px"
-              }}>We are always trying to make Clubtree better and better.  If you find a bug, have a suggestion or just want to say something nice (and make our day!), drop us a comment!</p>
+              }}>We are always trying to make Clubtree better and better.  If you find a bug, have a suggestion or just want to say something nice (and make our day!), drop us a comment at <strong>clubtreeteam@gmail.com</strong>!</p>
               <div style={{ textAlign: "center" }}>
-                <button className="home-feedback-send-msg">Send us a message</button>
+                
               </div>
-              <form method="POST" action="https://formspree.io/clubtreeteam@gmail.com">
-                <input type="hidden" name="_next" value="/" />
-                <input type="email" name="email" placeholder="Your email" />
-                <textarea name="message" placeholder="Your message"></textarea>
-                <button type="submit">Send</button>
-              </form>
             </Col>
             <Col>
             <img

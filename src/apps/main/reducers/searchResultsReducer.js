@@ -10,6 +10,7 @@ import {
   SET_CATEGORY_FILTER,
   TOGGLE_CATEGORY_FILTER,
   FETCH_CLUB_SEARCH_RESULTS,
+  TOGGLE_SEARCH_REF
 } from "../actions/searchResultsActions";
 
 type State = {
@@ -33,6 +34,8 @@ export default (
   action: { type: string, payload?: any }
 ) => {
   switch (action.type) {
+    case TOGGLE_SEARCH_REF:
+      return { ...state, ref: true};
     case SIMPLE_SEARCH_CLUB:
       return { ...state, searchResults: action.payload };
     case SET_LOADING:

@@ -9,14 +9,14 @@ export default class ProfileHeader extends Component {
   render() {
     const vibes = this.props.vibes.map((vibe, i) => {
       return (
-        <Button
+        <span
           className="btn searchresults-vibes-btn"
           style={{
             backgroundColor: COLORS[i]
           }}
           >
           {vibe}
-        </Button>
+        </span>
       )});
 
 

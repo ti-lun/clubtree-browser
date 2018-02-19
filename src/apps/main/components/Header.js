@@ -24,6 +24,7 @@ import { unauthUser } from "../actions/authActions";
 
 class Header extends Component {
   static PropTypes = {
+    showSearch: PropTypes.boolean,
     type: PropTypes.string
   };
 
@@ -70,13 +71,14 @@ class Header extends Component {
           </Col>
           <Col md={2}>
             <span className={this.generateLinkStyle(this.props.type)}>
-              <span className="header-explore">
+              <span className="header-btn-1">
                 <Link to="/advancedsearch">EXPLORE</Link>
               </span>
             </span>
           </Col>
           <Col md={5}>
             <HeaderSearchBar
+              show={this.props.showSearch}
               termFilter={this.props.termFilter}
               vibesFilter={this.props.vibesFilter}
               categoriesFilter={this.props.categoriesFilter}

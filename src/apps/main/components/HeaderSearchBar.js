@@ -1,8 +1,18 @@
 /* @flow */
 
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 export default class HeaderSearchBar extends Component {
+  static PropTypes = {
+    show: PropTypes.boolean,
+    termFilter: PropTypes.string,
+    vibesFilter: PropTypes.array,
+    categoriesFilter: PropTypes.array,
+    setLoading: PropTypes.function,
+    setTermFilter: PropTypes.function,
+    fetchClubSearchResults: PropTypes.function
+  };
 
   constructor(props) {
     super(props);
@@ -63,6 +73,7 @@ export default class HeaderSearchBar extends Component {
     );
 
     return (
+      (this.props.show) ? 
       <div className="text-center">
         <input
           type="text"
@@ -74,7 +85,8 @@ export default class HeaderSearchBar extends Component {
           onFocus={this.moveCaretAtEnd}
         />
         {searchButton}
-      </div>
+      </div> :
+      null
     );
   }
 }

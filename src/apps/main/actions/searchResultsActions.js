@@ -4,6 +4,7 @@ import Promise from "bluebird";
 
 import { API_URL } from "../lib/consts";
 
+export const TOGGLE_SEARCH_REF = "TOGGLE_SEARCH_REF";
 export const SIMPLE_SEARCH_CLUB = "SIMPLE_SEARCH_CLUB";
 export const SET_LOADING = "SET_LOADING";
 export const TOGGLE_VIBE_FILTER = "TOGGLE_VIBE_FILTER";
@@ -13,6 +14,11 @@ export const TOGGLE_CATEGORY_FILTER = "TOGGLE_CATEGORY_FILTER";
 export const SET_TERM_FILTER = "SET_TERM_FILTER";
 export const FETCH_CLUB_SEARCH_RESULTS = "FETCH_CLUB_SEARCH_RESULTS";
 
+export function toggleSearchRef() {
+  return {
+    type: TOGGLE_SEARCH_REF
+  };
+}
 
 export function simpleSearchClub(data: array) {
   return {
