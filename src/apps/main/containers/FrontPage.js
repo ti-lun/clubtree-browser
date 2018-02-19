@@ -260,6 +260,12 @@ class FrontPage extends Component {
               <div style={{ textAlign: "center" }}>
                 <button className="home-feedback-send-msg">Send us a message</button>
               </div>
+              <form method="POST" action="https://formspree.io/clubtreeteam@gmail.com">
+                <input type="hidden" name="_next" value="/" />
+                <input type="email" name="email" placeholder="Your email" />
+                <textarea name="message" placeholder="Your message"></textarea>
+                <button type="submit">Send</button>
+              </form>
             </Col>
             <Col>
             <img
