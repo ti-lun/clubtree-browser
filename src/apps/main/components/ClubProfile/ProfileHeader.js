@@ -2,7 +2,7 @@
 
 import React, { Component } from "react";
 import { Row, Col, Button } from "reactstrap";
-
+import { Link, RouterContext, browserHistory } from "react-router";
 import { COLORS } from "../../lib/consts";
 
 export default class ProfileHeader extends Component {
@@ -18,8 +18,7 @@ export default class ProfileHeader extends Component {
           {vibe}
         </span>
       )});
-
-
+    
     return (
       <div>
         <div
@@ -34,9 +33,18 @@ export default class ProfileHeader extends Component {
           }}
         />
         <div className="clubprofile-header-module">
-          <div className="clubprofile-header-pill" />
-          <Row className="clubprofile-header">
-            <Col md={4}>
+          <span 
+          className="clubprofile-back-button">
+            <Link 
+            style={{color: "white"}}
+            to={"/search"}>⬅ Back to search</Link>
+          </span>
+          <Row>
+            <Col 
+              style={{
+                textAlign: "right"
+              }}
+            md={4}>
               <img
                 src={this.props.logo}
                 className="rounded-circle clubprofile-header-logo"
@@ -49,7 +57,6 @@ export default class ProfileHeader extends Component {
                 </span>
               </div>
               <div>{ vibes }</div>
-              <div>See club tree</div>
             </Col>
           </Row>
         </div>

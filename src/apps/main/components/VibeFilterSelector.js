@@ -2,13 +2,22 @@
 
 import _ from "lodash";
 import React, { Component } from "react";
-import { Link } from 'react-router'
-
+import { Link } from 'react-router';
+import PropTypes from "prop-types";
 import { generateSearchURL } from "../lib/utils";
 
 
 export default class VibeFilterSelector extends Component {
-
+  static PropTypes = {
+    termFilter: PropTypes.Array,
+    categoriesFilter: PropTypes.Array,
+    fetchClubSearchResults: PropTypes.func,
+    selectorAction: PropTypes.func,
+    selectorReducer: PropTypes.Array,
+    selectorKeys: PropTypes.Array,
+    buttonColor: PropTypes.string
+  };
+  
   render() {
 
     const generatedKeys = [];
@@ -47,7 +56,7 @@ export default class VibeFilterSelector extends Component {
           onClick={() => {
             this.props.setLoading(true);
             this.props.selectorAction(item);
-            this.props.fetchClubSearchResults(query);
+            // this.props.fetchClubSearchResults(query);
           }}>
           {item}
         </button>

@@ -24,8 +24,8 @@ class SearchBar extends Component {
 
   returnCorrectSearchButton(searchClass) {
     switch (searchClass) {
-      case "front-page-search":
-        return <div><br /><Button className="btn-red">Search</Button></div>;
+      case "home-page-search":
+        return <button className="home-page-search-btn">Go</button>;
       case "results-page-search":
         return <i className="fa fa-search" aria-hidden="true" style={{ color: "#90caf9" }}></i>;
       case "header-page-search":

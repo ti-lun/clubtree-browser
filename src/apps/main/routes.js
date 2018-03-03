@@ -17,11 +17,13 @@ import ClubCreation from "./containers/ClubCreation";
 import AdvancedSearch from "./containers/AdvancedSearch";
 import SignUp from "./containers/SignUp";
 import Dashboard from "./containers/Dashboard";
+import About from "./components/About";
 
 export default function routes(/*store: Object, httpClient: Object*/) {
   return (
     <Router component={HomeApp} history={browserHistory}>
       <Route path="/" component={FrontPage} />
+      <Route path="/about" component={About} />
       <Route path="/advancedsearch" component={AdvancedSearch} />
       <Route path="/club(/:id)" component={ClubProfile} />
       <Route path="/clubcreation(/:id)" component={ClubCreation} />

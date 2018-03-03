@@ -38,7 +38,7 @@ export default class CategoriesCheckbox extends Component {
             onClick={() => {
               this.props.setLoading(true);
               this.props.toggleCategoryFilter(key);
-              this.props.fetchClubSearchResults(query);
+              // this.props.fetchClubSearchResults(query);
             }}
             checked={checked}
           />

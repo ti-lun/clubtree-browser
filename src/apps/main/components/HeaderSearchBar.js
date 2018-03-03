@@ -74,7 +74,12 @@ export default class HeaderSearchBar extends Component {
 
     return (
       (this.props.show) ? 
-      <div className="text-center">
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center"
+        }}
+      >
         <input
           type="text"
           className="header-page-search"

@@ -48,13 +48,16 @@ export default class ClubResultsList extends Component {
     });
 
     let displayText;
-
+    let loadingScreen;
+    
     if (this.props.loading) {
-      displayText = (<div>loading...</div>);
+      displayText = (<span className="searchresults-loading-text">loading...</span>);
+      loadingScreen = "searchresults-loading-filter";
     } else if (this.props.termFilter) {
-      displayText = (<div>Displaying results for <span className="searchresults-keyword">{this.props.termFilter}</span> - {clubRows.length} results</div>);
+      displayText = (<span className="searchresults-loading-text">Displaying results for <span className="searchresults-keyword">{this.props.termFilter}</span> - {clubRows.length} results</span>);
+      
     } else {
-      displayText = (<div>Displaying <span className="searchresults-keyword">all clubs</span> - {clubRows.length} results</div>);
+      displayText = (<span className="searchresults-loading-text">Displaying <span className="searchresults-keyword">all clubs</span> - {clubRows.length} results</span>);
     }
 
 
@@ -66,7 +69,11 @@ export default class ClubResultsList extends Component {
         <h3 className="searchresults-displaying-results-text">
           {displayText}
         </h3>
-        {(clubRows.length > 0) ? clubRows : "Sorry, no results were found!"}
+        <div 
+          style={{transition: "1s"}}
+        className={loadingScreen}>
+          {(clubRows.length > 0) ? clubRows : "Sorry, no results were found!"}
+        </div>
       </div>
     );
   }

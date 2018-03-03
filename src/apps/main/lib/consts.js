@@ -5,6 +5,99 @@ export const API_URL = config.proxies[0].destination;
 
 export const COLORS = ["#e61610", "#ff3823", "#72bec9", "#00bcd4"];
 
+export const CATEGORIES_COLORS = [
+  "#ffb253", 
+  "#ff7043", 
+  "#f66657", 
+  "#72bec9", 
+  "#00bcd4", 
+  "#2196f3",
+  "#037aff",
+  "#006ce5",
+  "#0c59cf"
+];
+
+export const CATEGORIES_LABELS = {
+  "Academics and Professional": {
+    "greek life" : [],
+    "by concentration/major" : [
+      "health/pre-health",
+      "law/pre-law",
+      "business",
+      "engineering",
+      "social sciences",
+      "math/physics",
+      "humanities",
+      "education/teaching",
+      "computer science",
+    ],
+    "multicultural and heritage" : [],
+    "leadership" : [],
+    "competition-focused" : [],
+    "project-focused" : [],
+    "women's support" : [],
+    "mentorship" : [],
+    "military" : []
+  },
+  "Greek Life" : {
+    "professional" : [
+      "health/pre-health",
+      "law/pre-law",
+      "business",
+      "engineering"
+    ],
+    "social" : [],
+    "fraternity" : [],
+    "sorority" : [],
+    "co-ed fraternity" : [],
+    "special features" : [
+      "multicultural and heritage",
+      "community service"
+    ]
+  },
+  "Multicultural and Heritage" : [],
+  "Sports, Fitness and Well-being" : [
+    "ball sports",
+    "water sports",
+    "aerobic sports",
+    "martial arts",
+    "men's sports",
+    "women's sports",
+    "mental health"
+  ],
+  "Performing and Creative Arts" : [
+    "dance",
+    "writing/publication",
+    "drama",
+    "photography/cinematography",
+    "fashion"
+  ],
+  "Community Service" : [
+    "health/pre-health",
+    "legal",
+    "social justice",
+    "civic involvement",
+    "environmental/animal rights",
+    "international",
+    "education/teaching",
+    "religious",
+    "youth",
+    "performing/creative arts"
+  ],
+  "Religious and Spiritual" : [],
+  "Graduate Students" : [
+    "law/pre-law",
+    "engineering",
+    "math/Physics",
+    "multicultural and heritage"
+  ],
+  "Politics": [
+    "political parties",
+    "debate",
+    "interest groups"
+  ]
+};
+
 export const CLUB_NAME_CHAR_LENGTH = 30;
 
 export const CLUB_DESC_WORD_LENGTH = 50;

@@ -46,7 +46,6 @@ export class ClubProfile extends Component {
       clubLogo: "",
       clubCover: ""
     }
-    console.log("in constructor rn");
   }
 
   componentWillMount() {
@@ -109,19 +108,57 @@ export class ClubProfile extends Component {
           <div className="clubprofile-info-section">
             <h3 className="col-xs-12 clubprofilesection"> Basic info </h3>
             <hr className="col-xs-12 clubprofilesection" />
-            <p className="col-xs-12 clubprofilesection">
-              Year started: {this.state.foundedYear.substring(0, 4)}
-            </p>
-            <p className="col-xs-12 clubprofilesection">
-              {" "}Approx. number of members: {this.state.members.length}{" "}
-            </p>
-            <p className="col-xs-12 clubprofilesection">
-              {" "}Meeting location: {this.state.meetingLocation}{" "}
-            </p>
-            <p className="col-xs-12 clubprofilesection">
-              {" "}Meeting times:<br />
-              {this.extractMeetingDatesAndTimes(this.state.meetingDatesAndTimes)}{" "}
-            </p>
+            <Row>
+              <Col className="col-xs-12 margin-bottom-20px">
+                <span className="clubprofile-table-header">Website(s)</span>
+              </Col>
+              <Col>{(this.state.website) ? this.state.website : "No external websites"}</Col>
+            </Row>
+            <Row>
+              <Col className="col-xs-12 margin-bottom-20px">
+                <span className="clubprofile-table-header">Who to contact</span>
+              </Col>
+              <Col>{this.state.contact}</Col>
+            </Row>
+            <Row>
+              <Col className="col-xs-12 margin-bottom-20px">
+                <span className="clubprofile-table-header">Club email</span>
+              </Col>
+              <Col>{this.state.email}</Col>
+            </Row>
+            <Row>
+              <Col className="col-xs-12 margin-bottom-20px">
+                <span className="clubprofile-table-header">Year started</span>
+              </Col>
+              <Col>{this.state.foundedYear.substring(0, 4)}</Col>
+            </Row>
+            <Row>
+              <Col className="col-xs-12 margin-bottom-20px clubprofilesection">
+                <span className="clubprofile-table-header">Club size</span>
+              </Col>
+              <Col>
+              {this.state.members.length}{" "}
+              Banana
+              </Col>
+            </Row>
+            <Row>
+              <Col className="col-xs-12 margin-bottom-20px clubprofilesection">
+              <span className="clubprofile-table-header">Meeting location</span>
+              </Col>
+              <Col>
+                {this.state.meetingLocation}
+                Some location
+              </Col>
+            </Row>
+            <Row>
+              <Col className="col-xs-12 margin-bottom-20px clubprofilesection">
+                <span className="clubprofile-table-header">Meeting times</span>
+              </Col>
+              <Col>
+                {this.extractMeetingDatesAndTimes(this.state.meetingDatesAndTimes)}{" "}
+                Hello
+              </Col>
+            </Row>
           </div>
 
           <div className="clubprofile-info-section">
@@ -135,6 +172,7 @@ export class ClubProfile extends Component {
             </p>
           </div>
         </div>
+        <Footer />
       </div>
     );
   }

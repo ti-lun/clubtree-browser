@@ -35,6 +35,7 @@ export function setLoading(data: boolean) {
 }
 
 export function fetchClubSearchResults(params: object) {
+  console.log("received", params);
   params = _.assign(params, { sort: 'relevance' });
   const paramsSerializer = function (params) {
     let paramString = qs.stringify(params, { arrayFormat: 'repeat' });

@@ -63,20 +63,18 @@ class Header extends Component {
   render() {
     return (
       <div className={`header-float ${this.optionalColor()}`}>
-        <Row>
+        <Row style={{
+          display: "flex",
+          alignItems: "center"
+        }}
+        
+        >
           <Col md={4}>
             <Link to="/">
               <img src={logo} width={"50%"} />
             </Link>
           </Col>
-          <Col md={2}>
-            <span className={this.generateLinkStyle(this.props.type)}>
-              <span className="header-btn-1">
-                <Link to="/advancedsearch">EXPLORE</Link>
-              </span>
-            </span>
-          </Col>
-          <Col md={5}>
+          <Col md={4}>
             <HeaderSearchBar
               show={this.props.showSearch}
               termFilter={this.props.termFilter}
@@ -86,6 +84,16 @@ class Header extends Component {
               setTermFilter={this.props.setTermFilter}
               fetchClubSearchResults={this.props.fetchClubSearchResults}
             />
+          </Col>
+          <Col md={3}>
+            <span className={this.generateLinkStyle(this.props.type)}>
+              <span className="header-btn-1">
+                <Link to="/about">ABOUT</Link>
+              </span>
+              <span className="header-btn-1">
+                <Link to="/advancedsearch">EXPLORE</Link>
+              </span>
+            </span>
           </Col>
           <Col md={1}>
             <Link to="/dashboard">
