@@ -22,8 +22,8 @@ export default class ComplexCategorySelector extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selected: []
-    }
+      selected: this.props.categoriesFilter
+    };
   }
   
   // couple more things.
@@ -34,24 +34,38 @@ export default class ComplexCategorySelector extends Component {
     let newSelected = this.state.selected;
     let newCategories;
     
-    console.log("selectedCat", selectedCat);
-    // figure out what to do with other non-categories.
+    // if the newSelected thing is a color label
+    if (Object.keys(CATEGORIES_LABELS).find((element) => {return element == selectedCat})) {
+      if (newSelected.find((element) => {return element == selectedCat})) {
+        newSelected = [];
+        newCategories = [];
+        this.props.setCategoryFilter(newCategories);
+      }
+      else {
+        newSelected = [selectedCat];
+        newCategories = [selectedCat];
+        this.props.setCategoryFilter(newCategories);
+      }
+    }
         
-    // if we find selectedCat within our selected array, remove it
-    // else add it
-    if (newSelected.find((element) => {return element == selectedCat})) {
-      newSelected = _.pull(newSelected, selectedCat);
-      newCategories = _.uniq(_.without(this.props.selectorReducer, selectedCat))
-
-      this.props.setCategoryFilter(newCategories);
-    }
     else {
-      newCategories = _.uniq(_.concat(this.props.selectorReducer, selectedCat))
+      // if we find selectedCat within our selected array, remove it
+      // else add it
+      if (newSelected.find((element) => {return element == selectedCat})) {
+        newSelected = _.pull(newSelected, selectedCat);
+        newCategories = _.uniq(_.without(this.props.selectorReducer, selectedCat))
 
-      this.props.setCategoryFilter(newCategories);
+        this.props.setCategoryFilter(newCategories);
+      }
+      else {
+        newCategories = _.uniq(_.concat(this.props.selectorReducer, selectedCat))
 
-      newSelected.push(e.target.value);
+        this.props.setCategoryFilter(newCategories);
+
+        newSelected.push(e.target.value);
+      }
     }
+    
     
     this.setState({
       selected: newSelected

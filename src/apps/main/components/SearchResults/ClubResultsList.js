@@ -59,7 +59,17 @@ export default class ClubResultsList extends Component {
     } else {
       displayText = (<span className="searchresults-loading-text">Displaying <span className="searchresults-keyword">all clubs</span> - {clubRows.length} results</span>);
     }
+    
+    let categoriesText = "";
 
+    if (this.props.categoriesFilter.length > 0) {
+      this.props.categoriesFilter.forEach((category, index) => {
+        categoriesText += category;
+        if (index != this.props.categoriesFilter.length - 1) {
+          categoriesText += " and ";
+        }
+      });
+    }
 
 
     return (
@@ -69,10 +79,11 @@ export default class ClubResultsList extends Component {
         <h3 className="searchresults-displaying-results-text">
           {displayText}
         </h3>
+        <span className="searchresults-cat-details">{categoriesText}</span>
         <div 
           style={{transition: "1s"}}
         className={loadingScreen}>
-          {(clubRows.length > 0) ? clubRows : "Sorry, no results were found!"}
+          {(clubRows.length > 0) ? clubRows : "Sorry, no results were found!  Try another search query."}
         </div>
       </div>
     );

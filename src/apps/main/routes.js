@@ -14,10 +14,14 @@ import SearchResults from "./containers/SearchResults";
 import FrontPage from "./containers/FrontPage";
 import ClubProfile from "./containers/ClubProfile";
 import ClubCreation from "./containers/ClubCreation";
+import FeedbackForm from "./containers/FeedbackForm";
 import AdvancedSearch from "./containers/AdvancedSearch";
 import SignUp from "./containers/SignUp";
 import Dashboard from "./containers/Dashboard";
 import About from "./components/About";
+import FAQ from "./containers/FAQ";
+import PrivacyStuff from "./containers/PrivacyStuff";
+
 
 export default function routes(/*store: Object, httpClient: Object*/) {
   return (
@@ -27,7 +31,10 @@ export default function routes(/*store: Object, httpClient: Object*/) {
       <Route path="/advancedsearch" component={AdvancedSearch} />
       <Route path="/club(/:id)" component={ClubProfile} />
       <Route path="/clubcreation(/:id)" component={ClubCreation} />
+      <Route path="/faq" component={FAQ} />
+      <Route path="/feedback" component={FeedbackForm} />
       <Route path="/search" component={SearchResults} />
+      <Route path="/privacy" component={PrivacyStuff} />
       <Route path="/joinus" component={SignUp} />
       <Route path="/dashboard" component={AuthHOC(Dashboard)} />
       <Route path="/404" component={NoMatchApp} />

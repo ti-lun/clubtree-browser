@@ -8,6 +8,7 @@ import { Row, Col } from "reactstrap";
 import axios from "axios";
 
 import { API_URL, DAYS } from "../lib/consts";
+import { convertSizeChar } from "../lib/utils";
 
 import Header from "../components/Header";
 import ProfileHeader from "../components/ClubProfile/ProfileHeader";
@@ -75,6 +76,12 @@ export class ClubProfile extends Component {
   }
 
   render() {
+    const websiteLists = (this.state.website) ? this.state.website.split(";").map((site, index) => {
+      return (
+        <a href={site} target="/">{site}<br/></a>
+      );
+    }) : [];
+    
     return (
       <div>
         <Helmet title="SearchResults" />
@@ -98,7 +105,7 @@ export class ClubProfile extends Component {
 
         <div className="clubprofile-info-body">
           <div className="clubprofile-info-section">
-            <h3 className="col-xs-12 clubprofilesection"> In a nutshell </h3>
+            <h3 className="col-xs-12 clubprofilesection">In a nutshell </h3>
             <hr className="col-xs-12 clubprofilesection" />
             <p className="col-xs-12 clubprofilesection">
               {this.state.description}
@@ -106,13 +113,13 @@ export class ClubProfile extends Component {
           </div>
 
           <div className="clubprofile-info-section">
-            <h3 className="col-xs-12 clubprofilesection"> Basic info </h3>
+            <h3 className="col-xs-12 clubprofilesection">Basic info </h3>
             <hr className="col-xs-12 clubprofilesection" />
-            <Row>
+            <Row style={{marginBottom: "10px"}}>
               <Col className="col-xs-12 margin-bottom-20px">
                 <span className="clubprofile-table-header">Website(s)</span>
               </Col>
-              <Col>{(this.state.website) ? this.state.website : "No external websites"}</Col>
+              <Col>{(websiteLists.length > 0) ? websiteLists : "No external websites"}</Col>
             </Row>
             <Row>
               <Col className="col-xs-12 margin-bottom-20px">
@@ -137,8 +144,7 @@ export class ClubProfile extends Component {
                 <span className="clubprofile-table-header">Club size</span>
               </Col>
               <Col>
-              {this.state.members.length}{" "}
-              Banana
+              {convertSizeChar(this.state.size)}{" "}
               </Col>
             </Row>
             <Row>

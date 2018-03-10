@@ -12,6 +12,7 @@ import Footer from "../components/Footer";
 
 import {
   setTermFilter,
+  setCategoryFilter
 } from "../actions/searchResultsActions";
 
 import logo from "../assets/images/site-logo/entirelogo.png";
@@ -27,16 +28,14 @@ import politics from "../assets/images/homepage/politics.png";
 import religious from "../assets/images/homepage/religious.png";
 import sports from "../assets/images/homepage/sports.png";
 
-
-
-
 class FrontPage extends Component {
   constructor(props) {
     super(props);
   }
 
   searchCategory = (e) => {
-    this.props.setTermFilter(e.target.getAttribute("value"));
+    console.log("clicked on", e.target.getAttribute("value"));
+    this.props.setCategoryFilter([ e.target.getAttribute("value") ]);
     browserHistory.push("/search");
   }
 
@@ -49,7 +48,7 @@ class FrontPage extends Component {
       "Community Service": community,
       "Sports, Fitness and Well-being": sports,
       "Performing and Creative Arts": arts,
-      "Hobbies": hobbies,
+      "Hobbies and Interests": hobbies,
       "Religious and Spiritual": religious,
       "Graduate Students": grad,
       "Politics": politics
@@ -128,6 +127,7 @@ export default connect(
     termFilter: state.searchResultsReducer.termFilter,
   }),
   dispatch => bindActionCreators({
-    setTermFilter
+    setTermFilter,
+    setCategoryFilter
   }, dispatch)
 )(FrontPage);

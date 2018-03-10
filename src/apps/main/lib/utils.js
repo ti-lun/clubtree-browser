@@ -1,5 +1,16 @@
 import _ from "lodash";
 
+export function convertSizeChar(s) {
+  switch(s) {
+    case "s":
+      return "Small";
+    case "m":
+      return "Mid-sized";
+    case "l":
+      return "Large";
+  }
+}
+
 export function generateSearchURL(params: object) {
     let url = '/search';
     let query = [];

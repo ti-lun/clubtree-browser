@@ -1,6 +1,8 @@
 /* @flow */
 
 import React, { Component } from "react";
+import {Link } from "react-router";
+
 import {Row, Col} from "reactstrap";
 import desc1 from "../assets/images/homepage/milktea.jpg";
 import desc2 from "../assets/images/homepage/crowd.jpg";
@@ -9,11 +11,18 @@ import chloe from "../assets/images/homepage/chloe.png";
 import david from "../assets/images/homepage/david.jpg";
 import bryan from "../assets/images/homepage/bryan.png";
 import feedback from "../assets/images/homepage/feedback.png";
+
+import Header from "./Header";
+import Footer from "./Footer";
+
 export default class About extends Component {
   render () {
     return (
       <div>
-      <div className="subdiv home-intro">
+      <Header 
+        showSearch={true}
+      />
+      <div className="home-intro">
         <Row>
           <Col>
           <div
@@ -79,7 +88,6 @@ export default class About extends Component {
 
               </p>
             </div>
-
           </Col>
         </Row>
       </div>
@@ -135,10 +143,12 @@ export default class About extends Component {
       </div>
 
       <div className="home-organizer-info">
-        <p>Think of it this way: what makes up a university's personality and culture?  What do you tend to fondly remember about your university experience if and when you graduate?  Surely it's not the boring essays and assignments... it's the people you form strong bonds with.  Clubs are the epicenter of this phenomenon and serve as the bulk of a university's identity. We at Clubtree are grateful for your presence and leadership.</p>
-        <p>Chances are, your club is listed on Clubtree already.  If you would like to claim your club or add your club, contact us at <strong>clubtreeteam@gmail.com</strong> and we can can give you the next steps.</p>
+        <p>Think of it this way: what makes up a university's personality and culture?  What do you tend to fondly remember about your university experience if and when you graduate?  Surely it's not the boring essays and assignments... it's the people with whom you form strong bonds.  Clubs are the epicenter of this phenomenon and comprise the bulk of a university's identity. And we at Clubtree are grateful for your presence and leadership.</p>
+        <p>Chances are, your club is listed on Clubtree already.  If you would like to claim your club or add your club, contact us at <strong>clubtreeteam@gmail.com</strong> or head to our <Link to="/feedback">feedback form</Link> and we can can give you the next steps.</p>
       </div>
-
+      <hr style={{
+        margin: "0% 10% 5% 10%"
+      }}/>
       <div className="home-developers">
         <span className="home-developers-header">Hi, we made this app!</span>
         <Row>
@@ -188,30 +198,8 @@ export default class About extends Component {
           </Col>
         </Row>
       </div>
+        <Footer />
 
-      <div className="home-feedback">
-        <Row>
-          <Col>
-            <span className="home-developers-header">Feedback?<br /></span>
-            <p style={{
-              margin: "20px 10px 20px 10px"
-            }}>We are always trying to make Clubtree better and better.  If you find a bug, have a suggestion or just want to say something nice (and make our day!), drop us a comment at <strong>clubtreeteam@gmail.com</strong>!</p>
-            <div style={{ textAlign: "center" }}>
-              
-            </div>
-          </Col>
-          <Col>
-          <img
-            src={feedback}
-            className="img-fluid"
-            width="50%"
-            style={{
-              padding: "5%",
-              float: "right"
-            }}
-          /></Col>
-        </Row>      
-        </div>
         </div>
     );
   }

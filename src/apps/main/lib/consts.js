@@ -6,9 +6,10 @@ export const API_URL = config.proxies[0].destination;
 export const COLORS = ["#e61610", "#ff3823", "#72bec9", "#00bcd4"];
 
 export const CATEGORIES_COLORS = [
+  "#fec63d",
   "#ffb253", 
   "#ff7043", 
-  "#f66657", 
+  "#f66657",
   "#72bec9", 
   "#00bcd4", 
   "#2196f3",
@@ -19,7 +20,12 @@ export const CATEGORIES_COLORS = [
 
 export const CATEGORIES_LABELS = {
   "Academics and Professional": {
-    "greek life" : [],
+    "greek life" : [
+      "health/pre-health",
+      "law/pre-law",
+      "business",
+      "engineering"
+    ],
     "by concentration/major" : [
       "health/pre-health",
       "law/pre-law",
@@ -27,7 +33,7 @@ export const CATEGORIES_LABELS = {
       "engineering",
       "social sciences",
       "math/physics",
-      "humanities",
+      "humanities and arts",
       "education/teaching",
       "computer science",
     ],
@@ -56,22 +62,6 @@ export const CATEGORIES_LABELS = {
     ]
   },
   "Multicultural and Heritage" : [],
-  "Sports, Fitness and Well-being" : [
-    "ball sports",
-    "water sports",
-    "aerobic sports",
-    "martial arts",
-    "men's sports",
-    "women's sports",
-    "mental health"
-  ],
-  "Performing and Creative Arts" : [
-    "dance",
-    "writing/publication",
-    "drama",
-    "photography/cinematography",
-    "fashion"
-  ],
   "Community Service" : [
     "health/pre-health",
     "legal",
@@ -83,6 +73,32 @@ export const CATEGORIES_LABELS = {
     "religious",
     "youth",
     "performing/creative arts"
+  ],
+  "Hobbies and Interests": [
+    "video games",
+    "classic games",
+    "fandom",
+    "craftsmanship",
+    "idea-sharing",
+    "nature appreciation"
+  ],
+  "Sports, Fitness and Well-being" : [
+    "ball sports",
+    "water sports",
+    "aerobic sports",
+    "martial arts",
+    "men's sports",
+    "women's sports",
+    "mental health"
+  ],
+  "Performing and Creative Arts" : [
+    "dance",
+    "music",
+    "writing/prose",
+    "drama",
+    "photography/cinematography",
+    "fashion",
+    "visual art"
   ],
   "Religious and Spiritual" : [],
   "Graduate Students" : [

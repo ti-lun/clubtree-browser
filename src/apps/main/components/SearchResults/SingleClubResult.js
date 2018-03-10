@@ -5,8 +5,10 @@ import React, { Component } from "react";
 import { Row, Col, Button } from "reactstrap";
 import { Link } from "react-router";
 import OnlyVibeFilterButton from "./OnlyVibeFilterButton";
+import { convertSizeChar } from "../../lib/utils";
 
 export default class SingleClubResult extends Component {
+  
   render() {
     const club = this.props.club;
     const linkName = `/club/${club._id}`;
@@ -14,7 +16,7 @@ export default class SingleClubResult extends Component {
       <div className="searchresults-club-result">
         <Row className="searchresults-right-align">
           <Col>
-            <span className="home-developers-subtitle1">{club.members.length} members</span>
+            <span className="home-developers-subtitle1">{club.size ? convertSizeChar(club.size) : "Unknown size"}</span>
           </Col>
           <Col>
             <span className="home-developers-subtitle1">Founded {club.foundedYear ? club.foundedYear.substring(0, 4) : 'N/A'}</span>

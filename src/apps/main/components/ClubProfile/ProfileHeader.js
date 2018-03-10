@@ -29,7 +29,8 @@ export default class ProfileHeader extends Component {
             height: "50%",
             position: "absolute",
             top: "0px",
-            zIndex: "-9999"
+            zIndex: "-9999",
+            backgroundPosition: "center"
           }}
         />
         <div className="clubprofile-header-module">

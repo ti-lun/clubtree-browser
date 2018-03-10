@@ -68,7 +68,6 @@ export class SearchResults extends Component {
       module: !this.state.module,
       top: window.scrollY
     });
-    console.log(window.scrollY);
   }
 
   render() {
@@ -144,10 +143,6 @@ export class SearchResults extends Component {
         </button>
       </div>
     );
-    
-    // <FiltersModule 
-    //   top={this.state.top}
-    //   visible={this.state.module} />
   }
 }
 
