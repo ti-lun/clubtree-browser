@@ -11,7 +11,6 @@ export default class VibeFilterSelector extends Component {
   static PropTypes = {
     termFilter: PropTypes.Array,
     categoriesFilter: PropTypes.Array,
-    fetchClubSearchResults: PropTypes.func,
     selectorAction: PropTypes.func,
     selectorReducer: PropTypes.Array,
     selectorKeys: PropTypes.Array,
@@ -56,7 +55,6 @@ export default class VibeFilterSelector extends Component {
           onClick={() => {
             this.props.setLoading(true);
             this.props.selectorAction(item);
-            // this.props.fetchClubSearchResults(query);
           }}>
           {item}
         </button>

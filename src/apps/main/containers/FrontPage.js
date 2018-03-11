@@ -11,8 +11,9 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 
 import {
+  setLoading,
   setTermFilter,
-  setCategoryFilter
+  setCategoryFilter,
 } from "../actions/searchResultsActions";
 
 import logo from "../assets/images/site-logo/entirelogo.png";
@@ -35,6 +36,7 @@ class FrontPage extends Component {
 
   searchCategory = (e) => {
     console.log("clicked on", e.target.getAttribute("value"));
+    this.props.setLoading(true);
     this.props.setCategoryFilter([ e.target.getAttribute("value") ]);
     browserHistory.push("/search");
   }
@@ -101,6 +103,7 @@ class FrontPage extends Component {
           <SearchBar
             searchBarStyleClass="home-page-search"
             termFilter={this.props.termFilter}
+            setLoading={this.props.setLoading}
             setTermFilter={this.props.setTermFilter}
           />
         </div>
@@ -127,7 +130,8 @@ export default connect(
     termFilter: state.searchResultsReducer.termFilter,
   }),
   dispatch => bindActionCreators({
+    setLoading,
     setTermFilter,
-    setCategoryFilter
+    setCategoryFilter,
   }, dispatch)
 )(FrontPage);

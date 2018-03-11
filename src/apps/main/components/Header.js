@@ -12,7 +12,6 @@ import HeaderSearchBar from "./HeaderSearchBar";
 import {
   setLoading,
   setTermFilter,
-  fetchClubSearchResults,
 } from "../actions/searchResultsActions";
 
 import { unauthUser } from "../actions/authActions";
@@ -82,7 +81,6 @@ class Header extends Component {
               categoriesFilter={this.props.categoriesFilter}
               setLoading={this.props.setLoading}
               setTermFilter={this.props.setTermFilter}
-              fetchClubSearchResults={this.props.fetchClubSearchResults}
             />
           </Col>
           <Col md={3}>
@@ -116,7 +114,6 @@ export default connect(
   dispatch => bindActionCreators({
     setLoading,
     setTermFilter,
-    fetchClubSearchResults,
     unauthUser
   }, dispatch)
 )(Header);

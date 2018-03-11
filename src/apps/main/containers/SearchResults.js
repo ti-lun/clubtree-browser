@@ -28,7 +28,6 @@ import {
   setCategoryFilter,
   setVibeFilter,
   toggleCategoryFilter,
-  fetchClubSearchResults
 } from "../actions/searchResultsActions";
 
 
@@ -98,7 +97,6 @@ export class SearchResults extends Component {
                   termFilter={this.props.termFilter}
                   vibesFilter={this.props.vibesFilter}
                   categoriesFilter={this.props.categoriesFilter}
-                  fetchClubSearchResults={this.props.fetchClubSearchResults}
                   selectorAction={this.props.toggleCategoryFilter}
                   selectorReducer={this.props.categoriesFilter}
                   setLoading={this.props.setLoading}
@@ -119,11 +117,9 @@ export class SearchResults extends Component {
                 <ClubResultsList
                   loading={this.props.loading}
                   setLoading={this.props.setLoading}
-                  searchResults={this.props.searchResults}
                   termFilter={this.props.termFilter}
                   vibesFilter={this.props.vibesFilter}
                   categoriesFilter={this.props.categoriesFilter}
-                  fetchClubSearchResults={this.props.fetchClubSearchResults}
                   setTermFilter={this.props.setTermFilter}
                   setVibeFilter={this.props.setVibeFilter}
                 />
@@ -149,7 +145,6 @@ export class SearchResults extends Component {
 export default connect(
   state => ({
     loading: state.searchResultsReducer.loading,
-    searchResults: state.searchResultsReducer.searchResults,
     termFilter: state.searchResultsReducer.termFilter,
     vibesFilter: state.searchResultsReducer.vibesFilter,
     categoriesFilter: state.searchResultsReducer.categoriesFilter
@@ -161,6 +156,5 @@ export default connect(
     toggleVibeFilter,
     setCategoryFilter,
     toggleCategoryFilter,
-    fetchClubSearchResults
   }, dispatch)
 )(SearchResults);

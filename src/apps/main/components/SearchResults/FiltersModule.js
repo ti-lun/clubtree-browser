@@ -12,7 +12,6 @@ import {
   setCategoryFilter,
   setVibeFilter,
   toggleCategoryFilter,
-  fetchClubSearchResults
 } from "../../actions/searchResultsActions";
 
 import { VIBES, COLORS } from "../../lib/consts";
@@ -43,7 +42,6 @@ class FiltersModule extends Component {
             <VibeFilterSelector
               termFilter={this.props.termFilter}
               categoriesFilter={this.props.categoriesFilter}
-              fetchClubSearchResults={this.props.fetchClubSearchResults}
               selectorAction={this.props.toggleVibeFilter}
               selectorReducer={this.props.vibesFilter}
             />
@@ -54,7 +52,6 @@ class FiltersModule extends Component {
             <VibeFilterSelector
               termFilter={this.props.termFilter}
               categoriesFilter={this.props.categoriesFilter}
-              fetchClubSearchResults={this.props.fetchClubSearchResults}
               selectorAction={this.props.toggleVibeFilter}
               selectorReducer={this.props.vibesFilter}
               selectorKeys={VIBES['Energy']}
@@ -67,7 +64,6 @@ class FiltersModule extends Component {
             <VibeFilterSelector
               termFilter={this.props.termFilter}
               categoriesFilter={this.props.categoriesFilter}
-              fetchClubSearchResults={this.props.fetchClubSearchResults}
               selectorAction={this.props.toggleVibeFilter}
               selectorReducer={this.props.vibesFilter}
               selectorKeys={VIBES['Personality']}
@@ -95,6 +91,5 @@ export default connect(
     toggleVibeFilter,
     setCategoryFilter,
     toggleCategoryFilter,
-    fetchClubSearchResults
   }, dispatch)
 )(FiltersModule);

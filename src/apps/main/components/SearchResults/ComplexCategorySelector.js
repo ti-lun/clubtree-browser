@@ -14,7 +14,7 @@ export default class ComplexCategorySelector extends Component {
   static PropTypes = {
     termFilter: PropTypes.Array,
     categoriesFilter: PropTypes.Array,
-    fetchClubSearchResults: PropTypes.func,
+    setLoading: PropTypes.func,
     selectorAction: PropTypes.func,
     selectorReducer: PropTypes.Array,
   };
@@ -72,7 +72,6 @@ export default class ComplexCategorySelector extends Component {
     });    
         
     this.props.setLoading(true);
-    // this.props.fetchClubSearchResults(query);
   }
   
   render() { 

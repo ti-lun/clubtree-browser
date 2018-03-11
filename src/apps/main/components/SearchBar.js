@@ -15,10 +15,10 @@ class SearchBar extends Component {
   onInputChange = (event) => {
     //Whenever the application senses a change in input (someone presses a key)
     // it will re-render the component to display the updated input
-    if (event.target.value === "") {
-      this.props.setTermFilter(undefined);
-    } else {
+    if (event.target.value) {
       this.props.setTermFilter(event.target.value);
+    } else {
+      this.props.setTermFilter(undefined);
     }
   }
 
@@ -38,6 +38,7 @@ class SearchBar extends Component {
 
   handleKeyPress = (e) => {
     if (e.key === "Enter") {
+      this.props.setLoading(true);
       browserHistory.push("/search");
     }
   }
@@ -45,7 +46,11 @@ class SearchBar extends Component {
   render() {
 
     const searchButton = (
-      <Link to={"/search"} >
+      <Link
+        to={"/search"}
+        onClick={() => {
+          this.props.setLoading(true);
+        }} >
         {this.returnCorrectSearchButton(this.props.searchBarStyleClass)}
       </Link >
     );
