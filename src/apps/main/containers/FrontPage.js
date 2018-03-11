@@ -61,6 +61,7 @@ class FrontPage extends Component {
       icons.push((
         <div 
           className="home-cat-box"
+          key={key}
           onClick={this.searchCategory}
           value={key}  
         >
