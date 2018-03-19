@@ -34,6 +34,7 @@ export function setLoading(data: boolean) {
   }
 }
 
+// deprecated
 export function fetchClubSearchResults(params: object) {
   console.log("received", params);
   params = _.assign(params, { sort: 'relevance' });

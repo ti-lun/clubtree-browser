@@ -11,7 +11,6 @@ export default class HeaderSearchBar extends Component {
     categoriesFilter: PropTypes.array,
     setLoading: PropTypes.function,
     setTermFilter: PropTypes.function,
-    fetchClubSearchResults: PropTypes.function
   };
 
   constructor(props) {
@@ -37,25 +36,12 @@ export default class HeaderSearchBar extends Component {
 
   onKeyPress = (event) => {
     if (event.key === "Enter") {
-      const query = {
-        q: this.state.textInput,
-        vibe: this.props.vibesFilter,
-        category: this.props.categoriesFilter
-      };
-
       this.props.setLoading(true);
       this.props.setTermFilter(this.state.textInput);
-      this.props.fetchClubSearchResults(query);
     }
   }
 
   render() {
-    const query = {
-      q: this.state.textInput,
-      vibe: this.props.vibesFilter,
-      category: this.props.categoriesFilter
-    };
-
     const searchButton = (
       <button
         style={{
@@ -66,7 +52,6 @@ export default class HeaderSearchBar extends Component {
         onClick={() => {
           this.props.setLoading(true);
           this.props.setTermFilter(this.state.textInput);
-          this.props.fetchClubSearchResults(query);
         }}>
         <i className="fa fa-2x fa-search" aria-hidden="true" style={{ color: "#ff3823" }} />
       </button >

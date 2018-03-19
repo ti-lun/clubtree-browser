@@ -8,15 +8,6 @@ import { generateSearchURL } from "./../../lib/utils";
 
 export default class OnlyVibeFilterButton extends Component {
     render() {
-
-        let query = {
-            q: this.props.termFilter,
-            category: this.props.categoriesFilter,
-            vibe: this.props.vibesFilter,
-        };
-
-        let url = generateSearchURL(query);
-
         return (
             <button
                 className="btn searchresults-vibes-btn"
@@ -24,7 +15,6 @@ export default class OnlyVibeFilterButton extends Component {
                     this.props.setLoading(true);
                     this.props.setTermFilter();
                     this.props.setVibeFilter([this.props.label]);
-                    this.props.fetchClubSearchResults(query);
                 }}>
                 {this.props.label}
             </button>

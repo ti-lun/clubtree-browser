@@ -92,7 +92,7 @@ export default (
         termFilter: action.payload
       };
       return state;
-    case FETCH_CLUB_SEARCH_RESULTS:
+    case FETCH_CLUB_SEARCH_RESULTS: // deprecated
       if (action.payload) {
         state = _.assign({}, state, { searchResults: action.payload.data });
       }

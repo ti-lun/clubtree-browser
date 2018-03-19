@@ -27,7 +27,6 @@ import {
   setCategoryFilter,
   setVibeFilter,
   toggleCategoryFilter,
-  fetchClubSearchResults
 } from "../actions/searchResultsActions";
 
 
@@ -159,7 +158,6 @@ export class SearchResults extends Component {
 export default connect(
   state => ({
     loading: state.searchResultsReducer.loading,
-    searchResults: state.searchResultsReducer.searchResults,
     termFilter: state.searchResultsReducer.termFilter,
     vibesFilter: state.searchResultsReducer.vibesFilter,
     categoriesFilter: state.searchResultsReducer.categoriesFilter
@@ -171,6 +169,5 @@ export default connect(
     toggleVibeFilter,
     setCategoryFilter,
     toggleCategoryFilter,
-    fetchClubSearchResults
   }, dispatch)
 )(SearchResults);

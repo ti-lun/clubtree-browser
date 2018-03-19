@@ -14,7 +14,7 @@ export default class ComplexCategorySelector extends Component {
   static PropTypes = {
     termFilter: PropTypes.Array,
     categoriesFilter: PropTypes.Array,
-    fetchClubSearchResults: PropTypes.func,
+    setLoading: PropTypes.func,
     selectorAction: PropTypes.func,
     selectorReducer: PropTypes.Array,
   };
@@ -72,7 +72,6 @@ export default class ComplexCategorySelector extends Component {
     });    
         
     this.props.setLoading(true);
-    // this.props.fetchClubSearchResults(query);
   }
   
   render() { 
@@ -86,6 +85,7 @@ export default class ComplexCategorySelector extends Component {
       let grayCount = 0;
       generatedButtons.push((
         <button 
+          key={key}
           onClick={this.toggleSelected}
           className={
             _.includes(
@@ -109,6 +109,7 @@ export default class ComplexCategorySelector extends Component {
           if (CATEGORIES_LABELS[key][key2].length) {
               generatedButtons.push((
                 <button 
+                  key={key2}
                   onClick={this.toggleSelected}
                   className={(
                     _.includes(
@@ -140,6 +141,7 @@ export default class ComplexCategorySelector extends Component {
                   for (let key3 in CATEGORIES_LABELS[key][key2]) {
                     generatedButtons.push((
                       <button 
+                        key={key3}
                         onClick={this.toggleSelected}
                         value={CATEGORIES_LABELS[key][key2][key3]}
                         className={(
@@ -164,6 +166,7 @@ export default class ComplexCategorySelector extends Component {
           else { // no subcategories
             generatedButtons.push((
               <button 
+                key={key2}
                 onClick={this.toggleSelected}
                 className={
                   _.includes(

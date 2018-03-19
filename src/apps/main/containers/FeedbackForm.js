@@ -63,6 +63,7 @@ export class FeedbackForm extends Component {
               placeholder="Your email" /> <br />
             <select
               className="feedback"
+              name="_subject"
             >
               <option value="Suggestions">Suggestions</option>
               <option value="Clubs">Clubs</option>
