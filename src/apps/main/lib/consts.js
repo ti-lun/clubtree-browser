@@ -10,6 +10,7 @@ export const CATEGORIES_COLORS = [
   "#ffb253", 
   "#ff7043", 
   "#f66657",
+  "#ff3823",
   "#72bec9", 
   "#00bcd4", 
   "#2196f3",
@@ -32,6 +33,7 @@ export const CATEGORIES_LABELS = {
       "business",
       "engineering",
       "social sciences",
+      "life/natural sciences",
       "math/physics",
       "humanities and arts",
       "education/teaching",
@@ -82,13 +84,18 @@ export const CATEGORIES_LABELS = {
     "idea-sharing",
     "nature appreciation"
   ],
-  "Sports, Fitness and Well-being" : [
+  "Sports and Fitness" : [
     "ball sports",
     "water sports",
     "aerobic sports",
     "martial arts",
     "men's sports",
     "women's sports",
+    "mental health"
+  ],
+  "Health and Well-being" : [
+    "peer support",
+    "yoga/spiritual practices",
     "mental health"
   ],
   "Performing and Creative Arts" : [
@@ -188,6 +195,21 @@ export const MONTHS = [
   "October",
   "November",
   "December"
+];
+
+export const MONTHS_ABBR = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec"
 ];
 
 export const MONTHS_TO_INT = {

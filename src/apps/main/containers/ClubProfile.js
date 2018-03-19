@@ -86,7 +86,7 @@ export class ClubProfile extends Component {
       <div>
         <Helmet title="SearchResults" />
         <Header
-          type="main"
+          type="safe"
           showSearch={true}
         />
         <ProfileHeader

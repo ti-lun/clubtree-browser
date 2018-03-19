@@ -33,7 +33,10 @@ export class FAQ extends Component {
         <Header 
           showSearch={true}
         />
-        FAQ
+        <div className="faq-body">
+          <span className="home-developers-header">FAQ</span>
+        ello whoop whoop
+        </div>
         <Footer />
       </div>
     );

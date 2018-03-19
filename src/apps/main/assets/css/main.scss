@@ -9,12 +9,6 @@ body {
   font-family: "Roboto", sans-serif;
   display: flex;
   flex-direction: column;
-  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1a7ed0+0,1a7ed0+10&0.65+0,0+11 */
-  background: -moz-linear-gradient(top,  rgba(26,126,208,0.65) 0%, rgba(26,126,208,0.06) 10%, rgba(26,126,208,0) 11%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(top,  rgba(26,126,208,0.65) 0%,rgba(26,126,208,0.06) 10%,rgba(26,126,208,0) 11%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to bottom,  rgba(26,126,208,0.65) 0%,rgba(26,126,208,0.06) 10%,rgba(26,126,208,0) 11%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a61a7ed0', endColorstr='#001a7ed0',GradientType=0 ); /* IE6-9 */
-
   height: 100%;
   margin: 0;
 }
@@ -228,7 +222,12 @@ textarea:focus {
   height: 50%;
   padding: 3% 5% 3% 5%;
   margin-top: 3%;
-  background-color: rgba(0,0,0,0.2);
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#8c8c8c+0,8c8c8c+100&0+0,0.65+100 */
+  background: -moz-linear-gradient(top,  rgba(0,0,0,0) 0%, rgba(0,0,0,0.2) 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.2) 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.2) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=0 ); /* IE6-9 */
+
 }
 
 .home-perks-description-one {
@@ -499,6 +498,13 @@ textarea:focus {
   z-index: 2;
 }
 
+.header-safe a {
+  color: white;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 10px;
+  border-radius: 5px;
+}
+
 .header-signup a {
   color: #ffffff;
   z-index: 2;
@@ -610,6 +616,11 @@ p.clubprofile-section {
   font-weight: normal;
 }
 
+a.clubprofile-header {
+  color: white;
+  text-decoration: underline;
+}
+
 // is this even used?
 .advanced-search {
   font-size: 20px;
@@ -619,7 +630,109 @@ p.clubprofile-section {
   width: 90%;
 }
 
+// =================================== [ EVENTS ]
+.events-bg {
+  background-image: url("../images/search/default-cover.jpg");
+  background-size: 100% 100%;
+}
+
+.events-header {
+  display: flex;
+  align-items: center;
+  margin: 1% 15% 1% 15%;
+}
+
+.events-header-text {
+  font-weight: 700;
+  font-size: 30px;
+  z-index: 2;
+  margin-left: 20px;
+  margin-right: 20px;
+  padding: 3px 6px 3px 6px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: white;
+}
+
+.events-subtitle-text {
+  font-weight: 700;
+  font-size: 20px;
+  z-index: 2;
+  margin-left: 20px;
+  margin-right: 20px;
+  padding: 3px 6px 3px 6px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: white;
+}
+
+.events-display {
+  display: flex;
+  flex-wrap: wrap;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items:flex-start;
+  margin: auto;
+}
+
+hr.events-hr {
+  margin: auto;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  border: 1px solid rgba(255,255,255,0.5);
+  width: 50%;
+}
+
+.events-single-event {
+  width: 25%;
+  margin: 30px;
+  margin-top: 50px;
+  -webkit-box-shadow: 11px 18px 54px 2px rgba(0,0,0,0.5);
+  -moz-box-shadow: 11px 18px 54px 2px rgba(0,0,0,0.5);
+  box-shadow: 11px 18px 54px 2px rgba(0,0,0,0.5);
+}
+
+.events-single-event-header {
+  background-color: #fec63d;
+  padding: 5%;
+  font-family: Roboto Condensed;
+  font-size: 14px;
+}
+
+.events-single-event-body {
+  background-color: white;
+  padding: 5%;
+}
+
+.events-date {
+  text-align: center !important;
+  color: #7a7a7a;
+  line-height: 30px;
+}
+
+.events-date-1 {
+  font-size: 28px;
+}
+
+.events-date-2 {
+  font-size: 36px;
+}
+
+.events-event-name {
+  font-family: Roboto Condensed;
+  font-size: 20px;
+}
+
+
 // =================================== [ SEARCH RESULTS ]
+
+.searchresults-bg {
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1a7ed0+0,1a7ed0+10&0.65+0,0+11 */
+  background: -moz-linear-gradient(top,  rgba(26,126,208,0.65) 0%, rgba(26,126,208,0.06) 10%, rgba(26,126,208,0) 11%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top,  rgba(26,126,208,0.65) 0%,rgba(26,126,208,0.06) 10%,rgba(26,126,208,0) 11%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom,  rgba(26,126,208,0.65) 0%,rgba(26,126,208,0.06) 10%,rgba(26,126,208,0) 11%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a61a7ed0', endColorstr='#001a7ed0',GradientType=0 ); /* IE6-9 */
+}
 
 .searchresults-loading-text {
   font-size: 20px;
@@ -1119,6 +1232,12 @@ button.searchresults-cat-details:hover {
   font-size: 25px;
   margin-bottom: 5px;
   font-weight: 100;
+}
+
+// =================================== [ FAQ ]
+.faq-body {
+  padding: 50px;
+  margin: 50px 200px 50px 200px;
 }
 
 // =================================== [ FEEDBACK ]

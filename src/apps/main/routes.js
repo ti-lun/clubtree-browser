@@ -21,6 +21,7 @@ import Dashboard from "./containers/Dashboard";
 import About from "./components/About";
 import FAQ from "./containers/FAQ";
 import PrivacyStuff from "./containers/PrivacyStuff";
+import Events from "./containers/Events";
 
 
 export default function routes(/*store: Object, httpClient: Object*/) {
@@ -31,6 +32,7 @@ export default function routes(/*store: Object, httpClient: Object*/) {
       <Route path="/advancedsearch" component={AdvancedSearch} />
       <Route path="/club(/:id)" component={ClubProfile} />
       <Route path="/clubcreation(/:id)" component={ClubCreation} />
+      <Route path="/events" component={Events} />
       <Route path="/faq" component={FAQ} />
       <Route path="/feedback" component={FeedbackForm} />
       <Route path="/search" component={SearchResults} />

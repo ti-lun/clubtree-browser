@@ -45,6 +45,8 @@ class Header extends Component {
     switch (type) {
       case "signup":
         return "header-signup";
+      case "safe":
+        return "header-safe";
       default:
         return "header-main";
     }

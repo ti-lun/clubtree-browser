@@ -12,8 +12,7 @@ import { Row, Col } from "reactstrap";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import ComplexCategorySelector from "../components/SearchResults/ComplexCategorySelector";
-import CategoriesCheckbox from "../components/SearchResults/CategoriesCheckbox";
-import VibeFilterSelector from "../components/VibeFilterSelector";
+import SearchPagination from "../components/SearchResults/SearchPagination";
 import SearchBar from "../components/SearchBar";
 import ResultSortDropdown from "../components/SearchResults/ResultSortDropdown";
 import ClubResultsList from "../components/SearchResults/ClubResultsList";
@@ -52,7 +51,8 @@ export class SearchResults extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      module: false
+      module: false,
+      pageNumber: 0
     };
   }
 
@@ -69,78 +69,88 @@ export class SearchResults extends Component {
       top: window.scrollY
     });
   }
+  
+  changePageNumber = (e) => {
+    this.setState({
+      pageNumber: e.target.value
+    });
+  }
 
   render() {
+    
+    const button = (
+      <button
+        className="searchresults-cat-gear"
+        onClick={this.toggleFilterModule}
+      >
+        <i className="fas fa-cog fa-2x"></i>
+      </button>
+    );
+    
     return (
-      <div>
-      <Helmet title="SearchResults" />
-      <div className={(this.state.module) ? "blur-screen" : "trans-1"}>
-        <div 
-          style={{
-            top: this.state.top
-          }}
-          className={(this.state.module) ? "black-screen" : "trans-1"}></div>
+      <div className="searchresults-bg">
+        <Helmet title="SearchResults" />
+        <div className={(this.state.module) ? "blur-screen" : "trans-1"}>
+          <div 
+            style={{
+              top: this.state.top
+            }}
+            className={(this.state.module) ? "black-screen" : "trans-1"}></div>
 
-        <Header 
-          type="main"
-          showSearch={true}
-           />
+          <Header 
+            type="main"
+            showSearch={true}
+             />
 
-          <Row>
-            <Col 
-              md={3}>
-              <div 
-                style={{
-                  margin: "5% 2% 2% 10%"
-                }}
-              >
-                <ComplexCategorySelector 
-                  termFilter={this.props.termFilter}
-                  vibesFilter={this.props.vibesFilter}
-                  categoriesFilter={this.props.categoriesFilter}
-                  fetchClubSearchResults={this.props.fetchClubSearchResults}
-                  selectorAction={this.props.toggleCategoryFilter}
-                  selectorReducer={this.props.categoriesFilter}
-                  setLoading={this.props.setLoading}
-                  setCategoryFilter={this.props.setCategoryFilter}
-                />
-              </div>
-            </Col>
-            <Col 
-              md={9}>
-              {/* Sort clubs by:
-                <ResultSortDropdown /> */}
-              <div 
-                style={{
-                  margin: "1% 15% 2% 0%"
-                }}
-                className="searchresults-results"
-              >
-                <ClubResultsList
-                  loading={this.props.loading}
-                  setLoading={this.props.setLoading}
-                  searchResults={this.props.searchResults}
-                  termFilter={this.props.termFilter}
-                  vibesFilter={this.props.vibesFilter}
-                  categoriesFilter={this.props.categoriesFilter}
-                  fetchClubSearchResults={this.props.fetchClubSearchResults}
-                  setTermFilter={this.props.setTermFilter}
-                  setVibeFilter={this.props.setVibeFilter}
-                />
-              </div>
-            </Col>
-          </Row>
+            <Row>
+              <Col 
+                md={3}>
+                <div 
+                  style={{
+                    margin: "5% 2% 2% 10%"
+                  }}
+                >
+                  <ComplexCategorySelector 
+                    termFilter={this.props.termFilter}
+                    vibesFilter={this.props.vibesFilter}
+                    categoriesFilter={this.props.categoriesFilter}
+                    fetchClubSearchResults={this.props.fetchClubSearchResults}
+                    selectorAction={this.props.toggleCategoryFilter}
+                    selectorReducer={this.props.categoriesFilter}
+                    setLoading={this.props.setLoading}
+                    setCategoryFilter={this.props.setCategoryFilter}
+                  />
+                </div>
+              </Col>
+              <Col 
+                md={9}>
+                {/* Sort clubs by:
+                  <ResultSortDropdown /> */}
+                <div 
+                  style={{
+                    margin: "1% 15% 2% 0%"
+                  }}
+                  className="searchresults-results"
+                >
+                  <ClubResultsList
+                    pageNumber={this.props.pageNumber}
+                    loading={this.props.loading}
+                    setLoading={this.props.setLoading}
+                    searchResults={this.props.searchResults}
+                    termFilter={this.props.termFilter}
+                    vibesFilter={this.props.vibesFilter}
+                    categoriesFilter={this.props.categoriesFilter}
+                    fetchClubSearchResults={this.props.fetchClubSearchResults}
+                    setTermFilter={this.props.setTermFilter}
+                    setVibeFilter={this.props.setVibeFilter}
+                  />
+                </div>
+              </Col>
+            </Row>
 
-          <Footer />
-        </div>
-        
-
-        <button
-          className="searchresults-cat-gear"
-          onClick={this.toggleFilterModule}
-        >
-          <i className="fas fa-cog fa-2x"></i>
-        </button>
+            <Footer />
+          </div>
+          {}
       </div>
     );
   }

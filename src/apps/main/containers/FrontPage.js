@@ -17,6 +17,7 @@ import {
 
 import logo from "../assets/images/site-logo/entirelogo.png";
 
+import health from "../assets/images/homepage/health.png"
 import academics from "../assets/images/homepage/academics.png";
 import arts from "../assets/images/homepage/arts.png";
 import community from "../assets/images/homepage/community.png";
@@ -46,7 +47,8 @@ class FrontPage extends Component {
       "Greek Life": greek,
       "Multicultural and Heritage": multicultural,
       "Community Service": community,
-      "Sports, Fitness and Well-being": sports,
+      "Sports and Fitness": sports,
+      "Health and Well-being": health,
       "Performing and Creative Arts": arts,
       "Hobbies and Interests": hobbies,
       "Religious and Spiritual": religious,

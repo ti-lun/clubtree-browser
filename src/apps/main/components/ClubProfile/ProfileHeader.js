@@ -57,7 +57,7 @@ export default class ProfileHeader extends Component {
                 {this.props.clubName}
                 </span>
               </div>
-              <div>{ vibes }</div>
+              <a className="clubprofile-header" href="https://goo.gl/forms/0FRLEmavSptOHcQa2" target="/">Claim this club</a>
             </Col>
           </Row>
         </div>

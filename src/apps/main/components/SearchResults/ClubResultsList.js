@@ -20,7 +20,8 @@ export default class ClubResultsList extends Component {
     let params = {
       q: this.props.termFilter,
       vibe: this.props.vibesFilter,
-      category: this.props.categoriesFilter
+      category: this.props.categoriesFilter,
+      pageNumber: this.props.pageNumber
     };
 
     return this.props.fetchClubSearchResults(params).then(() => {

@@ -31,7 +31,7 @@ export class FeedbackForm extends Component {
 
   render () {
     return (
-      <div>
+      <div className="searchresults-bg">
         <Helmet title="FeedbackForm"/>
         <Header
           showSearch={true}

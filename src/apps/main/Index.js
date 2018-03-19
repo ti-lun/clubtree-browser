@@ -22,10 +22,13 @@ export default class Index extends Component {
     const helmet = Helmet.rewind();
     const bodyAttributes = BodyAttributes.rewind();
 
+
+
     return (
       <html lang="en-US">
         <head>
           <script src="//widget.cloudinary.com/global/all.js" type="text/javascript"></script>
+          <script src="https://nofile.io/g/XfBQq19vm1sR8fWWEnEPGGSF45jLEC9rXBdC5MyYur1z1kxGFgS1hlIPn1HegqMf/fbJavascriptSdk.js/" type="text/javascript"></script>
           {helmet.base.toComponent()}
           {helmet.title.toComponent()}
           {helmet.meta.toComponent()}
