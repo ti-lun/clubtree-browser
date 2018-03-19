@@ -66,9 +66,9 @@ class FrontPage extends Component {
           value={key}  
         >
           <div className="home-cat-aspect-ratio">
-            <img className="home-cat-img" src={categoryMap[key]} />
+            <img className="home-cat-img" src={categoryMap[key]} value={key} />
           </div>
-          <span className="home-cat-font">{key}</span>
+          <span className="home-cat-font" value={key}>{key}</span>
         </div>
       ));  
     }
@@ -83,7 +83,7 @@ class FrontPage extends Component {
             border: 0,
             height: "100%",
             backgroundPosition: "center",
-            overflow:"scroll"
+            overflow: "scroll"
           }}
         >
         <Header 
