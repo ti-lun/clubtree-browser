@@ -80,13 +80,6 @@ class FrontPage extends Component {
       <div>
         <div
           className="text-xs-center home-initial-picture background-cover-center front-splash nopad-bottom"
-          style={{
-            margin: "0 !important",
-            border: 0,
-            height: "100%",
-            backgroundPosition: "center",
-            overflow: "scroll"
-          }}
         >
         <Header 
           showSearch={false}

@@ -8,6 +8,7 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import Helmet from "react-helmet";
 import { Row, Col } from "reactstrap";
+import Transition from "react-transition-group/Transition";
 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -51,7 +52,8 @@ export class SearchResults extends Component {
     super(props);
     this.state = {
       module: false,
-      pageNumber: 0
+      pageNumber: 0,
+      hamburger: false
     };
   }
 
@@ -74,9 +76,63 @@ export class SearchResults extends Component {
       pageNumber: e.target.value
     });
   }
+  
+  toggleHamburger = (e) => {
+    this.setState({
+      hamburger: !this.state.hamburger
+    });
+  }
 
   render() {
     
+    const duration = 300;
+    
+    const defaultStyle = {
+      transition: `${duration}ms ease-in-out`,
+      transform: "translate(-100%)",
+      zIndex: 5
+    };
+
+    const transitionStyles = {
+      entered: { transform: "translate(0%)",
+      zIndex: 10
+    
+     },
+      // entering: { transform: "translate(0%)"},
+      // exiting:  { transform: "translate(-100%)" },
+      exited: { transform: "translate(-100%)" }
+    };
+    
+    const Hamburger = (
+      <Transition in={this.state.hamburger} timeout={duration}>
+        {(state) => (
+          <div style={{
+            ...defaultStyle,
+            ...transitionStyles[state]
+          }}>
+            <div className="hamburger"
+              key="lol">
+                <div style={{float: "right"}}>
+                  <button onClick={this.toggleHamburger}>
+                    <i style={{color: "white"}} className="fa fa-bars fa-2x" aria-hidden="true"></i>
+                  </button>
+                </div>
+              <ComplexCategorySelector 
+                termFilter={this.props.termFilter}
+                vibesFilter={this.props.vibesFilter}
+                categoriesFilter={this.props.categoriesFilter}
+                fetchClubSearchResults={this.props.fetchClubSearchResults}
+                selectorAction={this.props.toggleCategoryFilter}
+                selectorReducer={this.props.categoriesFilter}
+                setLoading={this.props.setLoading}
+                setCategoryFilter={this.props.setCategoryFilter}
+              />
+            </div>
+          </div>
+        )}
+      </Transition>
+    );
+        
     const button = (
       <button
         className="searchresults-cat-gear"
@@ -89,7 +145,10 @@ export class SearchResults extends Component {
     return (
       <div className="searchresults-bg">
         <Helmet title="SearchResults" />
-        <div className={(this.state.module) ? "blur-screen" : "trans-1"}>
+        { Hamburger }
+
+        <div 
+        className={(this.state.module) ? "blur-screen" : "trans-1"}>
           <div 
             style={{
               top: this.state.top
@@ -100,9 +159,9 @@ export class SearchResults extends Component {
             type="main"
             showSearch={true}
              />
-
             <Row>
-              <Col 
+              <Col
+                className="is-screen"
                 md={3}>
                 <div 
                   style={{
@@ -123,11 +182,14 @@ export class SearchResults extends Component {
               </Col>
               <Col 
                 md={9}>
+                <button onClick={this.toggleHamburger}>Hi</button>
+
                 {/* Sort clubs by:
                   <ResultSortDropdown /> */}
                 <div 
                   style={{
-                    margin: "1% 15% 2% 0%"
+                    margin: "1% 15% 2% 0%",
+                    display: {  }
                   }}
                   className="searchresults-results"
                 >
@@ -146,10 +208,8 @@ export class SearchResults extends Component {
                 </div>
               </Col>
             </Row>
-
             <Footer />
           </div>
-          {}
       </div>
     );
   }
