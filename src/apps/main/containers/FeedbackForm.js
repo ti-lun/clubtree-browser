@@ -38,20 +38,14 @@ export class FeedbackForm extends Component {
          />
         <div className="feedback-body">
           <span className="home-developers-header">Feedback, please!</span>
-          <div>We are always trying to make Clubtree better and better. If you find a bug, have a suggestion or just want to say something nice (and make our day!), </div>
+          <div>We are always trying to make Clubtree better and better. If you find a bug, have a suggestion or just want to say something nice (and make our day!), hit us up.</div>
           <img
             src={feedback}
-            className="img-fluid"
-            width="20%"
-            style={{
-              margin: "5%"
-            }}
+            className="img-fluid feedback-icon"
           />
           <form method="POST" 
             action="https://formspree.io/clubtreeteam@gmail.com"
-            style={{
-              margin: "1% 20% 1% 20%"
-            }}> 
+            className="feedback-form"> 
             <input 
               type="hidden" 
               name="_next" 

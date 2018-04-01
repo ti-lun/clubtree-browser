@@ -78,15 +78,16 @@ class FrontPage extends Component {
     
     return (
       <div>
+      <Header 
+        showSearch={false}
+      />
         <div
           className="text-xs-center home-initial-picture background-cover-center front-splash nopad-bottom"
         >
-        <Header 
-          showSearch={false}
-        />
+
         <div 
           id="text-center"
-          style={{ margin: "5%" }}>
+          style={{ margin: "auto" }}>
             <span
               className="home-title"
             >
@@ -105,10 +106,7 @@ class FrontPage extends Component {
         </div>
       </div>
       <div 
-        style={{
-          margin: "5% 10% 5% 10%",
-          textAlign: "center"
-        }}
+        className="home-icons-content"
       >
         <span className="home-tag">Begin discovering clubs instantly.</span>
           <div className="home-cat-flex">

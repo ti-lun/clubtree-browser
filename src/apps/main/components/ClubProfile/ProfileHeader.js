@@ -38,20 +38,21 @@ export default class ProfileHeader extends Component {
           className="clubprofile-back-button">
             <Link 
             style={{color: "white"}}
-            to={"/search"}>⬅ Back to search</Link>
+            to={"/search"}><i className="fas fa-hand-point-left"></i> Back</Link>
           </span>
           <Row>
             <Col 
-              style={{
-                textAlign: "right"
-              }}
+              className="clubprofile-header-icon"
+            sm={2}
             md={4}>
               <img
                 src={this.props.logo}
                 className="rounded-circle clubprofile-header-logo"
               />
             </Col>
-            <Col md={8} className="clubprofile-header-description">
+            <Col 
+            sm={10}
+            md={8} className="clubprofile-header-description">
               <div>
                 <span className="clubprofile-header-clubname">
                 {this.props.clubName}

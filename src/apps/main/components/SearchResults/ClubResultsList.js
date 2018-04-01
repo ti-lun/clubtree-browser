@@ -17,13 +17,13 @@ export default class ClubResultsList extends Component {
 
   componentDidMount() {
     if (this.props.loading) {
-      return this.fetchResults();
+      this.fetchResults();
     }
   }
 
   componentDidUpdate() {
     if (this.props.loading) {
-      return this.fetchResults();
+      this.fetchResults();
     }
   }
 

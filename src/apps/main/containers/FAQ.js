@@ -33,7 +33,7 @@ export class FAQ extends Component {
         <Header 
           showSearch={true}
         />
-        <div className="faq-body">
+        <div className="mobile-plain-body">
           <span className="home-developers-header">FAQ</span>
         ello whoop whoop
         </div>

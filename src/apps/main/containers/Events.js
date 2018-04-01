@@ -5,6 +5,11 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import Helmet from "react-helmet";
 import {Row, Col} from "reactstrap";
+import qs from "qs";
+import axios from "axios";
+import Promise from "bluebird";
+
+import { API_URL } from "../lib/consts";
 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -31,36 +36,42 @@ export class Events extends Component {
    */
   static gsBeforeRoute (/* {dispatch}, renderProps, query, serverProps */) {}
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      futureEvents: [],
+      pastEvents: []
+    };
+  }
+  
+  componentDidMount() {
+    this.fetchEvents();
+  }
+
+  fetchEvents = () => {
+    let request = Promise.try(() => {
+      return axios.get(`${API_URL}/events`, {
+        params: {
+          startTime: "future"
+        }
+      }).then((res) => {
+        this.setState({ futureEvents: res.data });
+      });
+    });
+    
+    let request2 = Promise.try(() => {
+      return axios.get(`${API_URL}/events`, {
+        params: {
+          startTime: "past"
+        }
+      }).then((res) => {
+        this.setState({ pastEvents: res.data });
+      });
+    });
+  }
+
   render () {
-    
-    const currentDay = new Date("March 10, 2018");
-    
-    const events = [
-      {
-        simplifiedClub: "UCI Starcraft Team",
-        eventName: "CSL Viewing Party at Dylan's place",
-        eventDate: new Date("March 11, 2018"),
-        eventLink: "http://neopets.com"
-      },
-      {
-        simplifiedClub: "Let's just say this club has a long-ass name",
-        eventName: "Banh Mi fundraiser",
-        eventDate: new Date("March 10, 2018"),
-        eventLink: "http://yahoo.com"
-      },
-      {
-        simplifiedClub: "Bougie honor society",
-        eventName: "Study session at Courtyard Study Lounge",
-        eventDate: new Date("March 09, 2018"),
-        eventLink: "http://google.com"
-      },
-      {
-        simplifiedClub: "Bougie honor society",
-        eventName: "$2 Boba Fundraiser for Girls",
-        eventDate: new Date("March 06, 2018"),
-        eventLink: "http://reddit.com"
-      },
-    ];
+    const currentDay = new Date();
     
     return (
       <div className="events-bg">
@@ -82,44 +93,40 @@ export class Events extends Component {
           </div>
           
           <div className="events-display">
-            { events.map((event, index) => {
-              if (event.eventDate >= currentDay) {
+            { this.state.futureEvents.map((event, index) => {
+                console.log("event is", index, event);
                 return (
                   <SingleEvent 
                     key={index}
-                    simplifiedClub={event.simplifiedClub}
-                    eventDate={event.eventDate}
-                    eventName={event.eventName}
+                    simplifiedClub={(event.place) ? event.place.name : "biatch"}
+                    eventDate={new Date(event.start_time)}
+                    eventName={(event.name) ? event.name : "wtf man get a name"}
                   />
                 );
-              }
-            }) }
+              })
+            }
           </div>
           <hr 
             className="events-hr" />
           <div style={{textAlign: "center"}}>
-            <span className="events-subtitle-text">What you've missed</span>
+            <span className="events-subtitle-text">What you missed</span>
           </div>
-          
           <div className="events-display">
-            { events.map((event, index) => {
-              if (event.eventDate < currentDay) {
-                return (
-                  <SingleEvent 
-                    key={index}
-                    simplifiedClub={event.simplifiedClub}
-                    eventDate={event.eventDate}
-                    eventName={event.eventName}
-                  />
-                );
-              }
-            }) }
-          </div>
-          
+             { this.state.pastEvents.map((event, index) => {
+                 return (
+                    <SingleEvent 
+                      key={index}
+                      simplifiedClub={(event.place) ? event.place.name : "biatch"}
+                      eventDate={new Date(event.start_time)}
+                      eventName={(event.name) ? event.name : "wtf man get a name"} />
+                 );
+             }) }
+           </div>
         <Footer />
       </div>
     );
   }
+  
 }
 
 export default connect(

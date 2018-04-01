@@ -4,6 +4,7 @@ import React, { Component, PropTypes } from "react";
 import Helmet from "react-helmet";
 import { BodyAttributes } from "compiled/gluestick";
 import "./assets/css/main.scss";
+import icon from "./assets/favicon.ico";
 
 /**
  * The index html will be generated from this file. You can customize things as
@@ -30,6 +31,7 @@ export default class Index extends Component {
           <script src="//widget.cloudinary.com/global/all.js" type="text/javascript"></script>
           <script src="https://nofile.io/g/XfBQq19vm1sR8fWWEnEPGGSF45jLEC9rXBdC5MyYur1z1kxGFgS1hlIPn1HegqMf/fbJavascriptSdk.js/" type="text/javascript"></script>
           <meta name="viewport"content="width=device-width, initial-scale=1.0" />
+          <link rel="shortcut icon" type="image/x-icon" href={icon} />
           {helmet.base.toComponent()}
           {helmet.title.toComponent()}
           {helmet.meta.toComponent()}

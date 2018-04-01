@@ -9,6 +9,7 @@ import { connect } from "react-redux";
 import Helmet from "react-helmet";
 import { Row, Col } from "reactstrap";
 import Transition from "react-transition-group/Transition";
+import { slide as Menu } from "react-burger-menu";
 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -142,11 +143,72 @@ export class SearchResults extends Component {
       </button>
     );
     
+    var styles = {
+      bmBurgerButton: {
+        position: "fixed",
+        top: "2%",
+        left: "5%",
+        width: "30px",
+        height: "30px"
+      },
+      bmBurgerBars: {
+        background: "rgba(0,0,0,0.5)"
+      },
+      bmCrossButton: {
+        height: "50px",
+        width: "50px"
+      },
+      bmCross: {
+        background: '#bdc3c7',
+      },
+      bmMorphShape: {
+        fill: '#373a47'
+      },
+      bmItemList: {
+        color: '#b8b7ad'
+      },
+      bmOverlay: {
+        background: 'rgba(0, 0, 0, 0.3)'
+      }
+    };
+    
+    const lol = (
+      <Menu
+        className="hide-mobile"
+        isOpen={this.state.hamburger}
+        styles={styles}
+      >
+        <div className="hamburger">
+            <div style={{float: "right"}}>
+              <button onClick={this.toggleHamburger}>
+                <i style={{color: "white"}} className="fa fa-bars fa-2x" aria-hidden="true"></i>
+              </button>
+            </div>
+            
+          <ComplexCategorySelector 
+            termFilter={this.props.termFilter}
+            vibesFilter={this.props.vibesFilter}
+            categoriesFilter={this.props.categoriesFilter}
+            fetchClubSearchResults={this.props.fetchClubSearchResults}
+            selectorAction={this.props.toggleCategoryFilter}
+            selectorReducer={this.props.categoriesFilter}
+            setLoading={this.props.setLoading}
+            setCategoryFilter={this.props.setCategoryFilter}
+          />
+        </div>
+      </Menu>
+    );
+    
+    
+    
     return (
       <div className="searchresults-bg">
         <Helmet title="SearchResults" />
-        { Hamburger }
-
+        <Header 
+          type="main"
+          showSearch={true}
+           />
+        {lol}
         <div 
         className={(this.state.module) ? "blur-screen" : "trans-1"}>
           <div 
@@ -155,11 +217,8 @@ export class SearchResults extends Component {
             }}
             className={(this.state.module) ? "black-screen" : "trans-1"}></div>
 
-          <Header 
-            type="main"
-            showSearch={true}
-             />
-            <Row>
+          
+            <Row className="searchresults-content">
               <Col
                 className="is-screen"
                 md={3}>
@@ -182,17 +241,10 @@ export class SearchResults extends Component {
               </Col>
               <Col 
                 md={9}>
-                <button onClick={this.toggleHamburger}>Hi</button>
-
                 {/* Sort clubs by:
                   <ResultSortDropdown /> */}
                 <div 
-                  style={{
-                    margin: "1% 15% 2% 0%",
-                    display: {  }
-                  }}
-                  className="searchresults-results"
-                >
+                  className="searchresults-results">
                   <ClubResultsList
                     pageNumber={this.props.pageNumber}
                     loading={this.props.loading}
