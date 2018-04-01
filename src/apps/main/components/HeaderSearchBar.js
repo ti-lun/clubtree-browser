@@ -2,6 +2,7 @@
 
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { browserHistory } from "react-router";
 
 export default class HeaderSearchBar extends Component {
   static PropTypes = {
@@ -38,6 +39,7 @@ export default class HeaderSearchBar extends Component {
     if (event.key === "Enter") {
       this.props.setLoading(true);
       this.props.setTermFilter(this.state.textInput);
+      browserHistory.push("/search");
     }
   }
 
@@ -52,6 +54,7 @@ export default class HeaderSearchBar extends Component {
         onClick={() => {
           this.props.setLoading(true);
           this.props.setTermFilter(this.state.textInput);
+          browserHistory.push("/search");
         }}>
         <i className="fa fa-2x fa-search" aria-hidden="true" style={{ color: "#ff3823" }} />
       </button >
