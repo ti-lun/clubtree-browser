@@ -130,13 +130,22 @@ textarea:focus {
   background-cover: center;
 
 }
-
+// laptop
 @media screen 
   // and (min-device-width: 1200px) 
   // and (max-device-width: 1600px) 
   and (-webkit-min-device-pixel-ratio: 1) { 
     .hide-mobile {
       display: none;
+    }
+    
+    .hide-browser {
+      display: block;
+    }
+    
+    .screen-plain-body {
+      margin-top: 5%;
+      padding: 10%;
     }
   }
 
@@ -145,6 +154,10 @@ textarea:focus {
     and (max-device-width: 900px) {
     .mobile-plain-body {
       margin: 5%;
+    }
+    
+    .hide-mobile {
+      display: block;
     }
     
     .hide-browser {
@@ -270,7 +283,7 @@ textarea:focus {
     }
 
     .home-intro {
-      height: 50%;
+      height: 40%;
       padding: 3% 5% 3% 5%;
       margin-top: 3%;
       /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#8c8c8c+0,8c8c8c+100&0+0,0.65+100 */
@@ -278,7 +291,8 @@ textarea:focus {
       background: -webkit-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.2) 100%); /* Chrome10-25,Safari5.1-6 */
       background: linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.2) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
       filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=0 ); /* IE6-9 */
-
+      display: flex;
+      align-items: center;
     }
 
     .home-perks-description-one {
@@ -448,6 +462,7 @@ textarea:focus {
       font-size: 20px;
       font-weight: 100;
       color: #FFFFFF;
+      margin:auto;
     }
 
     .top-banner {
@@ -595,7 +610,7 @@ textarea:focus {
     }
 
     .home-intro {
-      height: 50%;
+      height: 40%;
       padding: 3% 5% 3% 5%;
       margin-top: 3%;
       /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#8c8c8c+0,8c8c8c+100&0+0,0.65+100 */
@@ -603,7 +618,8 @@ textarea:focus {
       background: -webkit-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.2) 100%); /* Chrome10-25,Safari5.1-6 */
       background: linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.2) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
       filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=0 ); /* IE6-9 */
-
+      display: flex;
+      align-items: center;
     }
 
     .home-perks-description-one {
@@ -932,7 +948,9 @@ textarea:focus {
     }
 
     .home-intro {
-      height: 50%;
+      height: 100%;
+      display: flex;
+      align-items: center;
       padding: 3% 5% 3% 5%;
       margin-top: 3%;
       /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#8c8c8c+0,8c8c8c+100&0+0,0.65+100 */
@@ -940,7 +958,6 @@ textarea:focus {
       background: -webkit-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.2) 100%); /* Chrome10-25,Safari5.1-6 */
       background: linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.2) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
       filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=0 ); /* IE6-9 */
-
     }
 
     .home-perks-description-one {
@@ -1140,6 +1157,10 @@ textarea:focus {
     }
 }
 
+.home-intro-content {
+  margin: auto;
+}
+
 // =================================== [ SEARCH BAR ]
 
 .results-page-search {
@@ -1167,7 +1188,7 @@ textarea:focus {
       padding-right: 15px;
       padding-bottom: 2%;
       position: absolute;
-      top: 5%;
+      top: 1%;
       z-index: 5;
     }
 
@@ -1503,9 +1524,17 @@ a.clubprofile-header {
       color: white;
     }
     
+    .events-header {
+      display: flex;
+      align-items: center;
+      margin: 1%;
+      margin-top: 7%;
+    }
+    
     .events-bg {
       background-image: url("../images/search/default-cover.jpg");
       background-size: 100% 100%;
+      position:absolute;
     }
     
     .events-single-event {
@@ -1671,10 +1700,14 @@ hr.events-hr {
       margin: auto;
       position: static;
       background-color: rgba(26,126,208,1);
-      height: auto;
+      height: 100%;
       padding: 5% 10% 30% 10%;
       transition: 1s;
       top:0;  
+    }
+    
+    .searchresults-mobile-category {
+      right: 0;
     }
     
     .searchresults-club-result {
@@ -1694,11 +1727,14 @@ hr.events-hr {
       background: -webkit-linear-gradient(top,  rgba(225,110,105,0.65) 0%,rgba(225,110,105,0.06) 10%,rgba(225,110,105,0) 11%); /* Chrome10-25,Safari5.1-6 */
       background: linear-gradient(to bottom,  rgba(225,110,105,0.65) 0%,rgba(225,110,105,0.06) 10%,rgba(225,110,105,0) 11%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
       filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a61a7ed0', endColorstr='#001a7ed0',GradientType=0 ); /* IE6-9 */
-      padding-top: 20%;
+      padding-top: 10%;
     }
 }
 
-
+.searchresults-categories-menu {
+  width: 50px;
+  height: 50px;
+}
 
 .searchresults-loading-text {
   font-size: 20px;
@@ -2194,10 +2230,26 @@ button.searchresults-cat-details:hover {
 }
 
 // =================================== [ FAQ ]
-.faq-body {
-  padding: 50px;
-  margin: 50px 200px 50px 200px;
-}
+
+// laptop
+@media screen 
+  // and (min-device-width: 1200px) 
+  // and (max-device-width: 1600px) 
+  and (-webkit-min-device-pixel-ratio: 1) {
+
+  }
+
+
+
+@media only screen 
+  and (min-device-width: 300px) 
+  and (max-device-width: 900px) 
+  and (-webkit-min-device-pixel-ratio: 3) { 
+    .faq-body {
+      padding: 50px;
+      margin: 50px 200px 50px 200px;
+    }
+  }
 
 // =================================== [ FEEDBACK ]
 @media screen 
@@ -2240,8 +2292,8 @@ button.searchresults-cat-details:hover {
 }
 
 @media only screen 
-  and (min-device-width: 414px) 
-  and (max-device-width: 736px) 
+  and (min-device-width: 300px) 
+  and (max-device-width: 900px) 
   and (-webkit-min-device-pixel-ratio: 3) { 
     .feedback-body {
       padding: 50px;

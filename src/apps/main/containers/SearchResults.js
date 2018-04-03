@@ -11,6 +11,8 @@ import { Row, Col } from "reactstrap";
 import Transition from "react-transition-group/Transition";
 import { slide as Menu } from "react-burger-menu";
 
+import categoryIcon from "../assets/images/search/categories.png";
+
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import ComplexCategorySelector from "../components/SearchResults/ComplexCategorySelector";
@@ -146,10 +148,13 @@ export class SearchResults extends Component {
     var styles = {
       bmBurgerButton: {
         position: "fixed",
-        top: "2%",
-        left: "5%",
-        width: "30px",
-        height: "30px"
+        top: "10%",
+        right: "-3px",
+        width: "50px",
+        height: "50px",
+        opacity: 0.8,
+        "background-color": "white",
+        "border-radius": "5px"
       },
       bmBurgerBars: {
         background: "rgba(0,0,0,0.5)"
@@ -174,17 +179,13 @@ export class SearchResults extends Component {
     
     const lol = (
       <Menu
+        right
+        customBurgerIcon={ <img className="searchresults-mobile-category" src={categoryIcon} /> }
         className="hide-mobile"
         isOpen={this.state.hamburger}
         styles={styles}
       >
         <div className="hamburger">
-            <div style={{float: "right"}}>
-              <button onClick={this.toggleHamburger}>
-                <i style={{color: "white"}} className="fa fa-bars fa-2x" aria-hidden="true"></i>
-              </button>
-            </div>
-            
           <ComplexCategorySelector 
             termFilter={this.props.termFilter}
             vibesFilter={this.props.vibesFilter}
@@ -202,13 +203,15 @@ export class SearchResults extends Component {
     
     
     return (
+      <div>
+      <Header 
+        type="main"
+        showSearch={true}
+         />
+      {lol}
       <div className="searchresults-bg">
         <Helmet title="SearchResults" />
-        <Header 
-          type="main"
-          showSearch={true}
-           />
-        {lol}
+
         <div 
         className={(this.state.module) ? "blur-screen" : "trans-1"}>
           <div 
@@ -262,6 +265,7 @@ export class SearchResults extends Component {
             </Row>
             <Footer />
           </div>
+        </div>
       </div>
     );
   }
