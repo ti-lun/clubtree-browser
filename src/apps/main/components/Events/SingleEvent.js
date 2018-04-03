@@ -28,7 +28,7 @@ export default class SingleEvent extends Component {
               </span>
             </Col>
             <Col md={9}>
-              <span className="events-event-name">{ this.props.eventName }</span>
+              <span className="events-event-name"><a href={this.props.eventLink} target="/">{ this.props.eventName }</a></span>
             </Col>
           </Row>
         </div>

@@ -60,6 +60,9 @@ export class FAQ extends Component {
               </ul><br />
               Again, these were estimated through online sources.  I haven't seen like 99% of these clubs in person!  So please correct me if I'm wrong.  :)<br /><br />
               
+              <strong>What are the additional tags that show up on the search results?  (e.g. "Chill", "Intense"...)</strong><br/>
+              They're "vibes," which are quick pieces of information about the club that are soon to be implemented.  Stay tuned!<br /><br />
+              
               <strong>Clubtree seems super interesting, and I would like to be part of the team.  How do??</strong><br/>
               OMG, awesome.  Hit us up at <strong>clubtreeteam@gmail.com</strong> with your resume and we can talk.
             </div>

@@ -40,7 +40,8 @@ export class Events extends Component {
     super(props);
     this.state = {
       futureEvents: [],
-      pastEvents: []
+      pastEvents: [],
+      isLoading: true
     };
   }
   
@@ -65,7 +66,10 @@ export class Events extends Component {
           startTime: "past"
         }
       }).then((res) => {
-        this.setState({ pastEvents: res.data });
+        this.setState({ 
+          pastEvents: res.data,
+          isLoading: false
+        });
       });
     });
   }
@@ -92,15 +96,16 @@ export class Events extends Component {
             </Row>
           </div>
           
-          <div className="events-display">
+          <div className={(this.state.isLoading) ? "events-display content-blur": "events-display"}>
             { this.state.futureEvents.map((event, index) => {
                 console.log("event is", index, event);
                 return (
                   <SingleEvent 
                     key={index}
-                    simplifiedClub={(event.place) ? event.place.name : "biatch"}
+                    eventLink={event.eventLink}
+                    simplifiedClub={(event.place) ? event.place.name : "Location N/A"}
                     eventDate={new Date(event.start_time)}
-                    eventName={(event.name) ? event.name : "wtf man get a name"}
+                    eventName={(event.name) ? event.name : "Unnamed Event"}
                   />
                 );
               })
@@ -115,6 +120,7 @@ export class Events extends Component {
              { this.state.pastEvents.map((event, index) => {
                  return (
                     <SingleEvent 
+                      eventLink={event.eventLink}
                       key={index}
                       simplifiedClub={(event.place) ? event.place.name : "biatch"}
                       eventDate={new Date(event.start_time)}
